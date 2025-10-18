@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.conteiner {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.painel-esquerdo {
+    flex: 1;
+    background-color: #d1d1d1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.conteiner-ilustracao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-direito {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.conteiner-formulario {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.cabecalho-passo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.numero-passo {
+    width: 28px;
+    height: 28px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.titulo-passo {
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+}
+
+.info-passo {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.grupo-formulario {
+    margin-bottom: 20px;
+}
+
+.grupo-formulario label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.entrada-formulario,
+.selecao-formulario {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333;
+    font-family: inherit;
+}
+
+.selecao-formulario {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23333' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.entrada-formulario:focus,
+.selecao-formulario:focus {
+    outline: 2px solid #999;
+}
+
+.grupo-botoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn-secundario,
+.btn-principal {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.btn-secundario {
+    background-color: #d9d9d9;
+    color: #333;
+}
+
+.btn-principal {
+    background-color: #d9d9d9;
+    color: #333;
+}
+
+.btn-secundario:hover,
+.btn-principal:hover {
+    background-color: #c9c9c9;
+}

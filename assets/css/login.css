@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.conteiner {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.painel-esquerdo {
+    flex: 1;
+    background-color: #d1d1d1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.conteiner-ilustracao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-direito {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.conteiner-formulario {
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 32px;
+}
+
+.grupo-tipo-usuario {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.opcao-tipo-usuario {
+    flex: 1;
+    background-color: #d9d9d9;
+    padding: 16px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+}
+
+.opcao-tipo-usuario input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.rotulo-tipo-usuario {
+    font-size: 15px;
+    color: #333;
+}
+
+.personalizacao-tipo-usuario {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    position: relative;
+}
+
+.opcao-tipo-usuario input[type="radio"]:checked ~ .personalizacao-tipo-usuario::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.grupo-formulario {
+    margin-bottom: 24px;
+}
+
+.grupo-formulario label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.entrada-formulario {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333;
+}
+
+.envoltorio-senha {
+    position: relative;
+}
+
+.envoltorio-senha .entrada-formulario {
+    padding-right: 48px;
+}
+
+.alternar-senha {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.entrada-formulario:focus {
+    outline: 2px solid #999;
+}
+
+.btn-entrar {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.btn-entrar:hover {
+    background-color: #c9c9c9;
+}
+
+.link-cadastro {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.link-cadastro a {
+    color: #333;
+    text-decoration: underline;
+}
+
+.link-cadastro a:hover {
+    color: #000;
+}
