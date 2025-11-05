@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar - Tipo de Conta</title>
-    <link rel="stylesheet" href="../assets/css/cadastro_passo1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/css/passenger-signup-step-five.css" />
+  <title>Cadastrar - Passo 5 de 5</title>
+
 </head>
+
 <body>
-    <div class="conteiner">
-        <div class="painel-esquerdo">
+  <div class="container">
+    <div class="illustration-side">
         <div class="logo">
             <!-- SVG do logo -->
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 576 763" fill="none">
@@ -34,48 +36,108 @@
                     </linearGradient>
                 </defs>
             </svg>
-            </div>
-            <div class="conteiner-ilustracao">
-                <img src="../assets/img/Select-amico 1.svg" alt="">
-            </div>
-        </div>
-        
-        <div class="painel-direito">
-            <div class="conteiner-formulario">
-                <h1>Cadastrar</h1>
-                
-                <div class="cabecalho-passo">
-                    <span class="numero-passo">1</span>
-                    <span class="titulo-passo">Tipo de Conta</span>
-                </div>
-                
-                <div class="info-passo">Passo 1 de 5</div>
-                
-                <div class="grupo-radio">
-                    <label class="opcao-radio">
-                        <input type="radio" name="tipo-conta" value="prioritario" checked>
-                        <span class="rotulo-radio">Prioritário</span>
-                        <span class="personalizacao-radio"></span>
-                    </label>
-                    
-                    <label class="opcao-radio">
-                        <input type="radio" name="tipo-conta" value="comum">
-                        <span class="rotulo-radio">Comum</span>
-                        <span class="personalizacao-radio"></span>
-                    </label>
-                    
-                    <label class="opcao-radio">
-                        <input type="radio" name="tipo-conta" value="motorista">
-                        <span class="rotulo-radio">Motorista</span>
-                        <span class="personalizacao-radio"></span>
-                    </label>
-                </div>
-                
-                <div class="grupo-botoes">
-                    <button type="button" class="btn-proximo" onclick="location.href='cadastro_passo2.html'">Próximo</button>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="illustration-container"></div>
+      <img src="../assets/img/Image upload-amico 1.svg" alt="">
     </div>
+
+    <div class="form-side">
+      <div class="form-container">
+        <h1 class="title">Cadastrar</h1>
+
+        <p class="instruction-text">
+          Envie uma foto do seu RG ou Laudo Médico garantindo que estejam legíveis e atualizados.
+        </p>
+
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" multiple hidden>
+          <label for="fileInput">
+            <p class="upload-text">Arraste e solte os arquivos ou clique para selecionar.</p>
+            <p class="upload-formats">Formatos aceitos: .pdf, .jpg, .png</p>
+          </label>
+        </div>
+
+        <div class="preview-area"></div>
+
+        <button class="btn-submit">Enviar</button>
+        <button class="btn-back">Voltar</button>
+      </div>
+    </div>
+  </div>
+    <!--
+  <script>
+    const uploadArea  = document.getElementById('uploadArea');
+    const fileInput   = document.getElementById('fileInput');
+    const previewArea = document.querySelector('.preview-area');
+
+    uploadArea.addEventListener('click', () => fileInput.click());
+    uploadArea.addEventListener('dragover', e => {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+    uploadArea.addEventListener('drop', e => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+    function handleFiles(files) {
+      [...files].forEach(file => {
+        const isImage = file.type.startsWith('image/');
+        const isPdf   = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+        if (!isImage && !isPdf) {
+          alert(`Formato não suportado: ${file.name}`);
+          return;
+        }
+        generatePreviewCard(file, { isImage, isPdf });
+      });
+    }
+
+    function generatePreviewCard(file, { isImage, isPdf }) {
+      const card  = document.createElement('div');
+      card.className = 'file-card';
+
+      const thumb = document.createElement(isPdf ? 'iframe' : 'img');
+      thumb.className = isPdf ? 'pdf-thumb' : 'img-thumb';
+
+      const url = URL.createObjectURL(file);
+      if (isPdf) thumb.src = `${url}#page=1&toolbar=0`;
+      else thumb.src = url;
+
+      const meta = document.createElement('div');
+      meta.className = 'file-meta';
+      meta.innerHTML = `
+        <div class="file-name" title="${file.name}">${truncate(file.name, 40)}</div>
+        <div class="file-size">${formatBytes(file.size)}</div>
+      `;
+
+      const actions = document.createElement('div');
+      actions.className = 'file-actions';
+      const viewBtn = document.createElement('a');
+      viewBtn.textContent = 'Abrir';
+      viewBtn.href = url;
+      viewBtn.target = '_blank';
+      actions.appendChild(viewBtn);
+
+      card.appendChild(thumb);
+      card.appendChild(meta);
+      card.appendChild(actions);
+      previewArea.appendChild(card);
+    }
+
+    function formatBytes(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024, sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
+    }
+
+    function truncate(str, n) {
+      return str.length > n ? str.slice(0, n - 1) + '…' : str;
+    }
+  </script>
+    -->
 </body>
 </html>
