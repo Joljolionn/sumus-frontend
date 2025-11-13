@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.split-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.illustration-side {
+  flex: 1;
+  background: #d4d4d4;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centraliza verticalmente */
+  align-items: center;       /* centraliza horizontalmente */
+}
+.illustration-side svg {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 28px;
+  font-weight: 300;
+  color: #333;
+}
+
+.form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  max-width: 520px;
+  
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #000;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.step-progress {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.upload-section {
+  margin-bottom: 32px;
+}
+
+.upload-section h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.upload-area {
+  border: 2px dashed #999;
+  border-radius: 8px;
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-area:hover {
+  background: #f9f9f9;
+}
+
+.upload-area p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.upload-formats {
+  font-size: 13px;
+  color: #666;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.button-group {
+  display: flex;
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}

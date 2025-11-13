@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.conteiner {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.painel-esquerdo {
+    flex: 1;
+    background-color: #d1d1d1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.conteiner-ilustracao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-direito {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.conteiner-formulario {
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.cabecalho-passo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.numero-passo {
+    width: 28px;
+    height: 28px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.titulo-passo {
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+}
+
+.info-passo {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.conteiner-otp {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.entrada-otp {
+    flex: 1;
+    aspect-ratio: 1;
+    max-width: 60px;
+    padding: 16px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 8px;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    font-weight: 500;
+}
+
+.entrada-otp:focus {
+    outline: 2px solid #999;
+}
+
+.texto-verificacao {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.btn-verificar {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+.btn-verificar:hover {
+    background-color: #c9c9c9;
+}
+
+.grupo-botoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.btn-secundario,
+.btn-principal {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.btn-secundario {
+    background-color: #d9d9d9;
+    color: #333;
+}
+
+.btn-principal {
+    background-color: #d9d9d9;
+    color: #333;
+}
+
+.btn-secundario:hover,
+.btn-principal:hover {
+    background-color: #c9c9c9;
+}
+
+/* ========================== MODAL ========================== */
+.janela-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.conteudo-modal {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-modal {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.texto-modal {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.btn-abrir-email {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-abrir-email:hover {
+    background-color: #c9c9c9;
+}
