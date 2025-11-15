@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.conteiner {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.painel-esquerdo {
+    flex: 1;
+    background-color: #d1d1d1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.conteiner-ilustracao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-side svg {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+.form-side {
+  max-width: 520px;
+  flex: 1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #000;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.step-progress {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.otp-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 56px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  border: none;
+  background: #d4d4d4;
+  border-radius: 8px;
+}
+
+.otp-message {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.verify-btn {
+  width: 100%;
+  padding: 14px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: auto;
+}

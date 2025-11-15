@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="painel-esquerdo">
+            <div class="logo">Logo</div>
+            <div class="conteiner-ilustracao">
+                <img src="../assets/img/Login-rafiki 1.svg" alt="">
+            </div>
+        </div>
+        
+        <div class="painel-direito">
+            <div class="conteiner-formulario">
+                <h1>Login</h1>
+                
+                <div class="grupo-tipo-usuario">
+                    <label class="opcao-tipo-usuario">
+                        <input type="radio" name="tipo-usuario" value="passageiro" checked>
+                        <span class="rotulo-tipo-usuario">Passageiro</span>
+                        <span class="personalizacao-tipo-usuario"></span>
+                    </label>
+                    
+                    <label class="opcao-tipo-usuario">
+                        <input type="radio" name="tipo-usuario" value="motorista">
+                        <span class="rotulo-tipo-usuario">Motorista</span>
+                        <span class="personalizacao-tipo-usuario"></span>
+                    </label>
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="entrada-formulario">
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label for="senha">Senha</label>
+                    <div class="envoltorio-senha">
+                        <input type="password" id="senha" class="entrada-formulario">
+                        <button type="button" class="alternar-senha">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 4C4.5 4 2 10 2 10C2 10 4.5 16 10 16C15.5 16 18 10 18 10C18 10 15.5 4 10 4Z" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="10" cy="10" r="3" stroke="#333" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-entrar">Entrar</button>
+                
+                <p class="link-cadastro">
+                    Não tem uma conta? <a href="../Pages/cadastro_passo1.html">Crie uma</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

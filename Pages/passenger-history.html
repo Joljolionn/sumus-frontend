@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico - Passageiro</title>
+    <link rel="stylesheet" href="../assets/css/passenger-history.css">
+</head>
+<body>
+    <div class="logo">Logo</div>
+
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="4" width="20" height="14" rx="2"/>
+                </svg>
+                <span>Carteira</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                </svg>
+                <span>Conta</span>
+            </a>
+            <a href="#" class="sidebar-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10"/>
+                </svg>
+                <span>Histórico</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="8.5" cy="7" r="4"/>
+                    <line x1="18" y1="8" x2="23" y2="13" stroke="currentColor" stroke-width="2"/>
+                    <line x1="23" y1="8" x2="18" y2="13" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>Deletar Conta</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="filters-section">
+            <div class="price-filter">
+                <h3>Preço</h3>
+                <div class="price-range">
+                    <span>R$ 0,00 - R$ 0,00</span>
+                </div>
+                <input type="range" min="0" max="100" value="0" class="slider">
+            </div>
+
+            <div class="payment-filter">
+                <h3>Pagamento</h3>
+                <div class="payment-options">
+                    <label class="radio-option">
+                        <input type="radio" name="payment" checked>
+                        <span>Debito</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="payment">
+                        <span>Crédito</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="payment">
+                        <span>Dinheiro</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="date-filter">
+                <h3>Data</h3>
+                <div class="date-input"></div>
+            </div>
+        </div>
+
+        <div class="trips-list">
+            <div class="trip-card">
+                <div class="trip-header">
+                    <span class="trip-date">00/00/0000</span>
+                    <span class="trip-price">R$ 70,54</span>
+                    <span class="trip-payment">Debito</span>
+                    <button class="dropdown-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="trip-details">
+                    <p>Embarque:</p>
+                    <p>Desembarque:</p>
+                    <p>Motorista:</p>
+                </div>
+            </div>
+
+            <div class="trip-card">
+                <div class="trip-header">
+                    <span class="trip-date">00/00/0000</span>
+                    <span class="trip-price">R$ 70,54</span>
+                    <span class="trip-payment">Debito</span>
+                    <button class="dropdown-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="trip-card">
+                <div class="trip-header">
+                    <span class="trip-date">00/00/0000</span>
+                    <span class="trip-price">R$ 70,54</span>
+                    <span class="trip-payment">Debito</span>
+                    <button class="dropdown-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

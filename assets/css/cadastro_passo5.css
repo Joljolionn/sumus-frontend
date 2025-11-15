@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Left side - Illustration */
+.illustration-side {
+  flex: 1;
+  background: linear-gradient(135deg, #d4d4d4 0%, #c0c0c0 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  position: relative;
+}
+.illustration-side svg {
+
+  width: 90%;
+  height: auto;
+}
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 28px;
+  font-weight: 300;
+  color: #333;
+}
+
+.illustration-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Área pronta para receber sua ilustração SVG */
+}
+
+.illustration-container svg {
+  max-width: 80%;
+  height: auto;
+  display: block;
+}
+
+/* Right side - Form */
+.form-side {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.step-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  background: #666;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.step-divider {
+  flex: 1;
+  height: 1px;
+  background: #333;
+}
+
+.step-info {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.instruction-text {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.upload-area {
+  border: 2px dashed #999;
+  border-radius: 8px;
+  padding: 60px 40px;
+  text-align: center;
+  background: #fafafa;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: #666;
+  background: #f0f0f0;
+}
+
+.upload-label {
+  cursor: pointer;
+  display: block;
+}
+
+.upload-content {
+  pointer-events: none;
+}
+
+.upload-text {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.upload-formats {
+  font-size: 13px;
+  color: #666;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px 24px;
+  background: #d0d0d0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s ease;
+}
+
+.btn-submit:hover {
+  background: #c0c0c0;
+}
+
+.btn-back {
+  padding: 12px 32px;
+  background: #d0d0d0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #c0c0c0;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .illustration-side {
+    display: none;
+  }
+
+  .form-side {
+    padding: 24px;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .upload-area {
+    padding: 40px 20px;
+  }
+}
+.img-thumb, .pdf-thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}

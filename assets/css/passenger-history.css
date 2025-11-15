@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f5f5f5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  z-index: 10;
+  color: #000;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 240px;
+  height: calc(100vh - 80px);
+  background: white;
+  padding: 20px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #e8e8e8;
+  border-radius: 24px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+  background: #d4d4d4;
+}
+
+.sidebar-item.active {
+  background: #d4d4d4;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 100px 40px 40px 40px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  gap: 40px;
+}
+
+.filters-section {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.price-filter,
+.payment-filter,
+.date-filter {
+  margin-bottom: 32px;
+}
+
+.price-filter h3,
+.payment-filter h3,
+.date-filter h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.price-range {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e8e8e8;
+  outline: none;
+
+}
+
+.slider::-webkit-slider-thumb {
+
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.date-input {
+  width: 100%;
+  height: 120px;
+  background: #e8e8e8;
+  border-radius: 8px;
+}
+
+.trips-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trip-card {
+  background: #000;
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+}
+
+.trip-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trip-date {
+  font-size: 15px;
+}
+
+.trip-price {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.trip-payment {
+  font-size: 15px;
+}
+
+.dropdown-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.trip-details {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: white;
+}

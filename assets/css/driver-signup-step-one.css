@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.split-container {
+  display: flex;
+  height: 100vh;
+}
+
+
+
+/* LADO ILUSTRAÇÃO */
+.illustration-side {
+  width: 50%;
+  background: #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.illustration {
+  width: 80%;
+  max-width: 400px;
+  height: 400px;
+
+  background-size: contain;
+}
+
+
+.form-side {
+  flex: 1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #000;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.step-progress {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: #d4d4d4;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: auto;
+}
