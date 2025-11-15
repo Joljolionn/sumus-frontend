@@ -1,0 +1,17 @@
+/* Global */
+@import url("./global/global.css");
+
+/* Home */
+@import url("./home/introducao.css");
+
+/* Serviço */
+@import url("./servico/servico.css");
+
+/* Sobre */
+@import url("./sobre/sobre.css");
+
+/* Contato */
+@import url("./contato/contato.css");
+
+/* Footer */
+@import url("./footer/footer.css");
