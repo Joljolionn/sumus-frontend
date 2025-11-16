@@ -72,4 +72,17 @@ nextBtn.addEventListener('click', () => {
     updateCarousel();
 });
 
+// // Menu Hamburguer
+const primaryNav = document.querySelector(".primary-navigation")
+const menu = document.querySelector(".menu-hamburguer");
 
+menu.addEventListener("click", () => {
+  const visibility = primaryNav.getAttribute("data-visible");
+  if (visibility === "false") {
+    primaryNav.setAttribute("data-visible", true);
+    menu.setAttribute("aria-expanded", true);
+  } else if (visibility === "true") {
+    primaryNav.setAttribute("data-visible", false);
+    menu.setAttribute("aria-expanded", false);
+  }
+});
