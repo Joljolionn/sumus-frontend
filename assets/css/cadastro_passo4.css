@@ -170,3 +170,6 @@ h1 {
 .btn-principal:hover {
     background-color: #c9c9c9;
 }
+.oculto {
+    display: none !important;
+}
