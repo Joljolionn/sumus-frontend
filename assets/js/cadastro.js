@@ -1,326 +1,321 @@
-// Inicializa o objeto de cadastro se ainda não existir
+// =======================================
+// DEFINIR TIPO DE CADASTRO (motorista / usuario)
+// =======================================
+function setTipoCadastro(tipo) {
+    localStorage.setItem("tipoCadastro", tipo);
+}
+
+// =======================================
+// OBTER CHAVE CERTA
+// =======================================
+function getStorageKey() {
+    const tipo = localStorage.getItem("tipoCadastro") || "usuario";
+    return tipo === "motorista" ? "cadastroMotorista" : "cadastroUsuario";
+}
+
+// =======================================
+// CARREGAR CADASTRO
+// =======================================
+function getCadastro() {
+    return JSON.parse(localStorage.getItem(getStorageKey())) || {};
+}
+
+// =======================================
+// SALVAR CADASTRO
+// =======================================
+function saveCadastro(cadastro) {
+    localStorage.setItem(getStorageKey(), JSON.stringify(cadastro));
+}
+
+// =======================================
+// PASSO 1 – TIPO DE CONTA
+// =======================================
 function initCadastro() {
-    if (!localStorage.getItem("cadastroUsuario")) {
-        localStorage.setItem("cadastroUsuario", JSON.stringify({}));
-    }
+    if (!localStorage.getItem("cadastroUsuario"))
+        localStorage.setItem("cadastroUsuario", JSON.stringify(null));
+
+    if (!localStorage.getItem("cadastroMotorista"))
+        localStorage.setItem("cadastroMotorista", JSON.stringify(null));
 }
 
-// Salva o tipo de conta no LocalStorage
 function salvarPasso1() {
-    const tipoContaSelecionado = document.querySelector('input[name="tipo-conta"]:checked').value;
+    const tipo = document.querySelector('input[name="tipo-conta"]:checked')?.value;
+    if (!tipo) return alert("Selecione um tipo de conta.");
 
-    let cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
+    // MOTORISTA
+    if (tipo === "motorista") {
+        localStorage.setItem("cadastroMotorista", JSON.stringify({}));
+        return location.href = "cadastro_motorista_passo1.html";
+    }
 
-    cadastro.tipoConta = tipoContaSelecionado;
+    // PASSAGEIRO PRIORITÁRIO
+    if (tipo === "prioritario") {
+        const data = {
+            isPcd: true,
+            responsible: null,
+            conditions: []
+        };
+        localStorage.setItem("cadastroUsuario", JSON.stringify(data));
+        return location.href = "cadastro_passo2.html";
+    }
 
-    localStorage.setItem("cadastroUsuario", JSON.stringify(cadastro));
-
-    // Vai para o próximo passo
-    window.location.href = "cadastro_passo2.html";
-}
-//carrega caso a pessoa volte
-function carregarPasso1() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario"));
-
-    if (!cadastro || !cadastro.tipoConta) return;
-
-    const tipo = cadastro.tipoConta;
-
-    const input = document.querySelector(`input[name="tipo-conta"][value="${tipo}"]`);
-    if (input) {
-        input.checked = true;
+    // PASSAGEIRO COMUM
+    if (tipo === "comum") {
+        const data = {
+            isPcd: false,
+            conditions: []
+        };
+        localStorage.setItem("cadastroUsuario", JSON.stringify(data));
+        return location.href = "cadastro_comum_passo1.html";
     }
 }
 
 
-// Salvar passo 2
+// =======================================
+// PASSO 2 – RESPONSÁVEL (USUÁRIO)
+// =======================================
 function salvarPasso2() {
-    const celular = document.getElementById("celular").value.trim();
+    let cadastro = getCadastro();
+
+    const phone = document.getElementById("celular").value.trim();
     const email = document.getElementById("email").value.trim();
-    const nome = document.getElementById("nome").value.trim();
+    const name = document.getElementById("nome").value.trim();
 
-    let cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
+    cadastro.responsible = phone || email || name ? { phone, email, name } : null;
 
-    cadastro.responsavel = {
-        celular: celular || null,
-        email: email || null,
-        nome: nome || null
-    };
-
-    localStorage.setItem("cadastroUsuario", JSON.stringify(cadastro));
-
-    window.location.href = "cadastro_passo3.html";
+    saveCadastro(cadastro);
+    location.href = "cadastro_passo3.html";
 }
-//funcao para caso a pessoa volte para a pagina
+
 function carregarPasso2() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
+    const cadastro = getCadastro();
+    if (!cadastro.responsible) return;
 
-    if (cadastro.responsavel) {
-        document.getElementById("celular").value = cadastro.responsavel.celular ?? "";
-        document.getElementById("email").value = cadastro.responsavel.email ?? "";
-        document.getElementById("nome").value = cadastro.responsavel.nome ?? "";
-    }
+    document.getElementById("celular").value = cadastro.responsible.phone ?? "";
+    document.getElementById("email").value = cadastro.responsible.email ?? "";
+    document.getElementById("nome").value = cadastro.responsible.name ?? "";
 }
 
-//salvar passo 3
-function salvarPasso3() {
+// =======================================
+// PASSO 3 – DADOS PESSOAIS USUÁRIO
+// =======================================
+function salvarPasso3Usuario() {
     const nome = document.getElementById("nome-completo").value.trim();
     const email = document.getElementById("email").value.trim();
     const celular = document.getElementById("celular").value.trim();
-    const grupo = document.getElementById("grupo").value;
-    const senha = document.getElementById("senha").value;
-    const confirmarSenha = document.getElementById("confirmar-senha").value;
+    const cond = document.getElementById("condictions").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+    const confirmar = document.getElementById("confirmar-senha").value.trim();
 
-    // Validação básica só da senha
-    if (senha !== confirmarSenha) {
-        alert("As senhas não coincidem.");
-        return;
-    }
+    if (senha !== confirmar) return alert("As senhas não coincidem.");
 
-    let cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
+    let cadastro = getCadastro();
 
-    cadastro.dadosBasicos = {
-        nome,
-        email,
-        celular,
-        grupo,
-        senha
-    };
+    cadastro.name = nome;
+    cadastro.email = email;
+    cadastro.phone = celular;
+    cadastro.password = senha;
+    cadastro.conditions = cond ? cond.split(",").map(c => c.trim()) : [];
 
-    localStorage.setItem("cadastroUsuario", JSON.stringify(cadastro));
-
-    window.location.href = "cadastro_passo4.html";
-
-}
-//carregar caso volte 
-function carregarPasso3() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario"));
-    if (!cadastro || !cadastro.dadosBasicos) return;
-
-    const dados = cadastro.dadosBasicos;
-
-    document.getElementById("nome-completo").value = dados.nome || "";
-    document.getElementById("email").value = dados.email || "";
-    document.getElementById("celular").value = dados.celular || "";
-    document.getElementById("grupo").value = dados.grupo || "";
+    saveCadastro(cadastro);
+    location.href = "cadastro_passo4.html";
 }
 
-// passo 4
-function salvarPasso4() {
+function carregarPasso3Usuario() {
+    const cadastro = getCadastro();
+
+    document.getElementById("nome-completo").value = cadastro.name ?? "";
+    document.getElementById("email").value = cadastro.email ?? "";
+    document.getElementById("celular").value = cadastro.phone ?? "";
+    document.getElementById("condictions").value =
+        cadastro.conditions?.join(", ") ?? "";
+}
+
+// =======================================
+// PASSO 4 – OTP USUÁRIO
+// =======================================
+function salvarPasso4Usuario() {
     const inputs = document.querySelectorAll(".entrada-otp");
-    let codigo = "";
+    let codigo = [...inputs].map(i => i.value.trim()).join("");
 
-    inputs.forEach(input => codigo += input.value.trim());
+    if (codigo.length !== 6) return alert("Digite os 6 dígitos.");
 
-    if (codigo.length !== 6) {
-        alert("Digite todos os 6 dígitos do código.");
-        return;
-    }
+    //let cadastro = getCadastro();
+    //cadastro.otp = codigo;
 
-    let cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
-
-    cadastro.verificacao = {
-        codigoOtp: codigo
-    };
-
-    localStorage.setItem("cadastroUsuario", JSON.stringify(cadastro));
-
-    window.location.href = "cadastro_passo5.html";
+    //saveCadastro(cadastro);
+    location.href = "cadastro_passo5.html";
 }
-//carregar passo 4 caso a pessoa volte
-function carregarPasso4() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario"));
 
-    if (!cadastro || !cadastro.verificacao) return;
+function carregarPasso4Usuario() {
+    const cadastro = getCadastro();
+    if (!cadastro?.otp) return;
 
-    const codigo = cadastro.verificacao.codigoOtp;
     const inputs = document.querySelectorAll(".entrada-otp");
-
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = codigo[i] ?? "";
-    }
+    inputs.forEach((input, i) => input.value = cadastro.otp[i] ?? "");
 }
-//funcao pra pular de otp para a outra
+
+// =======================================
+// PASSO 1 MOTORISTA
+// =======================================
+function salvarMotoristaPasso1() {
+    const nome = document.getElementById("nomeMotorista").value.trim();
+    const email = document.getElementById("emailMotorista").value.trim();
+    const phone = document.getElementById("celularMotorista").value.trim();
+    const senha = document.getElementById("senhaMotorista").value.trim();
+    const confirmar = document.getElementById("confirmarSenhaMotorista").value.trim();
+
+    if (senha !== confirmar) return alert("As senhas não conferem.");
+
+    const cadastro = { name: nome, email, phone, password: senha };
+
+    setTipoCadastro("motorista");
+    saveCadastro(cadastro);
+
+    location.href = "cadastro_motorista_passo2.html";
+}
+
+function carregarMotoristaPasso1() {
+    const cadastro = getCadastro();
+
+    document.getElementById("nomeMotorista").value = cadastro.name ?? "";
+    document.getElementById("emailMotorista").value = cadastro.email ?? "";
+    document.getElementById("celularMotorista").value = cadastro.phone ?? "";
+}
+
+// =======================================
+// OTP MOTORISTA
+// =======================================
+function salvarMotoristaPasso2() {
+    const inputs = document.querySelectorAll(".entrada-otp");
+    let codigo = [...inputs].map(i => i.value.trim()).join("");
+
+    if (codigo.length !== 6) return alert("Digite os 6 dígitos.");
+
+    //let cadastro = getCadastro();
+    //cadastro.otp = codigo;
+
+    //saveCadastro(cadastro);
+    location.href = "cadastro_motorista_passo3.html";
+}
+
+function carregarMotoristaPasso2() {
+    const cadastro = getCadastro();
+    if (!cadastro?.otp) return;
+
+    const inputs = document.querySelectorAll(".entrada-otp");
+    inputs.forEach((input, i) => input.value = cadastro.otp[i] ?? "");
+}
+
+// =======================================
+// OTP AUTO-TAB
+// =======================================
 function ativarOtpAutoTab() {
-    const inputs = document.querySelectorAll(".entrada-otp");
-
-    inputs.forEach((input, index) => {
+    document.querySelectorAll(".entrada-otp").forEach((input, index, arr) => {
         input.addEventListener("input", () => {
-
-            // Mantém só números
             input.value = input.value.replace(/\D/g, "");
-
-            // Move para o próximo automaticamente
-            if (input.value.length === 1 && index < inputs.length - 1) {
-                inputs[index + 1].focus();
-            }
+            if (input.value.length === 1 && index < arr.length - 1)
+                arr[index + 1].focus();
         });
 
-        // Backspace volta para o anterior
         input.addEventListener("keydown", (e) => {
-            if (e.key === "Backspace" && input.value === "" && index > 0) {
-                inputs[index - 1].focus();
-            }
+            if (e.key === "Backspace" && input.value === "" && index > 0)
+                arr[index - 1].focus();
         });
     });
 }
 
+// =======================================
+// UPLOAD – SUPORTE MULTI ÁREA
+// =======================================
+let cadastroDocs = getCadastro();
+cadastroDocs.documentos = cadastroDocs.documentos || [];
 
-//passo 5 (segura essa bomba ai)
-// =========================================
-//  PASSO 5 - UPLOAD DE DOCUMENTOS (COMPLETO)
-// =========================================
+document.querySelectorAll(".upload-area").forEach((area, index) => {
+    const input = area.querySelector("input[type='file']");
+    const preview = area.querySelector(".preview-area");
+    const label = area.querySelector(".upload-label");
 
-// Elementos principais
-const uploadArea  = document.getElementById("uploadArea");
-const fileInput   = document.getElementById("fileInput");
-const previewArea = document.querySelector(".preview-area");
-const uploadLabel = document.querySelector(".upload-label");
+    let arquivos = [];
+    area.dataset.areaIndex = index;
 
-// Lista para salvar os arquivos (base64)
-let arquivosConvertidos = [];
-
-// =========================================
-//  SALVAR PASSO 5
-// =========================================
-
-function salvarPasso5() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario")) || {};
-
-    if (arquivosConvertidos.length === 0) {
-        alert("Envie pelo menos 1 documento antes de continuar.");
-        return;
-    }
-
-    cadastro.documentos = arquivosConvertidos;
-
-    localStorage.setItem("cadastroUsuario", JSON.stringify(cadastro));
-
-    alert("Arquivos enviados com sucesso!");
-    console.log("JSON FINAL:", cadastro);
-
-    // Redirecionar depois
-    // location.href = "cadastro_finalizado.html";
-}
-
-
-// =========================================
-//  INICIALIZAÇÃO (carregar algo salvo antes)
-// =========================================
-
-function carregarPasso5() {
-    const cadastro = JSON.parse(localStorage.getItem("cadastroUsuario"));
-
-    if (!cadastro || !cadastro.documentos) return;
-
-    // recarrega previews se existir algo salvo
-    cadastro.documentos.forEach(doc => {
-        arquivosConvertidos.push(doc);
-        gerarPreviewCardRecarregado(doc);
+    area.addEventListener("click", () => input.click());
+    area.addEventListener("dragover", e => { e.preventDefault(); area.classList.add("drag-over"); });
+    area.addEventListener("dragleave", () => area.classList.remove("drag-over"));
+    area.addEventListener("drop", (e) => {
+        e.preventDefault();
+        area.classList.remove("drag-over");
+        handleFiles(e.dataTransfer.files, arquivos, preview, label, index);
     });
 
-    if (cadastro.documentos.length > 0) {
-        esconderMensagemUpload();
-    }
-}
-
-
-// =========================================
-//  EVENTOS DE UPLOAD
-// =========================================
-
-uploadArea.addEventListener("click", () => fileInput.click());
-
-uploadArea.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    uploadArea.classList.add("drag-over");
+    input.addEventListener("change", (e) => {
+        handleFiles(e.target.files, arquivos, preview, label, index);
+    });
 });
 
-uploadArea.addEventListener("dragleave", () => {
-    uploadArea.classList.remove("drag-over");
-});
-
-uploadArea.addEventListener("drop", (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove("drag-over");
-    handleFiles(e.dataTransfer.files);
-});
-
-fileInput.addEventListener("change", (e) => {
-    handleFiles(e.target.files);
-});
-
-
-// =========================================
-//  TRATAR ARQUIVOS
-// =========================================
-
-function handleFiles(files) {
-    esconderMensagemUpload();
+// =======================================
+// LIDAR COM ARQUIVOS
+// =======================================
+function handleFiles(files, arquivosLocal, previewArea, uploadLabel, areaIndex) {
+    esconderMensagem(uploadLabel);
 
     [...files].forEach((file) => {
         const isImage = file.type.startsWith("image/");
-        const isPdf   = file.type === "application/pdf";
+        const isPdf = file.type === "application/pdf";
+        const isDoc = file.name.endsWith(".docx") || file.type === "text/plain";
 
-        if (!isImage && !isPdf) {
-            alert(`Formato não suportado: ${file.name}`);
+        if (!isImage && !isPdf && !isDoc) {
+            alert(`Arquivo não permitido: ${file.name}`);
             return;
         }
 
         converterArquivo(file).then((base64) => {
-            const id = Date.now() + Math.random();
-
             const doc = {
-                id,
+                id: crypto.randomUUID(),
                 nome: file.name,
                 tipo: file.type,
-                base64: base64
+                base64,
+                area: areaIndex
             };
 
-            arquivosConvertidos.push(doc);
+            arquivosLocal.push(doc);
+            cadastroDocs.documentos.push(doc);
 
-            gerarPreviewCard(doc);
+            gerarPreviewCard(doc, previewArea, arquivosLocal);
         });
     });
 }
 
-
-// =========================================
-//  GERAR PREVIEW (NOVOS ARQUIVOS)
-// =========================================
-
-function gerarPreviewCard(doc) {
+// =======================================
+// PREVIEW
+// =======================================
+function gerarPreviewCard(doc, previewArea, arquivosLocal) {
     const isPdf = doc.tipo === "application/pdf";
-
     const card = document.createElement("div");
+
     card.className = "file-card";
     card.dataset.id = doc.id;
 
-    // Thumb
     const thumb = document.createElement(isPdf ? "iframe" : "img");
     thumb.className = isPdf ? "pdf-thumb" : "img-thumb";
     thumb.src = isPdf ? `${doc.base64}#page=1&toolbar=0` : doc.base64;
 
-    // Texto
     const meta = document.createElement("div");
     meta.className = "file-meta";
     meta.innerHTML = `
-        <div class="file-name">${encurtarNome(doc.nome, 25)}</div>
+        <div class="file-name">${encurtarNome(doc.nome, 30)}</div>
         <div class="file-size">Documento</div>
     `;
 
-    // Ações
     const actions = document.createElement("div");
     actions.className = "file-actions";
     actions.innerHTML = `<a href="${doc.base64}" target="_blank">Abrir</a>`;
 
-    // Botão excluir
     const deletar = document.createElement("button");
     deletar.className = "delete-btn";
     deletar.textContent = "×";
-    deletar.addEventListener("click", () => removerArquivo(doc.id));
+    deletar.onclick = () => removerArquivo(doc.id, arquivosLocal, previewArea);
 
-    // Montar card
     card.appendChild(deletar);
     card.appendChild(thumb);
     card.appendChild(meta);
@@ -329,38 +324,36 @@ function gerarPreviewCard(doc) {
     previewArea.appendChild(card);
 }
 
-
-// =========================================
-//  GERAR PREVIEW (ARQUIVOS DO LOCALSTORAGE)
-// =========================================
-
-function gerarPreviewCardRecarregado(doc) {
-    gerarPreviewCard(doc);
-}
-
-
-// =========================================
-//  REMOVER ARQUIVO
-// =========================================
-
-function removerArquivo(id) {
-    arquivosConvertidos = arquivosConvertidos.filter(a => a.id !== id);
+// =======================================
+// REMOVER DOCUMENTO
+// =======================================
+function removerArquivo(id, arquivosLocal, previewArea) {
+    arquivosLocal = arquivosLocal.filter(a => a.id !== id);
+    cadastroDocs.documentos = cadastroDocs.documentos.filter(a => a.id !== id);
 
     const card = previewArea.querySelector(`[data-id="${id}"]`);
     if (card) card.remove();
-
-    if (arquivosConvertidos.length === 0) {
-        uploadLabel.style.display = "block";
-    }
 }
 
+// =======================================
+// SALVAR DOCUMENTOS (PASSAGEIRO OU MOTORISTA)
+// =======================================
+function salvarDocumentos() {
+    if (!cadastroDocs.documentos || cadastroDocs.documentos.length === 0) {
+        return alert("Envie pelo menos 1 documento!");
+    }
 
-// =========================================
-//  FUNÇÕES AUXILIARES
-// =========================================
+    saveCadastro(cadastroDocs);
+    alert("Documentos enviados com sucesso!");
+    console.log("JSON FINAL:", cadastroDocs);
+    
+}
 
-function esconderMensagemUpload() {
-    if (uploadLabel) uploadLabel.style.display = "none";
+// =======================================
+// HELPERS
+// =======================================
+function esconderMensagem(label) {
+    if (label) label.style.display = "none";
 }
 
 function encurtarNome(str, max) {
@@ -368,21 +361,9 @@ function encurtarNome(str, max) {
 }
 
 function converterArquivo(file) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result);
         reader.readAsDataURL(file);
     });
 }
-
-
-// =========================================
-//  INICIAR
-// =========================================
-
-carregarPasso5();
-    
-
-
-// Executa na abertura da página
-initCadastro();

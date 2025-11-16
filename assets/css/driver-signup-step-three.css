@@ -100,21 +100,123 @@ h1 {
   margin-bottom: 12px;
 }
 
-.upload-area {
+upload-area {
   border: 2px dashed #999;
   border-radius: 8px;
-  padding: 48px 24px;
+  padding: 60px 40px;
   text-align: center;
+  background: #fafafa;
+  margin-bottom: 24px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+}
+.preview-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: flex-start;
+    margin-top: 20px;
+    padding: 10px 0;
 }
 
-.upload-area:hover {
-  background: #f9f9f9;
+.file-card {
+    width: 140px;
+    height: 210px;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all .2s;
 }
 
-.upload-area p {
-  font-size: 14px;
+.file-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.img-thumb, .pdf-thumb {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.file-meta {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.file-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.file-size {
+    color: #777;
+}
+
+.file-actions {
+    margin-top: 4px;
+}
+
+.file-actions a {
+    font-size: 13px;
+    color: #0066ff;
+    text-decoration: none;
+}
+
+.file-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Botão de excluir */
+.delete-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #ff5f5f;
+    color: #fff;
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    padding: 0;
+    transition: .2s;
+}
+
+.delete-btn:hover {
+    background: #ff2f2f;
+}
+
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: #666;
+  background: #f0f0f0;
+}
+
+.upload-label {
+  cursor: pointer;
+  display: block;
+}
+
+.upload-content {
+  pointer-events: none;
+}
+
+.upload-text {
+  font-size: 15px;
   color: #333;
   margin-bottom: 8px;
 }
@@ -123,6 +225,7 @@ h1 {
   font-size: 13px;
   color: #666;
 }
+
 
 .submit-btn {
   width: 100%;

@@ -10,6 +10,7 @@
 
 <body>
   <div class="container">
+
     <div class="illustration-side">
       <div class="logo"> <!-- SVG do logo --> <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
           viewBox="0 0 576 763" fill="none">
@@ -436,15 +437,16 @@
           <div class="preview-area"></div>
         </div>
 
-        <button class="btn-submit" onclick="salvarPasso5()">Enviar</button>
+        <button class="btn-submit" onclick="salvarDocumentos()">Enviar</button>
 
-        <button class="btn-back">Voltar</button>
+        <button class="btn-back" onclick="location.href='cadastro_passo4.html'">Voltar</button>
 
       </div>
     </div>
 
   </div>
 
+  <!-- CARREGA O JS DEPOIS DO HTML (importantíssimo!!!) -->
   <script src="../assets/js/cadastro.js"></script>
 </body>
 

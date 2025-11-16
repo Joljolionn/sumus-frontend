@@ -12,11 +12,12 @@
 <body>
     <div class="conteiner">
 
-        <!-- PAINEL ESQUERDO (igual ao seu) -->
+        <!-- PAINEL ESQUERDO -->
         <div class="painel-esquerdo">
             <div class="logo">
-                <!-- … SVG igual ao seu (não removi) … -->
+                <!-- SVG original aqui -->
             </div>
+
             <div class="conteiner-ilustracao">
                 <img src="../assets/img/Enter OTP-amico 1.svg" alt="">
             </div>
@@ -28,13 +29,13 @@
                 <h1>Cadastrar</h1>
 
                 <div class="cabecalho-passo">
-                    <span class="numero-passo">4</span>
+                    <span class="numero-passo">2</span>
                     <span class="titulo-passo">Verificação</span>
                 </div>
 
-                <div class="info-passo">Passo 4 de 5</div>
+                <div class="info-passo">Passo 2 de 4</div>
 
-                <!-- CAMPOS DO OTP -->
+                <!-- CAMPOS DE OTP -->
                 <div class="conteiner-otp">
                     <input type="text" maxlength="1" class="entrada-otp">
                     <input type="text" maxlength="1" class="entrada-otp">
@@ -48,23 +49,28 @@
                     O código foi enviado para o seu e-mail.
                 </p>
 
-                <!-- BOTÃO VERIFICAR ABRE MODAL -->
-                 <!-- seguinte vamos tirar esse abri modal pq issso é caceta do back ta aqui so pra mim testar-->
+                <!-- BOTÃO VERIFICAR (TESTE) -->
                 <button type="button" class="btn-verificar" onclick="abrirModal()">
                     Verificar
                 </button>
 
-                <!-- BOTÕES DE NAVEGAÇÃO -->
+                <!-- BOTÕES -->
                 <div class="grupo-botoes">
-                    <button type="button" class="btn-secundario" onclick="location.href='cadastro_passo3.html'">Voltar</button>
-                    <button type="button" class="btn-principal" onclick="salvarPasso4Usuario()">Próximo</button>
+                    <button type="button" class="btn-secundario" onclick="location.href='cadastro_motorista_passo1.html'">
+                        Voltar
+                    </button>
+
+                    <button type="button" class="btn-principal" onclick="salvarMotoristaPasso2()">
+                        Próximo
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- MODAL (dentro da mesma página) -->
-    <div class="janela-modal">
+    <!-- MODAL -->
+    <div class="janela-modal oculto">
         <div class="conteudo-modal">
             <button class="fechar-modal">×</button>
 
@@ -83,6 +89,7 @@
                         stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </button>
+
         </div>
     </div>
 
@@ -90,7 +97,7 @@
     <script src="../assets/js/cadastro.js"></script>
     <script>
         ativarOtpAutoTab();
-        carregarPasso4Usuario();
+        carregarMotoristaPasso2();
 
         const modal = document.querySelector(".janela-modal");
         const btnFechar = document.querySelector(".fechar-modal");
