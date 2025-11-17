@@ -48,8 +48,6 @@ inputPhoto.addEventListener("change", function () {
 		photoCircle.style.backgroundPosition = "center";
 	};
 	reader.readAsDataURL(file);
-
-	uploadProfilePhoto();
 });
 
 
@@ -100,12 +98,12 @@ async function carregarDados() {
 		inputCell.value = data.phone ?? "";
 		inputEmail.value = data.email ?? "";
 
-		// FOTO DO PERFIL
-		if (data.photoUrl) {
-			photoCircle.style.backgroundImage = `url(${data.photoUrl})`;
-			photoCircle.style.backgroundSize = "cover";
-			photoCircle.style.backgroundPosition = "center";
-		}
+		// // FOTO DO PERFIL
+		// if (data.photoUrl) {
+		// 	photoCircle.style.backgroundImage = `url(${data.photoUrl})`;
+		// 	photoCircle.style.backgroundSize = "cover";
+		// 	photoCircle.style.backgroundPosition = "center";
+		// }
 
 		// CONDIÇÕES (somente passageiro)
 		if (inputCondicoes && data.conditions) {
@@ -114,6 +112,28 @@ async function carregarDados() {
 				.join(", ");
 		}
 
+        const responsePhoto = await fetch(API_BASE + "photo", {
+            method: "GET",
+            headers: authHeaders
+        })
+
+        if (responsePhoto.ok) {
+            // Converte a resposta binária (byte[]) em um Blob
+            const imageBlob = await responsePhoto.blob(); 
+            
+            // Cria um URL local temporário para a imagem
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+
+            // Usa o URL local para exibir a imagem
+            photoCircle.style.backgroundImage = `url(${imageObjectURL})`;
+            photoCircle.style.backgroundSize = "cover";
+            photoCircle.style.backgroundPosition = "center";
+            
+            // Opcional, mas recomendado: Lembre-se de revogar o URL 
+            // quando a página fechar ou a imagem for trocada.
+            // (Pode ser ignorado em SPAs simples se não houver vazamento de memória)
+            // URL.revokeObjectURL(imageObjectURL); 
+        }
 	} catch (err) {
 		console.error(err);
 		alert("Falha ao carregar seus dados. Faça login novamente.");
@@ -124,24 +144,30 @@ carregarDados();
 
 
 // ================================
-// SALVAR PERFIL
+// SALVAR PERFIL (COMPLETO) [MENOS SENHA]
 // ================================
 async function salvarPerfil() {
-	const body = {
-		nome: inputName.value,
-		celular: inputCell.value,
-		email: inputEmail.value,
-	};
 
-	if (USER_TYPE === "passenger") {
-		body.condicoes = inputCondicoes.value;
-	}
+    const formData = new FormData();
+    formData.append("name", inputName.value)
+    formData.append("phone", inputCell.value)
+    formData.append("email", inputEmail.value)
+    const file = inputPhoto.files[0];
+    formData.append("photo", file);
+
+
+
+    // TODO: O input de condições deve ser imutável por enquanto */
+    //
+	// if (USER_TYPE === "passenger") {
+	// 	body.condicoes = inputCondicoes.value;
+	// }
 
 	try {
 		const response = await fetch(API_BASE, {
 			method: "PUT",
-			headers: authHeaders,
-			body: JSON.stringify(body),
+			headers: authHeaderOnly,
+			body: formData
 		});
 
 		if (!response.ok) throw new Error();
@@ -153,7 +179,6 @@ async function salvarPerfil() {
 }
 
 saveProfileBtn.addEventListener("click", salvarPerfil);
-
 
 // ================================
 // MUDAR SENHA
@@ -289,28 +314,3 @@ function uploadFile() {
 submitBtn.addEventListener("click", uploadFile);
 
 
-// ================================
-// UPLOAD DA FOTO DE PERFIL
-// ================================
-async function uploadProfilePhoto() {
-	const file = inputPhoto.files[0];
-	if (!file) return;
-
-	const formData = new FormData();
-	formData.append("foto", file);
-
-	try {
-		const response = await fetch(API_BASE + "upload-photo", {
-			method: "POST",
-			headers: authHeaderOnly,
-			body: formData,
-		});
-
-		if (!response.ok) throw new Error();
-
-		alert("Foto de perfil atualizada!");
-	} catch (err) {
-		console.error(err);
-		alert("Erro ao enviar foto de perfil.");
-	}
-}
