@@ -1,31 +1,26 @@
 .carousel {
-  /* position: relative;
-  height: 400px;
-  width: 40%; */
-  position:relative;
+  padding-block: 5em;
+  position: relative;
   width: 40%;
 }
 
 .carousel h2 {
+  font-size: 2rem;
   text-align: center;
+  margin-block-end: 0.5em;
 }
 
 .carousel__track-container {
-  /* position: relative;
-  overflow: hidden; */
-  /* height: 100%; */
   overflow: hidden;
 }
 
 .carousel__track {
   display: flex;
-  /* position: relative;
-  height: 100%; */
+
 }
 
 .carousel__slide {
-  /* position: absolute;
-  width: 100%; */
+
   min-width: 100%;
   height: fit-content;
   background: #D9D9D9;
@@ -47,7 +42,7 @@
 }
 
 .carousel__button--left {
-left: -20px;
+  left: -20px;
 }
 
 .carousel__button--right {
@@ -73,4 +68,6 @@ left: -20px;
   background: rgba(0, 0, 0, .75);
 }
 
-.is-hidden {display: none}
+.is-hidden {
+  display: none
+}
