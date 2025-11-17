@@ -238,6 +238,7 @@ upload-area {
   margin-bottom: 16px;
 }
 
+
 .button-group {
   display: flex;
 }
@@ -249,4 +250,17 @@ upload-area {
   border-radius: 6px;
   font-size: 15px;
   cursor: pointer;
+  
+}
+
+.btn-skip {
+  padding: 14px 32px;
+  background: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn-skip:hover {
+  color: #222;
 }
