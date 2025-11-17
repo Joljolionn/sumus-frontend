@@ -6,7 +6,7 @@ const USER_TYPE = localStorage.getItem("userType"); // "passenger" ou "driver"
 
 if (!TOKEN || !USER_TYPE) {
 	alert("Sessão expirada. Faça login novamente.");
-	location.href = "login.html";
+	location.href = "/login";
 }
 
 const API_BASE =

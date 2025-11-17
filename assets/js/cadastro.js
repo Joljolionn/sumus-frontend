@@ -368,17 +368,45 @@ function converterArquivo(file) {
     });
 }
 
-function pularEnvioDocumentos() {
-  let cadastro = getCadastro();
+async function pularEnvioDocumentos() {
+    let cadastro = getCadastro();
 
-  // garante que existe o objeto / arrays
-  cadastro.documentos = cadastro.documentos || [];
+    // 1. Lógica de atualização e salvamento local (síncrono)
+    cadastro.documentos = cadastro.documentos || [];
+    cadastro.status = "pendente_documentos";
+    saveCadastro(cadastro); // Salva no localStorage (síncrono)
+    
+    // 2. Lógica de envio da requisição (assíncrono)
+    const storageKey = getStorageKey();
 
-  // opcional: marcar status
-  cadastro.status = "pendente_documentos";
-
-  saveCadastro(cadastro);
-
-  // redireciona onde quiser
-  location.href = "passenger-account.html";
+    const BASE_URL = storageKey === "cadastroMotorista"
+        ? "http://localhost:8080/driver/"
+        : "http://localhost:8080/passenger/";
+        
+    try {
+        const response = await fetch(BASE_URL + "signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // Envia o objeto 'cadastro' atualizado como corpo da requisição
+            body: JSON.stringify(cadastro) 
+        });
+        
+        // 3. Verifica o sucesso do envio
+        if (!response.ok) {
+             const errorText = await response.text(); 
+             console.error("Detalhes do erro:", errorText);
+             // Lança um erro que será capturado pelo bloco catch abaixo
+             throw new Error(`Erro ao finalizar cadastro. Status: ${response.status}`);
+        }
+        
+        // 4. Redireciona somente se a requisição foi bem-sucedida
+        location.href = "/passenger/account";
+        
+    } catch (error) {
+        // 5. Trata erros
+        console.error("Erro ao enviar cadastro para o servidor:", error);
+        alert("Não foi possível finalizar o cadastro no servidor. Tente novamente.");
+    }
 }
