@@ -26,9 +26,9 @@ btnLogin.addEventListener("click", async () => {
     localStorage.setItem("userType", tipoUsuario);
 
     if (tipoUsuario === "passenger") {
-      location.href = "../Pages/passenger-account.html";
+      location.href = "/passenger/account";
     } else {
-      location.href = "../Pages/motorista-account.html";
+      location.href = "/driver/account";
     }
 
   } catch (err) {

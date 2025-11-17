@@ -17,4 +17,8 @@ router.get("/signup/5", (req, res) => {
     res.sendFile(path.join(projectRoot, "Pages", "cadastro_passo5.html"));
 })
 
+router.get("/account", (req, res) => {
+    res.sendFile(path.join(projectRoot, "Pages", "passenger-account.html"))
+})
+
 export const passengerRouter = router;
