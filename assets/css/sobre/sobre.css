@@ -1,31 +1,47 @@
 .about {
-  padding: 80px 0;
+  padding-block: 5em;
   background-color: #f8f9fa;
 }
 
 .about h2 {
   text-align: center;
   font-size: 36px;
-  margin-bottom: 50px;
+  margin-bottom: 1.23076923em;
   color: #333;
 }
 
 .about-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+  max-width: 75ch;
+  gap: 2em;
+  margin: 0 auto;
 }
 
 .about-item {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  align-self: start;
   gap: 15px;
+  position: relative;
 }
 
-.about-line {
-  width: 100%;
+.about-item h3 {
+  background: var(--primary-color);
+  color: var(--white-color);
+  padding: 0.5em;
+  max-width: 160px;
+  position: relative;
+  left: 60px;
+  text-align: center;
+}
+
+.about-item:before {
+  content: "";
+  position: absolute;
+  width: 60px;
   height: 3px;
-  background-color: #333;
+  left: 0;
+  top: 20px;
+  background: var(--primary-color);
 }
 
 .about-item p {
