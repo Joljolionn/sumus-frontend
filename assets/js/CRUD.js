@@ -167,11 +167,11 @@ async function salvarSenha() {
 		return alert("Senha muito curta (mínimo 6 caracteres).");
 	}
 
-	const body = { novaSenha: inputNewPass.value };
+	const body = { password: inputNewPass.value };
 
 	try {
 		const response = await fetch(API_BASE + "password", {
-			method: "PUT",
+			method: "PATCH",
 			headers: authHeaders,
 			body: JSON.stringify(body),
 		});
