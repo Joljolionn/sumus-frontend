@@ -12,10 +12,10 @@ btnLogin.addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch(`http://localhost:8080/auth/login/${tipoUsuario}`, {
+    const response = await fetch(`http://localhost:8080/${tipoUsuario}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, senha })
+      body: JSON.stringify({ "email": email, "password": senha })
     });
 
     if (!response.ok) throw new Error("Login inválido");
@@ -23,9 +23,9 @@ btnLogin.addEventListener("click", async () => {
     const data = await response.json();
 
     localStorage.setItem("jwtToken", data.token);
-    localStorage.setItem("tipoUsuario", tipoUsuario);
+    localStorage.setItem("userType", tipoUsuario);
 
-    if (tipoUsuario === "passageiro") {
+    if (tipoUsuario === "passenger") {
       location.href = "../Pages/passenger-account.html";
     } else {
       location.href = "../Pages/motorista-account.html";
