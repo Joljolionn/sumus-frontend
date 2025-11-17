@@ -38,36 +38,44 @@
         </div>
     </section>
 
-    <!-- Services Section with Carousel -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2>Nossos serviços</h2>
-            <div class="carousel-container">
-                <button class="carousel-btn" id="prevBtn">&#60;</button>
-                <div class="carousel-wrapper">
-                    <div class="carousel-track" id="carouselTrack">
-                        <div class="service-card">
-                            <h3>lorem</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem officiis mollitia doloremque, necessitatibus reiciendis culpa quis tempora vitae sed provident sapiente iusto, corporis placeat quod? Sunt placeat odit expedita iste?</p>
-                        </div>
-                        <div class="service-card">
-                            <h3>lorem</h3>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium inventore asperiores optio et fugit mollitia provident incidunt sequi, dolores, perferendis debitis vitae quaerat quis quia praesentium, eius rerum officiis ducimus.</p>
-                        </div>
-                        <div class="service-card">
-                            <h3>lorem</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores inventore, incidunt modi corrupti, odit veritatis quam rem dolore culpa totam atque blanditiis optio architecto sunt, hic officia! Repudiandae, quasi earum?</p>
-                        </div>
-                        <div class="service-card">
-                            <h3>lorem</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, doloremque? Nostrum, voluptatibus! Quisquam, doloremque. Quisquam, doloremque. Quisquam, doloremque.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-btn" id="nextBtn">&#62;</button>
-            </div>
+    <!-- Carousel -->
+    <div class="carousel container">
+        <h2>Nossos serviços</h2>
+        <button class="carousel__button carousel__button--left is-hidden">
+            <img src="../assets/icons/chevron-left.svg" alt="">
+        </button>
+        <div class="carousel__track-container" role="slider" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3">
+            <ul class="carousel__track">
+                <li class="carousel__slide current-slide">
+                    <h3>Motoristas</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus nostrum id vitae expedita consequuntur iste itaque delectus laudantium a libero, sed ea eius ipsa repellat ratione atque perspiciatis cum et.
+                    </p>
+                </li>
+                <li class="carousel__slide">
+                    <h3>Carros</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus nostrum id vitae expedita consequuntur iste itaque delectus laudantium a libero, sed ea eius ipsa repellat ratione atque perspiciatis cum et.
+                    </p>
+                </li>
+                <li class="carousel__slide">
+                    <h3>Acessibilidade</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus nostrum id vitae expedita consequuntur iste itaque delectus laudantium a libero, sed ea eius ipsa repellat ratione atque perspiciatis cum et.
+                    </p>
+                </li>
+            </ul>
         </div>
-    </section>
+        <button class="carousel__button carousel__button--right">
+            <img src="../assets/icons/chevron-right.svg" alt="">
+        </button>
+
+        <div class="carousel__nav">
+            <button class="carousel__indicator current-slide"></button>
+            <button class="carousel__indicator"></button>
+            <button class="carousel__indicator"></button>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section class="about" id="about">

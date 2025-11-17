@@ -1,79 +1,83 @@
+// Carousel
+const track = document.querySelector(".carousel__track");
+const slides = Array.from(track.children);
+const nextButton = document.querySelector(".carousel__button--right");
+const prevButton = document.querySelector(".carousel__button--left");
+const dotsNav = document.querySelector(".carousel__nav");
+const dots = Array.from(dotsNav.children);
 
-// ========================== CARROSSEL DE SERVIÇOS ==========================
-const carouselTrack = document.getElementById('carouselTrack');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const dotsContainer = document.getElementById('carouselDots');
-const serviceCards = document.querySelectorAll('.service-card');
+const slideWidth = slides[0].getBoundingClientRect().width;
 
-let currentIndex = 0;
-let cardsToShow = window.innerWidth <= 768 ? 1 : 2;
-let totalCards = serviceCards.length;
-let maxIndex = Math.max(0, totalCards - cardsToShow);
+const setSlidePosition = (slide, index) => {
+  slide.style.left = slideWidth * index + "px";
+};
 
-// Atualiza configurações do carrossel ao redimensionar
-function updateCarouselSettings() {
-    cardsToShow = window.innerWidth <= 768 ? 1 : 2;
-    totalCards = serviceCards.length;
-    maxIndex = Math.max(0, totalCards - cardsToShow);
-    if (currentIndex > maxIndex) currentIndex = 0;
+slides.forEach(setSlidePosition);
+
+const moveToSlide = (track, currentSlide, targetSlide) => {
+  track.style.transform = "translateX(-" + targetSlide.style.left + ")";
+  currentSlide.classList.remove("current-slide");
+  targetSlide.classList.add("current-slide");
+};
+
+const updatesDots = (currentDot, targetDot) => {
+  currentDot.classList.remove("current-slide");
+  targetDot.classList.add("current-slide");
+};
+
+const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+    if (targetIndex === 0) {
+    prevButton.classList.add("is-hidden");
+    nextButton.classList.remove("is-hidden");
+  } else if (targetIndex === slides.length - 1) {
+    prevButton.classList.remove("is-hidden");
+    nextButton.classList.add("is-hidden");
+  } else {
+    prevButton.classList.remove("is-hidden")
+    nextButton.classList.remove("is-hidden")
+  }
 }
 
-// Cria os indicadores (dots) do carrossel
-function createDots() {
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i <= maxIndex; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === currentIndex) {
-            dot.classList.add('active');
-        }
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-    }
-}
+nextButton.addEventListener("click", (e) => {
+  const currentSlide = track.querySelector(".current-slide");
+  const nextSlide = currentSlide.nextElementSibling;
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const nextDot = currentDot.nextElementSibling;
+  const nextIndex = slides.findIndex(slide => slide === nextSlide)
 
-// Atualiza a posição do carrossel e os controles
-function updateCarousel() {
-    const cardWidth = serviceCards[0].offsetWidth;
-
-    const offset = -(currentIndex * (cardWidth ));
-    carouselTrack.style.transform = `translateX(${offset}px)`;
-
-    // Não desabilita os botões para permitir loop infinito
-    document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
-}
-
-// Vai para um slide específico
-function goToSlide(index) {
-    currentIndex = Math.max(0, Math.min(index, maxIndex));
-    updateCarousel();
-}
-
-// Botão anterior (loop infinito)
-prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-    } else {
-        currentIndex = maxIndex; // Vai para o último slide possível
-    }
-    updateCarousel();
+  moveToSlide(track, currentSlide, nextSlide);
+  updatesDots(currentDot, nextDot);
+  hideShowArrows(slides, prevButton, nextButton, nextIndex)
 });
 
-// Botão próximo (loop infinito)
-nextBtn.addEventListener('click', () => {
-    if (currentIndex < maxIndex) {
-        currentIndex++;
-    } else {
-        currentIndex = 0; // Volta para o primeiro slide
-    }
-    updateCarousel();
+prevButton.addEventListener("click", (e) => {
+  const currentSlide = track.querySelector(".current-slide");
+  const prevSlide = currentSlide.previousElementSibling;
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const prevDot = currentDot.previousElementSibling;
+  const prevIndex = slides.findIndex(slide => slide === prevSlide)
+
+  moveToSlide(track, currentSlide, prevSlide);
+  updatesDots(currentDot, prevDot);
+  hideShowArrows(slides, prevButton, nextButton, prevIndex)
+});
+
+dotsNav.addEventListener("click", (e) => {
+  const targetDot = e.target.closest("button");
+  if (!targetDot) return;
+  const currentSlide = track.querySelector(".current-slide");
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const targetIndex = dots.findIndex((dot) => dot === targetDot);
+  const targetSlide = slides[targetIndex];
+
+  moveToSlide(track, currentSlide, targetSlide);
+  updatesDots(currentDot, targetDot);
+
+  hideShowArrows(slides, prevButton, nextButton, targetIndex)
 });
 
 // // Menu Hamburguer
-const primaryNav = document.querySelector(".primary-navigation")
+const primaryNav = document.querySelector(".primary-navigation");
 const menu = document.querySelector(".menu-hamburguer");
 
 menu.addEventListener("click", () => {

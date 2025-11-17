@@ -1,134 +1,73 @@
-.services {
-  padding: 80px 0;
-  background-color: white;
+.carousel {
+  padding-block: 5em;
+  position: relative;
+  width: 40%;
 }
 
-.services h2 {
+.carousel h2 {
+  font-size: 2rem;
   text-align: center;
-  font-size: 36px;
-  margin-bottom: 50px;
-  color: #333;
+  margin-block-end: 0.5em;
 }
 
-.services .carousel-container {
-  position: relative;
-  overflow: hidden;
-}
-.services .carousel-track {
-  display: flex;
-  transition: transform 0.4s ease;
-  gap: 30px;
-  padding: 20px 0;
-}
-.services .service-card {
-  flex: 0 0 45%;
-  min-width: 300px;
-  background-color: #f1f1f1;
-  padding: 30px 25px;
-  border-radius: 12px;
-  text-align: left;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease-in-out;
-}
-.services .service-card:hover {
-  transform: translateY(-10px);
-}
-.services .service-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 15px;
-}
-
-.services .service-card p {
-  font-size: 16px;
-  color: #333;
-  line-height: 1.5;
-}
-
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 900px;
-  margin: 0 auto;
+.carousel__track-container {
   overflow: hidden;
 }
 
-.carousel-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
-
-.carousel-track {
+.carousel__track {
   display: flex;
-  gap: 30px;
-  transition: transform 0.4s ease-in-out;
+
 }
 
-.service-card {
-  flex: 0 0 calc(50% - 15px);
-  background: #f5f5f5;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-@media (max-width: 768px) {
-  .service-card {
-    flex: 0 0 100%;
-  }
+.carousel__slide {
+
+  min-width: 100%;
+  height: fit-content;
+  background: #D9D9D9;
+  border-radius: 8px;
+  padding-inline: 3em;
+  padding-block: 2.5em;
+
 }
 
-.carousel-btn {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #000;
-  color: #fff;
-  border: none;
+.carousel__button {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  padding-block: 0.75em;
+  padding-inline: 0.875em;
+  background: var(--primary-color);
+  position: absolute;
+  top: 40%;
+  z-index: 300;
   cursor: pointer;
-  z-index: 10;
-  font-size: 1.2rem;
-  opacity: 0.85;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease, opacity 0.3s ease;
 }
 
-.carousel-btn:hover {
-  background: #222;
-  opacity: 1;
+.carousel__button--left {
+  left: -20px;
 }
 
-#prevBtn {
-  left: 10px;
+.carousel__button--right {
+  right: -20px;
 }
 
-#nextBtn {
-  right: 10px;
-}
-
-.carousel-dots {
+.carousel__nav {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
-  gap: 8px;
+  padding-block-start: 1em;
 }
 
-.carousel-dots .dot {
-  width: 10px;
-  height: 10px;
+.carousel__indicator {
+  padding: 1em;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #ccc;
-  transition: background 0.3s;
+  background: black;
+  cursor: pointer;
 }
 
-.carousel-dots .dot.active {
-  background: #000;
+.carousel__indicator.current-slide {
+  background: rgba(0, 0, 0, .75);
+}
+
+.is-hidden {
+  display: none
 }
