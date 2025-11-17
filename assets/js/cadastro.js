@@ -45,7 +45,7 @@ function salvarPasso1() {
     // MOTORISTA
     if (tipo === "motorista") {
         localStorage.setItem("cadastroMotorista", JSON.stringify({}));
-        return location.href = "cadastro_motorista_passo1.html";
+        return location.href = "/driver/signup/2";
     }
 
     // PASSAGEIRO PRIORITÁRIO
@@ -56,7 +56,7 @@ function salvarPasso1() {
             conditions: []
         };
         localStorage.setItem("cadastroUsuario", JSON.stringify(data));
-        return location.href = "cadastro_passo2.html";
+        return location.href = "/passenger/signup/2";
     }
 
     // PASSAGEIRO COMUM
@@ -84,7 +84,7 @@ function salvarPasso2() {
     cadastro.responsible = phone || email || name ? { phone, email, name } : null;
 
     saveCadastro(cadastro);
-    location.href = "cadastro_passo3.html";
+    location.href = "/passenger/signup/3";
 }
 
 function carregarPasso2() {
@@ -118,7 +118,7 @@ function salvarPasso3Usuario() {
     cadastro.conditions = cond ? cond.split(",").map(c => c.trim()) : [];
 
     saveCadastro(cadastro);
-    location.href = "cadastro_passo4.html";
+    location.href = "/passenger/signup/4";
 }
 
 function carregarPasso3Usuario() {
@@ -144,7 +144,7 @@ function salvarPasso4Usuario() {
     //cadastro.otp = codigo;
 
     //saveCadastro(cadastro);
-    location.href = "cadastro_passo5.html";
+    location.href = "/passenger/signup/5";
 }
 
 function carregarPasso4Usuario() {
@@ -172,7 +172,7 @@ function salvarMotoristaPasso1() {
     setTipoCadastro("motorista");
     saveCadastro(cadastro);
 
-    location.href = "cadastro_motorista_passo2.html";
+    location.href = "/driver/signup/3";
 }
 
 function carregarMotoristaPasso1() {
@@ -196,7 +196,7 @@ function salvarMotoristaPasso2() {
     //cadastro.otp = codigo;
 
     //saveCadastro(cadastro);
-    location.href = "cadastro_motorista_passo3.html";
+    location.href = "/driver/signup/4";
 }
 
 function carregarMotoristaPasso2() {
