@@ -7,11 +7,14 @@ header {
   top: 0;
   background: var(--white-color);
   z-index: 500;
+  border-bottom: 1px solid var(--light-gray-color);
+}
+
+header .container {
   padding: 20px;
   display: grid;
   align-items: center;
   grid-template-columns: auto 1fr auto;
-  border-bottom: 1px solid var(--light-gray-color);
 }
 
 .menu-hamburguer {
@@ -52,7 +55,7 @@ header {
 
 .login-btn {
   background-color: #333;
-  color: var(--white);
+  color: var(--white-color);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
