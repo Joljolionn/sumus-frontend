@@ -1,135 +1,191 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conta - Passageiro</title>
-    <link rel="stylesheet" href="/assets/css/passenger-account.css">
+<html lang="pt-BR" id="html-root">
+
+<head id="head-root">
+    <meta charset="UTF-8" id="meta-charset">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="meta-viewport">
+    <title id="title-page">Conta - Passageiro</title>
+    <link rel="stylesheet" href="/assets/css/passenger-account.css" id="link-css">
 </head>
-<body>
-    <div class="logo">Logo</div>
 
-    <aside class="sidebar">
-        <nav class="sidebar-nav">
-            <a href="#" class="sidebar-item">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M15 21V13C15 12.7348 14.8946 12.4804 14.7071 12.2929C14.5196 12.1054 14.2652 12 14 12H10C9.73478 12 9.48043 12.1054 9.29289 12.2929C9.10536 12.4804 9 12.7348 9 13V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 9.99999C2.99993 9.70906 3.06333 9.42161 3.18579 9.15771C3.30824 8.8938 3.4868 8.65979 3.709 8.47199L10.709 2.47199C11.07 2.1669 11.5274 1.99951 12 1.99951C12.4726 1.99951 12.93 2.1669 13.291 2.47199L20.291 8.47199C20.5132 8.65979 20.6918 8.8938 20.8142 9.15771C20.9367 9.42161 21.0001 9.70906 21 9.99999V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V9.99999Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                <span>Home</span>
+<body id="body-root">
+    <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 576 763" fill="none">
+                    <path
+                        d="M214.147 527.437L243.269 525.772C212.975 547.028 205.187 616.276 221.157 650.132C230.621 670.196 240.045 685.668 253.935 698.548C291.036 725.591 315.218 731.986 361.038 731.986C385.345 731.986 408.417 726.625 425.491 720.615C442.853 714.604 458.223 701.594 469.22 691.004C486.107 677.969 499.441 652.155 502.531 620.227C505.034 594.37 496.388 566.63 488.864 552.319C481.34 537.722 470.778 525.415 457.177 515.397C443.866 505.094 427.806 496.221 408.996 488.779C390.186 481.338 369.496 473.61 346.925 465.596C324.353 457.582 302.794 449.138 282.249 440.266C261.992 431.393 244.051 420.374 228.424 407.208C212.798 394.042 200.355 378.013 191.095 359.123C182.124 339.947 177.639 316.191 177.639 287.855C177.639 261.237 181.979 236.909 190.661 214.87C199.342 192.831 212.219 174.084 229.293 158.628C246.366 142.886 267.49 130.722 292.666 122.136C318.131 113.549 347.648 109.256 381.216 109.256C394.527 109.256 417.954 112.47 427.083 115.566C500.052 140.745 537 174.513 544 293.866H519.683C517.078 262.954 511.291 237.767 502.32 218.305C493.35 198.842 482.353 183.672 469.331 172.796C456.599 161.634 442.274 154.049 426.359 150.042C410.732 145.749 394.672 143.602 378.177 143.602C356.185 143.602 337.086 146.321 320.881 151.759C304.675 156.911 291.219 164.496 280.512 174.513C269.805 184.245 261.703 196.266 256.205 210.577C250.996 224.601 248.392 240.486 248.392 258.232C248.392 279.412 252.153 297.014 259.677 311.039C267.201 325.063 277.763 337.228 291.364 347.531C305.254 357.549 321.749 366.565 340.848 374.579C360.236 382.307 381.505 390.464 404.655 399.05C425.78 407.064 446.47 415.651 466.727 424.81C487.273 433.683 505.503 444.988 521.419 458.727C537.624 472.179 550.646 488.922 560.485 508.958C570.324 528.707 575.243 553.321 575.243 582.802C575.243 611.423 570.179 636.897 560.051 659.221C550.212 681.546 535.888 700.293 517.079 715.463C498.558 730.632 475.842 742.224 448.93 750.238C422.018 758.252 391.633 762.259 357.776 762.259C343.018 762.259 303.868 759.777 280.213 752.458C249.27 740.543 231.971 724.446 213.53 702.878C195.822 679.373 167.039 595.841 214.147 527.437Z"
+                        fill="black" />
+                    <path
+                        d="M529.556 466.119C467.235 391.607 107.38 309.453 345.128 0C-66.7846 182.725 190.315 359.555 190.315 359.555C190.315 359.555 49.3248 359.555 85.2635 159.147C-188.423 604.17 284.308 453.864 284.308 453.864C190.882 529.912 96.3215 509.861 96.3215 509.861C242.038 592.271 321.8 457.59 529.556 466.119Z"
+                        fill="url(#paint0_linear_344_172)" />
+                    <path
+                        d="M366.01 456.728C308.931 446.851 335.558 444.988 283.814 453.76C191.269 529.417 97.5381 510.488 97.5381 510.488C231.125 565.573 225.968 456.85 366.01 456.728Z"
+                        fill="#19DB9E" />
+                    <path
+                        d="M300.926 406.08C245.145 377.585 246.249 381.797 189.447 359.678C43.7937 343.423 84.0003 161.981 84.0003 161.981C15.5091 335.855 21.9951 339.26 300.926 406.08Z"
+                        fill="#19DB9E" />
+                    <path
+                        d="M529.388 465.58C384.13 340.751 138.932 295.585 340.149 2.35474C77.0188 256.723 294.833 330.741 294.833 330.741C443.662 407.287 529.388 465.58 529.388 465.58Z"
+                        fill="#19DB9E" />
+                    <defs>
+                        <linearGradient id="paint0_linear_344_172" x1="-1.51621e-07" y1="268.512" x2="535.879"
+                            y2="268.512" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6BEECE" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav" id="sidebar-nav">
+
+            <a href="#" class="sidebar-item" id="sidebar-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path
+                        d="M15 21V13C15 12.7348 14.8946 12.4804 14.7071 12.2929C14.5196 12.1054 14.2652 12 14 12H10C9.73478 12 9.48043 12.1054 9.29289 12.2929C9.10536 12.4804 9 12.7348 9 13V21"
+                        stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M3 10C3 9.7 3.1 9.4 3.2 9.1C3.3 8.9 3.5 8.7 3.7 8.5L10.7 2.5C11.1 2.2 11.5 2 12 2C12.5 2 12.9 2.2 13.3 2.5L20.3 8.5C20.5 8.7 20.7 8.9 20.8 9.1C20.9 9.4 21 9.7 21 10V19C21 19.5 20.8 20 20.4 20.4C20 20.8 19.5 21 19 21H5C4.5 21 4 20.8 3.6 20.4C3.2 20 3 19.5 3 19V10Z"
+                        stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span id="sidebar-home-text">Home</span>
             </a>
 
-            <a href="#" class="sidebar-item">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M19 7V4C19 3.73478 18.8946 3.48043 18.7071 3.29289C18.5196 3.10536 18.2652 3 18 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5C3 5.53043 3.21071 6.03914 3.58579 6.41421C3.96086 6.78929 4.46957 7 5 7H20C20.2652 7 20.5196 7.10536 20.7071 7.29289C20.8946 7.48043 21 7.73478 21 8V12M21 12H18C17.4696 12 16.9609 12.2107 16.5858 12.5858C16.2107 12.9609 16 13.4696 16 14C16 14.5304 16.2107 15.0391 16.5858 15.4142C16.9609 15.7893 17.4696 16 18 16H21C21.2652 16 21.5196 15.8946 21.7071 15.7071C21.8946 15.5196 22 15.2652 22 15V13C22 12.7348 21.8946 12.4804 21.7071 12.2929C21.5196 12.1054 21.2652 12 21 12Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 5V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H20C20.2652 21 20.5196 20.8946 20.7071 20.7071C20.8946 20.5196 21 20.2652 21 20V16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                <span>Carteira</span>
+            <a href="#" class="sidebar-item" id="sidebar-wallet">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path
+                        d="M19 7V4C19 3.7 18.9 3.5 18.7 3.3C18.5 3.1 18.3 3 18 3H5C4.5 3 4 3.2 3.6 3.6C3.2 4 3 4.5 3 5C3 5.5 3.2 6 3.6 6.4C4 6.8 4.5 7 5 7H20C20.3 7 20.5 7.1 20.7 7.3C20.9 7.5 21 7.7 21 8V12M21 12H18C17.5 12 17 12.2 16.6 12.6C16.2 13 16 13.5 16 14C16 14.5 16.2 15 16.6 15.4C17 15.8 17.5 16 18 16H21C21.3 16 21.5 15.9 21.7 15.7C21.9 15.5 22 15.3 22 15V13C22 12.7 21.9 12.5 21.7 12.3C21.5 12.1 21.3 12 21 12Z"
+                        stroke="black" stroke-width="2" />
+                    <path
+                        d="M3 5V19C3 19.5 3.2 20 3.6 20.4C4 20.8 4.5 21 5 21H20C20.3 21 20.5 20.9 20.7 20.7C20.9 20.5 21 20.3 21 20V16"
+                        stroke="black" stroke-width="2" />
+                </svg>
+                <span id="sidebar-wallet-text">Carteira</span>
             </a>
 
-            <a href="#" class="sidebar-item active">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M19 21V19C19 17.9391 18.5786 16.9217 17.8284 16.1716C17.0783 15.4214 16.0609 15 15 15H9C7.93913 15 6.92172 15.4214 6.17157 16.1716C5.42143 16.9217 5 17.9391 5 19V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                <span>Conta</span>
+            <a href="#" class="sidebar-item active" id="sidebar-account">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path
+                        d="M19 21V19C19 18 18.6 17 17.8 16.2C17.1 15.4 16.1 15 15 15H9C7.9 15 6.9 15.4 6.2 16.2C5.4 17 5 18 5 19V21"
+                        stroke="black" stroke-width="2" />
+                    <path d="M12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7C8 9.2 9.8 11 12 11Z"
+                        stroke="black" stroke-width="2" />
+                </svg>
+                <span id="sidebar-account-text">Conta</span>
             </a>
-            <a href="#" class="sidebar-item">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M3 12C3 13.78 3.52784 15.5201 4.51677 17.0001C5.50571 18.4802 6.91131 19.6337 8.55585 20.3149C10.2004 20.9961 12.01 21.1743 13.7558 20.8271C15.5016 20.4798 17.1053 19.6226 18.364 18.364C19.6226 17.1053 20.4798 15.5016 20.8271 13.7558C21.1743 12.01 20.9961 10.2004 20.3149 8.55585C19.6337 6.91131 18.4802 5.50571 17.0001 4.51677C15.5201 3.52784 13.78 3 12 3C9.48395 3.00947 7.06897 3.99122 5.26 5.74L3 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 3V8H8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 7V12L16 14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                <span>Histórico</span>
+
+            <a href="#" class="sidebar-item" id="sidebar-history">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path
+                        d="M3 12C3 13.8 3.5 15.5 4.5 17C5.5 18.5 7 19.6 8.6 20.3C10.2 21 12 21.2 13.8 20.8C15.6 20.5 17.1 19.6 18.4 18.4C19.6 17.1 20.5 15.6 20.8 13.8C21.2 12 21 10.2 20.3 8.6C19.6 7 18.5 5.5 17 4.5C15.5 3.5 13.8 3 12 3C9.5 3 7.1 4 5.3 5.7L3 8"
+                        stroke="black" stroke-width="2" />
+                    <path d="M3 3V8H8" stroke="black" stroke-width="2" />
+                    <path d="M12 7V12L16 14" stroke="black" stroke-width="2" />
+                </svg>
+                <span id="sidebar-history-text">Histórico</span>
             </a>
-            <a href="#" class="sidebar-item">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H6C4.93913 15 3.92172 15.4214 3.17157 16.1716C2.42143 16.9217 2 17.9391 2 19V21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 8L22 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22 8L17 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                <span>Deletar Conta</span>
+
+            <a href="#" class="sidebar-item" id="sidebar-delete">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path
+                        d="M16 21V19C16 18 15.6 17 14.8 16.2C14.1 15.4 13.1 15 12 15H6C4.9 15 3.9 15.4 3.2 16.2C2.4 17 2 18 2 19V21"
+                        stroke="black" stroke-width="2" />
+                    <path d="M9 11C11.2 11 13 9.2 13 7C13 4.8 11.2 3 9 3C6.8 3 5 4.8 5 7C5 9.2 6.8 11 9 11Z"
+                        stroke="black" stroke-width="2" />
+                    <path d="M17 8L22 13" stroke="black" stroke-width="2" />
+                    <path d="M22 8L17 13" stroke="black" stroke-width="2" />
+                </svg>
+                <span id="sidebar-delete-text">Deletar Conta</span>
             </a>
+
         </nav>
     </aside>
 
-    <main class="main-content">
-        <div class="profile-section">
-            <div class="profile-photo">
-                <div class="photo-circle"></div>
-                <button class="edit-photo-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-<path d="M16 5H22" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19 2V8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 11.5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H12.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 14.9999L17.914 11.9139C17.5389 11.539 17.0303 11.3284 16.5 11.3284C15.9697 11.3284 15.4611 11.539 15.086 11.9139L6 20.9999" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9 11C10.1046 11 11 10.1046 11 9C11 7.89543 10.1046 7 9 7C7.89543 7 7 7.89543 7 9C7 10.1046 7.89543 11 9 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+    <main class="main-content" id="main-content">
+        <div class="profile-section" id="profile-section">
+
+            <div class="profile-photo" id="profile-photo">
+                <div class="photo-circle" id="photo-circle"></div>
+
+                <button class="edit-photo-btn" id="edit-photo-btn" aria-label="Editar foto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                        <path d="M16 5H22" stroke="black" stroke-width="2" />
+                        <path d="M19 2V8" stroke="black" stroke-width="2" />
+                        <path
+                            d="M21 12V19C21 20 20.6 21 19.8 21.7C19.1 22.3 18.1 22.7 17 22.7H7C5.9 22.7 4.9 22.3 4.2 21.7C3.6 21 3.2 20 3.2 19V7C3.2 6 3.6 5 4.2 4.3C4.9 3.6 5.9 3.2 7 3.2H14.5"
+                            stroke="black" stroke-width="2" />
+                        <path d="M21 15L17.9 11.9C17.5 11.5 17 11.3 16.5 11.3C16 11.3 15.5 11.5 15.1 11.9L6 21"
+                            stroke="black" stroke-width="2" />
+                        <path d="M9 11C10.1 11 11 10.1 11 9C11 7.9 10.1 7 9 7C7.9 7 7 7.9 7 9C7 10.1 7.9 11 9 11Z"
+                            stroke="black" stroke-width="2" />
+                    </svg>
                 </button>
             </div>
 
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input type="text">
+            <div class="form-grid" id="form-grid">
+
+                <div class="form-group" id="form-group-name">
+                    <label for="input-name">Nome</label>
+                    <input type="text" id="input-name">
                 </div>
-                <div class="form-group">
-                    <label>Celular</label>
-                    <input type="text">
+
+                <div class="form-group" id="form-group-cell">
+                    <label for="input-cell">Celular</label>
+                    <input type="text" id="input-cell">
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email">
+
+                <div class="form-group" id="form-group-email">
+                    <label for="input-email">Email</label>
+                    <input type="email" id="input-email">
                 </div>
-                <div class="form-group">
-                    <label>Grupo Prioritário</label>
-                    <select>
-                        <option></option>
-                    </select>
+
+                <div class="form-group" id="form-group-condicoes">
+                    <label for="input-condicoes">Condições</label>
+                    <input type="text" id="input-condicoes">
                 </div>
             </div>
 
-            <button class="save-btn">Salvar</button>
+            <button class="save-btn" id="save-profile-btn">Salvar</button>
 
-            <div class="password-section">
+            <div class="password-section" id="password-section">
                 <div class="form-group">
-                    <label>Nova Senha</label>
-                    <input type="password">
+                    <label for="input-new-password">Nova Senha</label>
+                    <input type="password" id="input-new-password">
                 </div>
                 <div class="form-group">
-                    <label>Repita a Senha</label>
-                    <input type="password">
+                    <label for="input-repeat-password">Repita a Senha</label>
+                    <input type="password" id="input-repeat-password">
                 </div>
             </div>
 
-            <button class="save-btn">Salvar</button>
+            <button class="save-btn" id="save-password-btn">Salvar</button>
 
-            <div class="upload-section">
-                <div class="upload-area">
-                    <div class="upload-icon"></div>
-                    <p>Arraste e solte os arquivos ou clique para selecionar.</p>
-                    <p class="upload-formats">Formatos Aceitos: .pdf, .jpg, .png</p>
+            <div class="upload-section" id="upload-section">
+
+                <div class="upload-area" id="upload-area" aria-label="Área de upload">
+                    <input type="file" id="file-input" hidden accept=".pdf,.jpg,.jpeg,.png">
+                    <div class="upload-icon" id="upload-icon"></div>
+                    <p id="upload-instruction">Arraste e solte os arquivos ou clique para selecionar.</p>
+                    <p class="upload-formats" id="upload-formats">Formatos Aceitos: .pdf, .jpg, .png</p>
                 </div>
+                <div class="file-uploaded" id="file-uploaded" style="display:none;">
+                    <div class="file-icon" id="file-icon"></div>
+                    <span class="file-name" id="file-name"></span>
 
-                <p class="upload-description">
-                    Envie uma foto do seu RG ou Laudo Médico garantindo que estejam legíveis e atualizados.
-                </p>
+                    <button class="remove-file-btn" id="remove-file-btn" aria-label="Remover arquivo">×</button>
 
-                <div class="file-uploaded">
-                    <div class="file-icon"></div>
-                    <span class="file-name">laudo_medico.png</span>
-                    <button class="remove-file-btn">×</button>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
                     </div>
-                    <span class="progress-text">100%</span>
+
+                    <span class="progress-text" id="progress-text">0%</span>
                 </div>
 
-                <button class="upload-btn">Carregar arquivo</button>
-                <button class="submit-btn">Enviar</button>
+                <button class="upload-btn" id="upload-btn">Carregar arquivo</button>
+                <button class="submit-btn" id="submit-btn">Enviar</button>
             </div>
         </div>
     </main>
+    <script src="../assets/js/CRUD.js"></script>
 </body>
+
 </html>

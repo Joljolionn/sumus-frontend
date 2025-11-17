@@ -367,3 +367,18 @@ function converterArquivo(file) {
         reader.readAsDataURL(file);
     });
 }
+
+function pularEnvioDocumentos() {
+  let cadastro = getCadastro();
+
+  // garante que existe o objeto / arrays
+  cadastro.documentos = cadastro.documentos || [];
+
+  // opcional: marcar status
+  cadastro.status = "pendente_documentos";
+
+  saveCadastro(cadastro);
+
+  // redireciona onde quiser
+  location.href = "passenger-account.html";
+}

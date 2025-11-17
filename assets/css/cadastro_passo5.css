@@ -287,6 +287,23 @@ body {
   background: #c0c0c0;
 }
 
+.btn-pular {
+  padding: 12px 32px;
+  background: #d0d0d0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-pular:hover {
+  color: #222;
+}
+
+
 /* Responsive */
 @media (max-width: 968px) {
   .container {

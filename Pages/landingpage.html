@@ -6,22 +6,26 @@
     <title>SUMUS</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="container">
-            <div class="logo">Logo</div>
-            <nav class="nav">
-                <a href="#home">Início</a>
-                <a href="#services">Serviços</a>
-                <a href="#about">Sobre</a>
-                <a href="#contact">Contato</a>
-            </nav>
-            <div class="header-right">
 
-                <a href="/login" class="login-btn">Login →</a>
-            </div>
-        </div>
+<body>
+<!-- Header -->
+    <header class="container">
+        <div class="logo">Logo</div>
+        <button aria-controls="primary-navigation" aria-expanded="false" class="menu-hamburguer">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <span>Menu</span>
+        </button>
+        <nav class="primary-navigation" id="primary-navigation" data-visible="false">
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <a href="/login" class="login-btn">Login →</a>
+        </nav>
     </header>
 
     <!-- Hero Section -->
