@@ -1,29 +1,29 @@
 // ================================
 // CONFIG
 // ================================
-//const TOKEN = localStorage.getItem("jwtToken");
-//const USER_TYPE = localStorage.getItem("userType"); // "passenger" ou "driver"
+const TOKEN = localStorage.getItem("jwtToken");
+const USER_TYPE = localStorage.getItem("userType"); // "passenger" ou "driver"
 
-//if (!TOKEN || !USER_TYPE) {
-	//alert("Sessão expirada. Faça login novamente.");
-	//location.href = "login.html";
-//}
+if (!TOKEN || !USER_TYPE) {
+	alert("Sessão expirada. Faça login novamente.");
+	location.href = "login.html";
+}
 
-//const API_BASE =
-	//USER_TYPE === "driver"
-	//	? "http://localhost:8080/driver/"
-	//	: "http://localhost:8080/passenger/";
+const API_BASE =
+	USER_TYPE === "driver"
+		? "http://localhost:8080/driver/"
+		: "http://localhost:8080/passenger/";
 
-//const API_UPLOAD = API_BASE + "upload";
+const API_UPLOAD = API_BASE + "upload";
 
-//const authHeaders = {
-//	"Content-Type": "application/json",
-	//Authorization: `Bearer ${TOKEN}`,
-//};
+const authHeaders = {
+	"Content-Type": "application/json",
+	Authorization: `Bearer ${TOKEN}`,
+};
 
-//const authHeaderOnly = {
-//	Authorization: `Bearer ${TOKEN}`,
-//};
+const authHeaderOnly = {
+	Authorization: `Bearer ${TOKEN}`,
+};
 
 
 // ================================
