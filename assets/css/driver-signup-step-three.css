@@ -100,7 +100,7 @@ h1 {
   margin-bottom: 12px;
 }
 
-upload-area {
+.upload-area {
   border: 2px dashed #999;
   border-radius: 8px;
   padding: 60px 40px;
