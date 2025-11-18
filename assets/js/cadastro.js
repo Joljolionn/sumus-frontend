@@ -1,3 +1,33 @@
+document.addEventListener("focusin", function(e) {
+    if (e.target.classList.contains("entrada-formulario")) {
+        
+        const tooltip = document.getElementById("input-tooltip");
+        const helpText = e.target.dataset.help;
+
+        if (!helpText) {
+            tooltip.style.display = "none";
+            return;
+        }
+
+        tooltip.innerHTML = helpText;
+        tooltip.style.display = "block";
+
+        const rect = e.target.getBoundingClientRect();
+        tooltip.style.top = window.scrollY + rect.bottom + 6 + "px";
+        tooltip.style.left = rect.left + "px";
+    }
+});
+
+document.addEventListener("click", function(e) {
+    const tooltip = document.getElementById("input-tooltip");
+    const isInput = e.target.classList.contains("entrada-formulario");
+
+    if (!isInput && !tooltip.contains(e.target)) {
+        tooltip.style.display = "none";
+    }
+});
+
+
 // =======================================
 // DEFINIR TIPO DE CADASTRO (motorista / usuario)
 // =======================================
@@ -99,6 +129,130 @@ function carregarPasso2() {
 }
 
 // =======================================
+// VALIDADORES (E-MAIL E SENHA)
+// =======================================
+
+// VALIDADORES
+function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return regex.test(email);
+}
+
+function validarSenha(senha) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return regex.test(senha);
+}
+
+document.addEventListener("click", function (e) {
+    const senhaInput = document.getElementById("senha");
+    const box = document.getElementById("senha-rules");
+
+    // Se clicou fora do input de senha OU fora da caixa
+    if (!senhaInput.contains(e.target) && !box.contains(e.target)) {
+        box.style.display = "none";
+    }
+});
+
+function mostrarRegrasSenha() {
+    const box = document.getElementById("senha-rules");
+    box.style.display = "block";
+}
+
+// =======================================
+// MOSTRAR/OCULTAR SENHA
+// =======================================
+function toggleSenha(idCampo, botao) {
+    const campo = document.getElementById(idCampo);
+    const isHidden = campo.type === "password";
+
+    campo.type = isHidden ? "text" : "password";
+
+    botao.innerHTML = isHidden
+        ? `<svg class="icone-olho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+             <path d="M12 5c4.97 0 9.24 3.11 11 7-1.06 2.4-3.07 4.47-5.57 5.74l1.45 1.45-1.41 1.41L3.51 4.48l1.41-1.41 3.12 3.12A13.1 13.1 0 0112 5zm-9 7c.8-1.8 2.19-3.38 3.99-4.53l1.52 1.52A7.13 7.13 0 005 12c.8 1.8 2.19 3.38 3.99 4.53l1.52 1.52A13.1 13.1 0 013 12zm9 5a7 7 0 01-7-7c0-.46.05-.91.14-1.35l9.21 9.21A6.93 6.93 0 0112 17z"/>
+           </svg>`
+        : `<svg class="icone-olho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+             <path d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
+           </svg>`;
+}
+
+// =======================================
+// VALIDAÇÃO AO DIGITAR — SENHA
+// =======================================
+function validarSenhaLive() {
+    const senha = document.getElementById("senha").value;
+    const rulesBox = document.getElementById("senha-rules");
+
+    rulesBox.style.display = "block";
+
+    const rMin = document.getElementById("r-min");
+    const rLower = document.getElementById("r-lower");
+    const rUpper = document.getElementById("r-upper");
+    const rNum = document.getElementById("r-num");
+    const rSpecial = document.getElementById("r-special");
+
+    const temMin = senha.length >= 8;
+    const temLower = /[a-z]/.test(senha);
+    const temUpper = /[A-Z]/.test(senha);
+    const temNum = /\d/.test(senha);
+    const temSpecial = /[@$!%*?&]/.test(senha);
+
+    toggleRule(rMin, temMin);
+    toggleRule(rLower, temLower);
+    toggleRule(rUpper, temUpper);
+    toggleRule(rNum, temNum);
+    toggleRule(rSpecial, temSpecial);
+
+    const input = document.getElementById("senha");
+
+    if (temMin && temLower && temUpper && temNum && temSpecial) {
+        input.classList.remove("erro");
+        input.classList.add("ok");
+    } else {
+        input.classList.add("erro");
+        input.classList.remove("ok");
+    }
+
+    validarConfirmacao();
+}
+
+function toggleRule(element, ok) {
+    if (ok) element.classList.add("ok");
+    else element.classList.remove("ok");
+}
+
+// =======================================
+// VALIDAÇÃO AO DIGITAR — CONFIRMAR SENHA
+// =======================================
+function validarConfirmacao() {
+    const senha = document.getElementById("senha").value;
+    const confirmar = document.getElementById("confirmar-senha");
+    const msg = document.getElementById("confirm-msg");
+
+    if (!confirmar.value) {
+        confirmar.classList.remove("erro", "ok");
+        msg.style.display = "none";
+        return;
+    }
+
+    msg.style.display = "block";
+
+    if (confirmar.value === senha && senha !== "") {
+        confirmar.classList.add("ok");
+        confirmar.classList.remove("erro");
+
+        msg.classList.add("ok");
+        msg.textContent = "As senhas coincidem.";
+    } else {
+        confirmar.classList.add("erro");
+        confirmar.classList.remove("ok");
+
+        msg.classList.remove("ok");
+        msg.textContent = "As senhas devem ser iguais.";
+    }
+}
+
+// =======================================
 // PASSO 3 – DADOS PESSOAIS USUÁRIO
 // =======================================
 function salvarPasso3Usuario() {
@@ -109,7 +263,10 @@ function salvarPasso3Usuario() {
 	const senha = document.getElementById("senha").value.trim();
 	const confirmar = document.getElementById("confirmar-senha").value.trim();
 
-	if (senha !== confirmar) return alert("As senhas não coincidem.");
+  // revalida ao enviar
+  if (!validarEmail(email)) return;
+  if (!validarSenha(senha)) return;
+  if (senha !== confirmar) return;
 
 	let cadastro = getCadastro();
 
@@ -123,6 +280,9 @@ function salvarPasso3Usuario() {
 	location.href = "/passenger/signup/4";
 }
 
+// =======================================
+// CARREGAR PASSO 3
+// =======================================
 function carregarPasso3Usuario() {
 	const cadastro = getCadastro();
 
