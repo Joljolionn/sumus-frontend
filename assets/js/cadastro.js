@@ -581,7 +581,7 @@ async function pularEnvioDocumentos() {
 		}
 
 		// 4. Redireciona somente se a requisição foi bem-sucedida
-		location.href = "/passenger/account";
+		location.href = "/login";
 	} catch (error) {
 		// 5. Trata erros
 		console.error("Erro ao enviar cadastro para o servidor:", error);
