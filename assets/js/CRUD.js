@@ -152,10 +152,9 @@ async function salvarPerfil() {
     formData.append("name", inputName.value)
     formData.append("phone", inputCell.value)
     formData.append("email", inputEmail.value)
-    const file = inputPhoto.files[0];
-    formData.append("photo", file);
+    const file = inputPhoto.files && inputPhoto.files.length > 0 ? inputPhoto.files[0] : null;
 
-
+    if (file) formData.append("photo", file);
 
     // TODO: O input de condições deve ser imutável por enquanto */
     //

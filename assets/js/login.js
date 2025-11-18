@@ -26,7 +26,7 @@ btnLogin.addEventListener("click", async () => {
     localStorage.setItem("userType", tipoUsuario);
 
     if (tipoUsuario === "passenger") {
-      location.href = "/passenger/account";
+      location.href = "/passenger/";
     } else {
       location.href = "/driver/account";
     }
