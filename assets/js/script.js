@@ -90,3 +90,28 @@ menu.addEventListener("click", () => {
     menu.setAttribute("aria-expanded", false);
   }
 });
+
+// Scroll Automático
+const menuLinks = document.querySelectorAll(".primary-navigation a[href^='#'")
+
+function toScroll(distanceFromTheTop) {
+  window.scrollTo({
+    top: distanceFromTheTop,
+    behavior: "smooth"
+  })
+}
+
+function getDistanceFromTheTop(element) {
+  const id = element.getAttribute("href")
+  return document.querySelector(id).offsetTop
+}
+
+function scrollToSection(e) {
+  e.preventDefault()
+  const distanceFromTheTop = getDistanceFromTheTop(e.target) - 60;
+  toScroll(distanceFromTheTop)
+}
+
+menuLinks.forEach((link) => {
+  link.addEventListener("click", scrollToSection)
+})
