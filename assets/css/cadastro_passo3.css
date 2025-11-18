@@ -133,6 +133,99 @@ h1 {
     outline: 2px solid #999;
 }
 
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+
+.campo-senha input {
+    width: 100%;
+    padding-right: 40px; /* espaço pro olho */
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icone-olho {
+    width: 22px;
+    height: 22px;
+    fill: #555;
+}
+
+.confirm-msg {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #d00;
+    display: none;
+}
+
+.confirm-msg.ok {
+    color: #2e9f3f;
+}
+
+/* deixa a caixa invisível por padrão */
+.senha-rules {
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    margin-top: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.senha-rules p {
+    margin: 4px 0;
+    color: #d00;
+}
+
+/* regra atendida fica verde */
+.senha-rules p.ok {
+    color: #2e9f3f;
+}
+
+/* bordas de input */
+.entrada-formulario.erro {
+    border: 2px solid #d00 !important;
+}
+
+.entrada-formulario.ok {
+    border: 2px solid #2e9f3f !important;
+}
+
+.input-tooltip {
+    position: absolute;
+    display: none;
+    max-width: 280px;
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 9999;
+    color: #444;
+}
+
+
+/* erro e ok continuam funcionando */
+.entrada-formulario.erro {
+    border: 2px solid #d00 !important;
+}
+
+.entrada-formulario.ok {
+    border: 2px solid #2e9f3f !important;
+}
+
+
 .grupo-botoes {
     display: flex;
     justify-content: space-between;
@@ -164,3 +257,5 @@ h1 {
 .btn-principal:hover {
     background-color: #c9c9c9;
 }
+
+
