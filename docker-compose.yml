@@ -1,8 +1,15 @@
 services:
-  server:
+  frontend-sumus:
     container_name: frontend-sumus
     
     build: .
 
     ports:
       - "3000:3000"
+
+    networks:
+      - sumus
+
+networks:
+  sumus:
+    external: true # Diz ao Docker Compose para usar a rede existente
