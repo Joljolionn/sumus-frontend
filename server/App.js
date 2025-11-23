@@ -20,24 +20,23 @@ app.use("/assets", express.static(path.join(projectRoot, "assets")));
 
 app.use(express.json());
 
-app.use
+app.use;
 
 app.get("/", (req, res) => {
-	res.sendFile(path.join(projectRoot, "Pages", "landingpage.html"));
+    res.sendFile(path.join(projectRoot, "Pages", "landingpage.html"));
 });
 
 app.get("/login", (req, res) => {
-	res.sendFile(path.join(projectRoot, "Pages", "login.html"));
+    res.sendFile(path.join(projectRoot, "Pages", "login.html"));
 });
-
 app.get("/signup/1", (req, res) => {
     res.sendFile(path.join(projectRoot, "Pages", "cadastro_passo1.html"));
-})
+});
 
-app.use("/passenger", passengerRouter)
+app.use("/passenger", passengerRouter);
 
-app.use("/driver", driverRouter)
+app.use("/driver", driverRouter);
 
 app.listen(port, () => {
-	console.log(`Servidor Express rodando em http://localhost:${port}/`);
+    console.log(`Servidor Express rodando em http://localhost:${port}/`);
 });
