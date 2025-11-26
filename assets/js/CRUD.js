@@ -11,8 +11,8 @@ if (!TOKEN || !USER_TYPE) {
 
 const API_BASE =
 	USER_TYPE === "driver"
-		? "http://localhost:8080/driver/"
-		: "http://localhost:8080/passenger/";
+		? "/driver/"
+		: "/passenger/";
 
 const API_UPLOAD = API_BASE + "upload";
 
