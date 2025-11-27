@@ -113,4 +113,101 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.put("/passenger", async (req, res) => {
+     const passengerForm = req.body;
+
+    try {
+        // Fazer a requisição para o Backend (Server-to-Server)
+        const response = await fetch(`${process.env.BACKEND_URL}/passenger`, {
+            method: "PUT",
+            body: passengerForm,
+            headers: {"Authorization": req.headers.authorization}
+        });
+
+        // Tratar a resposta do Backend
+        if (!response.ok) {
+            // Se o backend retornou 401 (Não Autorizado), repassamos o erro
+            const errorText = await response.text();
+            console.error(`Erro do Backend: ${errorText}`);
+            return res
+                .status(response.status)
+                .json({ error: "Credenciais inválidas ou erro no backend." });
+        }
+
+        const data = await response.json(); 
+
+        // Retorna sucesso para o cliente
+        return res.status(200).json({
+            success: true,
+        });
+    } catch (err) {
+        console.error("Erro ao processar atualização via Express:", err);
+        return res.status(500).json({ error: "Erro interno do servidor." });
+    }   
+})
+
+router.patch("/passenger/password", async (req, res) => {
+     const newPassword = req.body;
+
+    try {
+        // Fazer a requisição para o Backend (Server-to-Server)
+        const response = await fetch(`${process.env.BACKEND_URL}/passenger/password`, {
+            method: "PATCH",
+            body: passengerForm,
+            headers: {"Authorization": req.headers.authorization}
+        });
+
+        // Tratar a resposta do Backend
+        if (!response.ok) {
+            // Se o backend retornou 401 (Não Autorizado), repassamos o erro
+            const errorText = await response.text();
+            console.error(`Erro do Backend: ${errorText}`);
+            return res
+                .status(response.status)
+                .json({ error: "Credenciais inválidas ou erro no backend." });
+        }
+
+        // Retorna sucesso para o cliente
+        return res.status(200).json({
+            success: true,
+        });
+    } catch (err) {
+        console.error("Erro ao processar atualização de senha via Express:", err);
+        return res.status(500).json({ error: "Erro interno do servidor." });
+    }   
+})
+
+router.get("/passenger", async (req, res) => {
+
+    try {
+        // Fazer a requisição para o Backend (Server-to-Server)
+        const response = await fetch(`${process.env.BACKEND_URL}/passenger`, {
+            method: "GET",
+            headers: {"Authorization": req.headers.authorization}
+        });
+
+        // Tratar a resposta do Backend
+        if (!response.ok) {
+            // Se o backend retornou 401 (Não Autorizado), repassamos o erro
+            const errorText = await response.text();
+            console.error(`Erro do Backend: ${errorText}`);
+            return res
+                .status(response.status)
+                .json({ error: "Credenciais inválidas ou erro no backend." });
+        }
+
+        const data = await response.json(); 
+
+        // Retorna sucesso para o cliente
+        return res.status(200).json({
+            success: true,
+            body: data
+        });
+    } catch (err) {
+        console.error("Erro ao recuperar dados via Express:", err);
+        return res.status(500).json({ error: "Erro interno do servidor." });
+    }   
+})
+
+
 export const passengerRouter = router;
