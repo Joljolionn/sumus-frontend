@@ -5,9 +5,8 @@ workdir /app
 copy package*.json ./
 
 copy .env .
-copy /assets ./assets
+copy /public ./public
 copy /server ./server
-copy /Pages ./Pages
 
 RUN npm install
 
