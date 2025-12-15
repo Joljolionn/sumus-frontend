@@ -557,11 +557,11 @@ async function pularEnvioDocumentos() {
 
 	const BASE_URL =
 		storageKey === "cadastroMotorista"
-			? "http://localhost:8080/driver/"
-			: "http://localhost:8080/passenger/";
+			? "/driver"
+			: "/passenger";
 
 	try {
-		const response = await fetch(BASE_URL + "signup", {
+		const response = await fetch(BASE_URL + "/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
