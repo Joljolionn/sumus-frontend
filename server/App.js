@@ -11,26 +11,27 @@ dotenv.config();
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
 export const projectRoot = path.join(__dirname, "..");
+export const pagesRoot = path.join(projectRoot, "public", "Pages")
 
 const app = express();
 
 const port = process.env.PORT || 3001;
 
-app.use("/assets", express.static(path.join(projectRoot, "assets")));
+app.use(express.static(path.join(projectRoot, "public")));
 
 app.use(express.json());
 
 app.use;
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(projectRoot, "Pages", "landingpage.html"));
+    res.sendFile(path.join(pagesRoot, "landingpage.html"));
 });
 
 app.get("/login", (req, res) => {
-    res.sendFile(path.join(projectRoot, "Pages", "login.html"));
+    res.sendFile(path.join(pagesRoot, "login.html"));
 });
 app.get("/signup/1", (req, res) => {
-    res.sendFile(path.join(projectRoot, "Pages", "cadastro_passo1.html"));
+    res.sendFile(path.join(pagesRoot, "cadastro_passo1.html"));
 });
 
 app.use("/passenger", passengerRouter);
