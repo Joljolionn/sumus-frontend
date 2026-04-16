@@ -1,0 +1,56 @@
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Public Sans", sans-serif;
+}
+
+.passenger-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr) 24rem;
+  overflow: hidden;
+}
+
+.sidebar {
+  z-index: 20;
+}
+
+.map-shell {
+  min-width: 0;
+}
+
+.map-stage {
+  height: 100vh;
+}
+
+.destination-panel {
+  height: 100vh;
+  border-left: 1px solid rgba(190, 200, 205, 0.1);
+  background: var(--surface-low);
+  overflow-y: auto;
+  z-index: 20;
+}
+
+@media (max-width: 1200px) {
+  .passenger-layout {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .passenger-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-panel {
+    height: auto;
+  }
+
+  .map-stage {
+    height: 70vh;
+  }
+}

@@ -1,0 +1,43 @@
+:root {
+  --background: #f8fafb;
+  --surface: #ffffff;
+  --surface-low: #f2f4f5;
+  --surface-soft: #eceeef;
+  --surface-high: #e6e8e9;
+  --surface-highest: #e0e3e4;
+  --text: #191c1d;
+  --text-muted: #3f484d;
+  --outline: #6f797e;
+  --outline-soft: rgba(190, 200, 205, 0.28);
+  --primary: #006781;
+  --primary-soft: rgba(0, 103, 129, 0.1);
+  --secondary: #146492;
+  --secondary-soft: rgba(138, 202, 254, 0.22);
+  --tertiary: #006b5a;
+  --tertiary-soft: rgba(70, 229, 198, 0.2);
+  --error: #ba1a1a;
+  --shadow: 0 22px 40px -30px rgba(25, 28, 29, 0.35);
+  --dashboard-sidebar-border: rgba(190, 200, 205, 0.1);
+  --dashboard-link-color: var(--text-muted);
+  --dashboard-link-hover-bg: var(--surface-soft);
+  --dashboard-link-active-bg: var(--primary-soft);
+  --dashboard-link-active-color: var(--primary);
+  --dashboard-link-active-font: "Lexend", sans-serif;
+  --dashboard-divider-color: rgba(190, 200, 205, 0.2);
+  --dashboard-sidebar-button-bg: var(--error);
+  --dashboard-sidebar-button-shadow: 0 18px 28px -22px rgba(186, 26, 26, 0.65);
+  --dashboard-sidebar-button-font: "Lexend", sans-serif;
+  --map-overlay: linear-gradient(
+    180deg,
+    rgba(248, 250, 251, 0.7) 0%,
+    rgba(248, 250, 251, 0.2) 28%,
+    rgba(248, 250, 251, 0.08) 50%,
+    rgba(248, 250, 251, 0.5) 100%
+  );
+  --map-pin-ring: rgba(0, 103, 129, 0.2);
+  --map-pin-color: var(--primary);
+  --map-shadow: var(--shadow);
+  --map-action-bg: var(--surface);
+  --map-action-color: var(--text);
+  --map-action-primary-bg: var(--primary);
+}

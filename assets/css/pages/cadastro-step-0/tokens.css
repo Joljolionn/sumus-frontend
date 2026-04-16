@@ -1,0 +1,21 @@
+:root {
+  --primary: #006782;
+  --on-primary: #ffffff;
+  --secondary: #4c626b;
+  --on-secondary: #ffffff;
+  --tertiary: #006b5d;
+  --on-tertiary: #ffffff;
+  --surface: #f8fafb;
+  --on-surface: #191c1d;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f4f5;
+  --surface-container-high: #e6e8e9;
+  --outline-variant: #bec8cd;
+  --primary-container: #83d9fb;
+  --on-surface-variant: #3f484d;
+  --slate-50: #f8fafc;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --shadow-soft: 0 24px 48px -12px rgba(0, 103, 130, 0.08);
+  --marketing-signup-radius: 0.75rem;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS - Passageiro</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Public+Sans:wght@300;400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/passenger/home-passageiro/index.css" />
+</head>
+<body class="passenger-home">
+  <div class="passenger-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link sidebar__link--active" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Financeiro</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configurações</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Ficar Offline</button>
+    </aside>
+
+    <main class="map-shell">
+      <section class="map-stage">
+        <div class="map-stage__overlay"></div>
+        <div id="passenger-map" class="map-stage__map" aria-label="Mapa interativo do passageiro"></div>
+
+        <div class="map-center-pin" aria-hidden="true">
+          <span class="map-center-pin__ring"></span>
+          <span class="map-center-pin__dot"></span>
+        </div>
+
+        <div class="quick-actions">
+          <button class="quick-actions__button" id="recenter-passenger-map" type="button" aria-label="Centralizar mapa">
+            <span class="material-symbols-outlined">my_location</span>
+          </button>
+          <button class="quick-actions__button quick-actions__button--primary" type="button" aria-label="Alternar visualização do mapa">
+            <span class="material-symbols-outlined">map</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="destination-panel">
+      <div class="destination-panel__inner">
+        <h2 class="destination-panel__title">Where to?</h2>
+
+        <div class="search-box">
+          <span class="material-symbols-outlined search-box__icon">search</span>
+          <input class="search-box__input" type="text" placeholder="Enter destination..." />
+        </div>
+
+        <div class="destination-panel__subheader">
+          <h3 class="destination-panel__eyebrow">Recent Destinations</h3>
+          <button class="destination-panel__clear" type="button">Clear all</button>
+        </div>
+
+        <div class="destination-list">
+          <button class="destination-item" type="button">
+            <div class="destination-item__icon destination-item__icon--home">
+              <span class="material-symbols-outlined">home</span>
+            </div>
+            <div class="destination-item__content">
+              <p class="destination-item__title">Home</p>
+              <p class="destination-item__text">123 Sunset Boulevard, San Francisco</p>
+            </div>
+          </button>
+
+          <button class="destination-item" type="button">
+            <div class="destination-item__icon destination-item__icon--work">
+              <span class="material-symbols-outlined">work</span>
+            </div>
+            <div class="destination-item__content">
+              <p class="destination-item__title">Design Studio</p>
+              <p class="destination-item__text">88 Market Street, Unit 4B</p>
+            </div>
+          </button>
+
+          <button class="destination-item" type="button">
+            <div class="destination-item__icon destination-item__icon--gym">
+              <span class="material-symbols-outlined">fitness_center</span>
+            </div>
+            <div class="destination-item__content">
+              <p class="destination-item__title">Peak Performance Gym</p>
+              <p class="destination-item__text">2400 Marina Way</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script>
+    const defaultLocation = [-23.55052, -46.633308];
+    const passengerMap = L.map('passenger-map', {
+      zoomControl: false,
+    }).setView(defaultLocation, 14);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(passengerMap);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap',
+    }).addTo(passengerMap);
+
+    const passengerMarker = L.marker(defaultLocation).addTo(passengerMap);
+    const recenterPassengerMapButton = document.getElementById('recenter-passenger-map');
+
+    recenterPassengerMapButton.addEventListener('click', () => {
+      passengerMap.setView(passengerMarker.getLatLng(), 16, { animate: true });
+    });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = [position.coords.latitude, position.coords.longitude];
+          passengerMarker.setLatLng(userLocation);
+          passengerMap.setView(userLocation, 16);
+        },
+        () => {
+          passengerMap.setView(defaultLocation, 14);
+        }
+      );
+    }
+  </script>
+</body>
+</html>

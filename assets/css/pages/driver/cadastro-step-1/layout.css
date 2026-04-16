@@ -1,0 +1,77 @@
+body {
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: "Inter", sans-serif;
+}
+
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.signup-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.signup-card {
+  width: min(100%, 28rem);
+}
+
+.signup-card__header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.signup-card__title {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-family: "Noto Serif", serif;
+  font-size: 1.875rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.signup-card__subtitle {
+  color: rgba(76, 98, 107, 0.8);
+  font-weight: 500;
+}
+
+.signup-card__panel {
+  padding: 2.5rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 0.75rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.signup-card__footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--slate-100);
+  text-align: center;
+}
+
+.signup-card__footer-text {
+  color: var(--slate-500);
+  font-size: 0.875rem;
+}
+
+.signup-card__footer-link {
+  margin-left: 0.25rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.signup-card__footer-link:hover {
+  text-decoration: underline;
+}

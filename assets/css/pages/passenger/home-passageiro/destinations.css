@@ -1,0 +1,137 @@
+.destination-panel__inner {
+  padding: 2rem;
+}
+
+.destination-panel__title {
+  margin-bottom: 2rem;
+  font-family: "Lexend", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.search-box__icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 1.6rem;
+}
+
+.search-box__input {
+  width: 100%;
+  padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.1rem;
+  box-shadow: 0 10px 20px -18px rgba(25, 28, 29, 0.25);
+  outline: none;
+}
+
+.search-box__input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 103, 129, 0.12);
+}
+
+.destination-panel__subheader {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.destination-panel__eyebrow {
+  color: var(--outline);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.destination-panel__clear {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.destination-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.destination-item {
+  width: 100%;
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  text-align: left;
+  box-shadow: 0 12px 24px -24px rgba(25, 28, 29, 0.2);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.destination-item:hover {
+  background: var(--surface-highest);
+  transform: translateY(-1px);
+}
+
+.destination-item__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destination-item__icon--home {
+  background: rgba(186, 234, 255, 0.5);
+  color: var(--primary);
+}
+
+.destination-item__icon--work {
+  background: var(--secondary-soft);
+  color: var(--secondary);
+}
+
+.destination-item__icon--gym {
+  background: var(--tertiary-soft);
+  color: var(--tertiary);
+}
+
+.destination-item__content {
+  min-width: 0;
+}
+
+.destination-item__title {
+  margin-bottom: 0.2rem;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.destination-item__text {
+  color: var(--outline);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .destination-panel__inner {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,18 @@
+:root {
+  --primary: #006782;
+  --on-primary: #ffffff;
+  --secondary: #4c626b;
+  --surface: #fbfdfe;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f4f5;
+  --on-surface: #191c1d;
+  --on-surface-variant: #3f484d;
+  --outline-variant: #bec8cd;
+  --slate-50: #f8fafc;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --shadow-soft: 0 24px 48px -12px rgba(0, 103, 130, 0.08);
+  --shadow-primary: 0 10px 15px -3px rgba(0, 103, 130, 0.2),
+    0 4px 6px -4px rgba(0, 103, 130, 0.2);
+  --marketing-signup-radius: 0.75rem;
+}

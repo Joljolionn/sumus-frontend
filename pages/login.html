@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title> Login</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="../assets/css/pages/login/index.css" rel="stylesheet" />
+</head>
+
+<body class="login-page">
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__login--active" type="button">
+          Fazer Login
+        </button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="login-main">
+    <div class="login-shell">
+      <div class="login-shell__heading">
+        <h2 class="login-shell__title">Bem-vindo</h2>
+        <p class="login-shell__subtitle">
+          Acesse sua conta para continuar
+        </p>
+      </div>
+
+      <div class="login-card">
+        <div class="login-card__panel">
+          <form class="login-form">
+            <div class="login-form__field">
+              <label class="login-form__label" for="email">E-mail</label>
+              <div class="login-form__input-wrap">
+                <span class="material-symbols-outlined login-form__icon" data-icon="mail">mail</span>
+                <input class="login-form__input" id="email" name="email" placeholder="seu@email.com" type="email" />
+              </div>
+            </div>
+
+            <div class="login-form__field">
+              <div class="login-form__field-top">
+                <label class="login-form__label" for="password">Senha</label>
+                <a class="login-form__recover" href="#">Esqueceu a senha?</a>
+              </div>
+              <div class="login-form__input-wrap">
+                <span class="material-symbols-outlined login-form__icon" data-icon="lock">lock</span>
+                <input class="login-form__input" id="password" name="password" placeholder="••••••••" type="password" />
+              </div>
+            </div>
+
+            <button class="login-form__submit" type="submit">
+              <span>Login</span>
+              <span class="material-symbols-outlined login-form__submit-icon">login</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="login-card__corner login-card__corner--top"></div>
+        <div class="login-card__corner login-card__corner--bottom"></div>
+      </div>
+
+      <div class="login-shell__footer">
+        <a class="login-shell__signup-link" href="#">
+          <span>Ainda não tem uma conta?</span>
+          <span class="login-shell__signup-highlight">Cadastre-se</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer__content">
+      <div class="page-footer__brand-group">
+        <span class="page-footer__brand">SUMUS</span>
+        <span class="page-footer__divider">|</span>
+        <p class="page-footer__copy">© 2024 SUMUS. Dignified Mobility.</p>
+      </div>
+
+      <div class="page-footer__links">
+        <a class="page-footer__link" href="#">Privacy</a>
+        <a class="page-footer__link" href="#">Terms</a>
+        <a class="page-footer__link" href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

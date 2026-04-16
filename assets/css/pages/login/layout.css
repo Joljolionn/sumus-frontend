@@ -1,0 +1,124 @@
+body {
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: "Inter", sans-serif;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.login-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.login-shell {
+  width: min(100%, 28rem);
+}
+
+.login-shell__heading {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.login-shell__title {
+  margin-bottom: 0.75rem;
+  font-family: "Noto Serif", serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.login-shell__subtitle {
+  color: var(--secondary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.login-card {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.login-card__panel {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.login-card__corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+}
+
+.login-card__corner--top {
+  top: 1rem;
+  left: 1rem;
+  border-top: 2px solid rgba(0, 103, 130, 0.2);
+  border-left: 2px solid rgba(0, 103, 130, 0.2);
+}
+
+.login-card__corner--bottom {
+  right: 1rem;
+  bottom: 1rem;
+  border-right: 2px solid rgba(0, 103, 130, 0.2);
+  border-bottom: 2px solid rgba(0, 103, 130, 0.2);
+}
+
+.login-shell__footer {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-shell__signup-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.login-shell__signup-link:hover {
+  color: var(--primary);
+}
+
+.login-shell__signup-highlight {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration-color: rgba(0, 103, 130, 0.3);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.login-shell__signup-link:hover .login-shell__signup-highlight {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .login-card__panel {
+    padding: 1.75rem 1.5rem;
+  }
+}

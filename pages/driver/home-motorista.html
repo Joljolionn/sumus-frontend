@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS - Motorista</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/home-motorista/index.css" />
+</head>
+
+<body class="driver-app">
+  <div class="driver-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link sidebar__link--active" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Financeiro</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configurações</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Ficar Offline</button>
+    </aside>
+
+    <main class="driver-main">
+      <section class="gps-status" id="gps-status-container">
+        <div class="gps-status__group">
+          <div class="gps-status__pulse" id="gps-pulse-container">
+            <span class="gps-status__pulse-ring"></span>
+            <span class="gps-status__pulse-dot"></span>
+          </div>
+          <span class="gps-status__text" id="gps-status-text">Sinal GPS Ativo</span>
+        </div>
+
+        <div class="gps-status__divider"></div>
+
+        <button aria-checked="true" class="gps-toggle gps-toggle--active" id="gps-toggle" role="switch" type="button">
+          <span aria-hidden="true" class="gps-toggle__handle" id="gps-toggle-handle"></span>
+        </button>
+      </section>
+
+      <section class="map-panel">
+        <div class="map-panel__overlay"></div>
+        <div id="driver-map" class="map-panel__map" aria-label="Mapa interativo do motorista"></div>
+
+        <div class="map-center-pin" aria-hidden="true">
+          <span class="map-center-pin__ring"></span>
+          <span class="map-center-pin__dot"></span>
+        </div>
+
+        <div class="quick-actions">
+          <button class="quick-actions__button" id="recenter-map" type="button" aria-label="Centralizar mapa">
+            <span class="material-symbols-outlined">my_location</span>
+          </button>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    const gpsToggle = document.getElementById('gps-toggle');
+    const gpsStatusText = document.getElementById('gps-status-text');
+    const gpsPulseContainer = document.getElementById('gps-pulse-container');
+    const recenterMapButton = document.getElementById('recenter-map');
+
+    let isGpsActive = true;
+
+    const defaultLocation = [-23.55052, -46.633308];
+    const driverMap = L.map('driver-map', {
+      zoomControl: false,
+    }).setView(defaultLocation, 14);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(driverMap);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap',
+    }).addTo(driverMap);
+
+    const driverMarker = L.marker(defaultLocation).addTo(driverMap);
+
+    function setGpsState(active) {
+      isGpsActive = active;
+      gpsToggle.setAttribute('aria-checked', String(active));
+      gpsToggle.classList.toggle('gps-toggle--active', active);
+      gpsToggle.classList.toggle('gps-toggle--inactive', !active);
+      gpsStatusText.textContent = active ? 'Sinal GPS Ativo' : 'Sinal GPS Desativado';
+
+      gpsPulseContainer.innerHTML = active
+        ? '<span class="gps-status__pulse-ring"></span><span class="gps-status__pulse-dot"></span>'
+        : '<span class="gps-status__pulse-dot gps-status__pulse-dot--inactive"></span>';
+    }
+
+    gpsToggle.addEventListener('click', () => {
+      setGpsState(!isGpsActive);
+    });
+
+    recenterMapButton.addEventListener('click', () => {
+      driverMap.setView(driverMarker.getLatLng(), 16, { animate: true });
+    });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = [position.coords.latitude, position.coords.longitude];
+          driverMarker.setLatLng(userLocation);
+          driverMap.setView(userLocation, 16);
+        },
+        () => {
+          driverMap.setView(defaultLocation, 14);
+        }
+      );
+    }
+  </script>
+</body>
+
+</html>
