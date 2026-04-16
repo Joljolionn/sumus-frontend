@@ -1,6 +1,6 @@
 # SUMUS Frontend
 
-Arquitetura de CSS organizada para manutencao incremental, sem alterar layout ou conteudo das telas.
+Arquitetura de CSS organizada para manutencao incremental
 
 ## Convencao de nomes
 
