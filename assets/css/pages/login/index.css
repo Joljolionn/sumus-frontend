@@ -1,7 +1,231 @@
-@import url("../../base/reset.css");
-@import url("../../utilities/common.css");
-@import url("./tokens.css");
-@import url("../../components/marketing-nav.css");
-@import url("../../components/marketing-footer.css");
-@import url("./layout.css");
-@import url("./form.css");
+/* =========================================
+   1. LAYOUT DA PÁGINA (Login)
+   ========================================= */
+body.login-page {
+  background: var(--surface-alt);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.login-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6rem, 15dvh, 8rem) 1.5rem 4rem; 
+}
+
+/* =========================================
+   2. O CONTAINER PRINCIPAL
+   ========================================= */
+.login-shell {
+  width: min(100%, 28rem);
+}
+
+.login-shell__heading {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.login-shell__title {
+  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+
+.login-shell__subtitle {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* =========================================
+   3. O CARD DE LOGIN E SEUS DETALHES VISUAIS
+   ========================================= */
+.login-card {
+  position: relative;
+  border-radius: 1rem;
+  padding: 0.25rem;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.login-card__panel {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.login-card__corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+
+.login-card__corner--top {
+  top: 1rem;
+  left: 1rem;
+  border-top: 2px solid var(--primary-soft);
+  border-left: 2px solid var(--primary-soft);
+}
+
+.login-card__corner--bottom {
+  right: 1rem;
+  bottom: 1rem;
+  border-right: 2px solid var(--primary-soft);
+  border-bottom: 2px solid var(--primary-soft);
+}
+
+/* =========================================
+   4. FORMULÁRIO
+   ========================================= */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login-form__field-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-form__label {
+  color: var(--text-main);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.login-form__recover {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.login-form__recover:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.login-form__input-wrap {
+  position: relative;
+}
+
+.login-form__icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.25rem;
+}
+
+.login-form__input {
+  width: 100%;
+  height: 3.5rem;
+  padding: 0 1rem 0 3rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.login-form__input::placeholder {
+  color: var(--text-light);
+}
+
+.login-form__input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.login-form__submit {
+  width: 100%;
+  height: 4rem;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 103, 130, 0.2);
+  transition: all 0.2s ease;
+}
+
+.login-form__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 103, 130, 0.3);
+}
+
+.login-form__submit:active {
+  transform: scale(0.98);
+}
+
+/* =========================================
+   5. RODAPÉ DO SHELL
+   ========================================= */
+.login-shell__footer {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.login-shell__signup-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.login-shell__signup-link:hover {
+  color: var(--text-main);
+}
+
+.login-shell__signup-highlight {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.login-shell__signup-link:hover .login-shell__signup-highlight {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 768px) {
+  .login-card__panel {
+    padding: 2rem 1.5rem;
+  }
+}
