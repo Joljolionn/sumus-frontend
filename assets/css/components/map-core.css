@@ -17,7 +17,7 @@
   inset: 0;
   z-index: 10;
   pointer-events: none;
-  background: var(--map-overlay);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .map-center-pin {
@@ -35,18 +35,18 @@
 .map-center-pin__dot {
   position: absolute;
   inset: 0;
-  border-radius: 999px;
+  border-radius: 50%;
 }
 
 .map-center-pin__ring {
-  background: var(--map-pin-ring);
+  background: var(--primary-soft);
   animation: pulse-ring 1.8s infinite;
 }
 
 .map-center-pin__dot {
-  background: var(--map-pin-color);
+  background: var(--primary);
   border: 4px solid #ffffff;
-  box-shadow: var(--map-shadow);
+  box-shadow: var(--shadow-soft);
 }
 
 .quick-actions {
@@ -63,21 +63,18 @@
   width: 3.5rem;
   height: 3.5rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--map-action-bg, var(--surface));
-  color: var(--map-action-color, var(--text));
-  box-shadow: var(--map-shadow);
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease,
-    filter 0.2s ease;
+  background: var(--surface);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .quick-actions__button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .quick-actions__button:active {
@@ -85,17 +82,17 @@
 }
 
 .quick-actions__button--primary {
-  background: var(--map-action-primary-bg, var(--primary));
-  color: var(--map-action-primary-color, #ffffff);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 
-.leaflet-control-zoom {
-  border: none !important;
-  box-shadow: var(--map-shadow) !important;
+.leaflet-container .leaflet-control-zoom {
+  border: none;
+  box-shadow: var(--shadow-soft);
 }
 
-.leaflet-control-zoom a {
-  color: var(--map-action-color, var(--text)) !important;
+.leaflet-container .leaflet-control-zoom a {
+  color: var(--text-main);
 }
 
 @keyframes pulse-ring {
@@ -103,12 +100,10 @@
     transform: scale(0.8);
     opacity: 0.45;
   }
-
   70% {
     transform: scale(1.9);
     opacity: 0;
   }
-
   100% {
     opacity: 0;
   }

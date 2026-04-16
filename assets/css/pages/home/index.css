@@ -1,5 +1,260 @@
-@import url("../../base/reset.css");
-@import url("../../utilities/common.css");
-@import url("./tokens.css");
-@import url("./utilities.css");
-@import url("./responsive.css");
+/* =========================================
+   1. HERO SECTION (Área de Destaque)
+   ========================================= */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 85vh; /* Usando proporção de tela em vez de pixels fixos */
+  padding: 10rem 2rem 4rem; /* Espaço para o header fixo */
+  background: linear-gradient(180deg, var(--primary-soft) 0%, var(--background) 100%);
+  text-align: center;
+}
+
+.hero__title {
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.1;
+  max-width: 1000px;
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.hero__title span {
+  color: var(--primary);
+}
+
+.hero__subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--text-muted);
+  max-width: 800px;
+  margin-bottom: 4rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   2. WIDGET DE BUSCA
+   ========================================= */
+.search-widget {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.75rem;
+  border-radius: 99px;
+  width: min(100%, 600px);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-light);
+  margin-bottom: 5rem;
+  z-index: 10;
+}
+
+.search-widget__icon {
+  color: var(--primary);
+  padding: 0 1rem;
+}
+
+.search-widget__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-main);
+  outline: none;
+}
+
+.search-widget__input::placeholder {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.search-widget__btn {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 99px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-widget__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 103, 130, 0.2);
+}
+
+/* =========================================
+   3. CARDS DE SERVIÇO
+   ========================================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  width: min(100%, 1100px);
+  z-index: 10;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 2rem;
+  border-left: 10px solid var(--primary);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-card--secondary {
+  border-left-color: #00e7ca; /* Cor terciária original do seu design */
+}
+
+.service-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.service-card__icon {
+  width: 4rem;
+  height: 4rem;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card--secondary .service-card__icon {
+  background: rgba(0, 231, 202, 0.2);
+  color: #006b5d;
+}
+
+.service-card__number {
+  font-size: 3rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--border-light);
+}
+
+.service-card__title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.service-card__text {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.service-card__link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.125rem;
+  transition: gap 0.2s ease;
+}
+
+.service-card--secondary .service-card__link {
+  color: #006b5d;
+}
+
+.service-card__link:hover {
+  gap: 1rem;
+}
+
+/* =========================================
+   4. VALORES & DIFERENCIAIS
+   ========================================= */
+.section-wrapper {
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-wrapper--dark {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  width: min(100%, 1280px);
+}
+
+.feature-item {
+  text-align: center;
+}
+
+.feature-item__icon {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.section-wrapper--dark .feature-item__icon {
+  color: #38ffe1;
+}
+
+.feature-item__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.feature-item__desc {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.section-wrapper--dark .feature-item__desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================
+   5. RESPONSIVIDADE BASE
+   ========================================= */
+@media (max-width: 768px) {
+  .search-widget {
+    flex-direction: column;
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+  .search-widget__input {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .search-widget__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

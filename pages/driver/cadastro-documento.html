@@ -4,17 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aeterna - Upload de Documentos</title>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,800&family=Inter:wght@400;500;600;700&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/components/marketing-nav.css" />
+  <link rel="stylesheet" href="../../assets/css/components/marketing-footer.css" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
   <link rel="stylesheet" href="../../assets/css/pages/driver/cadastro-documento/index.css" />
 </head>
 <body class="document-page">
+  
   <nav class="topbar">
     <div class="topbar__content">
       <div class="topbar__brand">SUMUS</div>
@@ -49,7 +54,7 @@
             <p class="upload-option__description">
               Arraste ou selecione sua CNH ou RG (frente e verso)
             </p>
-            <input class="hidden" id="id-upload" type="file" />
+            <input class="sr-only" id="id-upload" type="file" />
           </label>
 
           <label class="upload-option" for="vehicle-upload">
@@ -60,13 +65,12 @@
             <p class="upload-option__description">
               Arraste ou selecione o CRLV e fotos do veículo
             </p>
-            <input class="hidden" id="vehicle-upload" type="file" />
+            <input class="sr-only" id="vehicle-upload" type="file" />
           </label>
         </div>
 
         <button class="upload-submit" type="button">
-          <span class="material-symbols-outlined">cloud_upload</span>
-          Enviar Documentos
+          <span class="material-symbols-outlined">Enviar Documentos</span>
         </button>
 
         <p class="upload-card__footnote">
@@ -77,18 +81,50 @@
   </main>
 
   <footer class="page-footer">
-    <div class="page-footer__content">
-      <div class="page-footer__brand-group">
+  <div class="page-footer__content">
+    
+    <div class="page-footer__grid">
+      <div class="page-footer__brand-block">
         <span class="page-footer__brand">SUMUS</span>
-        <span class="page-footer__divider">|</span>
-        <p class="page-footer__copy">© 2024 SUMUS. Dignified Mobility.</p>
+        <p class="page-footer__tagline">
+          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+        </p>
       </div>
-      <div class="page-footer__links">
-        <a class="page-footer__link" href="#">Privacy</a>
-        <a class="page-footer__link" href="#">Terms</a>
-        <a class="page-footer__link" href="#">Contact</a>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Empresa</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
+          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
+          <li><a class="page-footer__link" href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Legal</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
+          <li><a class="page-footer__link" href="#">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Suporte</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
+          <li><a class="page-footer__link" href="#">Contato</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+
+    <div class="page-footer__bottom">
+      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+      <div class="page-footer__badges">
+        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
 </body>
 </html>

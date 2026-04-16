@@ -1,7 +1,220 @@
-@import url("../../../base/reset.css");
-@import url("../../../utilities/common.css");
-@import url("./tokens.css");
-@import url("../../../components/marketing-nav.css");
-@import url("../../../components/marketing-footer.css");
-@import url("./layout.css");
-@import url("./upload.css");
+/* =========================================
+   1. TOKENS LOCAIS & GLOBAIS
+   ========================================= */
+:root {
+  --primary: #006782;
+  --primary-dark: #014d62;
+  --on-primary: #ffffff;
+  --secondary: #4c626b;
+  --surface: #fbfdfe;
+  --surface-card: rgba(255, 255, 255, 0.72);
+  --surface-white: #ffffff;
+  --on-surface: #191c1d;
+  --outline-variant: #bec8cd;
+  --slate-400: #94a3b8;
+  --shadow-soft: 0 24px 48px -12px rgba(0, 103, 130, 0.08);
+  --shadow-primary: 0 10px 15px -3px rgba(0, 103, 130, 0.2), 0 4px 6px -4px rgba(0, 103, 130, 0.2);
+}
+
+/* =========================================
+   2. LAYOUT BASE DA PÁGINA
+   ========================================= */
+body.document-page {
+  background: radial-gradient(circle at top, rgba(131, 217, 251, 0.18), transparent 32%),
+              linear-gradient(180deg, #ffffff 0%, var(--surface) 45%, var(--surface-alt) 100%);
+  color: var(--text-main);
+  min-height: 100dvh; 
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; 
+  overflow-y: auto; 
+}
+
+.document-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5.5rem, 12dvh, 8rem) 1.5rem 2rem;
+  height: 100%;
+}
+
+/* =========================================
+   3. COMPONENTE: UPLOAD CARD
+   ========================================= */
+.upload-shell {
+  width: min(100%, 48rem);
+  max-height: 100%; 
+  display: flex;
+}
+
+.upload-card {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 9rem); 
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-height: none; 
+  overflow-y: visible;
+}
+
+.upload-card__header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.upload-card__title {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.upload-card__subtitle {
+  color: var(--secondary);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* =========================================
+   4. COMPONENTE: UPLOAD GRID & OPÇÕES
+   ========================================= */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.upload-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border: 2px dashed var(--outline-variant);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.upload-option:hover,
+.upload-option:focus-within {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.82);
+  transform: translateY(-2px);
+}
+
+.upload-option__icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 103, 130, 0.1);
+  color: var(--primary);
+  transition: background-color 0.2s ease;
+}
+
+.upload-option:hover .upload-option__icon {
+  background: rgba(0, 103, 130, 0.18);
+}
+
+.upload-option__icon .material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.upload-option__title {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+}
+
+.upload-option__description {
+  color: var(--secondary);
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* =========================================
+   5. BOTÃO DE SUBMIT & RODAPÉ DO CARD
+   ========================================= */
+.upload-submit {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 0;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.upload-card__footnote {
+  margin-top: 1.5rem;
+  color: var(--slate-400);
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 900px) {
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+  .upload-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .upload-card {
+    padding: 1.5rem;
+  }
+  .upload-card__title {
+    font-size: 1.75rem;
+  }
+}

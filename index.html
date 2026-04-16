@@ -1,363 +1,163 @@
-<html class="light" lang="pt-BR">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>SUMUS - A Verdadeira Liberdade</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link href="assets/css/pages/home/index.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS - Mobilidade com Dignidade</title>
+  
+  <link rel="stylesheet" href="assets/css/base/reset.css" />
+  <link rel="stylesheet" href="assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="assets/css/components/marketing-nav.css" />
+  <link rel="stylesheet" href="assets/css/components/marketing-footer.css" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="assets/css/pages/home/index.css" />
 </head>
+<body>
 
-<body class="bg-background text-on-surface font-body antialiased">
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-outline-variant/10">
-        <div class="flex justify-between items-center px-8 py-5 max-w-7xl mx-auto">
-            <div class="text-2xl font-black tracking-tighter text-primary font-headline">SUMUS</div>
-            <div class="hidden md:flex items-center gap-10">
-                <a class="font-body tracking-tight font-bold text-primary border-b-2 border-primary pb-1"
-                    href="#">Viajar</a>
-                <a class="font-body tracking-tight font-bold text-on-surface-variant hover:text-primary transition-colors"
-                    href="#">Ganhe Dinheiro</a>
-                <a class="font-body tracking-tight font-bold text-on-surface-variant hover:text-primary transition-colors"
-                    href="#">Sobre</a>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="text-on-surface-variant font-bold hover:text-primary transition-colors">Fazer
-                    Login</button>
-                <button
-                    class="bg-primary text-on-primary px-7 py-3 rounded-xl font-bold hover:shadow-lg hover:shadow-primary/20 transition-all">Cadastre-se</button>
-            </div>
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link topbar__link--active" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero__title">Mobilidade com a <span>Dignidade</span> que o Tempo Exige</h1>
+      <p class="hero__subtitle">
+        Conectando você a uma rede exclusiva de transporte onde o respeito, a segurança e a autonomia são pilares fundamentais da sua jornada.
+      </p>
+
+      <div class="search-widget">
+        <span class="material-symbols-outlined search-widget__icon">location_on</span>
+        <input class="search-widget__input" placeholder="Para onde vamos hoje?" type="text" />
+        <button class="search-widget__btn" type="button">
+          <span class="material-symbols-outlined">search</span> Buscar
+        </button>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card__header">
+            <div class="service-card__icon"><span class="material-symbols-outlined">bolt</span></div>
+            <span class="service-card__number">01</span>
+          </div>
+          <h3 class="service-card__title">Viagem Imediata</h3>
+          <p class="service-card__text">Solicite um veículo adaptado agora mesmo. Tempo médio de espera: 8 min.</p>
+          <a class="service-card__link" href="#">Solicitar agora <span class="material-symbols-outlined">arrow_forward</span></a>
         </div>
-    </nav>
-    <main class="relative pt-24 overflow-hidden">
-        <!-- Hero Section -->
-        <section
-            class="relative w-full flex flex-col items-center min-h-[850px] overflow-hidden bg-surface-container-lowest">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background"></div>
-            </div>
-            <!-- Hero Text Content -->
-            <div class="relative z-10 w-full max-w-5xl px-8 pt-24 pb-8 text-center">
-                <h1
-                    class="font-headline text-5xl md:text-8xl font-extrabold text-on-surface mb-8 tracking-tight leading-[1.05]">
-                    Mobilidade com a <span class="text-primary">Dignidade</span> que o Tempo Exige
-                </h1>
-                <p class="text-xl md:text-2xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed font-medium">
-                    Conectando você a uma rede exclusiva de transporte onde o respectivo, a segurança e a autonomia são
-                    pilares fundamentais da sua jornada.
-                </p>
-            </div>
-            <!-- Search Bar Component -->
-            <div class="relative z-10 w-full max-w-2xl px-8 mb-20">
-                <div
-                    class="bg-white rounded-[2rem] p-3 flex items-center shadow-2xl soft-glow border border-outline-variant/10">
-                    <div class="pl-5 pr-3 flex items-center text-primary">
-                        <span class="material-symbols-outlined text-3xl">location_on</span>
-                    </div>
-                    <input
-                        class="w-full border-none focus:ring-0 text-on-surface placeholder:text-outline-variant font-bold py-4 text-lg"
-                        placeholder="Para onde vamos hoje?" type="text" />
-                    <button
-                        class="bg-primary text-on-primary px-10 py-4 rounded-2xl font-bold flex items-center gap-2 hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
-                        <span class="material-symbols-outlined text-2xl">search</span>
-                        Buscar
-                    </button>
-                </div>
-            </div>
-            <!-- Service Cards Container -->
-            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 px-8 pb-32">
-                <!-- Card 1: Viagem Imediata -->
-                <div
-                    class="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-10 border-l-[10px] border-primary shadow-2xl flex flex-col relative group transition-all hover:-translate-y-2">
-                    <div class="flex justify-between items-start mb-8">
-                        <div class="w-16 h-16 rounded-2xl bg-primary-container/30 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-4xl">bolt</span>
-                        </div>
-                        <span class="text-5xl font-headline italic font-black text-primary/10">01</span>
-                    </div>
-                    <h3 class="font-headline text-3xl font-extrabold text-on-surface mb-4">Viagem Imediata</h3>
-                    <p class="text-on-surface-variant mb-10 text-lg leading-relaxed">Solicite um veículo adaptado agora
-                        mesmo. Tempo médio de espera: 8 min.</p>
-                    <a class="mt-auto flex items-center gap-3 text-primary font-black text-lg hover:gap-5 transition-all"
-                        href="#">
-                        Solicitar agora
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                </div>
-                <!-- Card 2: Agendar Viagem -->
-                <div
-                    class="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-10 border-l-[10px] border-tertiary shadow-2xl flex flex-col relative group transition-all hover:-translate-y-2">
-                    <div class="flex justify-between items-start mb-8">
-                        <div class="w-16 h-16 rounded-2xl bg-tertiary-container/20 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-tertiary text-4xl">calendar_today</span>
-                        </div>
-                        <span class="text-5xl font-headline italic font-black text-tertiary/10">02</span>
-                    </div>
-                    <h3 class="font-headline text-3xl font-extrabold text-on-surface mb-4">Agendar Viagem</h3>
-                    <p class="text-on-surface-variant mb-10 text-lg leading-relaxed">Organize sua rotina com
-                        antecedência. Ideal para consultas e eventos.</p>
-                    <a class="mt-auto flex items-center gap-3 text-tertiary font-black text-lg hover:gap-5 transition-all"
-                        href="#">
-                        Agendar horário
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- Nossos Valores Section -->
-        <section class="w-full bg-surface-container-low py-32 px-8" id="valores">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-20">
-                    <h2 class="font-headline text-5xl font-extrabold text-on-surface mt-2 leading-tight">Nossos Valores
-                    </h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-                    <div
-                        class="flex flex-col items-center text-center p-10 border-outline-variant/10 transition-all hover:-translate-y-2">
-                        <span class="material-symbols-outlined text-5xl text-[#38ffe1] mb-8">volunteer_activism</span>
-                        <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Dignidade</h3>
-                        <p class="text-on-surface-variant text-lg leading-relaxed mt-4">Nosso compromisso é com o
-                            respeito integral e o atendimento humanizado em cada interação.</p>
-                    </div>
-                    <div
-                        class="flex flex-col items-center text-center p-10 border-outline-variant/10 transition-all hover:-translate-y-2">
-                        <span class="material-symbols-outlined text-5xl text-[#38ffe1] mb-8">accessible</span>
-                        <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Acessibilidade</h3>
-                        <p class="text-on-surface-variant text-lg leading-relaxed mt-4">Garantimos a eliminação de
-                            barreiras para uma movimentação livre, autônoma e sem restrições.</p>
-                    </div>
-                    <div
-                        class="flex flex-col items-center text-center p-10 border-outline-variant/10 transition-all hover:-translate-y-2">
-                        <span class="material-symbols-outlined text-5xl text-[#38ffe1] mb-8">verified_user</span>
-                        <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Segurança</h3>
-                        <p class="text-on-surface-variant text-lg leading-relaxed mt-4">Monitoramento em tempo real e
-                            protocolos rigorosos para sua total tranquilidade durante o trajeto.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- The SUMUS Difference (Updated Section) -->
-        <section class="bg-primary py-32">
-            <div class="max-w-7xl mx-auto px-8">
-                <div class="mb-20 text-center max-w-2xl mx-auto">
-                    <span
-                        class="text-on-primary/60 font-bold tracking-[0.3em] uppercase text-sm mb-6 block">Diferenciais</span>
-                    <h2 class="text-5xl font-headline font-extrabold mb-6 text-on-primary">O que nos torna únicos</h2>
-                    <p class="text-on-primary/80 text-xl leading-relaxed">Combinamos empatia humana com tecnologia de
-                        fronteira para criar um padrão ouro em acessibilidade.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    <!-- Feature 1: Specialized Training -->
-                    <div
-                        class="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-all group">
-                        <div class="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-                            <span
-                                class="material-symbols-outlined text-4xl text-[#38ffe1] text-[#00ccb4]">psychology_alt</span>
-                        </div>
-                        <h3 class="text-3xl font-headline font-bold mb-6 text-white">Treinamento Sensitivo</h3>
-                        <p class="text-on-primary/70 text-lg leading-relaxed">Nossos motoristas passam por simulações de
-                            empatia e protocolos de assistência física validados por especialistas em fisioterapia e
-                            terapia ocupacional.</p>
-                    </div>
-                    <!-- Feature 2: High Tech Fleet -->
-                    <div
-                        class="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-all group">
-                        <div class="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-                            <span
-                                class="material-symbols-outlined text-4xl text-[#38ffe1] text-[#00ccb4]">precision_manufacturing</span>
-                        </div>
-                        <h3 class="text-3xl font-headline font-bold mb-6 text-white">Frota High-Tech</h3>
-                        <p class="text-on-primary/70 text-lg leading-relaxed">Veículos equipados com elevadores
-                            eletro-hidráulicos, suspensão adaptativa e ancoragem ISOFIX avançada para sua total
-                            segurança.</p>
-                    </div>
-                    <!-- Feature 3: Schedule -->
-                    <div
-                        class="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-all group">
-                        <div class="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-                            <span
-                                class="material-symbols-outlined text-4xl text-[#38ffe1] text-[#00ccb4]">calendar_clock</span>
-                        </div>
-                        <h3 class="text-3xl font-headline font-bold mb-6 text-white">Planejamento Inteligente</h3>
-                        <p class="text-on-primary/70 text-lg leading-relaxed">Algoritmos que priorizam a pontualidade e
-                            reservam o tempo necessário para o embarque seguro, respeitando o ritmo de cada pessoa.</p>
-                    </div>
-                    <!-- Feature 4: Safety -->
-                    <div
-                        class="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-all group">
-                        <div class="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-                            <span
-                                class="material-symbols-outlined text-4xl text-[#38ffe1] text-[#00ccb4]">verified_user</span>
-                        </div>
-                        <h3 class="text-3xl font-headline font-bold mb-6 text-white">Segurança Triple-A</h3>
-                        <p class="text-on-primary/70 text-lg leading-relaxed">Monitoramento telemático 24/7 e inspeções
-                            diárias em todos os dispositivos de segurança e acessibilidade da nossa frota.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FAQ Section -->
-        <section class="w-full py-24 px-8 bg-white">
-            <div class="max-w-3xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="font-headline text-5xl font-extrabold text-on-surface">Perguntas Frequentes</h2>
-                    <p class="text-on-surface-variant text-xl mt-4">Tudo o que você precisa saber sobre a experiência
-                        SUMUS.</p>
-                </div>
-                <div class="space-y-4">
-                    <!-- FAQ Item 1 -->
-                    <div class="faq-item border-b border-outline-variant/30">
-                        <input class="hidden" id="faq-1" type="checkbox" />
-                        <label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-1">
-                            <span
-                                class="font-headline text-lg font-bold text-primary group-hover:text-secondary transition-colors">Como
-                                solicito uma viagem imediata?</span>
-                            <span
-                                class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">expand_more</span>
-                        </label>
-                        <div class="faq-content">
-                            <p class="text-on-surface-variant text-base leading-relaxed">Basta clicar no card "Viagem
-                                Imediata" na home, inserir seu destino e confirmar.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 2 -->
-                    <div class="faq-item border-b border-outline-variant/30">
-                        <input class="hidden" id="faq-2" type="checkbox" />
-                        <label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-2">
-                            <span
-                                class="font-headline text-lg font-bold text-primary group-hover:text-secondary transition-colors">Quais
-                                são as formas de pagamento aceitas?</span>
-                            <span
-                                class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">expand_more</span>
-                        </label>
-                        <div class="faq-content">
-                            <p class="text-on-surface-variant text-base leading-relaxed">Aceitamos cartões de crédito,
-                                débito e pagamentos via aplicativo.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 3 -->
-                    <div class="faq-item border-b border-outline-variant/30">
-                        <input class="hidden" id="faq-3" type="checkbox" />
-                        <label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-3">
-                            <span
-                                class="font-headline text-lg font-bold text-primary group-hover:text-secondary transition-colors">Posso
-                                agendar uma viagem com antecedência?</span>
-                            <span
-                                class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">expand_more</span>
-                        </label>
-                        <div class="faq-content">
-                            <p class="text-on-surface-variant text-base leading-relaxed">Sim, utilize a opção "Agendar
-                                Viagem" para programar seus trajetos.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 4 -->
-                    <div class="faq-item border-b border-outline-variant/30">
-                        <input class="hidden" id="faq-4" type="checkbox" />
-                        <label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-4">
-                            <span
-                                class="font-headline text-lg font-bold text-primary group-hover:text-secondary transition-colors">Os
-                                veículos são adaptados?</span>
-                            <span
-                                class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">expand_more</span>
-                        </label>
-                        <div class="faq-content">
-                            <p class="text-on-surface-variant text-base leading-relaxed">Sim, toda a nossa frota é
-                                preparada para garantir acessibilidade total.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- CTA Section -->
-        <section class="max-w-7xl mx-auto px-8 mb-32">
-            <div
-                class="rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden border border-outline-variant/30">
-                <div class="relative z-10">
-                    <h2 class="text-5xl md:text-7xl font-headline font-extrabold mb-10 leading-tight text-on-surface">
-                        Pronto para sua primeira viagem?</h2>
-                    <p
-                        class="text-on-primary/80 text-2xl max-w-3xl mx-auto mb-16 font-medium leading-relaxed text-on-surface-variant">
-                        Baixe o app agora e experimente o novo padrão em mobilidade acessível. Dignidade em cada
-                        quilômetro.</p>
-                    <div class="flex flex-wrap justify-center gap-8">
-                        <div
-                            class="bg-white text-on-surface px-10 py-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:scale-105 transition-all shadow-xl border border-outline-variant/20">
-                            <span class="material-symbols-outlined text-4xl">phone_iphone</span>
-                            <div class="text-left">
-                                <p
-                                    class="text-[10px] uppercase font-black opacity-50 tracking-[0.2em] leading-none mb-1">
-                                    Download on</p>
-                                <p class="text-xl font-headline font-extrabold leading-none">App Store</p>
-                            </div>
-                        </div>
-                        <div
-                            class="bg-white text-on-surface px-10 py-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:scale-105 transition-all shadow-xl border border-outline-variant/20">
-                            <span class="material-symbols-outlined text-4xl text-primary">play_store</span>
-                            <div class="text-left">
-                                <p
-                                    class="text-[10px] uppercase font-black opacity-50 tracking-[0.2em] leading-none mb-1">
-                                    Get it on</p>
-                                <p class="text-xl font-headline font-extrabold leading-none">Google Play</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Decorative Elements -->
-            </div>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer class="bg-on-surface text-on-primary w-full pt-24 pb-12 font-body text-sm antialiased">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-16 px-8 max-w-7xl mx-auto">
-            <div class="space-y-8">
-                <div class="text-3xl font-black text-white font-headline tracking-tighter">SUMUS</div>
-                <p class="text-on-primary/60 max-w-xs leading-relaxed text-base">Transformando a mobilidade para um
-                    mundo mais inclusivo e acessível para todos.</p>
-                <div class="flex gap-4">
-                    <div
-                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
-                        <span class="material-symbols-outlined text-xl">share</span>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h5 class="text-primary-container font-black tracking-widest uppercase text-xs mb-8">Empresa</h5>
-                <ul class="space-y-5 text-base">
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Sobre nós</a></li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Trabalhe Conosco</a>
-                    </li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-primary-container font-black tracking-widest uppercase text-xs mb-8">Legal</h5>
-                <ul class="space-y-5 text-base">
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Termos de Uso</a></li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Privacidade</a></li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Acessibilidade</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-primary-container font-black tracking-widest uppercase text-xs mb-8">Suporte</h5>
-                <ul class="space-y-5 text-base">
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Central de Ajuda</a>
-                    </li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Suporte</a></li>
-                    <li><a class="text-on-primary/60 hover:text-white transition-colors" href="#">Contato</a></li>
-                </ul>
-            </div>
+
+        <div class="service-card service-card--secondary">
+          <div class="service-card__header">
+            <div class="service-card__icon"><span class="material-symbols-outlined">calendar_today</span></div>
+            <span class="service-card__number">02</span>
+          </div>
+          <h3 class="service-card__title">Agendar Viagem</h3>
+          <p class="service-card__text">Organize sua rotina com antecedência. Ideal para consultas e eventos.</p>
+          <a class="service-card__link" href="#">Agendar horário <span class="material-symbols-outlined">arrow_forward</span></a>
         </div>
-        <div
-            class="mt-24 pt-10 border-t border-white/10 px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-on-primary/40">
-            <p>© 2024 SUMUS Mobility. All rights reserved. WCAG 2.1 AAA Compliant.</p>
-            <div class="flex gap-8 mt-6 md:mt-0">
-                <span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">verified</span>
-                    Certificado Digital</span>
-            </div>
+      </div>
+    </section>
+
+    <section class="section-wrapper">
+      <h2 class="section-title">Nossos Valores</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">volunteer_activism</span>
+          <h3 class="feature-item__title">Dignidade</h3>
+          <p class="feature-item__desc">Nosso compromisso é com o respeito integral e o atendimento humanizado.</p>
         </div>
-    </footer>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">accessible</span>
+          <h3 class="feature-item__title">Acessibilidade</h3>
+          <p class="feature-item__desc">Garantimos a eliminação de barreiras para uma movimentação livre e autônoma.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">verified_user</span>
+          <h3 class="feature-item__title">Segurança</h3>
+          <p class="feature-item__desc">Monitoramento em tempo real e protocolos rigorosos para sua tranquilidade.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrapper section-wrapper--dark">
+      <h2 class="section-title">O que nos torna únicos</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">psychology_alt</span>
+          <h3 class="feature-item__title">Treinamento Sensitivo</h3>
+          <p class="feature-item__desc">Nossos motoristas passam por simulações de empatia e protocolos de assistência física.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">precision_manufacturing</span>
+          <h3 class="feature-item__title">Frota High-Tech</h3>
+          <p class="feature-item__desc">Veículos equipados com elevadores eletro-hidráulicos e suspensão adaptativa.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">calendar_clock</span>
+          <h3 class="feature-item__title">Planejamento Inteligente</h3>
+          <p class="feature-item__desc">Algoritmos que priorizam a pontualidade e reservam o tempo necessário para o embarque.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+  <div class="page-footer__content">
+    
+    <div class="page-footer__grid">
+      <div class="page-footer__brand-block">
+        <span class="page-footer__brand">SUMUS</span>
+        <p class="page-footer__tagline">
+          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+        </p>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Empresa</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
+          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
+          <li><a class="page-footer__link" href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Legal</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
+          <li><a class="page-footer__link" href="#">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Suporte</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
+          <li><a class="page-footer__link" href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer__bottom">
+      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+      <div class="page-footer__badges">
+        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
 </body>
-
 </html>

@@ -1,5 +1,36 @@
-.light {
-  color-scheme: light;
+/* =========================================
+   1. TOKENS GLOBAIS
+   ========================================= */
+:root {
+  /* Tipografia */
+  --font-sans: 'Inter', sans-serif;
+
+  /* Cores Principais */
+  --primary: #006782;
+  --primary-soft: rgba(0, 103, 130, 0.1);
+  --on-primary: #ffffff;
+  
+  /* Superfícies e Textos */
+  --surface: #fbfdfe;
+  --surface-alt: #f8fafb;
+  --text-main: #191c1d;
+  --text-muted: #4c626b;
+  --text-light: #94a3b8;
+  
+  /* Bordas e Sombras */
+  --border-light: rgba(190, 200, 205, 0.2);
+  --shadow-soft: 0 10px 15px -3px rgba(0, 103, 130, 0.1), 0 4px 6px -4px rgba(0, 103, 130, 0.1);
+  --error: #ba1a1a;
+}
+
+/* =========================================
+   2. REGRAS GLOBAIS
+   ========================================= */
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hidden {
@@ -11,22 +42,18 @@ button {
 }
 
 .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
   display: inline-block;
   line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
   vertical-align: middle;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
-
-.soft-glow {
-  box-shadow: 0 24px 48px -12px rgba(0, 103, 130, 0.08);
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
 }
