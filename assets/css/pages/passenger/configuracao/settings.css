@@ -1,0 +1,253 @@
+.settings-card,
+.legal-card {
+  padding: 2rem;
+  border: 1px solid rgba(203, 213, 225, 0.5);
+  border-radius: 1rem;
+  background: var(--surface-low);
+  box-shadow: 0 12px 28px -26px rgba(25, 28, 29, 0.22);
+}
+
+.settings-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.settings-card__icon {
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.settings-card__title,
+.legal-card__title {
+  font-family: "Noto Serif", serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.settings-card__subtitle,
+.legal-card__text,
+.preference-item__hint {
+  color: var(--text-muted);
+}
+
+.preference-list,
+.settings-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.settings-section + .settings-section {
+  margin-top: 1.5rem;
+}
+
+.preference-item {
+  padding: 1.5rem;
+  border: 1px solid rgba(203, 213, 225, 0.5);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 12px 28px -26px rgba(25, 28, 29, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.preference-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.preference-item__label,
+.section-heading__title,
+.section-heading__value {
+  font-weight: 700;
+}
+
+.preference-item__hint {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.switch__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch__track {
+  position: relative;
+  width: 3rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--surface-highest);
+  transition: background-color 0.2s ease;
+}
+
+.switch__track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.switch__input:checked + .switch__track {
+  background: var(--primary);
+}
+
+.switch__input:checked + .switch__track::after {
+  transform: translateX(1.25rem);
+  border-color: #ffffff;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+}
+
+.section-heading--between {
+  justify-content: space-between;
+}
+
+.section-heading__value {
+  color: var(--primary);
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.option-card {
+  padding: 1rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.option-card:hover,
+.segmented-control__button:hover,
+.legal-card__link:hover {
+  transform: translateY(-1px);
+}
+
+.option-card--active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+.segmented-control__button {
+  padding: 0.95rem 0.75rem;
+  border: 0;
+  border-radius: 0.85rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.segmented-control__button--active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 16px 28px -22px rgba(0, 103, 130, 0.7);
+}
+
+.segmented-control__button--large {
+  font-size: 1rem;
+}
+
+.legal-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.legal-card__content {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.legal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.legal-card__link {
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .settings-card,
+  .legal-card {
+    padding: 1.25rem;
+  }
+
+  .preference-item,
+  .legal-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .option-grid,
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-card__actions {
+    flex-direction: column;
+  }
+
+  .legal-card__link {
+    justify-content: center;
+  }
+}

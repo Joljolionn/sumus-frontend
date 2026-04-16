@@ -1,0 +1,28 @@
+:root {
+  --background: #f5f6f7;
+  --surface: #ffffff;
+  --surface-low: #eff1f2;
+  --surface-soft: #eceeef;
+  --surface-high: #e4e7e8;
+  --surface-highest: #d9dddf;
+  --text: #202425;
+  --text-muted: #586063;
+  --outline: #aeb5b8;
+  --outline-soft: rgba(174, 181, 184, 0.28);
+  --primary: #00685a;
+  --primary-soft: rgba(0, 104, 90, 0.12);
+  --primary-container: #8eecdf;
+  --accent: #004f45;
+  --shadow: 0 24px 48px -34px rgba(12, 15, 16, 0.45);
+  --dashboard-brand-font: "Manrope", sans-serif;
+  --dashboard-brand-style: normal;
+  --dashboard-brand-weight: 800;
+  --dashboard-sidebar-bg: var(--surface-low);
+  --dashboard-sidebar-border: var(--outline-soft);
+  --dashboard-link-color: var(--text-muted);
+  --dashboard-link-hover-bg: var(--surface-soft);
+  --dashboard-link-hover-color: var(--text);
+  --dashboard-link-active-bg: var(--primary-soft);
+  --dashboard-link-active-color: var(--primary);
+  --dashboard-divider-color: rgba(174, 181, 184, 0.22);
+}
