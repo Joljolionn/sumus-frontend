@@ -4,64 +4,83 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMUS - Passageiro</title>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Public+Sans:wght@300;400;500;600;700&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-  />
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
+  <link rel="stylesheet" href="../../assets/css/components/map-core.css" />
+  
   <link rel="stylesheet" href="../../assets/css/pages/passenger/home-passageiro/index.css" />
 </head>
+
 <body class="passenger-home">
   <div class="passenger-layout">
+    
     <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
       <nav class="sidebar__nav">
-        <a class="sidebar__link sidebar__link--active" href="#">
+        <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">dashboard</span>
           <span>Dashboard</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">person</span>
-          <span>Perfil</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">directions_car</span>
-          <span>Meus Veículos</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">account_balance_wallet</span>
-          <span>Financeiro</span>
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
         </a>
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">history</span>
           <span>Histórico</span>
         </a>
 
-        <div class="sidebar__divider"></div>
+        <div class="sidebar__group-title">Configurações</div>
 
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">help</span>
-          <span>Ajuda</span>
+          <span class="material-symbols-outlined">person_outline</span>
+          <span>Ajustes do Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="#">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+          <span>Meus Veículos</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">settings</span>
-          <span>Configurações</span>
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">support_agent</span>
+          <span class="material-symbols-outlined">contact_support</span>
           <span>Suporte</span>
         </a>
       </nav>
 
-      <button class="sidebar__offline-button" type="button">Ficar Offline</button>
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-status">Motorista Autorizado</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
     </aside>
 
     <main class="map-shell">
@@ -87,16 +106,16 @@
 
     <aside class="destination-panel">
       <div class="destination-panel__inner">
-        <h2 class="destination-panel__title">Where to?</h2>
+        <h2 class="destination-panel__title">Para onde?</h2>
 
         <div class="search-box">
           <span class="material-symbols-outlined search-box__icon">search</span>
-          <input class="search-box__input" type="text" placeholder="Enter destination..." />
+          <input class="search-box__input" type="text" placeholder="Digite o destino..." />
         </div>
 
         <div class="destination-panel__subheader">
-          <h3 class="destination-panel__eyebrow">Recent Destinations</h3>
-          <button class="destination-panel__clear" type="button">Clear all</button>
+          <h3 class="destination-panel__eyebrow">Destinos Recentes</h3>
+          <button class="destination-panel__clear" type="button">Limpar histórico</button>
         </div>
 
         <div class="destination-list">
@@ -105,8 +124,8 @@
               <span class="material-symbols-outlined">home</span>
             </div>
             <div class="destination-item__content">
-              <p class="destination-item__title">Home</p>
-              <p class="destination-item__text">123 Sunset Boulevard, San Francisco</p>
+              <p class="destination-item__title">Casa</p>
+              <p class="destination-item__text">Rua das Flores, 123 - São Paulo</p>
             </div>
           </button>
 
@@ -115,8 +134,8 @@
               <span class="material-symbols-outlined">work</span>
             </div>
             <div class="destination-item__content">
-              <p class="destination-item__title">Design Studio</p>
-              <p class="destination-item__text">88 Market Street, Unit 4B</p>
+              <p class="destination-item__title">Escritório</p>
+              <p class="destination-item__text">Av. Paulista, 1578 - Conjunto 4B</p>
             </div>
           </button>
 
@@ -125,8 +144,8 @@
               <span class="material-symbols-outlined">fitness_center</span>
             </div>
             <div class="destination-item__content">
-              <p class="destination-item__title">Peak Performance Gym</p>
-              <p class="destination-item__text">2400 Marina Way</p>
+              <p class="destination-item__title">Fisioterapia</p>
+              <p class="destination-item__text">Rua Augusta, 2400</p>
             </div>
           </button>
         </div>
@@ -134,13 +153,9 @@
     </aside>
   </div>
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
-    const defaultLocation = [-23.55052, -46.633308];
+    const defaultLocation = [-23.55052, -46.633308]; // SP
     const passengerMap = L.map('passenger-map', {
       zoomControl: false,
     }).setView(defaultLocation, 14);
@@ -152,25 +167,25 @@
       attribution: '&copy; OpenStreetMap',
     }).addTo(passengerMap);
 
-    const passengerMarker = L.marker(defaultLocation).addTo(passengerMap);
+    passengerMap.attributionControl.setPrefix('');
+
     const recenterPassengerMapButton = document.getElementById('recenter-passenger-map');
-
-    recenterPassengerMapButton.addEventListener('click', () => {
-      passengerMap.setView(passengerMarker.getLatLng(), 16, { animate: true });
-    });
-
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userLocation = [position.coords.latitude, position.coords.longitude];
-          passengerMarker.setLatLng(userLocation);
           passengerMap.setView(userLocation, 16);
         },
         () => {
-          passengerMap.setView(defaultLocation, 14);
+          console.warn("Geolocalização negada ou falhou. Mantendo local padrão.");
         }
       );
     }
+
+    recenterPassengerMapButton.addEventListener('click', () => {
+      passengerMap.setView(defaultLocation, 16, { animate: true });
+    });
   </script>
 </body>
 </html>
