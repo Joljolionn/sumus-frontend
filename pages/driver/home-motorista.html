@@ -17,45 +17,63 @@
 <body class="driver-app">
   <div class="driver-layout">
     <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
       <nav class="sidebar__nav">
-        <a class="sidebar__link sidebar__link--active" href="#">
+        <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">dashboard</span>
           <span>Dashboard</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">person</span>
-          <span>Perfil</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">directions_car</span>
-          <span>Meus Veículos</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">account_balance_wallet</span>
-          <span>Financeiro</span>
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
         </a>
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">history</span>
           <span>Histórico</span>
         </a>
 
-        <div class="sidebar__divider"></div>
+        <div class="sidebar__group-title">Configurações</div>
 
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">help</span>
-          <span>Ajuda</span>
+          <span class="material-symbols-outlined">person_outline</span>
+          <span>Ajustes do Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">settings</span>
-          <span>Configurações</span>
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">support_agent</span>
+          <span class="material-symbols-outlined">contact_support</span>
           <span>Suporte</span>
         </a>
       </nav>
 
-      <button class="sidebar__offline-button" type="button">Ficar Offline</button>
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-status">Motorista Autorizado</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
     </aside>
 
     <main class="driver-main">
@@ -65,7 +83,7 @@
             <span class="gps-status__pulse-ring"></span>
             <span class="gps-status__pulse-dot"></span>
           </div>
-          <span class="gps-status__text" id="gps-status-text">Sinal GPS Ativo</span>
+          <span class="gps-status__text" id="gps-status-text">Online</span>
         </div>
 
         <div class="gps-status__divider"></div>
@@ -123,7 +141,7 @@
       gpsToggle.setAttribute('aria-checked', String(active));
       gpsToggle.classList.toggle('gps-toggle--active', active);
       gpsToggle.classList.toggle('gps-toggle--inactive', !active);
-      gpsStatusText.textContent = active ? 'Sinal GPS Ativo' : 'Sinal GPS Desativado';
+      gpsStatusText.textContent = active ? 'Online' : 'Offline';
 
       gpsPulseContainer.innerHTML = active
         ? '<span class="gps-status__pulse-ring"></span><span class="gps-status__pulse-dot"></span>'

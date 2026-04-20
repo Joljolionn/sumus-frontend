@@ -1,0 +1,344 @@
+@import url("../../components/dashboard-sidebar.css");
+
+/* =========================================
+   1. SETUP DA PÁGINA (Escopo do Motorista)
+   ========================================= */
+body.driver-settings-page {
+  --primary: #00685a;
+  --primary-soft: rgba(0, 104, 90, 0.12);
+  --shadow-soft: 0 24px 48px -34px rgba(12, 15, 16, 0.45);
+  
+  background: linear-gradient(180deg, var(--surface-alt) 0%, var(--surface) 100%);
+  color: var(--text-main);
+  margin: 0;
+  overflow: hidden;
+}
+
+.driver-settings-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0.375rem;
+  height: 100dvh;
+  background: var(--primary-soft);
+  pointer-events: none;
+}
+
+/* =========================================
+   2. LAYOUT DO DASHBOARD
+   ========================================= */
+.settings-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.settings-main {
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.settings-shell {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
+/* =========================================
+   3. CABEÇALHO DA PÁGINA
+   ========================================= */
+.settings-header {
+  margin-bottom: 2.5rem;
+}
+
+.settings-header__eyebrow {
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.settings-header__title {
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+}
+
+/* =========================================
+   4. GRID DE CONFIGURAÇÕES E CARDS
+   ========================================= */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.settings-card,
+.legal-card {
+  border: 1px solid var(--border-light);
+  border-radius: 1.5rem;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  padding: 2rem;
+}
+
+.legal-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.settings-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.settings-card__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+.settings-card__title,
+.legal-card__title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+
+.settings-card__subtitle,
+.legal-card__text {
+  color: var(--text-muted);
+}
+
+/* =========================================
+   5. CONTROLES (Switches, Botões, Opções)
+   ========================================= */
+.preference-list,
+.settings-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.settings-section + .settings-section {
+  margin-top: 1.5rem;
+}
+
+.preference-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-light);
+  border-radius: 1.125rem;
+  background: var(--surface-alt);
+}
+
+.preference-item__content {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.preference-item__label {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.preference-item__hint {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.switch {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.switch__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch__track {
+  position: relative;
+  width: 3.5rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--border-light);
+  transition: background-color 0.2s ease;
+}
+
+.switch__track::after {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.switch__input:checked + .switch__track {
+  background: var(--primary);
+}
+
+.switch__input:checked + .switch__track::after {
+  transform: translateX(1.5rem);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.section-heading--between {
+  justify-content: space-between;
+}
+
+.section-heading__value {
+  color: var(--primary);
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.option-card,
+.legal-card__link {
+  padding: 1rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.option-card:hover,
+.legal-card__link:hover {
+  transform: translateY(-2px);
+}
+
+.option-card--active {
+  border-color: var(--primary);
+  background: #ffffff;
+  color: var(--primary);
+}
+
+.segmented-control {
+  padding: 0.35rem;
+  border-radius: 1.125rem;
+  background: var(--surface-alt);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.segmented-control__button {
+  padding: 0.95rem 0.75rem;
+  border: 0;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.segmented-control__button:hover {
+  color: var(--text-main);
+}
+
+.segmented-control__button--active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 104, 90, 0.3);
+}
+
+.segmented-control__button--large {
+  font-size: 1.05rem;
+}
+
+.legal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.legal-card__link {
+  border-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .driver-settings-page::after {
+    display: none;
+  }
+  .settings-main {
+    padding: 2rem 1rem;
+  }
+  .settings-card,
+  .legal-card {
+    padding: 1.25rem;
+  }
+  .settings-card__header,
+  .preference-item,
+  .legal-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .option-grid,
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+  .legal-card__actions {
+    flex-direction: column;
+  }
+}
