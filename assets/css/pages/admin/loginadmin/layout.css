@@ -1,0 +1,35 @@
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(131, 217, 251, 0.18), transparent 34%),
+    var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+.admin-login-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.admin-login-header,
+.admin-login-footer {
+  width: min(100%, 74rem);
+  margin: 0 auto;
+  padding-inline: 1.5rem;
+}
+
+.admin-login-main {
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.5rem 3rem;
+}
+
+@media (max-width: 720px) {
+  .admin-login-header,
+  .admin-login-footer,
+  .admin-login-main {
+    padding-inline: 1rem;
+  }
+}

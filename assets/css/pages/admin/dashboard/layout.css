@@ -1,0 +1,44 @@
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+.admin-dashboard-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-dashboard-main {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.admin-dashboard-shell {
+  width: min(100%, 78rem);
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .admin-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-dashboard-main {
+    padding-inline: 1rem;
+  }
+}

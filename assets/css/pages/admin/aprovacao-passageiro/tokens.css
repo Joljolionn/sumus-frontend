@@ -1,0 +1,33 @@
+:root {
+  --background: #f8fafb;
+  --surface: #ffffff;
+  --surface-low: #f2f4f5;
+  --surface-soft: #eceeef;
+  --surface-high: #e0e3e4;
+  --text: #191c1d;
+  --text-muted: #4c626b;
+  --text-faint: #64748b;
+  --outline: #6f797e;
+  --outline-soft: rgba(190, 200, 205, 0.32);
+  --primary: #006782;
+  --primary-soft: rgba(0, 103, 130, 0.1);
+  --primary-bright: #83d9fb;
+  --success: #15803d;
+  --warning: #d97706;
+  --error: #ba1a1a;
+  --mobility: #0f766e;
+  --hearing: #2563eb;
+  --vision: #7c3aed;
+  --shadow: 0 24px 48px -32px rgba(25, 28, 29, 0.36);
+  --shadow-soft: 0 18px 32px -28px rgba(25, 28, 29, 0.22);
+  --dashboard-sidebar-border: rgba(190, 200, 205, 0.1);
+  --dashboard-link-color: var(--text-muted);
+  --dashboard-link-hover-bg: var(--surface-soft);
+  --dashboard-link-hover-color: var(--text);
+  --dashboard-link-active-bg: var(--primary-soft);
+  --dashboard-link-active-color: var(--primary);
+  --dashboard-divider-color: rgba(190, 200, 205, 0.2);
+  --dashboard-brand-font: "Noto Serif", serif;
+  --dashboard-brand-style: italic;
+  --dashboard-brand-weight: 800;
+}

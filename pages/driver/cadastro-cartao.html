@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Driver - Cadastrar Cartao</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/cadastro-cartao/index.css" />
+</head>
+<body class="card-register-page">
+  <div class="card-register-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="./home-motorista.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="./perfil-motorista.html">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="./veiculos.html">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Ve&iacute;culos</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="./metodo-pagamento.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Financeiro</span>
+        </a>
+        <a class="sidebar__link" href="./historico.html">
+          <span class="material-symbols-outlined">history</span>
+          <span>Hist&oacute;rico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configura&ccedil;&otilde;es</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Suporte Emergencial</button>
+    </aside>
+
+    <main class="card-register-main">
+      <div class="card-register-shell">
+        <a class="card-register__back-link" href="./metodo-pagamento.html">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span>Voltar para metodos</span>
+        </a>
+
+        <header class="card-register__header">
+          <h1 class="card-register__title">Cadastrar novo cartao</h1>
+          <p class="card-register__subtitle">
+            Adicione um metodo de pagamento seguro para receber seus repasses.
+          </p>
+        </header>
+
+        <section class="card-register__content">
+          <div class="card-preview">
+            <div class="card-preview__overlay"></div>
+            <div class="card-preview__top">
+              <span class="material-symbols-outlined">contactless</span>
+              <span class="card-preview__brand">SUMUS Pay</span>
+            </div>
+
+            <div class="card-preview__bottom">
+              <p class="card-preview__number">.... .... .... ....</p>
+              <div class="card-preview__meta">
+                <div>
+                  <p class="card-preview__label">Nome do titular</p>
+                  <p class="card-preview__value">SEU NOME AQUI</p>
+                </div>
+                <div>
+                  <p class="card-preview__label">Validade</p>
+                  <p class="card-preview__value">MM/AA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-form-wrap">
+            <form class="card-form">
+              <div class="card-form__field">
+                <label for="driver-card-number">Numero do cartao</label>
+                <div class="card-form__control card-form__control--icon">
+                  <span class="material-symbols-outlined">credit_card</span>
+                  <input id="driver-card-number" type="text" placeholder="0000 0000 0000 0000" />
+                </div>
+              </div>
+
+              <div class="card-form__field">
+                <label for="driver-card-name">Nome do titular</label>
+                <input id="driver-card-name" type="text" placeholder="Como impresso no cartao" />
+              </div>
+
+              <div class="card-form__grid">
+                <div class="card-form__field">
+                  <label for="driver-card-expiry">Data de validade</label>
+                  <input id="driver-card-expiry" type="text" placeholder="MM/AA" />
+                </div>
+
+                <div class="card-form__field">
+                  <label for="driver-card-cvv">CVV</label>
+                  <input id="driver-card-cvv" type="password" placeholder="..." />
+                </div>
+              </div>
+
+              <button class="card-form__submit" type="submit">Salvar Cartao</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

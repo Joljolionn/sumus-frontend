@@ -1,0 +1,30 @@
+:root {
+  --background: #f5f6f7;
+  --surface: #ffffff;
+  --surface-low: #eff1f2;
+  --surface-soft: #e6e8ea;
+  --surface-high: #dadddf;
+  --text: #2c2f30;
+  --text-muted: #595c5d;
+  --text-faint: #757778;
+  --outline: #abadae;
+  --outline-soft: rgba(171, 173, 174, 0.24);
+  --primary: #00685a;
+  --primary-soft: rgba(0, 104, 90, 0.1);
+  --primary-bright: #27f7d9;
+  --secondary: #00647e;
+  --secondary-soft: rgba(135, 221, 255, 0.22);
+  --accent: #83d9fb;
+  --error: #b31b25;
+  --shadow: 0 22px 40px -28px rgba(12, 15, 16, 0.45);
+  --shadow-soft: 0 16px 32px -26px rgba(12, 15, 16, 0.28);
+  --dashboard-sidebar-border: var(--outline-soft);
+  --dashboard-link-color: var(--text-muted);
+  --dashboard-link-hover-bg: var(--surface-soft);
+  --dashboard-link-hover-color: var(--text);
+  --dashboard-link-active-bg: var(--primary-soft);
+  --dashboard-link-active-color: var(--primary);
+  --dashboard-divider-color: rgba(171, 173, 174, 0.2);
+  --dashboard-sidebar-button-bg: var(--error);
+  --dashboard-sidebar-button-shadow: 0 18px 28px -22px rgba(179, 27, 37, 0.7);
+}
