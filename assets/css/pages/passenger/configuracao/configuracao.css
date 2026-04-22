@@ -1,0 +1,331 @@
+/* =========================================
+   1. SETUP DA PÁGINA E LAYOUT (Passageiro)
+   ========================================= */
+body.passenger-settings-page {
+  /* Detalhe de marca do passageiro: Gradiente azul suave */
+  background: radial-gradient(circle at top right, rgba(142, 216, 247, 0.25), transparent 28%), var(--surface-alt);
+  color: var(--text-main);
+  margin: 0;
+  overflow: hidden; /* Trava a janela global */
+}
+
+.settings-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.settings-main {
+  height: 100dvh;
+  overflow-y: auto; /* Rolagem restrita ao painel direito */
+  padding: 3rem 2rem 4rem;
+}
+
+.settings-shell {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
+/* =========================================
+   2. CABEÇALHO
+   ========================================= */
+.settings-header {
+  margin-bottom: 2.75rem;
+}
+
+.settings-header__eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.settings-header__title {
+  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  font-weight: 800; /* Noto Serif aniquilada. Viva o Inter */
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+}
+
+.settings-header__subtitle {
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
+
+/* =========================================
+   3. GRID DE CARDS
+   ========================================= */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.settings-card,
+.legal-card {
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  border-radius: 1rem;
+  background: var(--surface-low); /* Herda cor cinza claro do dashboard */
+  box-shadow: var(--shadow-soft);
+}
+
+.legal-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.settings-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.settings-card__icon {
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.settings-card__title,
+.legal-card__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.settings-card__subtitle,
+.legal-card__text {
+  color: var(--text-muted);
+}
+
+/* =========================================
+   4. ITENS DE PREFERÊNCIA E SWITCHES
+   ========================================= */
+.preference-list,
+.settings-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.settings-section + .settings-section {
+  margin-top: 1.5rem;
+}
+
+.preference-item {
+  padding: 1.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: 1rem;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+}
+
+.preference-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.preference-item__label,
+.section-heading__title,
+.section-heading__value {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.preference-item__hint {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Toggle Switch do Passageiro (Mesma estrutura do motorista) */
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.switch__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch__track {
+  position: relative;
+  width: 3rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--border-light);
+  transition: background-color 0.2s ease;
+}
+
+.switch__track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.switch__input:checked + .switch__track {
+  background: var(--primary);
+}
+
+.switch__input:checked + .switch__track::after {
+  transform: translateX(1.25rem);
+}
+
+/* =========================================
+   5. CONTROLES (Grid e Botões)
+   ========================================= */
+.section-heading {
+  display: flex;
+  align-items: center;
+}
+
+.section-heading--between {
+  justify-content: space-between;
+}
+
+.section-heading__value {
+  color: var(--primary);
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.option-card,
+.legal-card__link {
+  padding: 1rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  background: #ffffff;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.option-card:hover,
+.legal-card__link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.option-card--active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+}
+
+.segmented-control__button {
+  padding: 0.95rem 0.75rem;
+  border: 0;
+  border-radius: 0.85rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.segmented-control__button:hover {
+  color: var(--text-main);
+}
+
+.segmented-control__button--active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px var(--primary-soft);
+}
+
+.segmented-control__button--large {
+  font-size: 1rem;
+}
+
+.legal-card__content {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.legal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.legal-card__link {
+  border: 1px solid var(--primary-soft);
+  color: var(--primary);
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .settings-main {
+    padding: 2rem 1rem;
+  }
+  .settings-card,
+  .legal-card {
+    padding: 1.25rem;
+  }
+  .preference-item,
+  .legal-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .option-grid,
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+  .legal-card__actions {
+    flex-direction: column;
+  }
+}

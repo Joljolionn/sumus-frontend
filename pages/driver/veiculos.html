@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Driver - Meus Ve&iacute;culos</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/veiculos/index.css" />
+</head>
+<body class="vehicles-page">
+  <div class="vehicles-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="./home-motorista.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="./perfil-motorista.html">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="./veiculos.html">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Ve&iacute;culos</span>
+        </a>
+        <a class="sidebar__link" href="./metodo-pagamento.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Financeiro</span>
+        </a>
+        <a class="sidebar__link" href="./historico.html">
+          <span class="material-symbols-outlined">history</span>
+          <span>Hist&oacute;rico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configura&ccedil;&otilde;es</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Suporte Emergencial</button>
+    </aside>
+
+    <main class="vehicles-main">
+      <div class="vehicles-shell">
+        <header class="vehicles-header">
+          <div class="vehicles-header__copy">
+            <p class="vehicles-header__eyebrow">Frota particular</p>
+            <h1 class="vehicles-header__title">Meus Ve&iacute;culos</h1>
+            <p class="vehicles-header__subtitle">
+              Gerencie sua frota e mantenha os recursos de acessibilidade sempre atualizados.
+            </p>
+          </div>
+
+          <button class="vehicles-header__action" type="button">
+            <span class="material-symbols-outlined">add</span>
+            <span>Adicionar Novo Ve&iacute;culo</span>
+          </button>
+        </header>
+
+        <section class="vehicles-grid" aria-label="Lista de veiculos">
+          <article class="vehicle-card vehicle-card--primary">
+            <div class="vehicle-card__accent" aria-hidden="true"></div>
+            <div class="vehicle-card__top">
+              <div class="vehicle-card__identity">
+                <div class="vehicle-card__icon">
+                  <span class="material-symbols-outlined">directions_car</span>
+                </div>
+                <div>
+                  <h2 class="vehicle-card__title">Toyota Corolla</h2>
+                  <p class="vehicle-card__plate">ABC-1234</p>
+                </div>
+              </div>
+
+              <div class="vehicle-card__actions">
+                <button class="vehicle-card__icon-button" type="button" aria-label="Editar veiculo">
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button class="vehicle-card__icon-button vehicle-card__icon-button--danger" type="button" aria-label="Remover veiculo">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="vehicle-card__specs">
+              <div class="vehicle-card__spec">
+                <p class="vehicle-card__spec-label">Acessibilidade PCD</p>
+                <div class="vehicle-card__spec-value">
+                  <span class="material-symbols-outlined">accessible</span>
+                  <span>Rampa de acesso</span>
+                </div>
+              </div>
+
+              <div class="vehicle-card__spec">
+                <p class="vehicle-card__spec-label">Recurso adicional</p>
+                <div class="vehicle-card__spec-value">
+                  <span class="material-symbols-outlined">event_seat</span>
+                  <span>Espa&ccedil;o para cadeira</span>
+                </div>
+              </div>
+            </div>
+
+            <footer class="vehicle-card__footer">
+              <span class="vehicle-card__timestamp">Ultima inspe&ccedil;&atilde;o: hoje, 09:45</span>
+              <a class="vehicle-card__link" href="#">
+                <span>Ver detalhes t&eacute;cnicos</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </footer>
+          </article>
+
+          <article class="vehicle-card vehicle-card--secondary">
+            <div class="vehicle-card__accent" aria-hidden="true"></div>
+            <div class="vehicle-card__top">
+              <div class="vehicle-card__identity">
+                <div class="vehicle-card__icon">
+                  <span class="material-symbols-outlined">airport_shuttle</span>
+                </div>
+                <div>
+                  <h2 class="vehicle-card__title">Honda Civic</h2>
+                  <p class="vehicle-card__plate vehicle-card__plate--muted">XYZ-9876</p>
+                </div>
+              </div>
+
+              <div class="vehicle-card__actions">
+                <button class="vehicle-card__icon-button" type="button" aria-label="Editar veiculo">
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button class="vehicle-card__icon-button vehicle-card__icon-button--danger" type="button" aria-label="Remover veiculo">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="vehicle-card__specs">
+              <div class="vehicle-card__spec vehicle-card__spec--secondary">
+                <p class="vehicle-card__spec-label">Acessibilidade PCD</p>
+                <div class="vehicle-card__spec-value">
+                  <span class="material-symbols-outlined">accessible_forward</span>
+                  <span>Elevador hidr&aacute;ulico</span>
+                </div>
+              </div>
+
+              <div class="vehicle-card__spec vehicle-card__spec--secondary">
+                <p class="vehicle-card__spec-label">Adapta&ccedil;&atilde;o</p>
+                <div class="vehicle-card__spec-value">
+                  <span class="material-symbols-outlined">handyman</span>
+                  <span>Comandos manuais</span>
+                </div>
+              </div>
+            </div>
+
+            <footer class="vehicle-card__footer">
+              <span class="vehicle-card__timestamp">Equipamentos verificados</span>
+              <a class="vehicle-card__pill-link" href="#">
+                <span>Atualizar recursos</span>
+              </a>
+            </footer>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

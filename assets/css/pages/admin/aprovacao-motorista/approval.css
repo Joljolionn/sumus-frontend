@@ -1,0 +1,239 @@
+.admin-approval-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.admin-approval-header__eyebrow {
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.admin-approval-header__title {
+  font-family: "Noto Serif", serif;
+  font-size: clamp(2.4rem, 4vw, 3.3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.admin-approval-header__subtitle {
+  max-width: 38rem;
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.admin-approval-tabs {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 1.2rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.admin-approval-tabs__button {
+  border: 0;
+  border-radius: 0.95rem;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.admin-approval-tabs__button.is-active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.approval-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.approval-card {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(16rem, auto);
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1.35rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.approval-card__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.approval-card__avatar-wrap {
+  position: relative;
+}
+
+.approval-card__avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.1rem;
+  object-fit: cover;
+}
+
+.approval-card__status {
+  position: absolute;
+  right: -0.1rem;
+  bottom: -0.1rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  border: 2px solid var(--surface);
+  border-radius: 999px;
+}
+
+.approval-card__status--pending {
+  background: var(--warning);
+}
+
+.approval-card__status--approved {
+  background: var(--success);
+}
+
+.approval-card__name {
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.approval-card__meta,
+.approval-card__label {
+  color: var(--text-faint);
+}
+
+.approval-card__meta {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.approval-card__label {
+  margin-bottom: 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.approval-card__document-list,
+.approval-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.approval-card__document {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 0;
+  border-radius: 0.9rem;
+  padding: 0.8rem 0.9rem;
+  background: var(--surface-low);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.approval-card__vehicle h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.approval-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.approval-card__badge--adapted {
+  background: rgba(21, 128, 61, 0.12);
+  color: var(--success);
+}
+
+.approval-card__badge--default {
+  background: var(--surface-low);
+  color: var(--text-muted);
+}
+
+.approval-card__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 7.5rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-soft);
+}
+
+.approval-card__action--danger {
+  background: var(--error);
+}
+
+.approval-card__action--success {
+  background: var(--success);
+}
+
+.admin-approval-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+.admin-approval-footer__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+@media (max-width: 1180px) {
+  .approval-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 840px) {
+  .admin-approval-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-approval-tabs {
+    flex-wrap: wrap;
+  }
+}

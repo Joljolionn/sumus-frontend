@@ -1,0 +1,182 @@
+.card-register__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1.4rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.card-register__header {
+  margin-bottom: 2rem;
+}
+
+.card-register__title {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.card-register__subtitle {
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card-register__content {
+  display: grid;
+  grid-template-columns: minmax(18rem, 26rem) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.card-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 15.5rem;
+  padding: 1.9rem;
+  border-radius: 1.7rem;
+  background: linear-gradient(135deg, var(--accent) 0%, #66c9f4 100%);
+  color: #003644;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card-preview__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(2px);
+}
+
+.card-preview__top,
+.card-preview__meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-preview__top .material-symbols-outlined {
+  font-size: 2.2rem;
+}
+
+.card-preview__brand {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card-preview__number {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.25rem;
+  font-family: "Courier New", monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.24em;
+}
+
+.card-preview__label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.card-preview__value {
+  margin-top: 0.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.card-form-wrap {
+  padding: 1.6rem;
+  border: 1px solid rgba(171, 173, 174, 0.18);
+  border-radius: 1.6rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.card-form__field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.card-form__field label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.card-form__field input {
+  width: 100%;
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1rem;
+  background: var(--surface-low);
+  color: var(--text);
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+
+.card-form__field input:focus {
+  outline-color: rgba(0, 104, 90, 0.18);
+  background: var(--surface);
+}
+
+.card-form__control {
+  position: relative;
+}
+
+.card-form__control--icon .material-symbols-outlined {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.card-form__control--icon input {
+  padding-left: 3rem;
+}
+
+.card-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card-form__submit {
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 920px) {
+  .card-register__content,
+  .card-form__grid {
+    grid-template-columns: 1fr;
+  }
+}

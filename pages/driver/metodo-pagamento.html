@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Driver - Metodos de Pagamento</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/metodo-pagamento/index.css" />
+</head>
+<body class="payment-page">
+  <div class="payment-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="./home-motorista.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="./perfil-motorista.html">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="./veiculos.html">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Ve&iacute;culos</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="./metodo-pagamento.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Financeiro</span>
+        </a>
+        <a class="sidebar__link" href="./historico.html">
+          <span class="material-symbols-outlined">history</span>
+          <span>Hist&oacute;rico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configura&ccedil;&otilde;es</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Suporte Emergencial</button>
+    </aside>
+
+    <main class="payment-main">
+      <div class="payment-shell">
+        <header class="payment-header">
+          <div>
+            <h1 class="payment-header__title">Metodos de Pagamento</h1>
+            <p class="payment-header__subtitle">
+              Controle sua carteira digital e defina como deseja receber seus repasses.
+            </p>
+          </div>
+        </header>
+
+        <section class="payment-section">
+          <div class="payment-section__header">
+            <h2 class="payment-section__title">Cartoes salvos</h2>
+            <a class="payment-section__action" href="./cadastro-cartao.html">
+              <span class="material-symbols-outlined">add_card</span>
+              <span>Adicionar cartao</span>
+            </a>
+          </div>
+
+          <div class="payment-cards">
+            <article class="payment-card payment-card--primary">
+              <div class="payment-card__glow" aria-hidden="true"></div>
+              <div class="payment-card__head">
+                <div>
+                  <p class="payment-card__label">Cartao principal</p>
+                  <h3 class="payment-card__name">SUMUS Platinum</h3>
+                </div>
+                <span class="material-symbols-outlined">credit_card</span>
+              </div>
+
+              <div class="payment-card__body">
+                <p class="payment-card__number">.... .... .... 4242</p>
+                <div class="payment-card__meta">
+                  <div>
+                    <p class="payment-card__meta-label">Titular</p>
+                    <p class="payment-card__meta-value">MARCUS AURELIUS</p>
+                  </div>
+                  <div>
+                    <p class="payment-card__meta-label">Validade</p>
+                    <p class="payment-card__meta-value">12/28</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="payment-card payment-card--secondary">
+              <div class="payment-card__head">
+                <div>
+                  <p class="payment-card__label">Cartao corporativo</p>
+                  <h3 class="payment-card__name">Corporate Visa</h3>
+                </div>
+                <span class="material-symbols-outlined">account_balance_wallet</span>
+              </div>
+
+              <div class="payment-card__body">
+                <p class="payment-card__number payment-card__number--muted">.... .... .... 8812</p>
+                <div class="payment-card__meta">
+                  <div>
+                    <p class="payment-card__meta-label">Titular</p>
+                    <p class="payment-card__meta-value">MARCUS AURELIUS</p>
+                  </div>
+                  <div>
+                    <p class="payment-card__meta-label">Validade</p>
+                    <p class="payment-card__meta-value">05/26</p>
+                  </div>
+                </div>
+              </div>
+
+              <button class="payment-card__remove" type="button">Remover</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="payment-section">
+          <div class="payment-section__header">
+            <h2 class="payment-section__title">Outros metodos</h2>
+          </div>
+
+          <div class="payment-methods">
+            <div class="payment-method">
+              <div class="payment-method__info">
+                <span class="material-symbols-outlined">qr_code_2</span>
+                <span>Pix</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked />
+                <span class="switch__track">
+                  <span class="switch__thumb"></span>
+                </span>
+              </label>
+            </div>
+
+            <div class="payment-method">
+              <div class="payment-method__info">
+                <span class="material-symbols-outlined">payments</span>
+                <span>Dinheiro</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="switch__track">
+                  <span class="switch__thumb"></span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
