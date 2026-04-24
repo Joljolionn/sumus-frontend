@@ -108,10 +108,10 @@ body.page {
   border-bottom: 2px solid var(--primary-soft);
 }
 
-.choice-card--passenger .choice-card__corner--top {
+.choice-card--driver .choice-card__corner--top {
   border-color: rgba(0, 231, 202, 0.3);
 }
-.choice-card--passenger .choice-card__corner--bottom {
+.choice-card--driver .choice-card__corner--bottom {
   border-color: rgba(0, 231, 202, 0.3);
 }
 
@@ -129,7 +129,7 @@ body.page {
   background: var(--primary-soft);
 }
 
-.choice-card--passenger .choice-card__icon-shell {
+.choice-card--driver .choice-card__icon-shell {
   background: rgba(0, 231, 202, 0.15);
 }
 
@@ -138,7 +138,7 @@ body.page {
   color: var(--primary);
 }
 
-.choice-card--passenger .choice-card__icon {
+.choice-card--driver .choice-card__icon {
   color: #006b5d;
 }
 
@@ -149,7 +149,7 @@ body.page {
   color: var(--primary);
 }
 
-.choice-card--passenger .choice-card__title {
+.choice-card--driver .choice-card__title {
   color: #006b5d;
 }
 
@@ -182,7 +182,7 @@ body.page {
   opacity: 0.95;
 }
 
-.choice-card--passenger .choice-card__button {
+.choice-card--driver .choice-card__button {
   background: #006b5d;
 }
 
