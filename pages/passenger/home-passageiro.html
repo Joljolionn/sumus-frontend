@@ -4,75 +4,88 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMUS - Passageiro</title>
-  
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
-  
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap"
+  />
+
   <link rel="stylesheet" href="../../assets/css/base/reset.css" />
   <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
   <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
   <link rel="stylesheet" href="../../assets/css/components/map-core.css" />
-  
+
   <link rel="stylesheet" href="../../assets/css/pages/passenger/home-passageiro/index.css" />
 </head>
 
 <body class="passenger-home">
   <div class="passenger-layout">
-    
     <aside class="sidebar">
       <a class="sidebar__brand" href="./home-passageiro.html">
         <span class="sidebar__brand-text">SUMUS</span>
       </a>
 
       <nav class="sidebar__nav">
-        <a class="sidebar__link" href="./home-passageiro.html">
-          <span class="material-symbols-outlined">dashboard</span>
-          <span>Dashboard</span>
-        </a>
-        <a class="sidebar__link" href="./perfil-passageiro.html">
-          <span class="material-symbols-outlined">payments</span>
-          <span>Avaliações</span>
+        <a class="sidebar__link sidebar__link--active" href="./home-passageiro.html">
+          <span class="material-symbols-outlined">local_taxi</span>
+          <span>Nova corrida</span>
         </a>
         <a class="sidebar__link" href="./home-passageiro.html#historico-passageiro">
           <span class="material-symbols-outlined">history</span>
-          <span>Histórico</span>
+          <span>Historico</span>
         </a>
-
-        <div class="sidebar__group-title">Configurações</div>
-
         <a class="sidebar__link" href="./perfil-passageiro.html">
-          <span class="material-symbols-outlined">person_outline</span>
-          <span>Ajustes do Perfil</span>
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
         </a>
-        
+
+        <div class="sidebar__group-title">Conta</div>
+
         <a class="sidebar__link" href="./cadastro-cartao.html">
-          <span class="material-symbols-outlined">account_balance</span>
-          <span>Finanças</span>
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Pagamentos</span>
+        </a>
+        <a class="sidebar__link" href="./configuracao.html">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configuracoes</span>
         </a>
         <a class="sidebar__link" href="../ajuda.html">
-          <span class="material-symbols-outlined">contact_support</span>
-          <span>Suporte</span>
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Ajuda e suporte</span>
         </a>
       </nav>
 
       <div class="sidebar__footer">
         <a class="sidebar__profile" href="./perfil-passageiro.html">
-          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <img
+            alt="Helena Silva"
+            class="sidebar__profile-img"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"
+          />
           <div class="sidebar__profile-info">
-            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-name">Helena Silva</p>
             <p class="sidebar__profile-status">Passageira PCD</p>
           </div>
         </a>
 
         <button class="sidebar__emergency" type="button">
           <span class="material-symbols-outlined">e911_emergency</span>
-          <span>Emergência</span>
+          <span>Emergencia</span>
         </button>
-        
+
         <a class="sidebar__link" href="../login.html">
           <span class="material-symbols-outlined">logout</span>
           <span>Sair</span>
@@ -94,7 +107,7 @@
           <button class="quick-actions__button" id="recenter-passenger-map" type="button" aria-label="Centralizar mapa">
             <span class="material-symbols-outlined">my_location</span>
           </button>
-          <button class="quick-actions__button quick-actions__button--primary" type="button" aria-label="Alternar visualização do mapa">
+          <button class="quick-actions__button quick-actions__button--primary" type="button" aria-label="Alternar visualizacao do mapa">
             <span class="material-symbols-outlined">map</span>
           </button>
         </div>
@@ -111,8 +124,8 @@
         </div>
 
         <div class="destination-panel__subheader">
-          <h3 class="destination-panel__eyebrow">Destinos Recentes</h3>
-          <button class="destination-panel__clear" type="button">Limpar histórico</button>
+          <h3 class="destination-panel__eyebrow">Destinos recentes</h3>
+          <button class="destination-panel__clear" type="button">Limpar historico</button>
         </div>
 
         <div class="destination-list">
@@ -122,7 +135,7 @@
             </div>
             <div class="destination-item__content">
               <p class="destination-item__title">Casa</p>
-              <p class="destination-item__text">Rua das Flores, 123 - São Paulo</p>
+              <p class="destination-item__text">Rua das Flores, 123 - Sao Paulo</p>
             </div>
           </button>
 
@@ -131,7 +144,7 @@
               <span class="material-symbols-outlined">work</span>
             </div>
             <div class="destination-item__content">
-              <p class="destination-item__title">Escritório</p>
+              <p class="destination-item__title">Escritorio</p>
               <p class="destination-item__text">Av. Paulista, 1578 - Conjunto 4B</p>
             </div>
           </button>
@@ -150,24 +163,28 @@
     </aside>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
   <script>
-    const defaultLocation = [-23.55052, -46.633308]; // SP
-    const passengerMap = L.map('passenger-map', {
+    const defaultLocation = [-23.55052, -46.633308];
+    const passengerMap = L.map("passenger-map", {
       zoomControl: false,
     }).setView(defaultLocation, 14);
 
-    L.control.zoom({ position: 'bottomright' }).addTo(passengerMap);
+    L.control.zoom({ position: "bottomright" }).addTo(passengerMap);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap',
+      attribution: "&copy; OpenStreetMap",
     }).addTo(passengerMap);
 
-    passengerMap.attributionControl.setPrefix('');
+    passengerMap.attributionControl.setPrefix("");
 
-    const recenterPassengerMapButton = document.getElementById('recenter-passenger-map');
-    
+    const recenterPassengerMapButton = document.getElementById("recenter-passenger-map");
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -175,12 +192,12 @@
           passengerMap.setView(userLocation, 16);
         },
         () => {
-          console.warn("Geolocalização negada ou falhou. Mantendo local padrão.");
+          console.warn("Geolocalizacao negada ou falhou. Mantendo local padrao.");
         }
       );
     }
 
-    recenterPassengerMapButton.addEventListener('click', () => {
+    recenterPassengerMapButton.addEventListener("click", () => {
       passengerMap.setView(defaultLocation, 16, { animate: true });
     });
   </script>

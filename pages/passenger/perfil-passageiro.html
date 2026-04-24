@@ -4,21 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil - SUMUS Passageiro</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
-  
+
   <link rel="stylesheet" href="../../assets/css/base/reset.css" />
   <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
   <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
-  
+
   <link rel="stylesheet" href="../../assets/css/pages/passenger/perfil-passageiro/index.css" />
 </head>
 <body class="passenger-settings-page">
   <div class="settings-layout">
-    
     <aside class="sidebar">
       <a class="sidebar__brand" href="./home-passageiro.html">
         <span class="sidebar__brand-text">SUMUS</span>
@@ -26,52 +25,48 @@
 
       <nav class="sidebar__nav">
         <a class="sidebar__link" href="./home-passageiro.html">
-          <span class="material-symbols-outlined">dashboard</span>
-          <span>Dashboard</span>
+          <span class="material-symbols-outlined">local_taxi</span>
+          <span>Nova corrida</span>
+        </a>
+        <a class="sidebar__link" href="./home-passageiro.html#historico-passageiro">
+          <span class="material-symbols-outlined">history</span>
+          <span>Historico</span>
         </a>
         <a class="sidebar__link sidebar__link--active" href="./perfil-passageiro.html">
           <span class="material-symbols-outlined">person</span>
           <span>Perfil</span>
         </a>
-        <a class="sidebar__link" href="./cadastro-cartao.html">
-          <span class="material-symbols-outlined">payments</span>
-          <span>Ganhos</span>
-        </a>
-        <a class="sidebar__link" href="./home-passageiro.html#historico-passageiro">
-          <span class="material-symbols-outlined">history</span>
-          <span>Histórico</span>
-        </a>
 
-        <div class="sidebar__group-title">Configurações</div>
+        <div class="sidebar__group-title">Conta</div>
 
-        <a class="sidebar__link" href="../ajuda.html">
-          <span class="material-symbols-outlined">directions_car</span>
-          <span>Meus Veículos</span>
-        </a>
         <a class="sidebar__link" href="./cadastro-cartao.html">
-          <span class="material-symbols-outlined">account_balance</span>
-          <span>Finanças</span>
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Pagamentos</span>
         </a>
         <a class="sidebar__link" href="./configuracao.html">
           <span class="material-symbols-outlined">settings</span>
-          <span>Configurações</span>
+          <span>Configuracoes</span>
+        </a>
+        <a class="sidebar__link" href="../ajuda.html">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Ajuda e suporte</span>
         </a>
       </nav>
 
       <div class="sidebar__footer">
         <a class="sidebar__profile" href="./perfil-passageiro.html">
-          <img alt="Helena Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"/>
+          <img alt="Helena Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A" />
           <div class="sidebar__profile-info">
             <p class="sidebar__profile-name">Helena Silva</p>
-            <p class="sidebar__profile-status">Passageiro PCD</p>
+            <p class="sidebar__profile-status">Passageira PCD</p>
           </div>
         </a>
 
         <button class="sidebar__emergency" type="button">
           <span class="material-symbols-outlined">e911_emergency</span>
-          <span>Emergência</span>
+          <span>Emergencia</span>
         </button>
-        
+
         <a class="sidebar__link" href="../login.html">
           <span class="material-symbols-outlined">logout</span>
           <span>Sair</span>
@@ -82,8 +77,8 @@
     <main class="settings-main">
       <div class="settings-shell">
         <header class="settings-header">
-          <h1 class="settings-header__title">Perfil do Passageiro</h1>
-          <p class="settings-header__subtitle">Personalize sua experiência no SUMUS Mobility.</p>
+          <h1 class="settings-header__title">Perfil do passageiro</h1>
+          <p class="settings-header__subtitle">Personalize sua experiencia no SUMUS Mobility.</p>
         </header>
 
         <div class="settings-content">
@@ -104,30 +99,29 @@
 
               <h2 class="profile-summary__name">Helena Silva</h2>
               <p class="profile-summary__email">helena.silva@email.com</p>
-              <button class="profile-summary__primary-button" type="button">Editar Perfil</button>
+              <button class="profile-summary__primary-button" type="button">Editar perfil</button>
             </div>
 
             <button class="profile-summary__secondary-button" type="button">
               <span class="material-symbols-outlined">logout</span>
-              Sair da Conta
+              Sair da conta
             </button>
           </section>
 
           <section class="settings-panels">
-            
             <div class="settings-card">
               <div class="settings-card__header">
                 <span class="material-symbols-outlined settings-card__header-icon">accessibility_new</span>
-                <h3 class="settings-card__title">Preferências de Acessibilidade</h3>
+                <h3 class="settings-card__title">Preferencias de acessibilidade</h3>
               </div>
 
               <div class="preferences-grid">
                 <div class="preference-card">
                   <div class="preference-card__content">
-                    <span class="preference-card__label">Rampa Necessária</span>
-                    <span class="preference-card__hint">Veículos com acesso facilitado</span>
+                    <span class="preference-card__label">Rampa necessaria</span>
+                    <span class="preference-card__hint">Veiculos com acesso facilitado</span>
                   </div>
-                  <label class="switch" aria-label="Rampa Necessária">
+                  <label class="switch" aria-label="Rampa necessaria">
                     <input class="switch__input" type="checkbox" checked />
                     <span class="switch__track"></span>
                   </label>
@@ -135,10 +129,10 @@
 
                 <div class="preference-card">
                   <div class="preference-card__content">
-                    <span class="preference-card__label">Auxílio no Embarque</span>
+                    <span class="preference-card__label">Auxilio no embarque</span>
                     <span class="preference-card__hint">Apoio direto do motorista</span>
                   </div>
-                  <label class="switch" aria-label="Auxílio no Embarque">
+                  <label class="switch" aria-label="Auxilio no embarque">
                     <input class="switch__input" type="checkbox" />
                     <span class="switch__track"></span>
                   </label>
@@ -150,11 +144,11 @@
                       <span class="material-symbols-outlined">contrast</span>
                     </div>
                     <div class="preference-card__content">
-                      <span class="preference-card__label">Interface de Alto Contraste</span>
-                      <span class="preference-card__hint">Melhora a legibilidade para baixa visão</span>
+                      <span class="preference-card__label">Interface de alto contraste</span>
+                      <span class="preference-card__hint">Melhora a legibilidade para baixa visao</span>
                     </div>
                   </div>
-                  <label class="switch" aria-label="Interface de Alto Contraste">
+                  <label class="switch" aria-label="Interface de alto contraste">
                     <input class="switch__input" type="checkbox" />
                     <span class="switch__track"></span>
                   </label>
@@ -165,7 +159,7 @@
             <div class="settings-card">
               <div class="settings-card__header">
                 <span class="material-symbols-outlined settings-card__header-icon">description</span>
-                <h3 class="settings-card__title">Documentos Enviados</h3>
+                <h3 class="settings-card__title">Documentos enviados</h3>
               </div>
 
               <div class="documents-list">
@@ -175,7 +169,7 @@
                       <span class="material-symbols-outlined">badge</span>
                     </div>
                     <div class="document-item__text">
-                      <span class="document-item__name">Laudos Médicos</span>
+                      <span class="document-item__name">Laudos medicos</span>
                       <span class="document-item__status document-item__status--verified">
                         <span class="material-symbols-outlined">check_circle</span>
                         Verificado
@@ -186,15 +180,14 @@
                 </div>
               </div>
             </div>
-
           </section>
         </div>
 
         <footer class="settings-footer">
-          <p class="settings-footer__copy">© 2024 SUMUS Mobility. Mobilidade digna para todos.</p>
+          <p class="settings-footer__copy">&copy; 2024 SUMUS Mobility. Mobilidade digna para todos.</p>
           <div class="settings-footer__links">
             <a class="settings-footer__link" href="./configuracao.html">Acessibilidade</a>
-            <a class="settings-footer__link" href="../termos.html">Termos de Serviço</a>
+            <a class="settings-footer__link" href="../termos.html">Termos de servico</a>
           </div>
         </footer>
       </div>
