@@ -7,6 +7,8 @@ body.login-page {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  font-family: "Inter", sans-serif;
+  color: var(--text);
 }
 
 .topbar {
@@ -95,7 +97,7 @@ body.login-page {
   font-size: 1.8rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text-main);
+  color: var(--text);
 }
 
 .auth-subtitle {
@@ -127,7 +129,8 @@ body.login-page {
   border-radius: 0.75rem;
   width: 100%;
   outline: none;
-  color: var(--text-main);
+  font-family: "Inter", sans-serif;
+  color: var(--text);
   transition: all 0.2s ease;
 }
 
@@ -136,29 +139,60 @@ body.login-page {
   box-shadow: 0 0 0 3px var(--primary-soft);
 }
 
-.social-icons {
-  margin: 0.75rem 0;
+.auth-btn-google {
   display: flex;
-  gap: 0.75rem;
-}
-
-.social-icons .icon {
-  border: 1px solid var(--border-light);
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
-  width: 2.3rem;
-  height: 2.3rem;
-  color: var(--text-main);
-  text-decoration: none;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 1.5rem 0 1.25rem 0;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.75rem;
+  background: #ffffff;
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-.social-icons .icon:hover {
-  background-color: var(--surface-alt);
-  color: var(--primary);
-  border-color: var(--primary);
+.auth-btn-google:hover {
+  background: #f8f9fa;
+  border-color: #dadce0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.auth-btn-google i {
+  font-size: 1.15rem;
+  color: #DB4437;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.auth-divider::before {
+  margin-right: 0.75rem;
+}
+
+.auth-divider::after {
+  margin-left: 0.75rem;
 }
 
 .auth-btn {

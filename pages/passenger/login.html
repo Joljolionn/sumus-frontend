@@ -46,13 +46,15 @@
       <div class="form-container sign-up">
         <form id="registerForm" class="auth-form">
           <h1 class="auth-title">Criar Conta</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          
+          <button class="auth-btn-google" type="button">
+            <i class="fa-brands fa-google"></i>
+            <span>Continuar com o Google</span>
+          </button>
+
+          <div class="auth-divider">
+            <span>ou continue com e-mail</span>
           </div>
-          <span class="auth-subtitle">ou use seu email para registrar</span>
           
           <input class="auth-input" type="text" id="newLogin" placeholder="Nome completo" required>
           <input class="auth-input" type="email" id="newEmail" placeholder="E-mail" required>
@@ -65,11 +67,15 @@
       <div class="form-container sign-in">
         <form id="loginForm" class="auth-form">
           <h1 class="auth-title">Faça login</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          
+          <button class="auth-btn-google" type="button">
+            <i class="fa-brands fa-google"></i>
+            <span>Continuar com o Google</span>
+          </button>
+
+          <div class="auth-divider">
+            <span>ou continue com e-mail</span>
           </div>
-          <span class="auth-subtitle">ou use seu e-mail e senha</span>
           
           <input class="auth-input" type="email" id="loginInput" placeholder="E-mail" required>
           <input class="auth-input" type="password" id="passwordInput" placeholder="Senha" required>
