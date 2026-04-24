@@ -48,7 +48,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(180deg, #f7f8f8 0%, var(--background) 100%);
   color: var(--text);
-  font-family: "Inter", sans-serif;
+
   line-height: 1.5;
 }
 
@@ -239,7 +239,7 @@ img, svg {
 
 .sidebar__brand-text {
   color: var(--dashboard-brand-color, var(--primary));
-  font-family: var(--dashboard-brand-font, "Noto Serif", serif);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   font-style: var(--dashboard-brand-style, italic);
   font-weight: var(--dashboard-brand-weight, 900);
