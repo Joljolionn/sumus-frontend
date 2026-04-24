@@ -35,8 +35,8 @@
   border: 0;
   border-radius: 1rem;
   padding: 0.95rem 1.25rem;
-  background: var(--primary-bright);
-  color: var(--primary);
+  background: var(--primary);
+  color: var(--text);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -152,7 +152,7 @@
   width: 0.8rem;
   height: 0.8rem;
   margin-top: 0.3rem;
-  border: 2px solid var(--primary-bright);
+  border: 2px solid var(--primary);
   border-radius: 999px;
   background: var(--surface);
 }
@@ -188,7 +188,7 @@
   border: 0;
   border-radius: 1rem;
   padding: 0.95rem 1.4rem;
-  background: var(--accent);
+  background: var(--primary);
   color: #0c0f10;
   font-size: 0.75rem;
   font-weight: 800;
