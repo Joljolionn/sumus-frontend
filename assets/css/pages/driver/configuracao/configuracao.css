@@ -48,7 +48,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(180deg, #f7f8f8 0%, var(--background) 100%);
   color: var(--text);
-
+  font-family: "Inter", sans-serif;
   line-height: 1.5;
 }
 

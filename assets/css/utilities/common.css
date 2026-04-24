@@ -25,10 +25,11 @@
    2. REGRAS GLOBAIS
    ========================================= */
 body {
-  font-family: var(--font-sans);
+
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    font-family: "Inter", sans-serif;
 }
 
 .hidden {
