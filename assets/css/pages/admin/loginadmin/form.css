@@ -1,0 +1,146 @@
+.admin-login-header {
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.admin-login-header__brand {
+  color: var(--primary);
+  font-family: "Noto Serif", serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.admin-login-card {
+  width: min(100%, 28rem);
+  padding: 2rem;
+  border: 1px solid rgba(190, 200, 205, 0.22);
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.admin-login-card__eyebrow {
+  margin-bottom: 0.7rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.admin-login-card__title {
+  font-family: "Noto Serif", serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.admin-login-card__subtitle {
+  margin-top: 0.7rem;
+  color: var(--text-muted);
+}
+
+.admin-login-form {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1.6rem;
+}
+
+.admin-login-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.admin-login-form__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.admin-login-form__field label,
+.admin-login-form__row a {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.admin-login-form__row a {
+  color: var(--primary);
+}
+
+.admin-login-form__control {
+  position: relative;
+}
+
+.admin-login-form__control .material-symbols-outlined {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+}
+
+.admin-login-form__control input {
+  width: 100%;
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1rem 1rem 3rem;
+  background: var(--surface-low);
+  color: var(--text);
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+
+.admin-login-form__control input:focus {
+  outline-color: rgba(0, 103, 130, 0.18);
+  background: var(--surface);
+}
+
+.admin-login-form__submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 0.4rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-soft);
+}
+
+.admin-login-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1.6rem;
+}
+
+.admin-login-footer__copy {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+.admin-login-footer__links {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.admin-login-footer__links a {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .admin-login-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

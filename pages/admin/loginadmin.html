@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Admin - Login</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/admin/loginadmin/index.css" />
+</head>
+<body class="admin-login-page">
+  <div class="admin-login-shell">
+    <header class="admin-login-header">
+      <a class="admin-login-header__brand" href="../../index.html">SUMUS</a>
+    </header>
+
+    <main class="admin-login-main">
+      <section class="admin-login-card" aria-label="Acesso administrativo">
+        <div class="admin-login-card__copy">
+          <p class="admin-login-card__eyebrow">Area administrativa</p>
+          <h1 class="admin-login-card__title">Administracao</h1>
+          <p class="admin-login-card__subtitle">Acesse sua conta para continuar.</p>
+        </div>
+
+        <form class="admin-login-form">
+          <div class="admin-login-form__field">
+            <label for="admin-email">E-mail</label>
+            <div class="admin-login-form__control">
+              <span class="material-symbols-outlined">mail</span>
+              <input id="admin-email" name="email" type="email" placeholder="seu@email.com" />
+            </div>
+          </div>
+
+          <div class="admin-login-form__field">
+            <div class="admin-login-form__row">
+              <label for="admin-password">Senha</label>
+              <a href="#">Esqueceu a senha?</a>
+            </div>
+            <div class="admin-login-form__control">
+              <span class="material-symbols-outlined">lock</span>
+              <input id="admin-password" name="password" type="password" placeholder="........" />
+            </div>
+          </div>
+
+          <button class="admin-login-form__submit" type="submit">
+            <span>Entrar no painel</span>
+            <span class="material-symbols-outlined">login</span>
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="admin-login-footer">
+      <p class="admin-login-footer__copy">&copy; 2024 SUMUS. Mobilidade com gestao centralizada.</p>
+      <div class="admin-login-footer__links">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+        <a href="#">Contato</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso - SUMUS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/components/marketing-nav.css" />
+  
+  <link rel="stylesheet" href="../../assets/css/pages/login/index.css" />
+</head>
+
+<body class="login-page">
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="login-main">
+    
+    <div id="msgError" class="alert-message alert-error"></div>
+    <div id="msgSuccess" class="alert-message alert-success"></div>
+
+    <div class="auth-container" id="container">
+      
+      <div class="form-container sign-up">
+        <form id="registerForm" class="auth-form">
+          <h1 class="auth-title">Criar Conta</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <span class="auth-subtitle">ou use seu email para registrar</span>
+          
+          <input class="auth-input" type="text" id="newLogin" placeholder="Nome completo" required>
+          <input class="auth-input" type="email" id="newEmail" placeholder="E-mail" required>
+          <input class="auth-input" type="password" id="newPassword" placeholder="Senha" required>
+          
+          <button class="auth-btn" type="submit">Registrar</button>
+        </form>
+      </div>
+
+      <div class="form-container sign-in">
+        <form id="loginForm" class="auth-form">
+          <h1 class="auth-title">Faça login</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <span class="auth-subtitle">ou use seu e-mail e senha</span>
+          
+          <input class="auth-input" type="email" id="loginInput" placeholder="E-mail" required>
+          <input class="auth-input" type="password" id="passwordInput" placeholder="Senha" required>
+          
+          <a class="auth-forgot" href="#">Esqueceu sua senha?</a>
+          <button class="auth-btn" type="submit">Acessar</button>
+        </form>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle">
+          
+          <div class="toggle-panel toggle-left">
+            <h1 class="toggle-title">Já tem uma conta?</h1>
+            <p class="toggle-text">Faça login com seus dados pessoais para acessar o painel do passageiro.</p>
+            <button class="auth-btn auth-btn--ghost" id="login">Fazer Login</button>
+          </div>
+          
+          <div class="toggle-panel toggle-right">
+            <h1 class="toggle-title">Olá, Amigo!</h1>
+            <p class="toggle-text">Ainda não faz parte da SUMUS? Insira seus dados e comece sua jornada conosco.</p>
+            <button class="auth-btn auth-btn--ghost" id="register">Cadastre-se</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../assets/js/driver/login.js"></script>
+</body>
+</html>

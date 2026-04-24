@@ -1,0 +1,327 @@
+/* =========================================
+   1. SETUP DA PÁGINA (Tema do Motorista)
+   ========================================= */
+body.vehicles-page {
+  /* Injeção do tema Verde do Motorista */
+  --primary: #00685a;
+  --primary-soft: rgba(0, 104, 90, 0.12);
+  --secondary: #00647e; /* Azul escuro para o segundo carro */
+  --secondary-soft: rgba(0, 100, 126, 0.15);
+  
+  background: var(--surface-alt);
+  color: var(--text-main);
+  margin: 0;
+  overflow: hidden; /* Trava a janela global */
+}
+
+/* =========================================
+   2. LAYOUT DO DASHBOARD
+   ========================================= */
+.vehicles-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.vehicles-main {
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.vehicles-shell {
+  width: min(100%, 76rem);
+  margin: 0 auto;
+}
+
+/* =========================================
+   3. CABEÇALHO (Header)
+   ========================================= */
+.vehicles-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.vehicles-header__copy {
+  max-width: 40rem;
+}
+
+.vehicles-header__eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.vehicles-header__title {
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+}
+
+.vehicles-header__subtitle {
+  margin-top: 0.9rem;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.vehicles-header__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1.4rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 20px rgba(0, 104, 90, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vehicles-header__action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 104, 90, 0.3);
+}
+
+/* =========================================
+   4. GRID E CARDS DE VEÍCULOS
+   ========================================= */
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.vehicle-card {
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  border-radius: 1.6rem;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* Efeito decorativo no canto do card */
+.vehicle-card__accent {
+  position: absolute;
+  top: -3rem;
+  right: -3rem;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+.vehicle-card__top,
+.vehicle-card__footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   5. IDENTIDADE DO VEÍCULO (Topo)
+   ========================================= */
+.vehicle-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.vehicle-card__identity {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.vehicle-card__icon {
+  display: grid;
+  place-items: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 1.2rem;
+  background: var(--surface-low, #f2f4f5);
+  color: var(--primary);
+}
+
+
+.vehicle-card__icon .material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.vehicle-card__title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.vehicle-card__plate {
+  display: inline-flex;
+  margin-top: 0.45rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.75rem;
+  background: var(--surface-low, #f2f4f5);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.vehicle-card__plate--muted {
+  background: var(--surface-low, #f2f4f5);
+  color: var(--text-muted);
+}
+
+/* Botões de Ação Rápida */
+.vehicle-card__actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.vehicle-card__icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 0;
+  border-radius: 0.9rem;
+  background: var(--surface-low, #f2f4f5);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vehicle-card__icon-button:hover {
+  background: var(--border-light);
+}
+
+.vehicle-card__icon-button--danger {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--error, #ba1a1a);
+}
+
+.vehicle-card__icon-button--danger:hover {
+  background: rgba(186, 26, 26, 0.2);
+}
+
+/* =========================================
+   6. ESPECIFICAÇÕES (Meio)
+   ========================================= */
+.vehicle-card__specs {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vehicle-card__spec {
+  padding: 1.1rem 1.2rem;
+  border-left: 4px solid var(--primary);
+  border-radius: 1rem;
+  background: var(--surface-low, #f2f4f5);
+}
+
+.vehicle-card__spec-label {
+  margin-bottom: 0.55rem;
+  color: var(--text-light);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vehicle-card__spec-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* =========================================
+   7. RODAPÉ DO CARD
+   ========================================= */
+.vehicle-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.vehicle-card__timestamp {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.vehicle-card__link,
+.vehicle-card__pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vehicle-card__link {
+  color: var(--primary);
+}
+
+.vehicle-card__pill-link {
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--secondary-soft);
+  color: var(--secondary);
+}
+
+/* =========================================
+   8. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+  .vehicles-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .vehicles-header,
+  .vehicle-card__top,
+  .vehicle-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vehicles-grid,
+  .vehicle-card__specs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .vehicles-main {
+    padding-inline: 1rem;
+  }
+}

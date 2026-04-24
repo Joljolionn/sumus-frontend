@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Admin - Aprovacao de Passageiros</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/admin/aprovacao-passageiro/index.css" />
+</head>
+<body class="admin-passenger-approval-page">
+  <div class="admin-passenger-approval-layout">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="./dashboard.html">
+          <span class="material-symbols-outlined">grid_view</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="./aprovacao-passageiro.html">
+          <span class="material-symbols-outlined">accessible_forward</span>
+          <span>Aprovacao de Passageiros</span>
+        </a>
+        <a class="sidebar__link" href="./aprovacao-motorista.html">
+          <span class="material-symbols-outlined">verified_user</span>
+          <span>Aprovacao de Motoristas</span>
+        </a>
+        <a class="sidebar__link" href="./gestao.html">
+          <span class="material-symbols-outlined">admin_panel_settings</span>
+          <span>Gestao Administrativa</span>
+        </a>
+        <a class="sidebar__link" href="./loginadmin.html">
+          <span class="material-symbols-outlined">login</span>
+          <span>Trocar conta</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configuracoes</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="admin-passenger-approval-main">
+      <div class="admin-passenger-approval-shell">
+        <header class="admin-passenger-approval-header">
+          <div>
+            <p class="admin-passenger-approval-header__eyebrow">Validacao PCD</p>
+            <h1 class="admin-passenger-approval-header__title">Fila de Aprovacao de Passageiros</h1>
+            <p class="admin-passenger-approval-header__subtitle">
+              Analise laudos, comprovacoes e necessidades de acessibilidade antes da liberacao do cadastro.
+            </p>
+          </div>
+
+          <div class="admin-passenger-approval-tabs">
+            <button class="admin-passenger-approval-tabs__button is-active" type="button">Todos</button>
+            <button class="admin-passenger-approval-tabs__button" type="button">Pendentes</button>
+            <button class="admin-passenger-approval-tabs__button" type="button">Em analise</button>
+          </div>
+        </header>
+
+        <section class="approval-list" aria-label="Solicitacoes de aprovacao de passageiros">
+          <article class="approval-card">
+            <div class="approval-card__profile">
+              <div class="approval-card__avatar-wrap">
+                <img
+                  class="approval-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhCjHUaY5CpZnU9ulKcuTaY1qs9L5E30cBHVoSzxolWXq7nrDPeWkh2p6Y3xi2VuoCBjyVX4JMk_lY3Rdup0wXtwgt2gBo1nvWXXGwdrZ-RtqjCY1k0pS1FfZ4RiQKnpWeSr6_CfXwNRNV8WO92uMFGYweTpyjzStxPVPppwgQcEVdZ4rLWDhOIx3bcV-sysR-inef5fRoYMFQDHdC9y1OEi6TGKlQ5PKVm_JAFzmZqKQ-xAayYecKegEjoahwFkQC33M-EgfiiNQ"
+                  alt="Ricardo Silveira"
+                />
+                <span class="approval-card__status approval-card__status--pending"></span>
+              </div>
+
+              <div>
+                <h2 class="approval-card__name">Ricardo Silveira</h2>
+                <p class="approval-card__meta">Solicitado ha 2h</p>
+              </div>
+            </div>
+
+            <div class="approval-card__documents">
+              <p class="approval-card__label">Documentos PCD</p>
+              <div class="approval-card__document-list">
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">assignment</span>
+                  <span>Laudo.pdf</span>
+                </button>
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">badge</span>
+                  <span>CIPCD.pdf</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="approval-card__condition">
+              <p class="approval-card__label">Deficiencia</p>
+              <h3>Motora</h3>
+              <span class="approval-card__badge approval-card__badge--mobility">
+                <span class="material-symbols-outlined">accessible</span>
+                <span>Cadeira de rodas</span>
+              </span>
+            </div>
+
+            <div class="approval-card__actions">
+              <button class="approval-card__action approval-card__action--danger" type="button">
+                <span class="material-symbols-outlined">close</span>
+                <span>Recusar</span>
+              </button>
+              <button class="approval-card__action approval-card__action--success" type="button">
+                <span class="material-symbols-outlined">check</span>
+                <span>Aprovar</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="approval-card">
+            <div class="approval-card__profile">
+              <div class="approval-card__avatar-wrap">
+                <img
+                  class="approval-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2KPZYA5pj44u6qgx0_5tAgnX8h6R6zwSv8wQPJdnFx3d9bgWVVyMpEqWtBlKiRF4u2lReUkeEVdIoSe8xuD_-pm_fN9I8cscgCNwftEs9mZ1QhJk-xbeXBsxAqpRuWqlJu_00bNrecXm8b8euBsv0mplgmnbAwk3dh2PbpMBuM0gX8etZv1xclGY8QLWEJMU7PPqmcckTdTqWrdmtAWkrGtkjj0LNeWbzeVjrs-_sUF_w4GwGd2rROKn7L10Am61ay4jLBLYzvW0"
+                  alt="Amanda Soares"
+                />
+                <span class="approval-card__status approval-card__status--pending"></span>
+              </div>
+
+              <div>
+                <h2 class="approval-card__name">Amanda Soares</h2>
+                <p class="approval-card__meta">Solicitado ha 5h</p>
+              </div>
+            </div>
+
+            <div class="approval-card__documents">
+              <p class="approval-card__label">Documentos PCD</p>
+              <div class="approval-card__document-list">
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">assignment</span>
+                  <span>Laudo.pdf</span>
+                </button>
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">badge</span>
+                  <span>CIPCD.pdf</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="approval-card__condition">
+              <p class="approval-card__label">Deficiencia</p>
+              <h3>Auditiva</h3>
+              <span class="approval-card__badge approval-card__badge--hearing">
+                <span class="material-symbols-outlined">hearing</span>
+                <span>Surdez parcial</span>
+              </span>
+            </div>
+
+            <div class="approval-card__actions">
+              <button class="approval-card__action approval-card__action--danger" type="button">
+                <span class="material-symbols-outlined">close</span>
+                <span>Recusar</span>
+              </button>
+              <button class="approval-card__action approval-card__action--success" type="button">
+                <span class="material-symbols-outlined">check</span>
+                <span>Aprovar</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="approval-card">
+            <div class="approval-card__profile">
+              <div class="approval-card__avatar-wrap">
+                <img
+                  class="approval-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAudNtqvQbcdJeXPzqHr-KKEhXvQqAYRultBFcdik0SuMa_m6T0ZEpKUKKjg0NP1AILX-WZk2bH9PROlqLSGmkiZneqF8Z8_Hv5Ivc6Ivwb7xtlw35p_Y4RFcuxYuEJIVQvlGg4-QGwNt6pCFSvgTFZ92ea6T7ZJ2VkYZi3eGhQcv3B3uZpjEmxDw2gLCtMwD0woXumpgbvQWlSDkG9cZzyNUMmgt2UfcJNN7nmHILT8V3NY4ZD0TGjrOXvcVG2C7YPajqvVEnWAqQ"
+                  alt="Joao Paulo"
+                />
+                <span class="approval-card__status approval-card__status--approved"></span>
+              </div>
+
+              <div>
+                <h2 class="approval-card__name">Joao Paulo</h2>
+                <p class="approval-card__meta">Solicitado ha 12h</p>
+              </div>
+            </div>
+
+            <div class="approval-card__documents">
+              <p class="approval-card__label">Documentos PCD</p>
+              <div class="approval-card__document-list">
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">assignment</span>
+                  <span>Laudo.pdf</span>
+                </button>
+                <button class="approval-card__document" type="button">
+                  <span class="material-symbols-outlined">badge</span>
+                  <span>CIPCD.pdf</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="approval-card__condition">
+              <p class="approval-card__label">Deficiencia</p>
+              <h3>Visual</h3>
+              <span class="approval-card__badge approval-card__badge--vision">
+                <span class="material-symbols-outlined">visibility_off</span>
+                <span>Baixa visao</span>
+              </span>
+            </div>
+
+            <div class="approval-card__actions">
+              <button class="approval-card__action approval-card__action--danger" type="button">
+                <span class="material-symbols-outlined">close</span>
+                <span>Recusar</span>
+              </button>
+              <button class="approval-card__action approval-card__action--success" type="button">
+                <span class="material-symbols-outlined">check</span>
+                <span>Aprovar</span>
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <div class="admin-passenger-approval-footer">
+          <button class="admin-passenger-approval-footer__button" type="button">
+            <span>Carregar mais passageiros</span>
+            <span class="material-symbols-outlined">expand_more</span>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+}
+
+.topbar__content {
+  width: min(1280px, calc(100% - 4rem));
+  margin: 0 auto;
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.topbar__brand {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.topbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.topbar__link {
+  padding-bottom: 0.25rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  transition: color 0.2s ease;
+}
+
+.topbar__link:hover,
+.topbar__link--active {
+  color: var(--primary);
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.topbar__login {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.topbar__login:hover {
+  color: var(--primary);
+}
+
+.topbar__signup {
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.topbar__signup:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .topbar__content { width: calc(100% - 2rem); }
+  .topbar__menu { display: none; }
+}

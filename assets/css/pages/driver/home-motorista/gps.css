@@ -1,0 +1,111 @@
+.gps-status {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.85rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: var(--surface-dark);
+  color: #ffffff;
+  box-shadow: 0 24px 45px -28px rgba(12, 15, 16, 0.85);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+}
+
+.gps-status__group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gps-status__pulse {
+  position: relative;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.gps-status__pulse-ring,
+.gps-status__pulse-dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+
+.gps-status__pulse-ring {
+  background: var(--primary-bright);
+  opacity: 0.45;
+  animation: pulse-ring 1.8s infinite;
+}
+
+.gps-status__pulse-dot {
+  background: var(--primary-bright);
+}
+
+.gps-status__pulse-dot--inactive {
+  background: var(--error);
+}
+
+.gps-status__text {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gps-status__divider {
+  width: 1px;
+  height: 1rem;
+  background: rgba(171, 173, 174, 0.35);
+}
+
+.gps-toggle {
+  width: 2.8rem;
+  height: 1.55rem;
+  padding: 0.1rem;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.gps-toggle--active {
+  background: var(--primary);
+  justify-content: flex-end;
+}
+
+.gps-toggle--inactive {
+  background: #475569;
+  justify-content: flex-start;
+}
+
+.gps-toggle__handle {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px -6px rgba(12, 15, 16, 0.8);
+}
+
+@media (max-width: 640px) {
+  .gps-status {
+    top: 1rem;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    width: calc(100% - 1.5rem);
+    justify-content: center;
+  }
+
+  .gps-status__text {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+}

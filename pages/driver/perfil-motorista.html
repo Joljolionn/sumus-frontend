@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motorista - Editar Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/perfil-motorista/index.css" />
+</head>
+
+<body class="profile-page">
+  <div class="profile-layout">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__group-title">Configurações</div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">person_outline</span>
+          <span>Ajustes do Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">contact_support</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-status">Motorista Autorizado</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-shell">
+        <header class="profile-header">
+          <h1 class="profile-header__title">Editar Perfil</h1>
+          <p class="profile-header__subtitle">Mantenha suas informações pessoais atualizadas.</p>
+        </header>
+
+        <div class="profile-content">
+          <section class="profile-avatar-panel">
+            <div class="profile-avatar-panel__sticky">
+              <div class="profile-avatar">
+                <div class="profile-avatar__image-wrap">
+                  <img class="profile-avatar__image"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"
+                    alt="Foto de perfil do usuário" />
+                </div>
+                <button class="profile-avatar__button" type="button" aria-label="Alterar foto de perfil">
+                  <span class="material-symbols-outlined">photo_camera</span>
+                </button>
+              </div>
+              <p class="profile-avatar-panel__hint">Clique para alterar sua foto</p>
+            </div>
+          </section>
+
+          <section class="profile-form-panel">
+            <div class="profile-card">
+              <form class="profile-form">
+                <div class="profile-form__field">
+                  <label class="profile-form__label" for="full-name">Nome Completo</label>
+                  <input class="profile-form__input" id="full-name" type="text" placeholder="Digite seu nome completo"
+                    value="Helena Silva" />
+                </div>
+
+                <div class="profile-form__grid">
+                  <div class="profile-form__field">
+                    <label class="profile-form__label" for="email">E-mail</label>
+                    <input class="profile-form__input" id="email" type="email" placeholder="seu@email.com"
+                      value="helena.silva@email.com" />
+                  </div>
+
+                  <div class="profile-form__field">
+                    <label class="profile-form__label" for="phone">Telefone</label>
+                    <input class="profile-form__input" id="phone" type="tel" placeholder="(00) 00000-0000"
+                      value="(11) 98765-4321" />
+                  </div>
+                </div>
+
+                <div class="profile-form__documents">
+                  <label class="profile-form__section-title">Documentação Necessária</label>
+
+                  <div class="document-grid">
+                    <div class="document-card">
+                      <div class="document-card__icon">
+                        <span class="material-symbols-outlined">badge</span>
+                      </div>
+                      <p class="document-card__title">CNH ou RG</p>
+                      <p class="document-card__text">Envie uma foto nítida da frente e do verso</p>
+                      <button class="document-card__button" type="button">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        Selecionar arquivo
+                      </button>
+                    </div>
+
+                    <div class="document-card">
+                      <div class="document-card__icon">
+                        <span class="material-symbols-outlined">directions_car</span>
+                      </div>
+                      <p class="document-card__title">CRLV / Fotos do Veículo</p>
+                      <p class="document-card__text">Documento do veículo e fotos externas</p>
+                      <button class="document-card__button" type="button">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        Selecionar arquivos
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="profile-form__actions">
+                  <button class="profile-form__submit" type="submit">
+                    <span class="material-symbols-outlined">save</span>
+                    Salvar Alterações
+                  </button>
+                  <button class="profile-form__cancel" type="button">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

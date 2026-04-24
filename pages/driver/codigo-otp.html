@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Verificação - Motorista</title>
+
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/components/marketing-nav.css" />
+  <link rel="stylesheet" href="../../assets/css/components/marketing-footer.css" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="../../assets/css/pages/driver/codigo-otp/index.css" />
+</head>
+
+<body class="otp-page">
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="topbar__login" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="otp-main">
+    <div class="otp-shell">
+      <div class="otp-shell__heading">
+        <h2 class="otp-shell__title">Verificação</h2>
+        <p class="otp-shell__subtitle">
+          Insira o código enviado para seu e-mail
+        </p>
+      </div>
+
+      <div class="otp-card">
+        <div class="otp-card__panel">
+          <form class="otp-form">
+            <div class="otp-form__field">
+              <label class="otp-form__label" for="code-1">Código de verificação</label>
+              <div class="otp-form__inputs">
+                <input class="otp-form__input" id="code-1" maxlength="1" name="code-1" placeholder="•" type="text" />
+                <input class="otp-form__input" id="code-2" maxlength="1" name="code-2" placeholder="•" type="text" />
+                <input class="otp-form__input" id="code-3" maxlength="1" name="code-3" placeholder="•" type="text" />
+                <input class="otp-form__input" id="code-4" maxlength="1" name="code-4" placeholder="•" type="text" />
+                <input class="otp-form__input" id="code-5" maxlength="1" name="code-5" placeholder="•" type="text" />
+                <input class="otp-form__input" id="code-6" maxlength="1" name="code-6" placeholder="•" type="text" />
+              </div>
+            </div>
+
+            <button class="otp-form__submit" type="submit">
+              <span>Verify Code</span>
+              <span class="material-symbols-outlined otp-form__submit-icon">verified_user</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="otp-card__corner otp-card__corner--top"></div>
+        <div class="otp-card__corner otp-card__corner--bottom"></div>
+      </div>
+
+      <div class="otp-shell__footer">
+        <button class="otp-shell__resend" type="button">
+          <span>Não recebeu o código?</span>
+          <span class="otp-shell__resend-highlight">Reenviar código</span>
+        </button>
+        <a class="otp-shell__back-link" href="#">Voltar para o login</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+  <div class="page-footer__content">
+    
+    <div class="page-footer__grid">
+      <div class="page-footer__brand-block">
+        <span class="page-footer__brand">SUMUS</span>
+        <p class="page-footer__tagline">
+          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+        </p>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Empresa</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
+          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
+          <li><a class="page-footer__link" href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Legal</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
+          <li><a class="page-footer__link" href="#">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Suporte</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
+          <li><a class="page-footer__link" href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer__bottom">
+      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+      <div class="page-footer__badges">
+        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <script>
+    const inputs = document.querySelectorAll(".otp-form__input");
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", (e) => {
+        if (e.target.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !e.target.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

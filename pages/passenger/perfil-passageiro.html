@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil - SUMUS Passageiro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
+  
+  <link rel="stylesheet" href="../../assets/css/pages/passenger/perfil-passageiro/index.css" />
+</head>
+<body class="passenger-settings-page">
+  <div class="settings-layout">
+    
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="#">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__group-title">Configurações</div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configurações</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Helena Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Helena Silva</p>
+            <p class="sidebar__profile-status">Passageiro PCD</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="settings-main">
+      <div class="settings-shell">
+        <header class="settings-header">
+          <h1 class="settings-header__title">Perfil do Passageiro</h1>
+          <p class="settings-header__subtitle">Personalize sua experiência no SUMUS Mobility.</p>
+        </header>
+
+        <div class="settings-content">
+          <section class="profile-summary">
+            <div class="profile-summary__card">
+              <div class="profile-summary__avatar-wrap">
+                <div class="profile-summary__avatar-frame">
+                  <img
+                    class="profile-summary__avatar"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"
+                    alt="Foto de perfil de Helena"
+                  />
+                </div>
+                <button class="profile-summary__edit-avatar" type="button" aria-label="Editar foto">
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+              </div>
+
+              <h2 class="profile-summary__name">Helena Silva</h2>
+              <p class="profile-summary__email">helena.silva@email.com</p>
+              <button class="profile-summary__primary-button" type="button">Editar Perfil</button>
+            </div>
+
+            <button class="profile-summary__secondary-button" type="button">
+              <span class="material-symbols-outlined">logout</span>
+              Sair da Conta
+            </button>
+          </section>
+
+          <section class="settings-panels">
+            
+            <div class="settings-card">
+              <div class="settings-card__header">
+                <span class="material-symbols-outlined settings-card__header-icon">accessibility_new</span>
+                <h3 class="settings-card__title">Preferências de Acessibilidade</h3>
+              </div>
+
+              <div class="preferences-grid">
+                <div class="preference-card">
+                  <div class="preference-card__content">
+                    <span class="preference-card__label">Rampa Necessária</span>
+                    <span class="preference-card__hint">Veículos com acesso facilitado</span>
+                  </div>
+                  <label class="switch" aria-label="Rampa Necessária">
+                    <input class="switch__input" type="checkbox" checked />
+                    <span class="switch__track"></span>
+                  </label>
+                </div>
+
+                <div class="preference-card">
+                  <div class="preference-card__content">
+                    <span class="preference-card__label">Auxílio no Embarque</span>
+                    <span class="preference-card__hint">Apoio direto do motorista</span>
+                  </div>
+                  <label class="switch" aria-label="Auxílio no Embarque">
+                    <input class="switch__input" type="checkbox" />
+                    <span class="switch__track"></span>
+                  </label>
+                </div>
+
+                <div class="preference-card preference-card--wide">
+                  <div class="preference-card__meta">
+                    <div class="preference-card__badge">
+                      <span class="material-symbols-outlined">contrast</span>
+                    </div>
+                    <div class="preference-card__content">
+                      <span class="preference-card__label">Interface de Alto Contraste</span>
+                      <span class="preference-card__hint">Melhora a legibilidade para baixa visão</span>
+                    </div>
+                  </div>
+                  <label class="switch" aria-label="Interface de Alto Contraste">
+                    <input class="switch__input" type="checkbox" />
+                    <span class="switch__track"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="settings-card__header">
+                <span class="material-symbols-outlined settings-card__header-icon">description</span>
+                <h3 class="settings-card__title">Documentos Enviados</h3>
+              </div>
+
+              <div class="documents-list">
+                <div class="document-item">
+                  <div class="document-item__info">
+                    <div class="document-item__icon-wrap">
+                      <span class="material-symbols-outlined">badge</span>
+                    </div>
+                    <div class="document-item__text">
+                      <span class="document-item__name">Laudos Médicos</span>
+                      <span class="document-item__status document-item__status--verified">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        Verificado
+                      </span>
+                    </div>
+                  </div>
+                  <button class="document-item__button" type="button">Visualizar</button>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <footer class="settings-footer">
+          <p class="settings-footer__copy">© 2024 SUMUS Mobility. Mobilidade digna para todos.</p>
+          <div class="settings-footer__links">
+            <a class="settings-footer__link" href="#">Acessibilidade</a>
+            <a class="settings-footer__link" href="#">Termos de Serviço</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

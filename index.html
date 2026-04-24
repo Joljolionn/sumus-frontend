@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS - Home</title>
+  
+  <link rel="stylesheet" href="assets/css/base/reset.css" />
+  <link rel="stylesheet" href="assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="assets/css/components/marketing-nav.css" />
+  <link rel="stylesheet" href="assets/css/components/marketing-footer.css" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="assets/css/pages/home/index.css" />
+</head>
+<body>
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#hero">Viajar</a>
+        <a class="topbar__link" href="#valores">Sobre nós</a>
+        <a class="topbar__link" href="#contato">Contato</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1 class="hero__title">Mobilidade com a <span>Dignidade</span> que o Tempo Exige</h1>
+      <p class="hero__subtitle">
+        Conectando você a uma rede exclusiva de transporte onde o respeito, a segurança e a autonomia são pilares fundamentais da sua jornada.
+      </p>
+
+      <div class="search-widget">
+        <span class="material-symbols-outlined search-widget__icon">location_on</span>
+        <input class="search-widget__input" placeholder="Para onde vamos hoje?" type="text" />
+        <button class="search-widget__btn" type="button">
+          <span class="material-symbols-outlined">search</span> Buscar
+        </button>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card__header">
+            <div class="service-card__icon"><span class="material-symbols-outlined">bolt</span></div>
+            <span class="service-card__number">01</span>
+          </div>
+          <h3 class="service-card__title">Viagem Imediata</h3>
+          <p class="service-card__text">Solicite um veículo adaptado agora mesmo. Tempo médio de espera: 8 min.</p>
+          <a class="service-card__link" href="#">Solicitar agora <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+
+        <div class="service-card service-card">
+          <div class="service-card__header">
+            <div class="service-card__icon"><span class="material-symbols-outlined">calendar_today</span></div>
+            <span class="service-card__number">02</span>
+          </div>
+          <h3 class="service-card__title">Agendar Viagem</h3>
+          <p class="service-card__text">Organize sua rotina com antecedência. Ideal para consultas e eventos.</p>
+          <a class="service-card__link" href="#">Agendar horário <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="valores" class="section-wrapper">
+      <h2 class="section-title">Nossos Valores</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">volunteer_activism</span>
+          <h3 class="feature-item__title">Dignidade</h3>
+          <p class="feature-item__desc">Nosso compromisso é com o respeito integral e o atendimento humanizado.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">accessible</span>
+          <h3 class="feature-item__title">Acessibilidade</h3>
+          <p class="feature-item__desc">Garantimos a eliminação de barreiras para uma movimentação livre e autônoma.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">verified_user</span>
+          <h3 class="feature-item__title">Segurança</h3>
+          <p class="feature-item__desc">Monitoramento em tempo real e protocolos rigorosos para sua tranquilidade.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrapper section-wrapper--dark">
+      <h2 class="section-title">O que nos torna únicos</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">psychology_alt</span>
+          <h3 class="feature-item__title">Treinamento Sensitivo</h3>
+          <p class="feature-item__desc">Nossos motoristas passam por simulações de empatia e protocolos de assistência física.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">precision_manufacturing</span>
+          <h3 class="feature-item__title">Frota High-Tech</h3>
+          <p class="feature-item__desc">Veículos equipados com elevadores eletro-hidráulicos e suspensão adaptativa.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-symbols-outlined feature-item__icon">calendar_clock</span>
+          <h3 class="feature-item__title">Planejamento Inteligente</h3>
+          <p class="feature-item__desc">Algoritmos que priorizam a pontualidade e reservam o tempo necessário para o embarque.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contato" class="page-footer">
+  <div class="page-footer__content">
+    
+    <div class="page-footer__grid">
+      <div class="page-footer__brand-block">
+        <span class="page-footer__brand">SUMUS</span>
+        <p class="page-footer__tagline">
+          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+        </p>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Empresa</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
+          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
+          <li><a class="page-footer__link" href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Legal</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
+          <li><a class="page-footer__link" href="#">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="page-footer__group">
+        <h5 class="page-footer__group-title">Suporte</h5>
+        <ul class="page-footer__list">
+          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
+          <li><a class="page-footer__link" href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer__bottom">
+      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+      <div class="page-footer__badges">
+        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>

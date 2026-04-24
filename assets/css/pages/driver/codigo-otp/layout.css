@@ -1,0 +1,134 @@
+body {
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: "Inter", sans-serif;
+}
+
+.otp-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.otp-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.otp-shell {
+  width: min(100%, 28rem);
+}
+
+.otp-shell__heading {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.otp-shell__title {
+  margin-bottom: 0.75rem;
+  font-family: "Noto Serif", serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.otp-shell__subtitle {
+  color: var(--secondary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.otp-card {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-soft);
+}
+
+.otp-card__panel {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+}
+
+.otp-card__corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+}
+
+.otp-card__corner--top {
+  top: 1rem;
+  left: 1rem;
+  border-top: 2px solid rgba(0, 103, 130, 0.2);
+  border-left: 2px solid rgba(0, 103, 130, 0.2);
+}
+
+.otp-card__corner--bottom {
+  right: 1rem;
+  bottom: 1rem;
+  border-right: 2px solid rgba(0, 103, 130, 0.2);
+  border-bottom: 2px solid rgba(0, 103, 130, 0.2);
+}
+
+.otp-shell__footer {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.otp-shell__resend {
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.otp-shell__resend:hover {
+  color: var(--primary);
+}
+
+.otp-shell__resend-highlight {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration-color: rgba(0, 103, 130, 0.3);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.otp-shell__resend:hover .otp-shell__resend-highlight {
+  text-decoration: underline;
+}
+
+.otp-shell__back-link {
+  color: rgba(76, 98, 107, 0.6);
+  font-size: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.otp-shell__back-link:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .otp-card__panel {
+    padding: 1.75rem 1.25rem;
+  }
+}

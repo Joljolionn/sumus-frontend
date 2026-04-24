@@ -1,0 +1,26 @@
+:root {
+  --background: #f5f6f7;
+  --surface: #ffffff;
+  --surface-low: #eff1f2;
+  --surface-soft: #e6e8ea;
+  --surface-high: #e0e3e4;
+  --text: #2c2f30;
+  --text-muted: #595c5d;
+  --outline: #757778;
+  --outline-soft: rgba(171, 173, 174, 0.24);
+  --primary: #00685a;
+  --primary-soft: rgba(0, 104, 90, 0.1);
+  --error: #b31b25;
+  --shadow: 0 20px 40px -30px rgba(12, 15, 16, 0.35);
+  --dashboard-sidebar-border: var(--outline-soft);
+  --dashboard-link-color: var(--text-muted);
+  --dashboard-link-hover-bg: var(--surface-soft);
+  --dashboard-link-hover-color: var(--text);
+  --dashboard-link-active-bg: var(--primary-soft);
+  --dashboard-link-active-color: var(--primary);
+  --dashboard-divider-color: rgba(171, 173, 174, 0.2);
+  --dashboard-sidebar-button-bg: var(--error);
+  --dashboard-sidebar-button-shadow: 0 18px 28px -22px rgba(179, 27, 37, 0.7);
+  --dashboard-brand-font: "Manrope", "Noto Serif", serif;
+  --dashboard-brand-weight: 800;
+}

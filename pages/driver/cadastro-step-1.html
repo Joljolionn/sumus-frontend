@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title> Cadastro</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="../../assets/css/pages/driver/cadastro-step-1/index.css" rel="stylesheet" />
+</head>
+
+<body class="signup-page">
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+
+      <div class="topbar__menu">
+        <a class="topbar__link topbar__link--active" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="topbar__login" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="signup-main">
+    <div class="signup-card">
+      <div class="signup-card__header">
+        <h2 class="signup-card__title">Comece sua Jornada</h2>
+        <p class="signup-card__subtitle">
+          Crie sua conta para acessar a plataforma Aeterna.
+        </p>
+      </div>
+
+      <div class="signup-card__panel">
+        <form action="#" class="signup-form" method="POST">
+          <div class="form-field">
+            <label class="form-field__label" for="name">Nome Completo</label>
+            <input class="form-field__input" id="name" name="name" placeholder="Ex: Marcus Aurelius" required
+              type="text" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="email">Email</label>
+            <input class="form-field__input" id="email" name="email" placeholder="seu@email.com" required
+              type="email" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="phone">Celular</label>
+            <input class="form-field__input" id="phone" name="phone" placeholder="(00) 00000-0000" required
+              type="tel" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-field__label" for="password">Senha</label>
+              <input class="form-field__input" id="password" name="password" placeholder="••••••••" required
+                type="password" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="confirm-password">Confirme a Senha</label>
+              <input class="form-field__input" id="confirm-password" name="confirm-password" placeholder="••••••••"
+                required type="password" />
+            </div>
+          </div>
+
+          <div class="signup-form__actions">
+            <button class="signup-form__submit" type="submit">
+              Criar Conta
+            </button>
+          </div>
+        </form>
+
+        <div class="signup-card__footer">
+          <p class="signup-card__footer-text">
+            Já possui uma conta?
+            <a class="signup-card__footer-link" href="#">Acessar login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer__content">
+      
+      <div class="page-footer__grid">
+        <div class="page-footer__brand-block">
+          <span class="page-footer__brand">SUMUS</span>
+          <p class="page-footer__tagline">
+            Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+          </p>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Empresa</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="#">Sobre nós</a></li>
+            <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
+            <li><a class="page-footer__link" href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Legal</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
+            <li><a class="page-footer__link" href="#">Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Suporte</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
+            <li><a class="page-footer__link" href="#">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-footer__bottom">
+        <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+        <div class="page-footer__badges">
+          <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</body>
+
+</html>

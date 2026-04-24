@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS | Historico de Viagens</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/historico/index.css" />
+</head>
+<body class="history-page">
+  <div class="history-layout">
+      <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__group-title">Configurações</div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">person_outline</span>
+          <span>Ajustes do Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">contact_support</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-status">Motorista Autorizado</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+
+    <main class="history-main">
+      <div class="history-shell">
+        <header class="history-header">
+          <div class="history-header__copy">
+            <p class="history-header__eyebrow">Atividade recente</p>
+            <h1 class="history-header__title">Historico de Viagens</h1>
+          </div>
+
+          <div class="history-header__actions">
+            <button class="history-header__button history-header__button--ghost" type="button">
+              <span class="material-symbols-outlined">filter_list</span>
+              <span>Filtrar</span>
+            </button>
+            <button class="history-header__button" type="button">
+              <span class="material-symbols-outlined">download</span>
+              <span>Exportar PDF</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="history-list" aria-label="Corridas anteriores">
+          <article class="trip-card">
+            <div class="trip-card__profile">
+              <div class="trip-card__avatar-wrap">
+                <img
+                  class="trip-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZjR27ZVaM40oauSXMnW34O_5eB9PiotFYF309A8yBXDIPHFLA225xQrRAwD3QFK9dxSPgQ_KAmkXeHFrrnmTyBfTxZeCNGhnFQwZqD-CHOjdnYXKGdbc3TSELbzDSewYgUH8tm1E5096vwEjYNpmxa_Y8WVGXMD0Z5ubqnvQyzH7qmxuGda2OGvWpN-iFomQeCPBxrfJWRRSnp7buIcc89FK1b4jrjUTCOV1hin8iX5pihG9AnM9Inllx8mT5W5-1KJzegvlAXY14"
+                  alt="Marcus Holloway"
+                />
+                <span class="trip-card__verified">
+                  <span class="material-symbols-outlined">verified</span>
+                </span>
+              </div>
+
+              <div>
+                <p class="trip-card__date">24 de Out, 2023 - 08:45</p>
+                <h2 class="trip-card__name">Marcus Holloway</h2>
+                <div class="trip-card__rating">
+                  <span class="material-symbols-outlined">star</span>
+                  <span>4.98</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__route">
+              <div class="trip-card__point">
+                <span class="trip-card__marker trip-card__marker--start"></span>
+                <div>
+                  <p class="trip-card__label">Partida</p>
+                  <p class="trip-card__text">The Tech Hub, Silicon Valley, CA</p>
+                </div>
+              </div>
+
+              <div class="trip-card__point">
+                <span class="material-symbols-outlined trip-card__marker-icon">location_on</span>
+                <div>
+                  <p class="trip-card__label">Destino</p>
+                  <p class="trip-card__text">Terminal 4, SFO International Airport</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__summary">
+              <div>
+                <p class="trip-card__label">Preco total</p>
+                <p class="trip-card__price">$42.50</p>
+              </div>
+              <button class="trip-card__button" type="button">Ver Detalhes</button>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-card__profile">
+              <div class="trip-card__avatar-wrap">
+                <img
+                  class="trip-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQEceM2w0FEKp2SjP2sFHUqisgK-nVm2PUC_pD1hcYewZpepDegrbkHF71EZr8YnKPRwHqHw7fxXx1WMWC3SriT1_myNaaSI4dzIlvFQmnRDOC0VU1mvcSsDFa0AWmp2B_-63xKaDbZtyIEUUaNO-ZH5NC5o7abrHXC1uvFR01xCq9WqjNKozZHq6cNkcPt91vdh9GyxVIxnDhQPLffnuEsjRRLCWUqeq-FUbcBznbBWP3hm7GfV1HB6Ba9qm3Iw-Nj6PH1-BcW_mz"
+                  alt="Sarah Chen"
+                />
+                <span class="trip-card__verified">
+                  <span class="material-symbols-outlined">verified</span>
+                </span>
+              </div>
+
+              <div>
+                <p class="trip-card__date">22 de Out, 2023 - 22:15</p>
+                <h2 class="trip-card__name">Sarah Chen</h2>
+                <div class="trip-card__rating">
+                  <span class="material-symbols-outlined">star</span>
+                  <span>5.0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__route">
+              <div class="trip-card__point">
+                <span class="trip-card__marker trip-card__marker--start"></span>
+                <div>
+                  <p class="trip-card__label">Partida</p>
+                  <p class="trip-card__text">Grand Central Terminal, NY</p>
+                </div>
+              </div>
+
+              <div class="trip-card__point">
+                <span class="material-symbols-outlined trip-card__marker-icon">location_on</span>
+                <div>
+                  <p class="trip-card__label">Destino</p>
+                  <p class="trip-card__text">Brooklyn Heights Promenade</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__summary">
+              <div>
+                <p class="trip-card__label">Preco total</p>
+                <p class="trip-card__price">$28.75</p>
+              </div>
+              <button class="trip-card__button" type="button">Ver Detalhes</button>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-card__profile">
+              <div class="trip-card__avatar-wrap">
+                <img
+                  class="trip-card__avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMwTtMth8wnfILxV0ZEG1SIRHKq8PdvHfQnvgtraKkHcogUrxDanBwLr3e_DpggnN7ZGBBMM0sBUEd0bcxGty5Nq_rfsd_DbEZzOIgkeR_SuIHSZuucGnH1e49rBAWbK76M6ZlAAB2wsppt-3afenkw-DcCDJBaZCUdDuyPveMQ0CUn3whu337JcKCXiL6vPxy5jvBsguVOGb6SXeJeU2KUJWdT-0neVhALxPdeMUN8gqSegoaFjfJpdg_jhuXL2AUuTFQZCYomj7b"
+                  alt="David Miller"
+                />
+                <span class="trip-card__verified">
+                  <span class="material-symbols-outlined">verified</span>
+                </span>
+              </div>
+
+              <div>
+                <p class="trip-card__date">19 de Out, 2023 - 13:20</p>
+                <h2 class="trip-card__name">David Miller</h2>
+                <div class="trip-card__rating">
+                  <span class="material-symbols-outlined">star</span>
+                  <span>4.85</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__route">
+              <div class="trip-card__point">
+                <span class="trip-card__marker trip-card__marker--start"></span>
+                <div>
+                  <p class="trip-card__label">Partida</p>
+                  <p class="trip-card__text">Fairmont Hotel, Downtown</p>
+                </div>
+              </div>
+
+              <div class="trip-card__point">
+                <span class="material-symbols-outlined trip-card__marker-icon">location_on</span>
+                <div>
+                  <p class="trip-card__label">Destino</p>
+                  <p class="trip-card__text">Metropolitan Museum of Art</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="trip-card__summary">
+              <div>
+                <p class="trip-card__label">Preco total</p>
+                <p class="trip-card__price">$15.40</p>
+              </div>
+              <button class="trip-card__button" type="button">Ver Detalhes</button>
+            </div>
+          </article>
+        </section>
+
+        <div class="history-footer">
+          <button class="history-footer__button" type="button">Carregar Viagens Antigas</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

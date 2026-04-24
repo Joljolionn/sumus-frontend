@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS Passenger - Cadastrar Cartao</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/passenger/cadastro-cartao/index.css" />
+</head>
+<body class="passenger-card-page">
+  <div class="passenger-card-layout">
+    <aside class="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="./home-passageiro.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="./perfil-passageiro.html">
+          <span class="material-symbols-outlined">person</span>
+          <span>Perfil</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">local_taxi</span>
+          <span>Corridas</span>
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="./cadastro-cartao.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Pagamento</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Historico</span>
+        </a>
+
+        <div class="sidebar__divider"></div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">help</span>
+          <span>Ajuda</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configuracoes</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <button class="sidebar__offline-button" type="button">Suporte 24h</button>
+    </aside>
+
+    <main class="passenger-card-main">
+      <div class="passenger-card-shell">
+        <a class="passenger-card__back-link" href="./home-passageiro.html">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span>Voltar para o painel</span>
+        </a>
+
+        <header class="passenger-card__header">
+          <p class="passenger-card__eyebrow">Carteira digital</p>
+          <h1 class="passenger-card__title">Cadastrar novo cartao</h1>
+          <p class="passenger-card__subtitle">
+            Deixe sua proxima corrida pronta com um pagamento salvo de forma segura.
+          </p>
+        </header>
+
+        <section class="passenger-card__content">
+          <div class="passenger-card-preview">
+            <div class="passenger-card-preview__top">
+              <div>
+                <p class="passenger-card-preview__label">Cartao preferencial</p>
+                <h2 class="passenger-card-preview__brand">SUMUS Blue</h2>
+              </div>
+              <span class="material-symbols-outlined">credit_card</span>
+            </div>
+
+            <div class="passenger-card-preview__bottom">
+              <p class="passenger-card-preview__number">.... .... .... ....</p>
+              <div class="passenger-card-preview__meta">
+                <div>
+                  <p class="passenger-card-preview__meta-label">Titular</p>
+                  <p class="passenger-card-preview__meta-value">SEU NOME AQUI</p>
+                </div>
+                <div>
+                  <p class="passenger-card-preview__meta-label">Validade</p>
+                  <p class="passenger-card-preview__meta-value">MM/AA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="passenger-card-form-wrap">
+            <form class="passenger-card-form">
+              <div class="passenger-card-form__field">
+                <label for="passenger-card-number">Numero do cartao</label>
+                <div class="passenger-card-form__control passenger-card-form__control--icon">
+                  <span class="material-symbols-outlined">credit_card</span>
+                  <input id="passenger-card-number" type="text" placeholder="0000 0000 0000 0000" />
+                </div>
+              </div>
+
+              <div class="passenger-card-form__field">
+                <label for="passenger-card-name">Nome do titular</label>
+                <input id="passenger-card-name" type="text" placeholder="Como impresso no cartao" />
+              </div>
+
+              <div class="passenger-card-form__grid">
+                <div class="passenger-card-form__field">
+                  <label for="passenger-card-expiry">Validade</label>
+                  <input id="passenger-card-expiry" type="text" placeholder="MM/AA" />
+                </div>
+
+                <div class="passenger-card-form__field">
+                  <label for="passenger-card-cvv">CVV</label>
+                  <input id="passenger-card-cvv" type="password" placeholder="..." />
+                </div>
+              </div>
+
+              <button class="passenger-card-form__submit" type="submit">Salvar Cartao</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

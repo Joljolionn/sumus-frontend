@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMUS - Configuração</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/configuracao/configuracao.css" />
+</head>
+<body class="driver-settings-page">
+  <div class="settings-layout">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Ganhos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">history</span>
+          <span>Histórico</span>
+        </a>
+
+        <div class="sidebar__group-title">Configurações</div>
+
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">person_outline</span>
+          <span>Ajustes do Perfil</span>
+        </a>
+        <a class="sidebar__link sidebar__link" href="#">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Meus Veículos</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>Finanças</span>
+        </a>
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">contact_support</span>
+          <span>Suporte</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Joao Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Silvia Lacivia</p>
+            <p class="sidebar__profile-status">Motorista Autorizado</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
+    </aside>
+
+
+    <main class="settings-main">
+      <div class="settings-shell">
+        <header class="settings-header">
+          <p class="settings-header__eyebrow">Painel do motorista</p>
+          <h1 class="settings-header__title">Configuração</h1>
+        </header>
+
+        <section class="settings-grid">
+          <article class="settings-card">
+            <div class="settings-card__header">
+              <span class="material-symbols-outlined settings-card__icon">notifications_active</span>
+              <div>
+                <h2 class="settings-card__title">Notificações</h2>
+                <p class="settings-card__subtitle">Controle os alertas que chegam durante a operação.</p>
+              </div>
+            </div>
+
+            <div class="preference-list">
+              <div class="preference-item">
+                <div class="preference-item__content">
+                  <span class="preference-item__label">Notificações de Corridas</span>
+                  <span class="preference-item__hint">Alertas em tempo real sobre status do passageiro e chegada.</span>
+                </div>
+                <label class="switch" aria-label="Notificações de Corridas">
+                  <input class="switch__input" type="checkbox" checked />
+                  <span class="switch__track"></span>
+                </label>
+              </div>
+
+              <div class="preference-item">
+                <div class="preference-item__content">
+                  <span class="preference-item__label">Alertas de Sistema</span>
+                  <span class="preference-item__hint">Avisos críticos sobre manutenção e novas funcionalidades.</span>
+                </div>
+                <label class="switch" aria-label="Alertas de Sistema">
+                  <input class="switch__input" type="checkbox" checked />
+                  <span class="switch__track"></span>
+                </label>
+              </div>
+            </div>
+          </article>
+
+          <article class="settings-card">
+            <div class="settings-card__header">
+              <span class="material-symbols-outlined settings-card__icon">accessibility</span>
+              <div>
+                <h2 class="settings-card__title">Acessibilidade</h2>
+                <p class="settings-card__subtitle">Ajustes de leitura e visualização da interface.</p>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="preference-item">
+                <div class="preference-item__content">
+                  <span class="preference-item__label">Alto Contraste</span>
+                  <span class="preference-item__hint">Otimiza as cores para máxima legibilidade visual.</span>
+                </div>
+                <label class="switch" aria-label="Alto Contraste">
+                  <input class="switch__input" type="checkbox" />
+                  <span class="switch__track"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="section-heading">
+                <span class="section-heading__title">Tema do Aplicativo</span>
+              </div>
+              <div class="option-grid">
+                <button class="option-card option-card--active" type="button">
+                  <span class="material-symbols-outlined">light_mode</span>
+                  <span>Claro</span>
+                </button>
+                <button class="option-card" type="button">
+                  <span class="material-symbols-outlined">dark_mode</span>
+                  <span>Escuro</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="section-heading section-heading--between">
+                <span class="section-heading__title">Tamanho da Fonte</span>
+                <span class="section-heading__value">Médio</span>
+              </div>
+              <div class="segmented-control">
+                <button class="segmented-control__button" type="button">Pequeno</button>
+                <button class="segmented-control__button segmented-control__button--active" type="button">Médio</button>
+                <button class="segmented-control__button segmented-control__button--large" type="button">Grande</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="legal-card">
+            <div class="legal-card__content">
+              <h2 class="legal-card__title">Informações Legais</h2>
+              <p class="legal-card__text">Revise nossos termos e como protegemos seus dados.</p>
+            </div>
+
+            <div class="legal-card__actions">
+              <a class="legal-card__link" href="#">
+                <span class="material-symbols-outlined">gavel</span>
+                <span>Termos de Uso</span>
+              </a>
+              <a class="legal-card__link" href="#">
+                <span class="material-symbols-outlined">policy</span>
+                <span>Política de Privacidade</span>
+              </a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+    <script>
+  // Função para gerenciar botões de seleção (Tema e Tamanho da Fonte)
+  const setupSegmentedControls = (selector, activeClass) => {
+    const containers = document.querySelectorAll(selector);
+
+    containers.forEach(container => {
+      const buttons = container.querySelectorAll('button');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove a classe ativa de todos os botões deste container
+          buttons.forEach(btn => btn.classList.remove(activeClass));
+          
+          // Adiciona a classe ativa no botão clicado
+          button.classList.add(activeClass);
+
+        });
+      });
+    });
+  };
+
+  // Aplica a lógica para o grid de Temas (Claro/Escuro)
+  setupSegmentedControls('.option-grid', 'option-card--active');
+
+  // Aplica a lógica para o controle de Tamanho da Fonte
+  setupSegmentedControls('.segmented-control', 'segmented-control__button--active');
+
+  // Lógica para os Switches (Checkboxes)
+  const switches = document.querySelectorAll('.switch__input');
+  switches.forEach(sw => {
+    sw.addEventListener('change', (e) => {
+      console.log(`${e.target.closest('.preference-item').querySelector('.preference-item__label').textContent}: ${e.target.checked}`);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+.driver-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.sidebar {
+  height: 100vh;
+  z-index: 20;
+}
+
+.driver-main {
+  position: relative;
+  min-width: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.map-panel {
+  height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .driver-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
