@@ -14,7 +14,7 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
   />
-  <link rel="stylesheet" href="../../assets/css/pages/driver/configuracao.css" />
+  <link rel="stylesheet" href="../../assets/css/pages/driver/configuracao/configuracao.css" />
 </head>
 <body class="driver-settings-page">
   <div class="settings-layout">
@@ -77,6 +77,7 @@
         </a>
       </div>
     </aside>
+
 
     <main class="settings-main">
       <div class="settings-shell">
@@ -192,5 +193,40 @@
       </div>
     </main>
   </div>
+    <script>
+  // Função para gerenciar botões de seleção (Tema e Tamanho da Fonte)
+  const setupSegmentedControls = (selector, activeClass) => {
+    const containers = document.querySelectorAll(selector);
+
+    containers.forEach(container => {
+      const buttons = container.querySelectorAll('button');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove a classe ativa de todos os botões deste container
+          buttons.forEach(btn => btn.classList.remove(activeClass));
+          
+          // Adiciona a classe ativa no botão clicado
+          button.classList.add(activeClass);
+
+        });
+      });
+    });
+  };
+
+  // Aplica a lógica para o grid de Temas (Claro/Escuro)
+  setupSegmentedControls('.option-grid', 'option-card--active');
+
+  // Aplica a lógica para o controle de Tamanho da Fonte
+  setupSegmentedControls('.segmented-control', 'segmented-control__button--active');
+
+  // Lógica para os Switches (Checkboxes)
+  const switches = document.querySelectorAll('.switch__input');
+  switches.forEach(sw => {
+    sw.addEventListener('change', (e) => {
+      console.log(`${e.target.closest('.preference-item').querySelector('.preference-item__label').textContent}: ${e.target.checked}`);
+    });
+  });
+</script>
 </body>
 </html>
