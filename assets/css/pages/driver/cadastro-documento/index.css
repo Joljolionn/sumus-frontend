@@ -176,14 +176,28 @@ body.document-page {
   gap: 0.5rem;
   background: var(--primary);
   color: var(--on-primary);
-  font-family: "Inter", sans-serif;
+
   font-size: 1.125rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: var(--shadow-primary);
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
+.submit-button {
 
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
 .upload-submit:hover {
   background: var(--primary-dark);
   transform: translateY(-1px);
