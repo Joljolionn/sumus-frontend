@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 85vh; /* Usando proporção de tela em vez de pixels fixos */
-  padding: 10rem 2rem 4rem; /* Espaço para o header fixo */
+  min-height: 100vh; 
+  padding: 10rem 2rem 4rem; 
   background: linear-gradient(180deg, var(--primary-soft) 0%, var(--background) 100%);
   text-align: center;
 }
@@ -116,9 +116,6 @@
   transform: translateY(-10px);
 }
 
-.service-card--secondary {
-  border-left-color: #00e7ca; /* Cor terciária original do seu design */
-}
 
 .service-card__header {
   display: flex;
@@ -138,10 +135,6 @@
   justify-content: center;
 }
 
-.service-card--secondary .service-card__icon {
-  background: rgba(0, 231, 202, 0.2);
-  color: #006b5d;
-}
 
 .service-card__number {
   font-size: 3rem;
@@ -172,10 +165,6 @@
   color: var(--primary);
   font-size: 1.125rem;
   transition: gap 0.2s ease;
-}
-
-.service-card--secondary .service-card__link {
-  color: #006b5d;
 }
 
 .service-card__link:hover {
