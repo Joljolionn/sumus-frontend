@@ -1,13 +1,18 @@
 /* =========================================
-   1. LAYOUT DA PÁGINA (Login)
+   1. ESTRUTURA GERAL DA PÁGINA
    ========================================= */
 body.login-page {
   background: var(--surface-alt);
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+}
+
+.topbar {
+  flex-shrink: 0;
+  z-index: 100;
+  position: relative !important; 
 }
 
 .login-main {
@@ -15,217 +20,274 @@ body.login-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(6rem, 15dvh, 8rem) 1.5rem 4rem; 
+  flex-direction: column;
+  padding: 1.5rem;
 }
 
 /* =========================================
-   2. O CONTAINER PRINCIPAL
+   2. O CONTAINER SLIDER (A Mágica)
    ========================================= */
-.login-shell {
-  width: min(100%, 28rem);
+.auth-container {
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 55rem;
+  height: 100%;
+  max-height: 32rem; 
+  min-height: 26rem; 
+  margin: auto;
 }
 
-.login-shell__heading {
-  margin-bottom: 2.5rem;
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.auth-container.active .sign-in {
+  transform: translateX(100%);
+}
+
+.sign-up {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.auth-container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: move 0.6s;
+}
+
+@keyframes move {
+  0%, 49.99% { opacity: 0; z-index: 1; }
+  50%, 100% { opacity: 1; z-index: 5; }
+}
+
+/* =========================================
+   3. ESTILIZAÇÃO DOS FORMULÁRIOS
+   ========================================= */
+.auth-form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem; 
+  height: 100%;
   text-align: center;
 }
 
-.login-shell__title {
-  margin-bottom: 0.75rem;
-  font-size: 2.25rem;
+.auth-title {
+  font-size: 1.8rem;
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: var(--text-main);
 }
 
-.login-shell__subtitle {
+.auth-subtitle {
+  font-size: 0.85rem;
   color: var(--text-muted);
-  font-size: 1.125rem;
-  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
-/* =========================================
-   3. O CARD DE LOGIN E SEUS DETALHES VISUAIS
-   ========================================= */
-.login-card {
-  position: relative;
-  border-radius: 1rem;
-  padding: 0.25rem;
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-}
-
-.login-card__panel {
-  display: flex;
-  flex-direction: column;
-  padding: 2.5rem;
-  border: 1px solid var(--border-light);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-}
-
-.login-card__corner {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-}
-
-.login-card__corner--top {
-  top: 1rem;
-  left: 1rem;
-  border-top: 2px solid var(--primary-soft);
-  border-left: 2px solid var(--primary-soft);
-}
-
-.login-card__corner--bottom {
-  right: 1rem;
-  bottom: 1rem;
-  border-right: 2px solid var(--primary-soft);
-  border-bottom: 2px solid var(--primary-soft);
-}
-
-/* =========================================
-   4. FORMULÁRIO
-   ========================================= */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.login-form__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.login-form__field-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.login-form__label {
-  color: var(--text-main);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.login-form__recover {
+.auth-forgot {
   color: var(--primary);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0.5rem 0; 
   transition: opacity 0.2s ease;
 }
 
-.login-form__recover:hover {
+.auth-forgot:hover {
   opacity: 0.8;
   text-decoration: underline;
 }
 
-.login-form__input-wrap {
-  position: relative;
-}
-
-.login-form__icon {
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
-  color: var(--text-light);
-  font-size: 1.25rem;
-}
-
-.login-form__input {
-  width: 100%;
-  height: 3.5rem;
-  padding: 0 1rem 0 3rem;
+.auth-input {
+  background-color: var(--surface-alt);
   border: 1px solid var(--border-light);
-  border-radius: 0.75rem;
-  background: var(--surface);
-  color: var(--text-main);
-  font-size: 1rem;
-  transition: all 0.2s ease;
-}
-
-.login-form__input::placeholder {
-  color: var(--text-light);
-}
-
-.login-form__input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--primary-soft);
-}
-
-.login-form__submit {
-  width: 100%;
-  height: 4rem;
-  margin-top: 1rem;
-  border: 0;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: var(--primary);
-  color: var(--on-primary);
-  font-size: 1.125rem;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(0, 103, 130, 0.2);
-  transition: all 0.2s ease;
-}
-
-.login-form__submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 103, 130, 0.3);
-}
-
-.login-form__submit:active {
-  transform: scale(0.98);
-}
-
-/* =========================================
-   5. RODAPÉ DO SHELL
-   ========================================= */
-.login-shell__footer {
-  margin-top: 2.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.login-shell__signup-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-muted);
-  font-weight: 500;
+  margin: 0.35rem 0; 
+  padding: 0.85rem 1.25rem; 
   font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.login-shell__signup-link:hover {
+  border-radius: 0.75rem;
+  width: 100%;
+  outline: none;
   color: var(--text-main);
+  transition: all 0.2s ease;
 }
 
-.login-shell__signup-highlight {
+.auth-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.social-icons {
+  margin: 0.75rem 0;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-icons .icon {
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-icons .icon:hover {
+  background-color: var(--surface-alt);
   color: var(--primary);
-  font-weight: 700;
+  border-color: var(--primary);
 }
 
-.login-shell__signup-link:hover .login-shell__signup-highlight {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.auth-btn {
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 0.85rem 2.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-btn:active {
+  transform: scale(0.97);
+}
+
+.auth-btn--ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.auth-btn--ghost:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* =========================================
-   6. RESPONSIVIDADE
+   4. O PAINEL DE COBERTURA (Toggle Overlay)
    ========================================= */
-@media (max-width: 768px) {
-  .login-card__panel {
-    padding: 2rem 1.5rem;
-  }
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  border-radius: 150px 0 0 150px;
+  z-index: 1000;
+}
+
+.auth-container.active .toggle-container {
+  transform: translateX(-100%);
+  border-radius: 0 150px 150px 0;
+}
+
+.toggle {
+  background: var(--primary);
+  background: linear-gradient(to right, var(--primary), var(--primary-container, #005670));
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.auth-container.active .toggle {
+  transform: translateX(50%);
+}
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 3rem;
+  text-align: center;
+  top: 0;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.toggle-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.toggle-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.auth-container.active .toggle-left {
+  transform: translateX(0);
+}
+
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.auth-container.active .toggle-right {
+  transform: translateX(200%);
+}
+
+/* =========================================
+   5. ALERTAS
+   ========================================= */
+.alert-message {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  display: none;
+  font-weight: 600;
+}
+
+.alert-error {
+  color: var(--error);
+  background-color: rgba(186, 26, 26, 0.1);
+}
+
+.alert-success {
+  color: #00bb00;
+  background-color: #bbffbe;
 }
