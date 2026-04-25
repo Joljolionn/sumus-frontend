@@ -245,7 +245,7 @@ body.login-page {
 
 .toggle {
   background: var(--primary);
-  background: linear-gradient(to right, var(--primary), var(--primary-container, #005670));
+  background: linear-gradient(to right, #006b5d, var(--primary-container, #005670));
   color: #ffffff;
   position: relative;
   left: -100%;
