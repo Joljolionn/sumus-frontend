@@ -3,123 +3,196 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aeterna - Upload de Documentos</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>SUMUS - Upload de Documentos</title>
 
   <link rel="stylesheet" href="../../assets/css/base/reset.css" />
   <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
   <link rel="stylesheet" href="../../assets/css/components/marketing-nav.css" />
   <link rel="stylesheet" href="../../assets/css/components/marketing-footer.css" />
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
-  
   <link rel="stylesheet" href="../../assets/css/pages/driver/cadastro-documento/index.css" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+  <style>
+    .upload-option {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .upload-preview {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .upload-preview img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* evita bug de clique */
+    .upload-preview * {
+      pointer-events: none;
+    }
+  </style>
 </head>
+
 <body class="document-page">
-  
+
   <nav class="topbar">
     <div class="topbar__content">
       <div class="topbar__brand">SUMUS</div>
       <div class="topbar__actions">
-        <button class="topbar__login" type="button">Fazer Login</button>
-        <button class="topbar__signup" type="button">Cadastre-se</button>
+        <a class="topbar__login" href="/login.html">Fazer Login</a>
+        <a class="topbar__signup" href="/cadastro.html">Cadastre-se</a>
       </div>
     </div>
   </nav>
 
   <main class="document-main">
     <section class="upload-shell">
-      <div class="upload-card">
+
+      <form class="upload-card" id="upload-form" enctype="multipart/form-data">
+
         <div class="upload-card__header">
           <h2 class="upload-card__title">Envio de Documentação</h2>
           <p class="upload-card__subtitle">
-            Por favor, envie os arquivos necessários para validar sua conta.
+            Envie os arquivos necessários para validar sua conta.
           </p>
         </div>
 
-        <div class="upload-grid">
-          <label class="upload-option" for="id-upload">
-            <div class="upload-option__icon">
-              <span class="material-symbols-outlined">badge</span>
-            </div>
-            <h3 class="upload-option__title">Upload de Identificação</h3>
-            <p class="upload-option__description">
-              Arraste ou selecione sua CNH ou RG (frente e verso)
-            </p>
-            <input class="sr-only" id="id-upload" type="file" />
-          </label>
+<div class="upload-grid">
 
-          <label class="upload-option" for="vehicle-upload">
-            <div class="upload-option__icon">
-              <span class="material-symbols-outlined">directions_car</span>
-            </div>
-            <h3 class="upload-option__title">Documentação do Veículo</h3>
-            <p class="upload-option__description">
-              Arraste ou selecione o CRLV e fotos do veículo
-            </p>
-            <input class="sr-only" id="vehicle-upload" type="file" />
-          </label>
-        </div>
+  <!-- Documento pessoal -->
+  <label class="upload-option" for="id-upload">
+    <div class="upload-option__icon">
+      <span class="material-symbols-outlined">badge</span>
+    </div>
 
-        <button class="upload-submit" type="button">
-          <span class="submit-button">Enviar Documentos</span>
+    <h3 class="upload-option__title">Upload de Identificação</h3>
+
+    <p class="upload-option__description">
+      Arraste ou selecione sua CNH ou RG (frente e verso)
+    </p>
+
+    <input 
+      class="sr-only"
+      id="id-upload"
+      name="documento"
+      type="file"
+      multiple
+      accept="image/*,.pdf"
+      required
+    />
+
+    <!-- 👇 só isso foi adicionado -->
+    <div id="preview-documento" class="upload-preview"></div>
+  </label>
+
+
+  <!-- Veículo -->
+  <label class="upload-option" for="vehicle-upload">
+    <div class="upload-option__icon">
+      <span class="material-symbols-outlined">directions_car</span>
+    </div>
+
+    <h3 class="upload-option__title">Documentação do Veículo</h3>
+
+    <p class="upload-option__description">
+      Arraste ou selecione o CRLV e fotos do veículo
+    </p>
+
+    <input 
+      class="sr-only"
+      id="vehicle-upload"
+      name="veiculo"
+      type="file"
+      multiple
+      accept="image/*,.pdf"
+      required
+    />
+
+    <!-- 👇 só isso foi adicionado -->
+    <div id="preview-veiculo" class="upload-preview"></div>
+  </label>
+
+</div>
+
+        <button class="upload-submit" type="submit">
+          Enviar Documentos
         </button>
 
-        <p class="upload-card__footnote">
-          Seus dados são protegidos por criptografia de ponta a ponta.
-        </p>
-      </div>
+      </form>
+
     </section>
   </main>
-
-  <footer class="page-footer">
-  <div class="page-footer__content">
-    
-    <div class="page-footer__grid">
-      <div class="page-footer__brand-block">
+    <footer class="page-footer">
+    <div class="page-footer__content">
+      <div class="page-footer__brand-group">
         <span class="page-footer__brand">SUMUS</span>
-        <p class="page-footer__tagline">
-          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
-        </p>
+        <span class="page-footer__divider">|</span>
+        <p class="page-footer__copy">© 2024 SUMUS. Dignified Mobility.</p>
       </div>
-
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Empresa</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
-          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
-          <li><a class="page-footer__link" href="#">Blog</a></li>
-        </ul>
-      </div>
-
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Legal</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
-          <li><a class="page-footer__link" href="#">Privacidade</a></li>
-        </ul>
-      </div>
-
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Suporte</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
-          <li><a class="page-footer__link" href="#">Contato</a></li>
-        </ul>
+      <div class="page-footer__links">
+        <a class="page-footer__link" href="#">Privacy</a>
+        <a class="page-footer__link" href="#">Terms</a>
+        <a class="page-footer__link" href="#">Contact</a>
       </div>
     </div>
+  </footer>
 
-    <div class="page-footer__bottom">
-      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
-      <div class="page-footer__badges">
-        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
-      </div>
-    </div>
+  <!-- 🚀 ENVIO -->
+  <script>
+    document.getElementById("upload-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  </div>
-</footer>
+      const formData = new FormData(e.target);
+
+      try {
+        const response = await fetch("http://localhost:8080/api/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        alert(response.ok ? "Enviado com sucesso!" : "Erro ao enviar");
+
+      } catch (err) {
+        console.error(err);
+        alert("Erro na requisição");
+      }
+    });
+
+    function handlePreview(inputId, previewId) {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+
+      input.addEventListener("change", () => {
+        preview.innerHTML = "";
+
+        Array.from(input.files).forEach(file => {
+          const container = document.createElement("div");
+
+          if (file.type.startsWith("image/")) {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            container.appendChild(img);
+          } else {
+            const text = document.createElement("p");
+            text.textContent = "📄 " + file.name;
+            container.appendChild(text);
+          }
+
+          preview.appendChild(container);
+        });
+      });
+    }
+
+    handlePreview("id-upload", "preview-documento");
+    handlePreview("vehicle-upload", "preview-veiculo");
+  </script>
+
 </body>
 </html>
