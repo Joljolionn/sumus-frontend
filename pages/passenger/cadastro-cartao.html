@@ -16,46 +16,65 @@
 </head>
 <body class="passenger-card-page">
   <div class="passenger-card-layout">
+
     <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__brand-text">SUMUS</span>
+      </div>
+
       <nav class="sidebar__nav">
-        <a class="sidebar__link" href="./home-passageiro.html">
-          <span class="material-symbols-outlined">dashboard</span>
-          <span>Dashboard</span>
+        <a class="sidebar__link" href="../../pages/passenger/home-passageiro.html">
+          <span class="material-symbols-outlined">directions_car</span>
+          <span>Viaje</span>
         </a>
-        <a class="sidebar__link" href="./perfil-passageiro.html">
-          <span class="material-symbols-outlined">person</span>
-          <span>Perfil</span>
+        <a class="sidebar__link sidebar__link" href="#">
+          <span class="material-symbols-outlined">calendar_month</span>
+          <span>Reserve</span>
         </a>
         <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">local_taxi</span>
-          <span>Corridas</span>
-        </a>
-        <a class="sidebar__link sidebar__link--active" href="./cadastro-cartao.html">
-          <span class="material-symbols-outlined">account_balance_wallet</span>
-          <span>Pagamento</span>
+          <span class="material-symbols-outlined">diversity_3</span>
+          <span>Familia</span>
         </a>
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">history</span>
-          <span>Historico</span>
+          <span>Histórico</span>
         </a>
 
-        <div class="sidebar__divider"></div>
+        <div class="sidebar__group-title">Configurações</div>
 
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">help</span>
-          <span>Ajuda</span>
+        <a class="sidebar__link--active" href="../../pages/passenger/perfil-passageiro.html">
+          <span class="material-symbols-outlined">person</span>
+          <span>Meus Perfil</span>
         </a>
-        <a class="sidebar__link" href="#">
+        <a class="sidebar__link" href="../../pages/passenger/cadastro-cartao.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span>Carteira</span>
+        </a>
+        <a class="sidebar__link" href="../../pages/passenger/configuracao.html">
           <span class="material-symbols-outlined">settings</span>
-          <span>Configuracoes</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">support_agent</span>
-          <span>Suporte</span>
+          <span>Configurações</span>
         </a>
       </nav>
 
-      <button class="sidebar__offline-button" type="button">Suporte 24h</button>
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Helena Silva" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9zjHWRyPwsipA8F-x_k8T2P5LCaMlou_rHAjL6DofPyxysu6taHSSCudu174KpUV6oTOH7QGkvbC3V0kx_JRJAlzL_xk8tUQnLVwDzHt7VJ56mUbSgiFBeweo-3OxZUoGBrvdCFzYQKowJMPVZIxaVvkz9gSfnuT8F7rCJQLbyFgcyEL1Ed8rl7C81jKtPrrS2kfjS3Ji9pNuag7FY35e2YWx2GcdhZiQ3ghIYW9uMYsojpJsCwz8i1Qb3oJLyIOzo2vXL2ob-_A"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Helena Silva</p>
+            <p class="sidebar__profile-status">Passageiro PCD</p>
+          </div>
+        </div>
+
+        <button class="sidebar__emergency" type="button">
+          <span class="material-symbols-outlined">e911_emergency</span>
+          <span>Emergência</span>
+        </button>
+        
+        <a class="sidebar__link" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair</span>
+        </a>
+      </div>
     </aside>
 
     <main class="passenger-card-main">
