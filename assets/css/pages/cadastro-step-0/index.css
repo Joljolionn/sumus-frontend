@@ -1,8 +1,8 @@
 /* =========================================
-   1. LAYOUT PRINCIPAL
+   1. LAYOUT PRINCIPAL & HERO
    ========================================= */
 body.page {
-  background: var(--surface);
+  background: var(--surface, #f8fafb);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -15,216 +15,274 @@ body.page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(6rem, 15dvh, 8rem) 1.5rem 4rem;
-  background: radial-gradient(circle at top, var(--surface-container-low), var(--surface));
+  padding: clamp(4rem, 8dvh, 5rem) 1.5rem 3rem;
+  background: radial-gradient(circle at 0% 0%, rgba(0, 103, 129, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 100% 100%, rgba(0, 103, 129, 0.03) 0%, transparent 50%);
 }
 
 .hero__content {
   position: relative;
   z-index: 10;
-  width: min(1152px, 100%);
+  width: min(1440px, 100%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 0 1.5rem;
 }
 
 .hero__title-block {
-  margin-bottom: 4rem;
-  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 42rem;
+  text-align: left;
 }
 
 .hero__title {
   margin-bottom: 1rem;
-  font-size: clamp(2.25rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
+  margin-top: 50px;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--primary);
+}
+
+.hero__title--highlight {
   color: var(--text-main);
 }
 
 .hero__subtitle {
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--text-muted);
+  max-width: 36rem;
 }
 
 /* =========================================
-   2. GRID DE ESCOLHAS (CARDS)
+   2. GRID DE ESCOLHAS (NOVO DESIGN)
    ========================================= */
 .hero__cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
-  margin-bottom: 4rem;
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
 .choice-card {
   position: relative;
-  border-radius: 1rem;
-  padding: 0.25rem;
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
 }
 
 .choice-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 103, 130, 0.15);
 }
 
-.choice-card__inner {
-  height: 100%;
-  border: 1px solid var(--border-light);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
+.choice-card--driver {
+  background: var(--surface-container-low, #f2f4f5);
 }
 
-.choice-card__corner {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
+.choice-card--driver:hover {
+  box-shadow: 0 40px 80px -20px rgba(0, 103, 129, 0.15);
 }
 
-.choice-card__corner--top {
-  top: 1rem;
-  left: 1rem;
-  border-top: 2px solid var(--primary-soft);
-  border-left: 2px solid var(--primary-soft);
+.choice-card--passenger {
+  background: var(--primary-container, #006781);
+  color: #ffffff;
 }
 
-.choice-card__corner--bottom {
-  right: 1rem;
-  bottom: 1rem;
-  border-right: 2px solid var(--primary-soft);
-  border-bottom: 2px solid var(--primary-soft);
-}
-
-.choice-card--passenger .choice-card__corner--top {
-  border-color: rgba(0, 231, 202, 0.3);
-}
-.choice-card--passenger .choice-card__corner--bottom {
-  border-color: rgba(0, 231, 202, 0.3);
+.choice-card--passenger:hover {
+  box-shadow: 0 40px 80px -20px rgba(0, 103, 129, 0.25);
 }
 
 /* =========================================
-   3. CONTEÚDO DOS CARDS
+   3. CORPO DOS CARDS
    ========================================= */
+.choice-card__body {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .choice-card__icon-shell {
-  width: 6rem;
-  height: 6rem;
-  margin-bottom: 2rem;
-  border-radius: 1.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary-soft);
+  margin-bottom: 1.5rem;
+}
+
+.choice-card--driver .choice-card__icon-shell {
+  background: var(--primary-container, #006781);
+  color: #ffffff;
 }
 
 .choice-card--passenger .choice-card__icon-shell {
-  background: rgba(0, 231, 202, 0.15);
+  background: #ffffff;
+  color: var(--primary-container, #006781);
 }
 
 .choice-card__icon {
-  font-size: 3rem;
-  color: var(--primary);
-}
-
-.choice-card--passenger .choice-card__icon {
-  color: #006b5d;
+  font-size: 1.75rem;
 }
 
 .choice-card__title {
+  font-size: 1.75rem;
+  font-weight: 900;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--primary);
+  letter-spacing: -0.02em;
 }
 
-.choice-card--passenger .choice-card__title {
-  color: #006b5d;
+.choice-card--driver .choice-card__title {
+  color: var(--text-main);
 }
 
 .choice-card__text {
-  max-width: 20rem;
-  margin-bottom: 2.5rem;
+  font-size: 1rem;
   line-height: 1.6;
-  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+/* =========================================
+   4. LISTA DE RECURSOS E BOTÕES
+   ========================================= */
+.choice-card__features {
+  list-style: none;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.choice-card__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.choice-card--driver .choice-card__features .material-symbols-outlined {
+  color: var(--primary);
+  font-variation-settings: 'FILL' 1;
+}
+
+.choice-card--passenger .choice-card__features .material-symbols-outlined {
+  color: #ffffff;
+  font-variation-settings: 'FILL' 1;
 }
 
 .choice-card__button {
   width: 100%;
-  height: 4rem;
-  margin-top: auto;
-  border: 0;
+  padding: 1rem;
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--primary);
-  color: var(--on-primary);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.choice-card__button:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
+.choice-card--driver .choice-card__button {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.choice-card--driver .choice-card__button:hover {
+  background: var(--on-primary-fixed-variant, #004d62);
 }
 
 .choice-card--passenger .choice-card__button {
-  background: #006b5d;
+  background: #ffffff;
+  color: var(--primary-container, #006781);
+}
+
+.choice-card--passenger .choice-card__button:hover {
+  background: var(--surface-container, #eceeef);
 }
 
 /* =========================================
-   4. RODAPÉ DO SHELL
+   5. IMAGENS E INDICADORES DE CONFIANÇA
    ========================================= */
-.hero__footer-link {
+.choice-card__image-wrapper {
+  height: 8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-card--driver .choice-card__image-wrapper {
+  background: var(--surface-container-high, #e6e8e9);
+}
+
+.choice-card--passenger .choice-card__image-wrapper {
+  background: var(--primary, #004e62);
+}
+
+.choice-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.choice-card--driver .choice-card__image {
+  opacity: 0.6;
+}
+
+.choice-card--passenger .choice-card__image {
+  opacity: 0.5;
+}
+
+.choice-card:hover .choice-card__image {
+  transform: scale(1.05);
+}
+
+.trust-indicators {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
   align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  filter: grayscale(100%);
+  opacity: 0.4;
 }
 
-.login-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.login-link:hover {
-  color: var(--text-main);
-}
-
-.login-link__highlight {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.login-link:hover .login-link__highlight {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.trust-indicators span {
+  font-size: 1.125rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  font-family: "Lexend", sans-serif;
 }
 
 /* =========================================
-   5. RESPONSIVIDADE
+   6. RESPONSIVIDADE
    ========================================= */
 @media (max-width: 900px) {
   .hero__cards {
     grid-template-columns: 1fr;
-    gap: 2rem;
+  }
+  .hero__title-block {
+    text-align: center;
+    margin: 0 auto 4rem auto;
+  }
+  .hero__title {
+    font-size: 3.5rem;
+  }
+  .trust-indicators {
+    gap: 1.5rem;
   }
 }

@@ -4,16 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMUS Admin - Gestao de Administradores</title>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
   <link rel="stylesheet" href="../../assets/css/pages/admin/gestao/index.css" />
 </head>
+
 <body class="admin-management-page">
   <div class="admin-management-layout">
     <aside class="sidebar">
@@ -42,9 +37,7 @@
           <span class="material-symbols-outlined">login</span>
           <span>Trocar conta</span>
         </a>
-
         <div class="sidebar__divider"></div>
-
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">settings</span>
           <span>Configuracoes</span>
@@ -69,21 +62,21 @@
             <form class="admin-management-form">
               <div class="admin-management-form__field">
                 <label for="admin-name">Nome completo</label>
-                <input id="admin-name" type="text" placeholder="Ex: Juliana Pereira" />
+                <input id="admin-name" type="text" placeholder="Ex: Juliana Pereira" required />
               </div>
 
               <div class="admin-management-form__field">
                 <label for="admin-mail">E-mail institucional</label>
-                <input id="admin-mail" type="email" placeholder="juliana@sumus.com" />
+                <input id="admin-mail" type="email" placeholder="juliana@sumus.com" required />
               </div>
 
               <div class="admin-management-form__field">
                 <label for="admin-role">Nivel de acesso</label>
                 <select id="admin-role">
-                  <option>Editor senior</option>
-                  <option>Curador de dados</option>
-                  <option>Analista de sistemas</option>
-                  <option>Suporte operacional</option>
+                  <option value="Editor Senior">Editor senior</option>
+                  <option value="Curador de dados">Curador de dados</option>
+                  <option value="Analista de sistemas">Analista de sistemas</option>
+                  <option value="Suporte operacional">Suporte operacional</option>
                 </select>
               </div>
 
@@ -109,110 +102,19 @@
 
               <label class="admin-management-search">
                 <span class="material-symbols-outlined">search</span>
-                <input type="search" placeholder="Filtrar por nome ou cargo" />
+                <input type="search" id="admin-search" placeholder="Filtrar por nome ou cargo" />
               </label>
             </div>
 
-            <div class="admin-management-cards">
-              <article class="admin-user-card">
-                <div class="admin-user-card__avatar-wrap">
-                  <img
-                    class="admin-user-card__avatar"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96"
-                    alt="Marcus Aurelius"
-                  />
-                  <span class="admin-user-card__status admin-user-card__status--active"></span>
-                </div>
-
-                <div class="admin-user-card__body">
-                  <div class="admin-user-card__identity">
-                    <h3>Marcus Aurelius</h3>
-                    <span class="admin-user-card__badge">Curador Senior</span>
-                  </div>
-                  <p class="admin-user-card__email">marcus@sumus.com</p>
-                  <p class="admin-user-card__meta">Ultimo acesso: hoje, 09:42</p>
-                </div>
-
-                <div class="admin-user-card__actions">
-                  <button type="button" aria-label="Editar administrador">
-                    <span class="material-symbols-outlined">edit_square</span>
-                  </button>
-                  <button type="button" aria-label="Excluir administrador">
-                    <span class="material-symbols-outlined">delete</span>
-                  </button>
-                </div>
-              </article>
-
-              <article class="admin-user-card">
-                <div class="admin-user-card__avatar-wrap">
-                  <img
-                    class="admin-user-card__avatar"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_p_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96"
-                    alt="Livia Drusilla"
-                  />
-                  <span class="admin-user-card__status admin-user-card__status--active"></span>
-                </div>
-
-                <div class="admin-user-card__body">
-                  <div class="admin-user-card__identity">
-                    <h3>Livia Drusilla</h3>
-                    <span class="admin-user-card__badge">Arquivista</span>
-                  </div>
-                  <p class="admin-user-card__email">livia@sumus.com</p>
-                  <p class="admin-user-card__meta">Ultimo acesso: ontem, 18:15</p>
-                </div>
-
-                <div class="admin-user-card__actions">
-                  <button type="button" aria-label="Editar administrador">
-                    <span class="material-symbols-outlined">edit_square</span>
-                  </button>
-                  <button type="button" aria-label="Excluir administrador">
-                    <span class="material-symbols-outlined">delete</span>
-                  </button>
-                </div>
-              </article>
-
-              <article class="admin-user-card admin-user-card--muted">
-                <div class="admin-user-card__avatar-wrap">
-                  <img
-                    class="admin-user-card__avatar"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt_p_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96_v6p69q9x8p62v96"
-                    alt="Tiberius Nero"
-                  />
-                  <span class="admin-user-card__status admin-user-card__status--inactive"></span>
-                </div>
-
-                <div class="admin-user-card__body">
-                  <div class="admin-user-card__identity">
-                    <h3>Tiberius Nero</h3>
-                    <span class="admin-user-card__badge">Editor Junior</span>
-                  </div>
-                  <p class="admin-user-card__email">tiberius@sumus.com</p>
-                  <p class="admin-user-card__meta">Ultimo acesso: 12 out, 2023</p>
-                </div>
-
-                <div class="admin-user-card__actions">
-                  <button type="button" aria-label="Restaurar administrador">
-                    <span class="material-symbols-outlined">settings_backup_restore</span>
-                  </button>
-                  <button type="button" aria-label="Excluir administrador">
-                    <span class="material-symbols-outlined">delete</span>
-                  </button>
-                </div>
-              </article>
-            </div>
+            <div id="admin-list-container" class="admin-management-cards">
+              </div>
 
             <footer class="admin-management-pagination">
-              <p>Exibindo <strong>3</strong> de <strong>12</strong> registros</p>
+              <p id="pagination-info">Carregando registros...</p>
               <div class="admin-management-pagination__controls">
-                <button type="button" aria-label="Pagina anterior">
-                  <span class="material-symbols-outlined">chevron_left</span>
-                </button>
+                <button type="button"><span class="material-symbols-outlined">chevron_left</span></button>
                 <button class="is-active" type="button">1</button>
-                <button type="button">2</button>
-                <button type="button" aria-label="Proxima pagina">
-                  <span class="material-symbols-outlined">chevron_right</span>
-                </button>
+                <button type="button"><span class="material-symbols-outlined">chevron_right</span></button>
               </div>
             </footer>
           </section>
@@ -220,5 +122,7 @@
       </div>
     </main>
   </div>
+
+  <script src="../../assets/js/admin/gestao.js"></script>
 </body>
 </html>

@@ -1,3 +1,19 @@
+/* =========================================
+   1. IMPORTAÇÃO GLOBAL DE FONTES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* =========================================
+   2. VARIÁVEIS GLOBAIS DE TIPOGRAFIA
+   ========================================= */
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --text-main: #2c2f30;
+}
+
+/* =========================================
+   3. RESET CSS'
+   ========================================= */
 *,
 *::before,
 *::after {
@@ -15,8 +31,16 @@ body {
   min-height: 100%;
 }
 
+/* =========================================
+   4. TIPOGRAFIA GLOBAL
+   ========================================= */
 body {
   min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--background, #f5f6f7);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -31,8 +55,10 @@ a {
 }
 
 button,
-input {
-  font: inherit;
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 ul {
