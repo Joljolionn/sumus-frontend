@@ -1,109 +1,286 @@
-import dotenv from "dotenv";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
+// Importa módulos necessários
+const fs = require("fs");           // leitura de arquivos
+const path = require("path");       // manipulação de caminhos
+const dotenv = require("dotenv");   // variáveis de ambiente
+const express = require("express"); // framework web
 
-// carregar variáveis de ambiente
-dotenv.config();
+// Carrega variáveis do .env
+dotenv.config({ quiet: true });
 
-// resolver __dirname no ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Diretórios base do projeto
+const ROOT_DIR = __dirname;
+const PAGES_DIR = path.join(ROOT_DIR, "pages");   // pasta de páginas HTML
+const ASSETS_DIR = path.join(ROOT_DIR, "assets"); // CSS, JS, imagens
+const LANDING_PAGE = path.join(ROOT_DIR, "index.html");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+// Porta do servidor
+const PORT = Number.parseInt(process.env.PORT, 10) || 3000;
 
-// middleware
-app.use(express.json());
-
-// servir arquivos estáticos (css, js, imagens)
-app.use(express.static(__dirname));
-
-
-//  ROTA PRINCIPAL
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
+// Script de navegação que será injetado automaticamente
+const NAVIGATION_SCRIPT_TAG = '<script src="/assets/js/shared/navigation.js"></script>';
 
 
-//  ROTAS DINÂMICAS DRIVER
-app.get("/driver/:page", (req, res) => {
-    const filePath = path.join(
-        __dirname,
-        "pages",
-        "driver",
-        `${req.params.page}.html`
-    );
+// Converte caminho do sistema para padrão web (usa "/")
+function toPosixPath(value) {
+  return value.split(path.sep).join("/");
+}
 
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            res.status(404).send("Página não encontrada");
-        }
+
+// Normaliza nomes de rota (remove acento, espaço vira "-")
+function normalizeRouteSegment(segment) {
+  return segment
+    .normalize("NFD")                // separa acentos
+    .replace(/[\u0300-\u036f]/g, "") // remove acentos
+    .replace(/\s+/g, "-")            // espaço → hífen
+    .toLowerCase();
+}
+
+
+// Percorre pasta recursivamente e pega todos HTML
+function collectHtmlFiles(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = path.join(directory, entry.name);
+
+    // Se for pasta, entra nela
+    if (entry.isDirectory()) {
+      return collectHtmlFiles(entryPath);
+    }
+
+    // Se for HTML, adiciona
+    return entry.isFile() && entry.name.endsWith(".html") ? [entryPath] : [];
+  });
+}
+
+
+// Cria definição de rota para cada página
+function createPageDefinition(filePath) {
+  const relativePath = toPosixPath(path.relative(PAGES_DIR, filePath));
+
+  // Remove .html da rota
+  const routePath = relativePath.replace(/\.html$/i, "");
+
+  // Normaliza rota (sem acento, etc)
+  const normalizedRoutePath = routePath
+    .split("/")
+    .map(normalizeRouteSegment)
+    .join("/");
+
+  const rawRoute = `/${routePath}`;
+  const canonicalRoute = `/${normalizedRoutePath}`;
+
+  // Cria aliases (variações de acesso)
+  const aliases = new Set([
+    rawRoute,
+    `${rawRoute}.html`,
+    `${canonicalRoute}.html`,
+    `/pages/${routePath}.html`,
+    `/pages/${normalizedRoutePath}.html`,
+  ]);
+
+  // Remove duplicado da principal
+  aliases.delete(canonicalRoute);
+
+  return {
+    filePath,
+    canonicalRoute, // rota oficial
+    aliases: [...aliases], // variações
+  };
+}
+
+
+// Monta todas as páginas do sistema
+function buildPageRegistry() {
+  const contentPages = collectHtmlFiles(PAGES_DIR)
+    .map(createPageDefinition)
+    .sort((a, b) => a.canonicalRoute.localeCompare(b.canonicalRoute));
+
+  return [
+    {
+      filePath: LANDING_PAGE,
+      canonicalRoute: "/", // página inicial
+      aliases: ["/index", "/index.html"],
+    },
+    ...contentPages,
+  ];
+}
+
+
+// Cria registros de páginas
+const pageRegistry = buildPageRegistry();
+
+// Maps para busca rápida
+const pageFileLookup = new Map();   // rota → arquivo
+const pageAliasLookup = new Map();  // alias → rota oficial
+
+
+// Registra variações de rota no mapa
+function registerLookupEntry(lookup, routePath, value) {
+  lookup.set(routePath, value);
+  lookup.set(routePath.normalize("NFC"), value);
+  lookup.set(routePath.normalize("NFD"), value);
+}
+
+
+// Preenche os maps
+for (const page of pageRegistry) {
+  registerLookupEntry(pageFileLookup, page.canonicalRoute, page.filePath);
+
+  for (const alias of page.aliases) {
+    registerLookupEntry(pageAliasLookup, alias, page.canonicalRoute);
+  }
+}
+
+
+// Injeta script de navegação no HTML automaticamente
+function injectSharedScripts(html) {
+  // Se já tem, não duplica
+  if (html.includes(NAVIGATION_SCRIPT_TAG)) {
+    return html;
+  }
+
+  // Insere antes do </body>
+  if (/<\/body>/i.test(html)) {
+    return html.replace(/<\/body>/i, `${NAVIGATION_SCRIPT_TAG}\n</body>`);
+  }
+
+  // Se não tiver body, adiciona no final
+  return `${html}\n${NAVIGATION_SCRIPT_TAG}`;
+}
+
+
+// Envia HTML como resposta
+function sendHtml(filePath, res) {
+  fs.readFile(filePath, "utf8", (error, html) => {
+    if (error) {
+      res.status(500).send("Nao foi possivel carregar a pagina.");
+      return;
+    }
+
+    res.type("html").send(injectSharedScripts(html));
+  });
+}
+
+
+// Gera variações de rota (decodificada + unicode)
+function getRouteVariants(routePath) {
+  const decodedPath = decodeURIComponent(routePath);
+
+  const variants = new Set([routePath, decodedPath]);
+
+  for (const value of [...variants]) {
+    variants.add(value.normalize("NFC"));
+    variants.add(value.normalize("NFD"));
+  }
+
+  return [...variants];
+}
+
+
+// Resolve requisição de página
+function resolvePageRequest(routePath) {
+  for (const routeVariant of getRouteVariants(routePath)) {
+
+    // Busca direta
+    const filePath = pageFileLookup.get(routeVariant);
+    if (filePath) {
+      return { type: "page", filePath };
+    }
+
+    // Busca por alias
+    const canonicalRoute = pageAliasLookup.get(routeVariant);
+    if (canonicalRoute) {
+      return { type: "redirect", canonicalRoute };
+    }
+  }
+
+  return null;
+}
+
+
+// Cria aplicação Express
+function createApp() {
+  const app = express();
+
+  app.disable("x-powered-by"); // remove header por segurança
+  app.use(express.json());
+
+  // Serve arquivos estáticos (CSS, JS, imagens)
+  app.use(
+    "/assets",
+    express.static(ASSETS_DIR, {
+      extensions: false,
+      index: false,
+    })
+  );
+
+  // Endpoint de saúde do servidor
+  app.get("/health", (_req, res) => {
+    res.json({
+      status: "ok",
+      pages: pageRegistry.length,
     });
-});
+  });
+
+  // Middleware principal de roteamento
+  app.use((req, res, next) => {
+
+    // Só trata GET/HEAD
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      next();
+      return;
+    }
+
+    const resolvedRequest = resolvePageRequest(req.path);
+
+    // Se não encontrou rota
+    if (!resolvedRequest) {
+      next();
+      return;
+    }
+
+    // Se for alias → redireciona
+    if (resolvedRequest.type === "redirect") {
+      res.redirect(302, resolvedRequest.canonicalRoute);
+      return;
+    }
+
+    // Se for página → envia HTML
+    sendHtml(resolvedRequest.filePath, res);
+  });
+
+  // 404 fallback
+  app.use((_req, res) => {
+    res.status(404).send("Pagina nao encontrada.");
+  });
+
+  return app;
+}
 
 
-//  ROTAS DINÂMICAS PASSENGER (opcional)
-app.get("/passenger/:page", (req, res) => {
-    const filePath = path.join(
-        __dirname,
-        "pages",
-        "passenger",
-        `${req.params.page}.html`
+// Cria app
+const app = createApp();
+
+
+// Inicia servidor
+function startServer(port = PORT) {
+  return app.listen(port, () => {
+    console.log(
+      `Servidor rodando em http://localhost:${port} com ${pageRegistry.length} paginas registradas.`
     );
-
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            res.status(404).send("Página não encontrada");
-        }
-    });
-});
-
-app.get("/admin/:page", (req, res) => {
-    const filePath = path.join(
-        __dirname,
-        "pages",
-        "admin",
-        `${req.params.page}.html`
-    );
-
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            res.status(404).send("Página não encontrada");
-        }
-    });
-});
-
-//  LOGIN DRIVER
-app.post("/login/driver", (req, res) => {
-    const { email, senha } = req.body;
-
-    console.log("Driver:", email, senha);
-
-    res.json({ message: "Login driver recebido" });
-});
+  });
+}
 
 
-//  LOGIN PASSENGER
-app.post("/login/passenger", (req, res) => {
-    const { email, senha } = req.body;
-
-    console.log("Passenger:", email, senha);
-
-    res.json({ message: "Login passenger recebido" });
-});
-
-//  LOGIN ADMIN
-app.post("/login/admin", (req, res) => {
-    const { email, senha } = req.body;
-
-    console.log("Admin:", email, senha);
-
-    res.json({ message: "Login admin recebido" });
-});
+// Executa só se for arquivo principal
+if (require.main === module) {
+  startServer();
+}
 
 
-//  iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+// Exporta para uso externo (testes, etc)
+module.exports = {
+  app,
+  createApp,
+  pageRegistry,
+  startServer,
+};

@@ -59,3 +59,23 @@ assets/css/
 - `pages/driver/perfil-motorista.html` -> `assets/css/pages/driver/perfil-motorista/index.css`
 - `pages/passenger/home-passageiro.html` -> `assets/css/pages/passenger/home-passageiro/index.css`
 - `pages/passenger/perfil-passageiro.html` -> `assets/css/pages/passenger/perfil-passageiro/index.css`
+
+## Servidor Express
+
+- iniciar em desenvolvimento: `npm run dev`
+- iniciar normalmente: `npm start`
+- `index.html` e cada arquivo em `pages/**/*.html` sao publicados automaticamente pelo Express
+- a URL canonica remove a extensao `.html`
+
+Exemplos:
+
+- `index.html` -> `/`
+- `pages/cadastro-step-0.html` -> `/cadastro-step-0`
+- `pages/driver/login.html` -> `/driver/login`
+- `pages/admin/dashboard.html` -> `/admin/dashboard`
+
+Compatibilidade:
+
+- URLs antigas com `.html` continuam funcionando por redirecionamento
+- URLs antigas com prefixo `/pages/...` tambem redirecionam para a rota canonica
+- arquivos estaticos ficam expostos em `/assets`

@@ -1,10 +1,11 @@
 {
   "name": "sumus-frontend",
   "version": "1.0.0",
-  "description": "Arquitetura de CSS organizada para manutencao incremental",
-  "main": "index.js",
+  "description": "Frontend estatico da SUMUS servido por Express",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

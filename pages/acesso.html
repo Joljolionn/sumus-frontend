@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro - SUMUS</title>
-  
+  <title>Acesso - SUMUS</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,37 +14,33 @@
   <link rel="stylesheet" href="/assets/css/utilities/common.css" />
   <link rel="stylesheet" href="/assets/css/components/marketing-nav.css" />
   <link rel="stylesheet" href="/assets/css/components/marketing-footer.css" />
-  
   <link rel="stylesheet" href="/assets/css/pages/cadastro-step-0/index.css" />
 </head>
 
 <body class="page">
-  
   <nav class="topbar">
     <div class="topbar__content">
       <div class="topbar__brand">SUMUS</div>
       <div class="topbar__menu">
-        <a class="topbar__link" href="#">Viajar</a>
-        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
-        <a class="topbar__link" href="#">Sobre</a>
+        <a class="topbar__link" href="/passenger/login">Viajar</a>
+        <a class="topbar__link" href="/driver/login">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="/#valores">Sobre</a>
       </div>
       <div class="topbar__actions">
-        <button class="topbar__login" type="button">Fazer Login</button>
-        <button class="topbar__signup topbar__link--active" type="button">Cadastre-se</button>
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
       </div>
     </div>
   </nav>
 
   <main class="hero">
     <div class="hero__content">
-      
       <div class="hero__title-block">
-        <h2 class="hero__title">Escolha seu caminho</h2>
-        <p class="hero__subtitle">Selecione como deseja se integrar à nossa comunidade</p>
+        <h2 class="hero__title">Escolha seu acesso</h2>
+        <p class="hero__subtitle">Entre no painel correto sem precisar digitar URLs manualmente.</p>
       </div>
 
       <div class="hero__cards">
-        
         <div class="choice-card">
           <div class="choice-card__inner">
             <div class="choice-card__icon-shell">
@@ -52,10 +48,10 @@
             </div>
             <h3 class="choice-card__title">Motorista Parceiro</h3>
             <p class="choice-card__text">
-              Transforme sua rotina em uma jornada de dignidade. Receba recompensas justas e suporte especializado.
+              Acesse corridas, veículos, histórico e financeiro do seu painel.
             </p>
-            <a class="choice-card__button" href="/driver/cadastro-step-1">
-              <span>Cadastrar como Motorista</span>
+            <a class="choice-card__button" href="/driver/login">
+              <span>Entrar como Motorista</span>
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
@@ -70,10 +66,10 @@
             </div>
             <h3 class="choice-card__title">Passageiro PCD</h3>
             <p class="choice-card__text">
-              Experimente o conforto de uma mobilidade inclusiva. Atendimento especializado para garantir sua autonomia total.
+              Entre para solicitar viagens, ajustar preferências e gerenciar pagamentos.
             </p>
             <a class="choice-card__button" href="/passenger/login">
-              <span>Cadastrar como Passageiro</span>
+              <span>Entrar como Passageiro</span>
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
@@ -81,63 +77,52 @@
           <div class="choice-card__corner choice-card__corner--bottom"></div>
         </div>
       </div>
-
-      <div class="hero__footer-link">
-        <a class="login-link" href="#">
-          <span>Já possui uma conta?</span>
-          <span class="login-link__highlight">Acessar login</span>
-        </a>
-      </div>
-
     </div>
   </main>
 
   <footer class="page-footer">
-  <div class="page-footer__content">
-    
-    <div class="page-footer__grid">
-      <div class="page-footer__brand-block">
-        <span class="page-footer__brand">SUMUS</span>
-        <p class="page-footer__tagline">
-          Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
-        </p>
+    <div class="page-footer__content">
+      <div class="page-footer__grid">
+        <div class="page-footer__brand-block">
+          <span class="page-footer__brand">SUMUS</span>
+          <p class="page-footer__tagline">
+            Transformando a mobilidade para um mundo mais inclusivo e acessível para todos.
+          </p>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Empresa</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="/#valores">Sobre nós</a></li>
+            <li><a class="page-footer__link" href="/#valores">Trabalhe Conosco</a></li>
+            <li><a class="page-footer__link" href="/#valores">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Legal</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="/#contato">Termos de Uso</a></li>
+            <li><a class="page-footer__link" href="/#contato">Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="page-footer__group">
+          <h5 class="page-footer__group-title">Suporte</h5>
+          <ul class="page-footer__list">
+            <li><a class="page-footer__link" href="/#contato">Central de Ajuda</a></li>
+            <li><a class="page-footer__link" href="/#contato">Contato</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Empresa</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Sobre nós</a></li>
-          <li><a class="page-footer__link" href="#">Trabalhe Conosco</a></li>
-          <li><a class="page-footer__link" href="#">Blog</a></li>
-        </ul>
-      </div>
-
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Legal</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Termos de Uso</a></li>
-          <li><a class="page-footer__link" href="#">Privacidade</a></li>
-        </ul>
-      </div>
-
-      <div class="page-footer__group">
-        <h5 class="page-footer__group-title">Suporte</h5>
-        <ul class="page-footer__list">
-          <li><a class="page-footer__link" href="#">Central de Ajuda</a></li>
-          <li><a class="page-footer__link" href="#">Contato</a></li>
-        </ul>
+      <div class="page-footer__bottom">
+        <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
+        <div class="page-footer__badges">
+          <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
+        </div>
       </div>
     </div>
-
-    <div class="page-footer__bottom">
-      <p>© 2024 SUMUS Mobility. Todos os direitos reservados.</p>
-      <div class="page-footer__badges">
-        <span class="flex items-center gap-2">WCAG 2.1 AAA Compliant</span>
-      </div>
-    </div>
-
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>

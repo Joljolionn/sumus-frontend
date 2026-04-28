@@ -1,77 +1,72 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById('container');
-    const registerBtn = document.getElementById('register');
-    const loginBtn = document.getElementById('login');
+    const auth = window.SumusAuth;
+    const role = "passenger";
+    const container = document.getElementById("container");
+    const registerBtn = document.getElementById("register");
+    const loginBtn = document.getElementById("login");
+    const msgError = document.getElementById("msgError");
+    const msgSuccess = document.getElementById("msgSuccess");
+    const activeSession = auth?.getSessionForRole(role);
 
-    registerBtn.addEventListener('click', () => {
+    function showMessage(element, message) {
+        element.textContent = message;
+        element.style.display = "block";
+        setTimeout(() => {
+            element.style.display = "none";
+        }, 4000);
+    }
+
+    if (!auth) {
+        return;
+    }
+
+    if (activeSession) {
+        window.location.href = auth.getDashboardRoute(role);
+        return;
+    }
+
+    registerBtn.addEventListener("click", () => {
         container.classList.add("active");
     });
 
-    loginBtn.addEventListener('click', () => {
+    loginBtn.addEventListener("click", () => {
         container.classList.remove("active");
     });
-
-    function dados() {
-        const ds = [
-            { id: 0, login: "Silvia", password: "69", email: "silviaCach@sumus.com" }
-        ];
-        const storedUsers = localStorage.getItem("usuarios");
-        return storedUsers ? JSON.parse(storedUsers) : ds;
-    }
 
     function login(event) {
         event.preventDefault();
 
-        let emailInput = document.querySelector("#loginInput").value;
-        let passwordInput = document.querySelector("#passwordInput").value;
-        const usuarios = dados();
+        const emailInput = document.querySelector("#loginInput").value;
+        const passwordInput = document.querySelector("#passwordInput").value;
+        const userFound = auth.findUserByCredentials(emailInput, passwordInput, role);
 
-        const userFound = usuarios.find(u => u.email === emailInput && u.password === passwordInput);
-
-        if (userFound) {
-            localStorage.setItem("loggedUser", JSON.stringify(userFound));
-            window.location.href = `home-passageiro.html`;
-        } else {
-            const msgError = document.getElementById('msgError');
-            msgError.textContent = "E-mail ou senha incorretos.";
-            msgError.style.display = "block";
-            setTimeout(() => msgError.style.display = "none", 3000);
+        if (!userFound) {
+            showMessage(msgError, "E-mail ou senha incorretos.");
+            return;
         }
+
+        auth.setSession(userFound, role);
+        window.location.href = auth.getDashboardRoute(role);
     }
 
     function register(event) {
         event.preventDefault();
 
-        let newLogin = document.querySelector("#newLogin").value;
-        let newEmail = document.querySelector("#newEmail").value;
-        let newPassword = document.querySelector("#newPassword").value;
+        const result = auth.registerUser({
+            login: document.querySelector("#newLogin").value,
+            email: document.querySelector("#newEmail").value,
+            password: document.querySelector("#newPassword").value,
+            role,
+        });
 
-        let usuarios = dados();
-        
-        if (usuarios.some(u => u.email === newEmail)) {
-            const msgError = document.getElementById('msgError');
-            msgError.textContent = "Este e-mail ou senha já está cadastrado!";
-            msgError.style.display = "block";
-            setTimeout(() => msgError.style.display = "none", 3000);
+        if (!result.ok) {
+            showMessage(msgError, result.message);
             return;
         }
 
-        let newUser = {
-            id: usuarios.length,
-            login: newLogin,
-            email: newEmail,
-            password: newPassword
-        };
-
-        usuarios.push(newUser);
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
         container.classList.remove("active");
-        
-        const msgSuccess = document.getElementById('msgSuccess');
-        msgSuccess.textContent = "Conta criada com sucesso! Faça login.";
-        msgSuccess.style.display = "block";
-        setTimeout(() => msgSuccess.style.display = "none", 4000);
+        showMessage(msgSuccess, "Conta criada com sucesso! Faça login.");
+        document.getElementById("registerForm").reset();
     }
 
     document.getElementById("loginForm").addEventListener("submit", login);
