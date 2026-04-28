@@ -1,7 +1,225 @@
-@import url("../../../base/reset.css");
-@import url("../../../utilities/common.css");
-@import url("../../../utilities/scrollbar.css");
-@import url("./tokens.css");
-@import url("../../../components/dashboard-sidebar.css");
-@import url("./layout.css");
-@import url("./form.css");
+/* =========================================
+   1. CABEÇALHO DA PÁGINA
+   ========================================= */
+.passenger-card__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.passenger-card__back-link:hover {
+  color: var(--text);
+}
+
+.passenger-card__eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.passenger-card__title {
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+
+.passenger-card__subtitle {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   2. ESTRUTURA PRINCIPAL (GRID)
+   ========================================= */
+.passenger-card__content {
+  display: grid;
+  grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+/* =========================================
+   3. PREVIEW DO CARTÃO (O Cartão Virtual)
+   ========================================= */
+.passenger-card-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 13rem; /* Altura do cartão reduzida */
+  padding: 1.5rem; /* Padding reduzido */
+  border-radius: 1.25rem; /* Curva mais suave */
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.15), transparent 40%),
+    linear-gradient(135deg, #00789a 0%, #005d76 60%, #013f51 100%);
+  color: #ffffff;
+  box-shadow: 0 15px 30px -10px rgba(0, 103, 129, 0.4); /* Sombra premium e contida */
+}
+
+.passenger-card-preview__top,
+.passenger-card-preview__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.passenger-card-preview__top .material-symbols-outlined {
+  font-size: 1.75rem; /* Ícone do chip/bandeira menor */
+}
+
+.passenger-card-preview__label,
+.passenger-card-preview__meta-label {
+  margin: 0;
+  font-size: 0.65rem; /* Labels microscópicas e elegantes */
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.passenger-card-preview__brand {
+  margin: 0.25rem 0 0 0;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.3rem; /* Nome da marca menor */
+  font-weight: 700;
+}
+
+.passenger-card-preview__number {
+  margin: 0 0 1rem 0; /* Espaço inferior ajustado */
+  font-family: "Courier New", monospace;
+  font-size: 1.25rem; /* Números mais proporcionais */
+  letter-spacing: 0.2em;
+}
+
+.passenger-card-preview__meta-value {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem; /* Valores do titular/validade menores */
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   4. FORMULÁRIO DE CADASTRO
+   ========================================= */
+.passenger-card-form-wrap {
+  padding: 1.5rem; /* Padding do container do form menor */
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 1.25rem; /* Curva alinhada com o preview */
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.passenger-card-form {
+  display: grid;
+  gap: 1.25rem; /* Espaço entre os campos mais coeso */
+}
+
+.passenger-card-form__field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.passenger-card-form__field label {
+  color: var(--text-muted);
+  font-size: 0.7rem; /* Label do form enxuta */
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.passenger-card-form__field input {
+  width: 100%;
+  border: 0;
+  border-radius: 0.75rem; /* Inputs mais quadrados (moderno) */
+  padding: 0.85rem 1rem; /* Inputs mais finos */
+  background: var(--surface-low);
+  color: var(--text);
+  font-size: 0.95rem; /* Texto do input ajustado */
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+
+.passenger-card-form__field input:focus {
+  outline-color: rgba(0, 103, 129, 0.18);
+  background: var(--surface);
+}
+
+.passenger-card-form__field input::placeholder {
+  color: #a0aab0;
+}
+
+.passenger-card-form__control {
+  position: relative;
+}
+
+.passenger-card-form__control--icon .material-symbols-outlined {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.25rem; /* Ícone dentro do input reduzido */
+}
+
+.passenger-card-form__control--icon input {
+  padding-left: 2.75rem; /* Ajuste para o ícone menor */
+}
+
+.passenger-card-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Botão Blindado contra bug do Hover */
+.passenger-card-form__submit {
+  border: 1px solid var(--primary);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.25rem; /* Botão mais fino */
+  margin-top: 0.5rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-family: "Lexend", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.passenger-card-form__submit:hover {
+  background: #003b4a; /* Cor fixa azul escuro para evitar o sumiço da variável */
+  border-color: #003b4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 59, 74, 0.2);
+}
+
+/* =========================================
+   5. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 920px) {
+  .passenger-card__content {
+    grid-template-columns: 1fr; /* O cartão fica em cima e o form embaixo */
+  }
+}
+
+@media (max-width: 480px) {
+  .passenger-card-form__grid {
+    grid-template-columns: 1fr; /* CVV e Validade empilham no celular */
+  }
+}

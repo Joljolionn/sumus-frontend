@@ -218,7 +218,7 @@ body.page {
    5. IMAGENS E INDICADORES DE CONFIANÇA
    ========================================= */
 .choice-card__image-wrapper {
-  height: 8rem;
+  height: 15rem;
   position: relative;
   overflow: hidden;
 }
