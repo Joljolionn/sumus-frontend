@@ -4,75 +4,79 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMUS - Passageiro</title>
-  
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
-  
+
   <link rel="stylesheet" href="/assets/css/base/reset.css" />
   <link rel="stylesheet" href="/assets/css/utilities/common.css" />
   <link rel="stylesheet" href="/assets/css/components/dashboard-sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/map-core.css" />
-  
   <link rel="stylesheet" href="/assets/css/pages/passenger/home-passageiro/index.css" />
 </head>
-
 <body class="passenger-home">
   <div class="passenger-layout">
-    
     <aside class="sidebar">
       <div class="sidebar__brand">
         <span class="sidebar__brand-text">SUMUS</span>
       </div>
 
       <nav class="sidebar__nav">
-        <a class="sidebar__link" href="#">
+        <a class="sidebar__link sidebar__link--active" href="/passenger/home-passageiro">
           <span class="material-symbols-outlined">dashboard</span>
           <span>Dashboard</span>
         </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">payments</span>
-          <span>Avaliações</span>
-        </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">history</span>
-          <span>Histórico</span>
-        </a>
-
-        <div class="sidebar__group-title">Configurações</div>
-
-        <a class="sidebar__link" href="#">
+        <a class="sidebar__link" href="/passenger/perfil-passageiro">
           <span class="material-symbols-outlined">person_outline</span>
-          <span>Ajustes do Perfil</span>
+          <span>Perfil</span>
         </a>
-        
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">account_balance</span>
-          <span>Finanças</span>
+        <a class="sidebar__link" href="/passenger/cadastro-cartao">
+          <span class="material-symbols-outlined">payments</span>
+          <span>Pagamento</span>
         </a>
-        <a class="sidebar__link" href="#">
-          <span class="material-symbols-outlined">contact_support</span>
-          <span>Suporte</span>
+        <a class="sidebar__link" href="/passenger/configuracao">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Configuracoes</span>
+        </a>
+
+        <div class="sidebar__group-title">Viagem</div>
+
+        <a class="sidebar__link" href="#trip-request-form">
+          <span class="material-symbols-outlined">route</span>
+          <span>Solicitar corrida</span>
+        </a>
+        <a class="sidebar__link" href="#recent-destinations">
+          <span class="material-symbols-outlined">history</span>
+          <span>Destinos recentes</span>
         </a>
       </nav>
 
       <div class="sidebar__footer">
         <div class="sidebar__profile">
-          <img alt="Foto de perfil do usuário" class="sidebar__profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"/>
+          <img
+            alt="Foto de perfil do usuario"
+            class="sidebar__profile-img"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms"
+          />
           <div class="sidebar__profile-info">
-            <p class="sidebar__profile-name">Usuário</p>
-            <p class="sidebar__profile-status">Passageira PCD</p>
+            <p class="sidebar__profile-name">Usuario</p>
+            <p class="sidebar__profile-status">Passageiro ativo</p>
           </div>
         </div>
 
         <button class="sidebar__emergency" type="button">
           <span class="material-symbols-outlined">e911_emergency</span>
-          <span>Emergência</span>
+          <span>Emergencia</span>
         </button>
-        
+
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">logout</span>
           <span>Sair</span>
@@ -85,106 +89,219 @@
         <div class="map-stage__overlay"></div>
         <div id="passenger-map" class="map-stage__map" aria-label="Mapa interativo do passageiro"></div>
 
-        <div class="map-center-pin" aria-hidden="true">
-          <span class="map-center-pin__ring"></span>
-          <span class="map-center-pin__dot"></span>
+        <div class="map-guide">
+          <p class="map-guide__eyebrow">Mapa interativo</p>
+          <p class="map-guide__text">
+            Selecione origem ou destino no formulario e clique no mapa para marcar o ponto.
+          </p>
         </div>
 
         <div class="quick-actions">
-          <button class="quick-actions__button" id="recenter-passenger-map" type="button" aria-label="Centralizar mapa">
+          <button
+            class="quick-actions__button"
+            id="recenter-passenger-map"
+            type="button"
+            aria-label="Centralizar mapa"
+          >
             <span class="material-symbols-outlined">my_location</span>
           </button>
-          <button class="quick-actions__button quick-actions__button--primary" type="button" aria-label="Alternar visualização do mapa">
-            <span class="material-symbols-outlined">map</span>
+          <button
+            class="quick-actions__button quick-actions__button--primary"
+            id="clear-passenger-route"
+            type="button"
+            aria-label="Limpar rota"
+          >
+            <span class="material-symbols-outlined">close</span>
           </button>
         </div>
       </section>
     </main>
 
-    <aside class="destination-panel">
-      <div class="destination-panel__inner">
-        <h2 class="destination-panel__title">Para onde?</h2>
+    <aside class="trip-panel">
+      <div class="trip-panel__inner">
+        <header class="trip-panel__header">
+          <p class="trip-panel__eyebrow">Solicitacao de locomocao</p>
+          <h1 class="trip-panel__title">Ir de um ponto ao outro</h1>
+          <p class="trip-panel__description">
+            Defina origem e destino para buscar um motorista acessivel e acompanhar a estimativa da viagem.
+          </p>
+        </header>
 
-        <div class="search-box">
-          <span class="material-symbols-outlined search-box__icon">search</span>
-          <input class="search-box__input" type="text" placeholder="Digite o destino..." />
-        </div>
+        <form class="trip-request-form" id="trip-request-form">
+          <div class="route-fields">
+            <label class="field-group" for="trip-origin">
+              <span class="field-group__label">Origem</span>
+              <div class="field-group__control" data-field="origin">
+                <span class="material-symbols-outlined field-group__icon field-group__icon--origin">trip_origin</span>
+                <input
+                  class="field-group__input"
+                  id="trip-origin"
+                  name="origin"
+                  list="trip-suggestions"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Use sua localizacao ou informe o ponto de partida"
+                />
+              </div>
+              <span class="field-group__hint">Clique aqui e depois no mapa para marcar a origem.</span>
+            </label>
 
-        <div class="destination-panel__subheader">
-          <h3 class="destination-panel__eyebrow">Destinos Recentes</h3>
-          <button class="destination-panel__clear" type="button">Limpar histórico</button>
-        </div>
+            <button
+              class="route-swap"
+              id="swap-trip-points"
+              type="button"
+              aria-label="Trocar origem e destino"
+            >
+              <span class="material-symbols-outlined">swap_vert</span>
+            </button>
 
-        <div class="destination-list">
-          <button class="destination-item" type="button">
-            <div class="destination-item__icon destination-item__icon--home">
-              <span class="material-symbols-outlined">home</span>
+            <label class="field-group" for="trip-destination">
+              <span class="field-group__label">Destino</span>
+              <div class="field-group__control" data-field="destination">
+                <span class="material-symbols-outlined field-group__icon field-group__icon--destination">location_on</span>
+                <input
+                  class="field-group__input"
+                  id="trip-destination"
+                  name="destination"
+                  list="trip-suggestions"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Digite o endereco, lugar ou marque no mapa"
+                />
+              </div>
+              <span class="field-group__hint">Selecione este campo para definir o destino no mapa.</span>
+            </label>
+          </div>
+
+          <div class="route-helper-actions">
+            <button class="secondary-action" id="use-current-location" type="button">
+              <span class="material-symbols-outlined">my_location</span>
+              <span>Usar minha localizacao</span>
+            </button>
+            <button class="secondary-action" id="fill-demo-route" type="button">
+              <span class="material-symbols-outlined">auto_awesome</span>
+              <span>Sugestao rapida</span>
+            </button>
+          </div>
+
+          <datalist id="trip-suggestions"></datalist>
+
+          <div class="trip-request-form__grid">
+            <label class="field-group" for="trip-support">
+              <span class="field-group__label">Apoio necessario</span>
+              <select class="field-group__select" id="trip-support" name="support">
+                <option value="embarque">Apoio para embarque</option>
+                <option value="cadeira">Levar cadeira dobravel</option>
+                <option value="acompanhante">Viajar com acompanhante</option>
+                <option value="sem-apoio">Sem apoio adicional</option>
+              </select>
+            </label>
+
+            <label class="field-group field-group--full" for="trip-notes">
+              <span class="field-group__label">Observacoes</span>
+              <textarea
+                class="field-group__textarea"
+                id="trip-notes"
+                name="notes"
+                rows="3"
+                placeholder="Ex.: entrada acessivel, ponto de encontro ou instrucao para o motorista."
+              ></textarea>
+            </label>
+          </div>
+
+          <section class="estimate-card" id="trip-estimate-card" aria-live="polite">
+            <div class="estimate-card__header">
+              <div>
+                <p class="estimate-card__eyebrow">Resumo da viagem</p>
+                <h2 class="estimate-card__title">Estimativa atual</h2>
+              </div>
+              <span class="estimate-card__badge" id="trip-status-badge">Defina os pontos</span>
             </div>
-            <div class="destination-item__content">
-              <p class="destination-item__title">Casa</p>
-              <p class="destination-item__text">Rua das Flores, 123 - São Paulo</p>
+
+            <div class="estimate-grid">
+              <article class="estimate-item">
+                <span class="estimate-item__label">Distancia</span>
+                <strong class="estimate-item__value" id="trip-distance">-</strong>
+              </article>
+              <article class="estimate-item">
+                <span class="estimate-item__label">Tempo</span>
+                <strong class="estimate-item__value" id="trip-duration">-</strong>
+              </article>
+              <article class="estimate-item">
+                <span class="estimate-item__label">Valor estimado</span>
+                <strong class="estimate-item__value" id="trip-fare">-</strong>
+              </article>
             </div>
+
+            <div class="route-preview">
+              <div class="route-preview__point">
+                <span class="material-symbols-outlined route-preview__icon route-preview__icon--origin">trip_origin</span>
+                <div class="route-preview__copy">
+                  <p class="route-preview__label">Saida</p>
+                  <strong class="route-preview__value" id="preview-origin">Origem nao definida</strong>
+                </div>
+              </div>
+              <div class="route-preview__divider"></div>
+              <div class="route-preview__point">
+                <span class="material-symbols-outlined route-preview__icon route-preview__icon--destination">location_on</span>
+                <div class="route-preview__copy">
+                  <p class="route-preview__label">Chegada</p>
+                  <strong class="route-preview__value" id="preview-destination">Destino nao definido</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <button class="trip-submit" id="trip-submit" type="submit">Solicitar locomocao</button>
+          <p class="trip-feedback" id="trip-feedback" role="status" aria-live="polite"></p>
+        </form>
+
+        <section class="saved-places">
+          <div class="section-heading">
+            <div>
+              <p class="section-heading__eyebrow">Acesso rapido</p>
+              <h2 class="section-heading__title">Destinos recentes</h2>
+            </div>
+            <button class="section-heading__action" id="clear-recent-places" type="button">Limpar</button>
+          </div>
+
+          <div class="destination-list" id="recent-destinations"></div>
+        </section>
+
+        <section class="active-request" id="active-request-card" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-heading__eyebrow">Solicitacao ativa</p>
+              <h2 class="section-heading__title" id="active-request-title">Motorista sendo procurado</h2>
+            </div>
+            <span class="active-request__status" id="active-request-status">Em andamento</span>
+          </div>
+
+          <p class="active-request__route" id="active-request-route"></p>
+          <div class="active-request__meta">
+            <span id="active-request-time"></span>
+            <span id="active-request-price"></span>
+            <span id="active-request-support"></span>
+          </div>
+          <p class="active-request__driver" id="active-request-driver"></p>
+          <p class="active-request__notes" id="active-request-notes"></p>
+
+          <button class="active-request__cancel" id="cancel-active-request" type="button">
+            Cancelar solicitacao
           </button>
-
-          <button class="destination-item" type="button">
-            <div class="destination-item__icon destination-item__icon--work">
-              <span class="material-symbols-outlined">work</span>
-            </div>
-            <div class="destination-item__content">
-              <p class="destination-item__title">Escritório</p>
-              <p class="destination-item__text">Av. Paulista, 1578 - Conjunto 4B</p>
-            </div>
-          </button>
-
-          <button class="destination-item" type="button">
-            <div class="destination-item__icon destination-item__icon--gym">
-              <span class="material-symbols-outlined">fitness_center</span>
-            </div>
-            <div class="destination-item__content">
-              <p class="destination-item__title">Fisioterapia</p>
-              <p class="destination-item__text">Rua Augusta, 2400</p>
-            </div>
-          </button>
-        </div>
+        </section>
       </div>
     </aside>
   </div>
 
   <script src="/assets/js/shared/auth.js"></script>
   <script src="/assets/js/shared/user-session.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    const defaultLocation = [-23.55052, -46.633308]; // SP
-    const passengerMap = L.map('passenger-map', {
-      zoomControl: false,
-    }).setView(defaultLocation, 14);
-
-    L.control.zoom({ position: 'bottomright' }).addTo(passengerMap);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap',
-    }).addTo(passengerMap);
-
-    passengerMap.attributionControl.setPrefix('');
-
-    const recenterPassengerMapButton = document.getElementById('recenter-passenger-map');
-    
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLocation = [position.coords.latitude, position.coords.longitude];
-          passengerMap.setView(userLocation, 16);
-        },
-        () => {
-          console.warn("Geolocalização negada ou falhou. Mantendo local padrão.");
-        }
-      );
-    }
-
-    recenterPassengerMapButton.addEventListener('click', () => {
-      passengerMap.setView(defaultLocation, 16, { animate: true });
-    });
-  </script>
+  <script src="/assets/js/shared/trip-requests.js"></script>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="/assets/js/passenger/home-passageiro.js"></script>
 </body>
 </html>

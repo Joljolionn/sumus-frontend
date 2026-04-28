@@ -1,0 +1,222 @@
+.trip-queue {
+  position: absolute;
+  top: 6rem;
+  right: 1.5rem;
+  z-index: 1800;
+  width: min(25rem, calc(100% - 3rem));
+  max-height: calc(100vh - 7.5rem);
+  pointer-events: none;
+}
+
+.trip-queue__inner {
+  display: grid;
+  gap: 1rem;
+  max-height: inherit;
+  padding: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 26px 50px -30px rgba(12, 15, 16, 0.7);
+  backdrop-filter: blur(18px);
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+.trip-queue__header,
+.trip-queue__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.trip-queue__eyebrow,
+.trip-queue__card-label {
+  margin: 0 0 0.3rem;
+  color: var(--text-muted);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.trip-queue__title,
+.trip-queue__passenger,
+.trip-queue__empty-title {
+  margin: 0;
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+}
+
+.trip-queue__title {
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.trip-queue__badge,
+.trip-queue__card-badge {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 104, 90, 0.12);
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.trip-queue__summary,
+.trip-queue__feedback,
+.trip-queue__route,
+.trip-queue__support,
+.trip-queue__time,
+.trip-queue__notes,
+.trip-queue__empty-text {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.trip-queue__feedback {
+  min-height: 1.4rem;
+  font-weight: 700;
+}
+
+.trip-queue__feedback[data-state="error"] {
+  color: var(--error);
+}
+
+.trip-queue__feedback[data-state="success"] {
+  color: var(--primary);
+}
+
+.trip-queue__feedback[data-state="info"] {
+  color: var(--text);
+}
+
+.trip-queue__card {
+  display: grid;
+  gap: 0.95rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(171, 173, 174, 0.18);
+  border-radius: 1.2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(239, 241, 242, 0.96) 100%);
+}
+
+.trip-queue__card[hidden] {
+  display: none;
+}
+
+.trip-queue__card--empty {
+  justify-items: start;
+}
+
+.trip-queue__empty-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 104, 90, 0.1);
+  color: var(--primary);
+}
+
+.trip-queue__route {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.trip-queue__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.trip-queue__meta span {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 104, 90, 0.08);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.trip-queue__accept {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 0;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #00685a 0%, #0d9488 100%);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.96rem;
+  font-weight: 800;
+  box-shadow: 0 18px 35px -24px rgba(0, 104, 90, 0.9);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.trip-queue__accept:hover {
+  transform: translateY(-1px);
+}
+
+.trip-queue__accept:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.leaflet-div-icon.driver-trip-marker {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  border: 0;
+  background: transparent;
+}
+
+.driver-trip-marker__dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 10px 18px rgba(12, 15, 16, 0.2);
+}
+
+.driver-trip-marker--origin .driver-trip-marker__dot {
+  background: #00685a;
+}
+
+.driver-trip-marker--destination .driver-trip-marker__dot {
+  background: #0f766e;
+}
+
+@media (max-width: 1024px) {
+  .trip-queue {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    width: auto;
+    max-height: min(26rem, calc(100vh - 2rem));
+  }
+}
+
+@media (max-width: 640px) {
+  .trip-queue {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    max-height: min(24rem, calc(100vh - 1.5rem));
+  }
+
+  .trip-queue__inner {
+    padding: 1rem;
+  }
+
+  .trip-queue__header,
+  .trip-queue__card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

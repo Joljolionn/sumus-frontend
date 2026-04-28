@@ -109,68 +109,64 @@
 
         </div>
       </section>
+
+      <aside class="trip-queue">
+        <div class="trip-queue__inner">
+          <header class="trip-queue__header">
+            <div>
+              <p class="trip-queue__eyebrow">Solicitacoes</p>
+              <h1 class="trip-queue__title">Corridas proximas</h1>
+            </div>
+            <span class="trip-queue__badge" id="driver-request-badge">0 pendentes</span>
+          </header>
+
+          <p class="trip-queue__summary" id="driver-request-summary">
+            Fique online para receber solicitacoes de passageiros em tempo real.
+          </p>
+          <p class="trip-queue__feedback" id="driver-request-feedback" role="status" aria-live="polite"></p>
+
+          <article class="trip-queue__card trip-queue__card--empty" id="driver-request-empty">
+            <span class="material-symbols-outlined trip-queue__empty-icon">route</span>
+            <p class="trip-queue__empty-title">Nenhuma solicitacao no momento</p>
+            <p class="trip-queue__empty-text">
+              Assim que um passageiro solicitar uma corrida, ela vai aparecer aqui para aceite.
+            </p>
+          </article>
+
+          <article class="trip-queue__card" id="driver-request-card" hidden>
+            <div class="trip-queue__card-head">
+              <p class="trip-queue__card-label" id="driver-request-state-label">Nova solicitacao</p>
+              <span class="trip-queue__card-badge" id="driver-request-state-badge">Aguardando</span>
+            </div>
+
+            <h2 class="trip-queue__passenger" id="driver-request-passenger">Passageiro</h2>
+            <p class="trip-queue__route" id="driver-request-route"></p>
+
+            <div class="trip-queue__meta">
+              <span id="driver-request-distance"></span>
+              <span id="driver-request-duration"></span>
+              <span id="driver-request-price"></span>
+            </div>
+
+            <p class="trip-queue__support" id="driver-request-support"></p>
+            <p class="trip-queue__time" id="driver-request-time"></p>
+            <p class="trip-queue__notes" id="driver-request-notes"></p>
+
+            <button class="trip-queue__accept" id="accept-trip-request" type="button">
+              Aceitar solicitacao
+            </button>
+          </article>
+        </div>
+      </aside>
     </main>
   </div>
 
   <script src="/assets/js/shared/auth.js"></script>
   <script src="/assets/js/shared/user-session.js"></script>
+  <script src="/assets/js/shared/trip-requests.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    const gpsToggle = document.getElementById('gps-toggle');
-    const gpsStatusText = document.getElementById('gps-status-text');
-    const gpsPulseContainer = document.getElementById('gps-pulse-container');
-    const recenterMapButton = document.getElementById('recenter-map');
-
-    let isGpsActive = true;
-
-    const defaultLocation = [-23.55052, -46.633308];
-    const driverMap = L.map('driver-map', {
-      zoomControl: false,
-    }).setView(defaultLocation, 14);
-
-    L.control.zoom({ position: 'bottomright' }).addTo(driverMap);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap',
-    }).addTo(driverMap);
-
-    const driverMarker = L.marker(defaultLocation).addTo(driverMap);
-
-    function setGpsState(active) {
-      isGpsActive = active;
-      gpsToggle.setAttribute('aria-checked', String(active));
-      gpsToggle.classList.toggle('gps-toggle--active', active);
-      gpsToggle.classList.toggle('gps-toggle--inactive', !active);
-      gpsStatusText.textContent = active ? 'Online' : 'Offline';
-
-      gpsPulseContainer.innerHTML = active
-        ? '<span class="gps-status__pulse-ring"></span><span class="gps-status__pulse-dot"></span>'
-        : '<span class="gps-status__pulse-dot gps-status__pulse-dot--inactive"></span>';
-    }
-
-    gpsToggle.addEventListener('click', () => {
-      setGpsState(!isGpsActive);
-    });
-
-    recenterMapButton.addEventListener('click', () => {
-      driverMap.setView(driverMarker.getLatLng(), 16, { animate: true });
-    });
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLocation = [position.coords.latitude, position.coords.longitude];
-          driverMarker.setLatLng(userLocation);
-          driverMap.setView(userLocation, 16);
-        },
-        () => {
-          driverMap.setView(defaultLocation, 14);
-        }
-      );
-    }
-  </script>
+  <script src="/assets/js/driver/home-motorista.js"></script>
 </body>
 
 </html>
