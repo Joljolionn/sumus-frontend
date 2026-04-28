@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     idle: "Defina os pontos",
     locating: "Validando endereco",
     loading: "Calculando rota",
-    ready: "Rota pronta",
+    ready: "Rota pronta"
     fallback: "Rota aproximada",
     error: "Endereco incompleto",
   };
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const defaultPlaces = [
     {
-      id: "home",
+      id: "home"
       label: "Casa",
       address: "Rua das Flores, 123 - Bela Vista",
       coords: [-23.561399, -46.655881],

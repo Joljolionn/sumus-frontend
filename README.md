@@ -79,3 +79,5 @@ Compatibilidade:
 - URLs antigas com `.html` continuam funcionando por redirecionamento
 - URLs antigas com prefixo `/pages/...` tambem redirecionam para a rota canonica
 - arquivos estaticos ficam expostos em `/assets`
+aqui ta pegando
+
