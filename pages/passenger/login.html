@@ -41,67 +41,83 @@
     <div id="msgError" class="alert-message alert-error"></div>
     <div id="msgSuccess" class="alert-message alert-success"></div>
 
-    <div class="auth-container" id="container">
+    <div class="login-split-card">
       
-      <div class="form-container sign-up">
-        <form id="registerForm" class="auth-form">
-          <h1 class="auth-title">Criar Conta</h1>
-          
-          <button class="auth-btn-google" type="button">
-            <i class="fa-brands fa-google"></i>
-            <span>Continuar com o Google</span>
-          </button>
-
-          <div class="auth-divider">
-            <span>ou continue com e-mail</span>
+      <div class="login-visual">
+        <div class="login-visual__content">
+          <div>
+            <h1 class="login-visual__logo">SUMUS</h1>
+            <p class="login-visual__tagline">Conectando motoristas ao futuro da logística integrada com acessibilidade total.</p>
           </div>
           
-          <input class="auth-input" type="text" id="newLogin" placeholder="Nome completo" required>
-          <input class="auth-input" type="email" id="newEmail" placeholder="E-mail" required>
-          <input class="auth-input" type="password" id="newPassword" placeholder="Senha" required>
-          
-          <button class="auth-btn" type="submit">Registrar</button>
-        </form>
-      </div>
-
-      <div class="form-container sign-in">
-        <form id="loginForm" class="auth-form">
-          <h1 class="auth-title">Faça login</h1>
-          
-          <button class="auth-btn-google" type="button">
-            <i class="fa-brands fa-google"></i>
-            <span>Continuar com o Google</span>
-          </button>
-
-          <div class="auth-divider">
-            <span>ou continue com e-mail</span>
+          <div class="login-feature">
+            <div class="login-feature__icon-shell">
+              <span class="material-symbols-outlined">route</span>
+            </div>
+            <div class="login-feature__text">
+              <p class="login-feature__title">Rotas Otimizadas</p>
+              <p class="login-feature__desc">IA aplicada para sua melhor performance.</p>
+            </div>
           </div>
-          
-          <input class="auth-input" type="email" id="loginInput" placeholder="E-mail" required>
-          <input class="auth-input" type="password" id="passwordInput" placeholder="Senha" required>
-          
-          <a class="auth-forgot" href="#">Esqueceu sua senha?</a>
-          <button class="auth-btn" type="submit">Acessar</button>
-        </form>
-      </div>
-
-      <div class="toggle-container">
-        <div class="toggle">
-          
-          <div class="toggle-panel toggle-left">
-            <h1 class="toggle-title">Já tem uma conta?</h1>
-            <p class="toggle-text">Faça login com seus dados pessoais para acessar o painel do motorista.</p>
-            <button class="auth-btn auth-btn--ghost" id="login">Fazer Login</button>
-          </div>
-          
-          <div class="toggle-panel toggle-right">
-            <h1 class="toggle-title">Olá, Amigo!</h1>
-            <p class="toggle-text">Ainda não faz parte da SUMUS? Insira seus dados e comece sua jornada conosco.</p>
-            <button class="auth-btn auth-btn--ghost" id="register">Cadastre-se</button>
-          </div>
-
+        </div>
+        
+        <div class="login-visual__bg">
+          <div class="login-visual__overlay"></div>
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop" alt="Motorista Profissional" class="login-visual__img">
         </div>
       </div>
+
+      <div class="login-form-area">
+        <div class="login-form-area__inner">
+          <header class="login-header">
+            <h2 class="login-header__title">Bem-vindo</h2>
+            <p class="login-header__subtitle">Acesse o Portal do Motorista para iniciar sua jornada.</p>
+          </header>
+
+          <form id="loginForm" class="login-form">
+            
+            <div class="form-group">
+              <label class="form-label" for="email">E-mail</label>
+              <div class="form-control form-control--with-icon">
+                <span class="material-symbols-outlined form-control__icon">mail</span>
+                <input class="form-input" id="email" type="email" placeholder="nome@exemplo.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-group__header">
+                <label class="form-label" for="password">Senha</label>
+                <a class="form-forgot-link" href="#">Esqueci minha senha</a>
+              </div>
+              <div class="form-control form-control--with-icon">
+                <span class="material-symbols-outlined form-control__icon">lock</span>
+                <input class="form-input" id="password" type="password" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <div class="login-actions">
+              <button class="btn-primary" type="submit">
+                Entrar
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+
+              <div class="login-divider">
+                <span>OU</span>
+              </div>
+
+              <button class="btn-google" type="button">
+                <i class="fa-brands fa-google"></i>
+                Entrar com Google
+              </button>
+            </div>
+          </form>
+
+          <footer class="login-footer">
+            <p>Não possui uma conta? <a href="#">Criar nova conta</a></p>
+          </footer>
+        </div>
+      </div>
+      
     </div>
   </main>
 

@@ -1,11 +1,11 @@
 /* =========================================
-   0. FUNDAÇÃO E LAYOUT (O que estava faltando)
+   0. FUNDAÇÃO E LAYOUT
    ========================================= */
 body.passenger-card-page {
   background: var(--background, #f8fafb);
   color: var(--text, #191c1d);
   margin: 0;
-  overflow: hidden; /* Evita scroll duplo com a sidebar */
+  overflow: hidden;
 }
 
 .passenger-card-layout {
