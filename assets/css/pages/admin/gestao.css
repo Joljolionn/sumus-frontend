@@ -1,3 +1,6 @@
+/* =========================================
+   HEADER DA TELA DE GESTÃO
+   ========================================= */
 .admin-management-header {
   margin-bottom: 2rem;
 }
@@ -21,8 +24,12 @@
 .admin-management-header__title {
   font-size: clamp(2.5rem, 4vw, 3.4rem);
   font-weight: 800;
+  margin: 0;
 }
 
+/* =========================================
+   GRID PRINCIPAL (Form x Lista)
+   ========================================= */
 .admin-management-grid {
   display: grid;
   grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
@@ -37,6 +44,9 @@
   box-shadow: var(--shadow-soft);
 }
 
+/* =========================================
+   FORMULÁRIO NOVO ADMINISTRADOR
+   ========================================= */
 .admin-management-form-card {
   padding: 1.6rem;
 }
@@ -65,8 +75,82 @@
 .admin-management-list__title-wrap h2 {
   font-size: 1.45rem;
   font-weight: 800;
+  margin: 0;
 }
 
+.admin-management-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-management-form__field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.admin-management-form__field label {
+  color: var(--text-faint);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.admin-management-form input,
+.admin-management-form select,
+.admin-management-search input {
+  width: 100%;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--surface-low);
+  color: var(--text);
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+
+.admin-management-form__field input,
+.admin-management-form__field select {
+  padding: 0.95rem 1rem;
+}
+
+.admin-management-form input:focus,
+.admin-management-form select:focus,
+.admin-management-search input:focus {
+  outline-color: rgba(0, 103, 130, 0.18);
+  background: var(--surface);
+}
+
+.admin-management-form__field p {
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.admin-management-form__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.admin-management-form__submit:hover {
+  opacity: 0.9;
+}
+
+/* =========================================
+   LISTA DE ADMINISTRADORES ATIVOS
+   ========================================= */
 .admin-management-list {
   padding: 1.6rem;
 }
@@ -90,71 +174,8 @@
   color: var(--text-faint);
 }
 
-.admin-management-search input,
-.admin-management-form input,
-.admin-management-form select {
-  width: 100%;
-  border: 0;
-  border-radius: 1rem;
-  background: var(--surface-low);
-  color: var(--text);
-  outline: 2px solid transparent;
-  transition: outline-color 0.2s ease, background 0.2s ease;
-}
-
 .admin-management-search input {
   padding: 0.95rem 1rem 0.95rem 2.9rem;
-}
-
-.admin-management-search input:focus,
-.admin-management-form input:focus,
-.admin-management-form select:focus {
-  outline-color: rgba(0, 103, 130, 0.18);
-  background: var(--surface);
-}
-
-.admin-management-form {
-  display: grid;
-  gap: 1rem;
-}
-
-.admin-management-form__field {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.admin-management-form__field label {
-  color: var(--text-faint);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.admin-management-form__field input,
-.admin-management-form__field select {
-  padding: 0.95rem 1rem;
-}
-
-.admin-management-form__field p {
-  color: var(--text-faint);
-  font-size: 0.78rem;
-  line-height: 1.5;
-}
-
-.admin-management-form__submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 0;
-  border-radius: 1rem;
-  padding: 1rem 1.2rem;
-  background: var(--primary);
-  color: #ffffff;
-  font-size: 0.86rem;
-  font-weight: 800;
-  box-shadow: var(--shadow-soft);
 }
 
 .admin-management-cards {
@@ -163,6 +184,9 @@
   margin-top: 1.5rem;
 }
 
+/* =========================================
+   CARDS DE USUÁRIOS
+   ========================================= */
 .admin-user-card {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -174,13 +198,9 @@
   background: var(--surface);
 }
 
-.admin-user-card--muted {
-  opacity: 0.72;
-}
+.admin-user-card--muted { opacity: 0.72; }
 
-.admin-user-card__avatar-wrap {
-  position: relative;
-}
+.admin-user-card__avatar-wrap { position: relative; }
 
 .admin-user-card__avatar {
   width: 4.4rem;
@@ -199,13 +219,8 @@
   border-radius: 999px;
 }
 
-.admin-user-card__status--active {
-  background: var(--success);
-}
-
-.admin-user-card__status--inactive {
-  background: rgba(100, 116, 139, 0.75);
-}
+.admin-user-card__status--active { background: var(--success); }
+.admin-user-card__status--inactive { background: rgba(100, 116, 139, 0.75); }
 
 .admin-user-card__identity {
   display: flex;
@@ -217,6 +232,7 @@
 .admin-user-card__identity h3 {
   font-size: 1.05rem;
   font-weight: 700;
+  margin: 0;
 }
 
 .admin-user-card__badge {
@@ -235,16 +251,11 @@
 .admin-user-card__meta,
 .admin-management-pagination p {
   color: var(--text-faint);
+  margin: 0;
 }
 
-.admin-user-card__email {
-  margin-top: 0.3rem;
-}
-
-.admin-user-card__meta {
-  margin-top: 0.45rem;
-  font-size: 0.83rem;
-}
+.admin-user-card__email { margin-top: 0.3rem; }
+.admin-user-card__meta { margin-top: 0.45rem; font-size: 0.83rem; }
 
 .admin-user-card__actions {
   display: inline-flex;
@@ -261,8 +272,17 @@
   border-radius: 0.85rem;
   background: var(--surface-low);
   color: var(--text-muted);
+  cursor: pointer;
 }
 
+.admin-user-card__actions button:hover,
+.admin-management-pagination__controls button:hover {
+  background: var(--surface-high);
+}
+
+/* =========================================
+   PAGINAÇÃO
+   ========================================= */
 .admin-management-pagination {
   display: flex;
   justify-content: space-between;
@@ -280,7 +300,13 @@
   background: var(--primary);
   color: #ffffff;
 }
+.admin-management-pagination__controls .is-active:hover {
+  background: var(--primary);
+}
 
+/* =========================================
+   RESPONSIVIDADE DA TELA DE GESTÃO
+   ========================================= */
 @media (max-width: 1120px) {
   .admin-management-grid {
     grid-template-columns: 1fr;
@@ -295,11 +321,6 @@
     display: grid;
   }
 
-  .admin-management-search {
-    min-width: 0;
-  }
-
-  .admin-user-card__actions {
-    justify-content: start;
-  }
+  .admin-management-search { min-width: 0; }
+  .admin-user-card__actions { justify-content: start; }
 }

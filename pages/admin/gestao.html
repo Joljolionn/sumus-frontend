@@ -3,56 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SUMUS Admin - Gestao de Administradores</title>
+  <title>SUMUS Admin - Gestão de Administradores</title>
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-  <link rel="stylesheet" href="../../assets/css/pages/admin/gestao/index.css" />
+  
+  <!-- CSS Globais e Componentes -->
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/base/admin.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/scrollbar.css" />
+  <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../assets/css/pages/admin/gestao.css" />
 </head>
 
-<body class="admin-management-page">
-  <div class="admin-management-layout">
+<body class="admin-page">
+  <div class="admin-layout">
+
+    <!-- SIDEBAR DO ADMIN -->
     <aside class="sidebar">
       <div class="sidebar__brand">
         <span class="sidebar__brand-text">SUMUS</span>
       </div>
 
       <nav class="sidebar__nav">
+        <div class="sidebar__group-title">Menu Principal</div>
+        
         <a class="sidebar__link" href="./dashboard.html">
           <span class="material-symbols-outlined">grid_view</span>
           <span>Dashboard</span>
         </a>
+        
         <a class="sidebar__link" href="./aprovacao-passageiro.html">
           <span class="material-symbols-outlined">accessible_forward</span>
-          <span>Aprovacao de Passageiros</span>
+          <span>Aprovação de Passageiros</span>
         </a>
+        
         <a class="sidebar__link" href="./aprovacao-motorista.html">
           <span class="material-symbols-outlined">verified_user</span>
-          <span>Aprovacao de Motoristas</span>
+          <span>Aprovação de Motoristas</span>
         </a>
+        
         <a class="sidebar__link sidebar__link--active" href="./gestao.html">
           <span class="material-symbols-outlined">admin_panel_settings</span>
-          <span>Gestao Administrativa</span>
+          <span>Gestão Administrativa</span>
         </a>
+
+        <div class="sidebar__group-title">Sistema</div>
+        
         <a class="sidebar__link" href="./loginadmin.html">
-          <span class="material-symbols-outlined">login</span>
+          <span class="material-symbols-outlined">sync_alt</span>
           <span>Trocar conta</span>
         </a>
-        <div class="sidebar__divider"></div>
+        
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">settings</span>
-          <span>Configuracoes</span>
+          <span>Configurações globais</span>
         </a>
       </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Avatar do Administrador" class="sidebar__profile-img" src="https://ui-avatars.com/api/?name=Admin+Sumus&background=006782&color=fff&bold=true"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Admin SUMUS</p>
+            <p class="sidebar__profile-status">Gestor Global</p>
+          </div>
+        </div>
+
+        <button class="sidebar__logout" type="button">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair do Sistema</span>
+        </button>
+      </div>
     </aside>
 
-    <main class="admin-management-main">
-      <div class="admin-management-shell">
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-shell">
+        
+        <!-- HEADER DA TELA -->
         <header class="admin-management-header">
           <p class="admin-management-header__eyebrow">Controle de acesso</p>
-          <h1 class="admin-management-header__title">Gestao de Administradores</h1>
+          <h1 class="admin-management-header__title">Gestão de Administradores</h1>
         </header>
 
+        <!-- CONTEÚDO (FORMULÁRIO + LISTA) -->
         <div class="admin-management-grid">
+          
+          <!-- FORMULÁRIO -->
           <section class="admin-management-form-card">
             <div class="admin-management-form-card__header">
               <span class="admin-management-form-card__line"></span>
@@ -71,7 +112,7 @@
               </div>
 
               <div class="admin-management-form__field">
-                <label for="admin-role">Nivel de acesso</label>
+                <label for="admin-role">Nível de acesso</label>
                 <select id="admin-role">
                   <option value="Editor Senior">Editor senior</option>
                   <option value="Curador de dados">Curador de dados</option>
@@ -81,18 +122,19 @@
               </div>
 
               <div class="admin-management-form__field">
-                <label for="admin-temp-password">Senha provisoria</label>
+                <label for="admin-temp-password">Senha provisória</label>
                 <input id="admin-temp-password" type="password" value="********" />
-                <p>O usuario altera a senha no primeiro acesso.</p>
+                <p>O usuário altera a senha no primeiro acesso.</p>
               </div>
 
-              <button class="admin-management-form__submit" type="submit">
+              <button class="admin-management-form__submit" type="button">
                 <span class="material-symbols-outlined">person_add</span>
                 <span>Cadastrar Administrador</span>
               </button>
             </form>
           </section>
 
+          <!-- LISTA / FILTRO -->
           <section class="admin-management-list">
             <div class="admin-management-list__header">
               <div class="admin-management-list__title-wrap">
@@ -107,7 +149,7 @@
             </div>
 
             <div id="admin-list-container" class="admin-management-cards">
-              </div>
+            </div>
 
             <footer class="admin-management-pagination">
               <p id="pagination-info">Carregando registros...</p>
@@ -118,6 +160,7 @@
               </div>
             </footer>
           </section>
+
         </div>
       </div>
     </main>
