@@ -1,3 +1,14 @@
+/* =========================================
+   1. TOKENS ESPECÍFICOS DOS GRÁFICOS
+   ========================================= */
+:root {
+  --primary-bright: #83d9fb;
+  --tertiary: #006b5d;
+}
+
+/* =========================================
+   2. HEADER DO DASHBOARD
+   ========================================= */
 .admin-dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -24,12 +35,14 @@
 .admin-dashboard-header__title {
   font-size: clamp(2.6rem, 4vw, 3.5rem);
   font-weight: 800;
+  margin: 0;
 }
 
 .admin-dashboard-header__subtitle,
 .panel__subtitle {
   color: var(--text-muted);
   line-height: 1.65;
+  margin-top: 0.5rem;
 }
 
 .admin-dashboard-header__actions {
@@ -52,6 +65,12 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.admin-dashboard-header__button:hover {
+  opacity: 0.9;
 }
 
 .admin-dashboard-header__button--ghost {
@@ -61,6 +80,9 @@
   box-shadow: none;
 }
 
+/* =========================================
+   3. GRID DE MÉTRICAS TOP
+   ========================================= */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -133,14 +155,12 @@
   font-weight: 800;
 }
 
-.metric-card__delta--positive {
-  color: var(--success);
-}
+.metric-card__delta--positive { color: var(--success); }
+.metric-card__delta--negative { color: var(--error); }
 
-.metric-card__delta--negative {
-  color: var(--error);
-}
-
+/* =========================================
+   4. PAINÉIS INFERIORES E GRÁFICOS
+   ========================================= */
 .admin-dashboard-panels {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
@@ -166,6 +186,7 @@
 .panel__title {
   font-size: 1.45rem;
   font-weight: 800;
+  margin: 0;
 }
 
 .panel__legend {
@@ -189,39 +210,17 @@
   border-radius: 999px;
 }
 
-.panel__legend-dot--primary {
-  background: var(--primary);
-}
-
-.panel__legend-dot--muted {
-  background: rgba(111, 121, 126, 0.5);
-}
+.panel__legend-dot--primary { background: var(--primary); }
+.panel__legend-dot--muted { background: rgba(111, 121, 126, 0.5); }
 
 .chart-card__svg {
   width: 100%;
   height: 18rem;
 }
-
-.chart-card__svg line {
-  stroke: rgba(111, 121, 126, 0.12);
-  stroke-width: 1;
-}
-
-.chart-card__line {
-  fill: none;
-  stroke: var(--primary);
-  stroke-width: 3;
-}
-
-.chart-card__line--secondary {
-  stroke: rgba(111, 121, 126, 0.45);
-  stroke-dasharray: 7 7;
-  stroke-width: 2;
-}
-
-.chart-card__area {
-  fill: rgba(131, 217, 251, 0.2);
-}
+.chart-card__svg line { stroke: rgba(111, 121, 126, 0.12); stroke-width: 1; }
+.chart-card__line { fill: none; stroke: var(--primary); stroke-width: 3; }
+.chart-card__line--secondary { stroke: rgba(111, 121, 126, 0.45); stroke-dasharray: 7 7; stroke-width: 2; }
+.chart-card__area { fill: rgba(131, 217, 251, 0.2); }
 
 .chart-card__axis {
   display: flex;
@@ -235,6 +234,9 @@
   text-transform: uppercase;
 }
 
+/* =========================================
+   5. BARRAS DE REGIÃO
+   ========================================= */
 .region-list {
   display: grid;
   gap: 1rem;
@@ -265,6 +267,9 @@
   background: linear-gradient(90deg, var(--primary) 0%, var(--primary-bright) 100%);
 }
 
+/* =========================================
+   6. ATIVIDADE RECENTE
+   ========================================= */
 .activity-list {
   display: grid;
 }
@@ -289,35 +294,13 @@
   border-radius: 1rem;
 }
 
-.activity-item__icon--success {
-  background: rgba(21, 128, 61, 0.12);
-  color: var(--success);
-}
+.activity-item__icon--success { background: rgba(21, 128, 61, 0.12); color: var(--success); }
+.activity-item__icon--danger { background: rgba(186, 26, 26, 0.12); color: var(--error); }
+.activity-item__icon--info { background: var(--primary-soft); color: var(--primary); }
 
-.activity-item__icon--danger {
-  background: rgba(186, 26, 26, 0.12);
-  color: var(--error);
-}
-
-.activity-item__icon--info {
-  background: var(--primary-soft);
-  color: var(--primary);
-}
-
-.activity-item__copy {
-  flex: 1;
-}
-
-.activity-item__copy h3 {
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.activity-item__copy p {
-  margin-top: 0.25rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
+.activity-item__copy { flex: 1; }
+.activity-item__copy h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+.activity-item__copy p { margin-top: 0.25rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0; }
 
 .activity-item__time {
   color: var(--text-faint);
@@ -333,13 +316,16 @@
   color: var(--primary);
   font-size: 0.85rem;
   font-weight: 800;
+  cursor: pointer;
 }
 
+/* =========================================
+   7. RESPONSIVIDADE ESPECÍFICA DO DASHBOARD
+   ========================================= */
 @media (max-width: 1180px) {
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
   .admin-dashboard-panels {
     grid-template-columns: 1fr;
   }
@@ -353,7 +339,6 @@
     flex-direction: column;
     align-items: flex-start;
   }
-
   .metrics-grid {
     grid-template-columns: 1fr;
   }
