@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Passageiro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/base/reset.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="/assets/css/components/marketing-nav.css" />
+  
+  <link rel="stylesheet" href="/assets/css/pages/acesso/cadastro/cadastro.css" />
+</head>
+
+<body class="register-page">
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="register-main">
+    
+    <div id="msgError" class="alert-message alert-error"></div>
+    <div id="msgSuccess" class="alert-message alert-success"></div>
+
+    <div class="register-container">
+      
+      <!-- Cabeçalho & Progresso -->
+      <div class="register-header-area">
+        <div class="register-progress">
+          <span class="register-progress__text">Passo 2 de 3</span>
+          <div class="register-progress__bar">
+            <!-- Barra preenchida em 66% (Passo 2) -->
+            <div class="register-progress__fill" style="width: 66.66%"></div>
+          </div>
+        </div>
+        <h2 class="register-title">Documentação</h2>
+        <p class="register-subtitle">Para garantir a segurança de todos na plataforma, precisamos validar seus documentos. Certifique-se de que as fotos estejam nítidas e legíveis.</p>
+      </div>
+
+      <!-- Grid de Upload de Documentos -->
+      <div class="document-grid">
+        
+        <!-- Documento de Identidade -->
+        <div class="doc-card">
+          <div class="doc-card__header">
+            <h3 class="doc-card__title">Documento de Identidade (RG/CNH)</h3>
+            <p class="doc-card__desc">Documento oficial com foto expedido há menos de 10 anos.</p>
+          </div>
+          <label class="upload-area">
+            <input type="file" accept="image/png, image/jpeg, application/pdf" hidden>
+            <span class="material-symbols-outlined upload-area__icon">badge</span>
+            <span class="upload-area__action">Carregar documento</span>
+            <span class="upload-area__hint">JPG, PNG ou PDF até 5MB</span>
+          </label>
+        </div>
+
+        <!-- Selfie -->
+        <div class="doc-card">
+          <div class="doc-card__header">
+            <h3 class="doc-card__title">Foto do Rosto (Selfie)</h3>
+            <p class="doc-card__desc">Olhe diretamente para a câmera sem óculos escuros ou boné.</p>
+          </div>
+          <label class="upload-area">
+            <input type="file" accept="image/png, image/jpeg" capture="user" hidden>
+            <span class="material-symbols-outlined upload-area__icon">face</span>
+            <span class="upload-area__action">Tirar selfie</span>
+            <span class="upload-area__hint">Use um ambiente iluminado</span>
+          </label>
+        </div>
+
+        <!-- Laudo Médico -->
+        <div class="doc-card">
+          <div class="doc-card__header">
+            <h3 class="doc-card__title">Laudo Médico (PCD)</h3>
+            <p class="doc-card__desc">Documento atualizado assinado por um especialista.</p>
+          </div>
+          <label class="upload-area">
+            <input type="file" accept="image/png, image/jpeg, application/pdf" hidden>
+            <span class="material-symbols-outlined upload-area__icon">medical_information</span>
+            <span class="upload-area__action">Carregar laudo</span>
+            <span class="upload-area__hint">JPG, PNG ou PDF até 5MB</span>
+          </label>
+        </div>
+
+        <!-- CID -->
+        <div class="doc-card">
+          <div class="doc-card__header">
+            <h3 class="doc-card__title">Comprovante de CID</h3>
+            <p class="doc-card__desc">Documento que indique a Classificação Internacional de Doenças.</p>
+          </div>
+          <label class="upload-area">
+            <input type="file" accept="image/png, image/jpeg, application/pdf" hidden>
+            <span class="material-symbols-outlined upload-area__icon">health_and_safety</span>
+            <span class="upload-area__action">Carregar comprovante</span>
+            <span class="upload-area__hint">JPG, PNG ou PDF até 5MB</span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Seção de Acessibilidade -->
+      <div class="accessibility-panel">
+        <div class="accessibility-panel__content">
+          <h3 class="accessibility-panel__title">
+            <span class="material-symbols-outlined">accessibility_new</span>
+            Instruções de Acessibilidade
+          </h3>
+          <ul class="accessibility-list">
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              Se estiver usando um leitor de tela, os botões de upload estão devidamente etiquetados.
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              Garanta um fundo neutro para a selfie para facilitar o reconhecimento biométrico.
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              Arquivos PDF são aceitos para comprovantes de residência digitais.
+            </li>
+          </ul>
+        </div>
+        <div class="accessibility-panel__image-shell">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Exemplo de foto bem iluminada com fundo neutro" class="accessibility-panel__image">
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="register-actions register-actions--between">
+        <a class="btn-ghost" href="/pages/passenger/cadastro/cadastro-passageiro-step1.html">
+          <span class="material-symbols-outlined">arrow_back</span>
+          Voltar ao Passo 1
+        </a>
+        <a class="btn-primary btn-primary--large" href="/pages/passenger/cadastro/cadastro-passageiro-step3.html">
+          Próximo: Confirmação de Email
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

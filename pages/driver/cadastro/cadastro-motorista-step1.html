@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro1/Passageiro</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/base/reset.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="/assets/css/components/marketing-nav.css" />
+  
+  <link rel="stylesheet" href="/assets/css/pages/acesso/cadastro/cadastro.css" />
+</head>
+
+<body class="register-page">
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="register-main">
+    
+    <!-- Alertas -->
+    <div id="msgError" class="alert-message alert-error"></div>
+    <div id="msgSuccess" class="alert-message alert-success"></div>
+
+    <div class="register-container">
+      
+      <!-- Cabeçalho & Progresso -->
+      <div class="register-header-area">
+        <div class="register-progress">
+          <span class="register-progress__text">Passo 1 de 3</span>
+          <div class="register-progress__bar">
+            <div class="register-progress__fill" style="width: 33.33%"></div>
+          </div>
+        </div>
+        <h2 class="register-title">Dados Pessoais</h2>
+        <p class="register-subtitle">Precisamos identificar você para prosseguir com a ativação da conta.</p>
+      </div>
+
+      <!-- Formulário de Cadastro -->
+      <form id="registerForm" class="register-form">
+        <div class="register-form__grid">
+          
+          <!-- Nome Completo -->
+          <div class="form-group form-group--full">
+            <label class="form-label" for="fullname">NOME COMPLETO</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="fullname" type="text" placeholder="Ex: João da Silva Santos" required>
+              <span class="material-symbols-outlined form-control__icon">person</span>
+            </div>
+          </div>
+
+          <!-- CPF -->
+          <div class="form-group">
+            <label class="form-label" for="cpf">CPF</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="cpf" type="text" placeholder="000.000.000-00" required>
+              <span class="material-symbols-outlined form-control__icon">badge</span>
+            </div>
+          </div>
+
+          <!-- RG -->
+          <div class="form-group">
+            <label class="form-label" for="rg">RG</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="rg" type="text" placeholder="00.000.000-0" required>
+              <span class="material-symbols-outlined form-control__icon">fingerprint</span>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="form-group form-group--full">
+            <label class="form-label" for="email">E-MAIL</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="email" type="email" placeholder="nome@exemplo.com" required>
+              <span class="material-symbols-outlined form-control__icon">mail</span>
+            </div>
+          </div>
+
+          <!-- Senha -->
+          <div class="form-group">
+            <label class="form-label" for="password">SENHA</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="password" type="password" placeholder="Mínimo 8 caracteres" required>
+              <span class="material-symbols-outlined form-control__icon">lock</span>
+            </div>
+          </div>
+
+          <!-- Confirmar Senha -->
+          <div class="form-group">
+            <label class="form-label" for="confirm-password">CONFIRMAR SENHA</label>
+            <div class="form-control form-control--icon-right">
+              <input class="form-input" id="confirm-password" type="password" placeholder="Repita sua senha" required>
+              <span class="material-symbols-outlined form-control__icon">lock_reset</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="register-actions">
+          <a class="register-link" href="/pages/passenger/cadastro/cadastro-passageiro-step2.html">Já possuo uma conta</a>
+          <a class="btn-primary btn-primary--large" href="/pages/driver/cadastro/cadastro-motorista-step2.html">
+            Próximo: Documentos
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </form>
+
+      <!-- Card de Informação / Transparência -->
+      <div class="info-card">
+        <div class="info-card__icon-shell">
+          <span class="material-symbols-outlined">info</span>
+        </div>
+        <div class="info-card__content">
+          <h4 class="info-card__title">Por que pedimos esses dados?</h4>
+          <p class="info-card__text">A SUMUS prioriza a segurança de passageiros e motoristas. Validamos seu CPF e RG junto aos órgãos competentes para garantir uma comunidade confiável para todos.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>
