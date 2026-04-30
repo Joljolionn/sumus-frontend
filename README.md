@@ -1,61 +1,39 @@
 # SUMUS Frontend
 
-Arquitetura de CSS organizada para manutencao incremental
+Arquitetura CSS modular focada em escalabilidade, reutilização de código e manutenção limpa, preparando o terreno para a futura componentização em React.
 
-## Convencao de nomes
+## Convenção de Nomes e Arquitetura
 
-- usar `kebab-case` em arquivos e pastas
-- nomes da pagina e do diretorio CSS correspondente devem bater
-- `index.css` continua como ponto de entrada de cada pagina
-- modulos internos podem seguir por responsabilidade: `tokens.css`, `layout.css`, `form.css`, `cards.css`, `gps.css`, `settings.css`
+- **Kebab-case:** Usar `kebab-case` estritamente em todos os arquivos e pastas (ex: `home-passageiro.css`).
+- **Arquitetura Global-First:** O layout estrutural de seções inteiras (como o painel administrativo) fica em arquivos globais (ex: `base/admin.css`).
 
-## Estrutura
-
+## Estrutura de Diretórios
 ```text
 assets/css/
   base/
-    reset.css
+    reset.css               # Reset global de CSS e tipografia base
+    admin.css               # Layout global do painel (Grid + Sidebar)
   utilities/
-    common.css
-    scrollbar.css
+    common.css              # Classes utilitárias globais
+    scrollbar.css           # Estilização de barras de rolagem
   components/
-    dashboard-sidebar.css
-    map-core.css
-    marketing-footer.css
-    marketing-nav.css
+    dashboard-sidebar.css   # Componente isolado da sidebar lateral
+    marketing-footer.css    # Rodapé unificado (site/app)
+    marketing-nav.css       # Navegação unificada
   pages/
-    cadastro-step-0/
-    home/
-    login/
-    driver/
-      cadastro-documento/
-      cadastro-step-1/
-      codigo-otp/
-      home-motorista/
-      perfil-motorista/
-    passenger/
-      home-passageiro/
-      perfil-passageiro/
-```
-
-## Regras de manutencao
-
-1. Ajustes globais:
-   editar `base/`, `utilities/` ou `components/`.
-2. Ajustes de uma pagina:
-   editar somente o diretorio em `assets/css/pages/...`.
-3. Nova pagina:
-   criar um diretorio novo em `assets/css/pages/...` com `index.css` e modulos menores por responsabilidade.
-
-## Entradas HTML
-
-- `pages/home.html` -> `assets/css/pages/home/index.css`
-- `pages/login.html` -> `assets/css/pages/login/index.css`
-- `pages/cadastro-step-0.html` -> `assets/css/pages/cadastro-step-0/index.css`
-- `pages/driver/cadastro-documento.html` -> `assets/css/pages/driver/cadastro-documento/index.css`
-- `pages/driver/cadastro-step-1.html` -> `assets/css/pages/driver/cadastro-step-1/index.css`
-- `pages/driver/codigo-otp.html` -> `assets/css/pages/driver/codigo-otp/index.css`
-- `pages/driver/home-motorista.html` -> `assets/css/pages/driver/home-motorista/index.css`
-- `pages/driver/perfil-motorista.html` -> `assets/css/pages/driver/perfil-motorista/index.css`
-- `pages/passenger/home-passageiro.html` -> `assets/css/pages/passenger/home-passageiro/index.css`
-- `pages/passenger/perfil-passageiro.html` -> `assets/css/pages/passenger/perfil-passageiro/index.css`
+    admin/
+      dashboard.css
+      aprovacao-motorista.css
+      aprovacao-passageiro.css
+      gestao.css
+    driver/                 # (Fila para refatoração para o novo padrão)
+      cadastro-documento.css
+      home-motorista.css
+      perfil-motorista.css
+      veiculos.css
+      metodo-pagamento.css
+    passenger/              # (Fila para refatoração para o novo padrão)
+      home-passageiro.css
+      perfil-passageiro.css
+      configuracao.css
+      cadastro-cartao.css
