@@ -1,0 +1,63 @@
+/* =========================================
+   1. TOKENS ESPECÍFICOS DO PAINEL ADMIN
+   ========================================= */
+:root {
+  --admin-bg: #f8fafb;
+  --surface: #ffffff;
+  --surface-low: #f2f4f5;
+  --surface-soft: #eceeef;
+  --surface-high: #e0e3e4;
+  --text-admin: #191c1d;
+  --text-muted: #4c626b;
+  --text-faint: #64748b;
+  --outline: #6f797e;
+  --primary: #006782;
+  --primary-soft: rgba(0, 103, 130, 0.1);
+  --success: #15803d;
+  --warning: #d97706;
+  --error: #ba1a1a;
+  --shadow-soft: 0 18px 32px -28px rgba(25, 28, 29, 0.22);
+}
+
+/* =========================================
+   2. LAYOUT BASE DO ADMIN (Grid Global)
+   ========================================= */
+.admin-page {
+  background-color: var(--admin-bg);
+  color: var(--text-admin);
+}
+
+.admin-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.admin-main {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.admin-shell {
+  width: min(100%, 80rem);
+  margin: 0 auto;
+}
+
+/* =========================================
+   3. RESPONSIVIDADE GLOBAL DO ADMIN
+   ========================================= */
+@media (max-width: 1024px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-main {
+    padding-inline: 1rem;
+  }
+}
