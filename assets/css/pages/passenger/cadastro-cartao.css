@@ -1,0 +1,272 @@
+/* =========================================
+   0. FUNDAÇÃO E LAYOUT
+   ========================================= */
+body.passenger-card-page {
+  background: var(--background, #f8fafb);
+  color: var(--text, #191c1d);
+  margin: 0;
+  overflow: hidden;
+}
+
+.passenger-card-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+}
+
+.passenger-card-main {
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.passenger-card-shell {
+  width: min(100%, 76rem);
+  margin: 0 auto;
+}
+
+/* =========================================
+   1. CABEÇALHO DA PÁGINA
+   ========================================= */
+.passenger-card__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted, #3f484d);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.passenger-card__back-link:hover {
+  color: var(--text, #191c1d);
+}
+
+.passenger-card__eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--primary, #006781);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.passenger-card__title {
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.5rem 0;
+  color: var(--text, #191c1d);
+}
+
+.passenger-card__subtitle {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-muted, #3f484d);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   2. ESTRUTURA PRINCIPAL (GRID DO FORM)
+   ========================================= */
+.passenger-card__content {
+  display: grid;
+  grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+/* =========================================
+   3. PREVIEW DO CARTÃO
+   ========================================= */
+.passenger-card-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 13rem;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.15), transparent 40%),
+    linear-gradient(135deg, #00789a 0%, #005d76 60%, #013f51 100%);
+  color: #ffffff;
+  box-shadow: 0 15px 30px -10px rgba(0, 103, 129, 0.4);
+}
+
+.passenger-card-preview__top,
+.passenger-card-preview__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.passenger-card-preview__top .material-symbols-outlined {
+  font-size: 1.75rem;
+}
+
+.passenger-card-preview__label,
+.passenger-card-preview__meta-label {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.passenger-card-preview__brand {
+  margin: 0.25rem 0 0 0;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.passenger-card-preview__number {
+  margin: 0 0 1rem 0;
+  font-family: "Courier New", monospace;
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+}
+
+.passenger-card-preview__meta-value {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   4. FORMULÁRIO DE CADASTRO
+   ========================================= */
+.passenger-card-form-wrap {
+  padding: 1.5rem;
+  border: 1px solid rgba(190, 200, 205, 0.2);
+  border-radius: 1.25rem;
+  background: var(--surface, #ffffff);
+  box-shadow: var(--shadow-soft, 0 16px 32px -26px rgba(25, 28, 29, 0.24));
+}
+
+.passenger-card-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.passenger-card-form__field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.passenger-card-form__field label {
+  color: var(--text-muted, #3f484d);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.passenger-card-form__field input {
+  width: 100%;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface-low, #f2f4f5);
+  color: var(--text, #191c1d);
+  font-size: 0.95rem;
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s ease, background 0.2s ease;
+}
+
+.passenger-card-form__field input:focus {
+  outline-color: rgba(0, 103, 129, 0.18);
+  background: var(--surface, #ffffff);
+}
+
+.passenger-card-form__field input::placeholder {
+  color: #a0aab0;
+}
+
+.passenger-card-form__control {
+  position: relative;
+}
+
+.passenger-card-form__control--icon .material-symbols-outlined {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #3f484d);
+  font-size: 1.25rem;
+}
+
+.passenger-card-form__control--icon input {
+  padding-left: 2.75rem;
+}
+
+.passenger-card-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.passenger-card-form__submit {
+  border: 1px solid var(--primary, #006781);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  margin-top: 0.5rem;
+  background: var(--primary, #006781);
+  color: #ffffff;
+  font-family: "Lexend", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.passenger-card-form__submit:hover {
+  background: #003b4a;
+  border-color: #003b4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 59, 74, 0.2);
+}
+
+/* =========================================
+   5. RESPONSIVIDADE GERAL
+   ========================================= */
+@media (max-width: 1024px) {
+  .passenger-card-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .passenger-card__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .passenger-card-main {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .passenger-card-form__grid {
+    grid-template-columns: 1fr;
+  }
+}

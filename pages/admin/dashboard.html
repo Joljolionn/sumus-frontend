@@ -5,58 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMUS Admin - Dashboard</title>
 
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
 
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  <!-- CSS Globais e Componentes -->
+  <link rel="stylesheet" href="../../assets/css/base/reset.css" />
+  <link rel="stylesheet" href="../../assets/css/base/admin.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="../../assets/css/utilities/scrollbar.css" />
+  <link rel="stylesheet" href="../../assets/css/components/dashboard-sidebar.css" />
 
-  <link rel="stylesheet" href="../../assets/css/pages/admin/dashboard/index.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../assets/css/pages/admin/dashboard.css" />
 </head>
 
-<body class="admin-dashboard-page">
-  <div class="admin-dashboard-layout">
+<body class="admin-page">
+  <div class="admin-layout">
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR DO ADMIN -->
     <aside class="sidebar">
       <div class="sidebar__brand">
         <span class="sidebar__brand-text">SUMUS</span>
       </div>
 
       <nav class="sidebar__nav">
+        <div class="sidebar__group-title">Menu Principal</div>
+        
         <a class="sidebar__link sidebar__link--active" href="./dashboard.html">
           <span class="material-symbols-outlined">grid_view</span>
           <span>Dashboard</span>
         </a>
+        
         <a class="sidebar__link" href="./aprovacao-passageiro.html">
           <span class="material-symbols-outlined">accessible_forward</span>
-          <span>Aprovacao de Passageiros</span>
+          <span>Aprovação de Passageiros</span>
         </a>
+        
         <a class="sidebar__link" href="./aprovacao-motorista.html">
           <span class="material-symbols-outlined">verified_user</span>
-          <span>Aprovacao de Motoristas</span>
+          <span>Aprovação de Motoristas</span>
         </a>
+        
         <a class="sidebar__link" href="./gestao.html">
           <span class="material-symbols-outlined">admin_panel_settings</span>
-          <span>Gestao Administrativa</span>
+          <span>Gestão Administrativa</span>
         </a>
+
+        <div class="sidebar__group-title">Sistema</div>
+        
         <a class="sidebar__link" href="./loginadmin.html">
-          <span class="material-symbols-outlined">login</span>
+          <span class="material-symbols-outlined">sync_alt</span>
           <span>Trocar conta</span>
         </a>
-
-        <div class="sidebar__divider"></div>
-
+        
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">settings</span>
-          <span>Configuracoes</span>
+          <span>Configurações globais</span>
         </a>
       </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Avatar do Administrador" class="sidebar__profile-img" src="https://ui-avatars.com/api/?name=Admin+Sumus&background=006782&color=fff&bold=true"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Admin SUMUS</p>
+            <p class="sidebar__profile-status">Gestor Global</p>
+          </div>
+        </div>
+
+        <button class="sidebar__logout" type="button">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair do Sistema</span>
+        </button>
+      </div>
     </aside>
 
     <!-- MAIN -->
-    <main class="admin-dashboard-main">
-      <div class="admin-dashboard-shell">
+    <main class="admin-main">
+      <div class="admin-shell">
 
         <!-- HEADER -->
         <header class="admin-dashboard-header">
@@ -64,14 +90,14 @@
             <p class="admin-dashboard-header__eyebrow">Monitoramento global</p>
             <h1 class="admin-dashboard-header__title">Painel Operacional</h1>
             <p class="admin-dashboard-header__subtitle">
-              Visao geral de corridas, parceiros e receita em tempo real.
+              Visão geral de corridas, parceiros e receita em tempo real.
             </p>
           </div>
 
           <div class="admin-dashboard-header__actions">
             <button class="admin-dashboard-header__button admin-dashboard-header__button--ghost" type="button">
               <span class="material-symbols-outlined">calendar_today</span>
-              <span>Ultimas 24h</span>
+              <span>Últimas 24h</span>
             </button>
             <button class="admin-dashboard-header__button" type="button">
               <span class="material-symbols-outlined">refresh</span>
@@ -85,14 +111,33 @@
           <p>Carregando dados...</p>
         </section>
 
-        <!-- RESTO MANTIDO -->
+        <!-- PAINÉIS DE GRÁFICO -->
         <section class="admin-dashboard-panels">
-          <!-- (mantido igual ao seu original) -->
-          <!-- não mexi aqui pra não complicar sua task -->
+          <div class="panel">
+            <div class="panel__header--between">
+              <h2 class="panel__title">Corridas Concluídas</h2>
+              <div class="panel__legend">
+                <span class="panel__legend-item">
+                  <span class="panel__legend-dot panel__legend-dot--primary"></span>
+                  Hoje
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title">Por Região</h2>
+            </div>
+            <div class="region-list"></div>
+          </div>
         </section>
 
         <section class="panel panel--activity">
-          <!-- (mantido igual também) -->
+           <div class="panel__header">
+              <h2 class="panel__title">Atividade Recente</h2>
+           </div>
+           <div class="activity-list"></div>
         </section>
 
       </div>
@@ -103,4 +148,4 @@
   <script src="../../assets/js/admin/dashboard.js"></script>
 
 </body>
-</html> 
+</html>

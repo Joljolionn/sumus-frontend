@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso - SUMUS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/base/reset.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="/assets/css/components/marketing-nav.css" />
+  
+  <link rel="stylesheet" href="/assets/css/pages/acesso/login/login.css" />
+</head>
+
+<body class="login-page">
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="login-main">
+    
+    <div id="msgError" class="alert-message alert-error"></div>
+    <div id="msgSuccess" class="alert-message alert-success"></div>
+
+    <div class="login-split-card">
+      
+      <div class="login-visual">
+        <div class="login-visual__content">
+          <div>
+            <h1 class="login-visual__logo">SUMUS</h1>
+            <p class="login-visual__tagline">Centro de comando e operações. Gerencie toda a rede de mobilidade em tempo real.</p>
+          </div>
+          
+          <div class="login-feature">
+            <div class="login-feature__icon-shell">
+              <span class="material-symbols-outlined">admin_panel_settings</span>
+            </div>
+            <div class="login-feature__text">
+              <p class="login-feature__title">Gestão Centralizada</p>
+              <p class="login-feature__desc">Monitore viagens, valide documentações e analise o desempenho da plataforma.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="login-visual__bg">
+          <div class="login-visual__overlay"></div>
+          <img src="/assets/materiais/photo-1542831371-29b0f74f9713.avif" alt="Dashboard de Operações" class="login-visual__img">
+        </div>
+      </div>
+
+      <div class="login-form-area">
+        <div class="login-form-area__inner">
+          <header class="login-header">
+            <h2 class="login-header__title">Acesso Restrito</h2>
+            <p class="login-header__subtitle">Insira suas credenciais corporativas para acessar o painel administrativo.</p>
+          </header>
+
+          <form id="loginForm" class="login-form">
+            
+            <div class="form-group">
+              <label class="form-label" for="email">E-mail Corporativo</label>
+              <div class="form-control form-control--with-icon">
+                <span class="material-symbols-outlined form-control__icon">mail</span>
+                <input class="form-input" id="email" type="email" placeholder="admin@sumus.com.br" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-group__header">
+                <label class="form-label" for="password">Senha</label>
+                <a class="form-forgot-link" href="#">Esqueci a senha</a>
+              </div>
+              <div class="form-control form-control--with-icon">
+                <span class="material-symbols-outlined form-control__icon">lock</span>
+                <input class="form-input" id="password" type="password" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <div class="login-actions">
+              <button class="btn-primary" type="submit">
+                Acessar Sistema
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+
+              <div class="login-divider">
+                <span>OU</span>
+              </div>
+
+              <button class="btn-google" type="button">
+                <i class="fa-brands fa-google"></i>
+                Login via Workspace
+              </button>
+            </div>
+          </form>
+
+          <footer class="login-footer">
+            <p>Problemas com o acesso? <a href="#">Contatar Suporte de TI</a></p>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <script src="../../assets/js/passanger/login.js"></script>
+</body>
+</html>

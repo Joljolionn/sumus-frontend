@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro3/Motorista</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&display=swap" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/css/base/reset.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="/assets/css/components/marketing-nav.css" />
+  
+  <link rel="stylesheet" href="/assets/css/pages/acesso/cadastro/cadastro.css" />
+</head>
+
+<body class="register-page">
+
+  <nav class="topbar">
+    <div class="topbar__content">
+      <div class="topbar__brand">SUMUS</div>
+      <div class="topbar__menu">
+        <a class="topbar__link" href="#">Viajar</a>
+        <a class="topbar__link" href="#">Ganhe Dinheiro</a>
+        <a class="topbar__link" href="#">Sobre</a>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__login topbar__link--active" type="button">Fazer Login</button>
+        <button class="topbar__signup" type="button">Cadastre-se</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="register-main">
+    
+    <div id="msgError" class="alert-message alert-error"></div>
+    <div id="msgSuccess" class="alert-message alert-success"></div>
+
+    <div class="register-container">
+      
+      <!-- Cabeçalho & Progresso -->
+      <div class="register-header-area">
+        <div class="register-progress">
+          <span class="register-progress__text">Passo 3 de 3</span>
+          <div class="register-progress__bar">
+            <div class="register-progress__fill" style="width: 100%"></div>
+          </div>
+        </div>
+        <h2 class="register-title">Verifique seu e-mail</h2>
+        <p class="register-subtitle">Enviamos um link de confirmação para o seu e-mail. Acesse sua caixa de entrada para ativar sua conta na SUMUS.</p>
+      </div>
+
+      <!-- Área de Confirmação -->
+      <div class="confirmation-wrapper">
+        <div class="confirmation-icon">
+          <span class="material-symbols-outlined">mark_email_read</span>
+        </div>
+        
+        <div class="confirmation-card">
+          <p class="confirmation-card__text">Não recebeu o e-mail? Verifique sua pasta de spam ou clique no botão abaixo para reenviar.</p>
+          
+          <div class="confirmation-actions">
+            <button class="btn-primary btn-primary--large" type="button">
+              Reenviar E-mail
+              <span class="material-symbols-outlined">refresh</span>
+            </button>
+            <a href="/pages/driver/login/login-motorista.html" class="btn-ghost">
+              Voltar para o Login
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dica de Próximos Passos -->
+      <div class="info-card">
+        <div class="info-card__icon-shell">
+          <span class="material-symbols-outlined">verified_user</span>
+        </div>
+        <div class="info-card__content">
+          <h4 class="info-card__title">O que acontece agora?</h4>
+          <p class="info-card__text">Nossa equipe analisará seus documentos em até 24 horas úteis. Assim que aprovado, você receberá uma notificação e poderá começar a sua jornada!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

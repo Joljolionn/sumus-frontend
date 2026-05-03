@@ -1,0 +1,288 @@
+/* =========================================
+   1. LAYOUT PRINCIPAL & HERO
+   ========================================= */
+body.page {
+  background: var(--surface, #f8fafb);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.hero {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(4rem, 8dvh, 5rem) 1.5rem 3rem;
+  background: radial-gradient(circle at 0% 0%, rgba(0, 103, 129, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 100% 100%, rgba(0, 103, 129, 0.03) 0%, transparent 50%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 10;
+  width: min(1440px, 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+}
+
+.hero__title-block {
+  margin-bottom: 5rem;
+  max-width: 42rem;
+  text-align: left;
+}
+
+.hero__title {
+  margin-bottom: 1rem;
+  margin-top: 50px;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--primary);
+}
+
+.hero__title--highlight {
+  color: var(--text-main);
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 36rem;
+}
+
+/* =========================================
+   2. GRID DE ESCOLHAS (NOVO DESIGN)
+   ========================================= */
+.hero__cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.choice-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+}
+
+.choice-card:hover {
+  transform: translateY(-8px);
+}
+
+.choice-card--driver {
+  background: var(--surface-container-low, #f2f4f5);
+}
+
+.choice-card--driver:hover {
+  box-shadow: 0 40px 80px -20px rgba(0, 103, 129, 0.15);
+}
+
+.choice-card--passenger {
+  background: var(--primary-container, #006781);
+  color: #ffffff;
+}
+
+.choice-card--passenger:hover {
+  box-shadow: 0 40px 80px -20px rgba(0, 103, 129, 0.25);
+}
+
+/* =========================================
+   3. CORPO DOS CARDS
+   ========================================= */
+.choice-card__body {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-card__icon-shell {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.choice-card--driver .choice-card__icon-shell {
+  background: var(--primary-container, #006781);
+  color: #ffffff;
+}
+
+.choice-card--passenger .choice-card__icon-shell {
+  background: #ffffff;
+  color: var(--primary-container, #006781);
+}
+
+.choice-card__icon {
+  font-size: 1.75rem;
+}
+
+.choice-card__title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.choice-card--driver .choice-card__title {
+  color: var(--text-main);
+}
+
+.choice-card__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+/* =========================================
+   4. LISTA DE RECURSOS E BOTÕES
+   ========================================= */
+.choice-card__features {
+  list-style: none;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.choice-card__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.choice-card--driver .choice-card__features .material-symbols-outlined {
+  color: var(--primary);
+  font-variation-settings: 'FILL' 1;
+}
+
+.choice-card--passenger .choice-card__features .material-symbols-outlined {
+  color: #ffffff;
+  font-variation-settings: 'FILL' 1;
+}
+
+.choice-card__button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.choice-card--driver .choice-card__button {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.choice-card--driver .choice-card__button:hover {
+  background: var(--on-primary-fixed-variant, #004d62);
+}
+
+.choice-card--passenger .choice-card__button {
+  background: #ffffff;
+  color: var(--primary-container, #006781);
+}
+
+.choice-card--passenger .choice-card__button:hover {
+  background: var(--surface-container, #eceeef);
+}
+
+/* =========================================
+   5. IMAGENS E INDICADORES DE CONFIANÇA
+   ========================================= */
+.choice-card__image-wrapper {
+  height: 15rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-card--driver .choice-card__image-wrapper {
+  background: var(--surface-container-high, #e6e8e9);
+}
+
+.choice-card--passenger .choice-card__image-wrapper {
+  background: var(--primary, #004e62);
+}
+
+.choice-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.choice-card--driver .choice-card__image {
+  opacity: 0.6;
+}
+
+.choice-card--passenger .choice-card__image {
+  opacity: 0.5;
+}
+
+.choice-card:hover .choice-card__image {
+  transform: scale(1.05);
+}
+
+.trust-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  filter: grayscale(100%);
+  opacity: 0.4;
+}
+
+.trust-indicators span {
+  font-size: 1.125rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  font-family: "Lexend", sans-serif;
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 900px) {
+  .hero__cards {
+    grid-template-columns: 1fr;
+  }
+  .hero__title-block {
+    text-align: center;
+    margin: 0 auto 4rem auto;
+  }
+  .hero__title {
+    font-size: 3.5rem;
+  }
+  .trust-indicators {
+    gap: 1.5rem;
+  }
+}

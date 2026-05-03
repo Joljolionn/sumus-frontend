@@ -1,0 +1,579 @@
+/* =========================================
+   1. ESTRUTURA GERAL DA PÁGINA
+   ========================================= */
+body.login-page {
+  background: var(--background, #f8fafb);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Public Sans", sans-serif;
+  color: var(--text, #191c1d);
+}
+
+.topbar {
+  flex-shrink: 0;
+  z-index: 100;
+  position: relative !important; 
+}
+
+.register-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: clamp(2rem, 5vh, 4rem) 1.5rem;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 56rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* =========================================
+   2. CABEÇALHO E PROGRESSO
+   ========================================= */
+.register-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--primary, #006781);
+  margin-bottom: 1rem;
+}
+
+.register-progress__text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.register-progress__bar {
+  flex-grow: 1;
+  height: 0.35rem;
+  background: var(--surface-container, #eceeef);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.register-progress__fill {
+  height: 100%;
+  background: var(--primary, #006781);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.register-title {
+  font-family: "Lexend", sans-serif;
+  color: var(--text, #191c1d);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.5rem 0;
+}
+
+.register-subtitle {
+  color: var(--text-muted, #6f787d);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+/* =========================================
+   3. FORMULÁRIO (GRID)
+   ========================================= */
+.register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  color: var(--text, #191c1d);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.form-control {
+  position: relative;
+}
+
+.form-control__icon {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #6f787d);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.form-control:focus-within .form-control__icon {
+  color: var(--primary, #006781);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--surface-container-high, #e6e8e9);
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1.1rem 3.5rem 1.1rem 1.5rem;
+  font-family: "Public Sans", sans-serif;
+  font-size: 1.05rem;
+  color: var(--text, #191c1d);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: rgba(111, 120, 125, 0.5);
+}
+
+.form-input:focus {
+  background: #ffffff;
+  border-color: var(--primary, #006781);
+  box-shadow: 0 0 0 4px rgba(0, 103, 129, 0.1);
+}
+
+/* =========================================
+   4. BOTÕES E AÇÕES
+   ========================================= */
+.register-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.register-link {
+  color: var(--primary, #006781);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  padding: 0.5rem 1rem;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--primary, #006781);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.btn-primary--large {
+  padding: 1.1rem 2.5rem;
+  border-radius: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px -6px rgba(0, 103, 129, 0.4);
+}
+
+.btn-primary--large:hover {
+  background: #004e62;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(0, 103, 129, 0.5);
+}
+
+.btn-primary--large:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   5. INFO CARD DE TRANSPARÊNCIA
+   ========================================= */
+.info-card {
+  background: var(--surface-container-low, #f2f4f5);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.info-card__icon-shell {
+  background: rgba(0, 103, 129, 0.1);
+  color: var(--primary, #006781);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.info-card__icon-shell .material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.info-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-card__title {
+  font-family: "Lexend", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text, #191c1d);
+  margin: 0;
+}
+
+.info-card__text {
+  color: var(--text-muted, #6f787d);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   6. ALERTAS E RESPONSIVIDADE
+   ========================================= */
+.alert-message {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: none;
+  font-weight: 600;
+  width: 100%;
+  max-width: 56rem;
+}
+
+.alert-error { color: #ba1a1a; background-color: #ffdad6; }
+.alert-success { color: #008800; background-color: #d1f5d1; }
+
+@media (max-width: 768px) {
+  .register-form__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .register-actions {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .btn-primary--large {
+    width: 100%;
+  }
+  .info-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* =========================================
+   7. GRID DE DOCUMENTOS (PASSO 2)
+   ========================================= */
+.document-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.doc-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.doc-card__title {
+  font-family: "Lexend", sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text, #191c1d);
+  margin: 0;
+}
+
+.doc-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted, #6f787d);
+  margin: 0;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 14rem;
+  padding: 2rem;
+  border: 2px dashed var(--outline-variant, #bfc8cd);
+  border-radius: 1rem;
+  background-color: var(--surface-container-low, #f2f4f5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.upload-area:hover,
+.upload-area:focus-within {
+  border-color: var(--primary, #006781);
+  background-color: var(--surface-container-high, #e6e8e9);
+}
+
+.upload-area__icon {
+  font-size: 3.5rem;
+  color: var(--primary, #006781);
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.upload-area:hover .upload-area__icon {
+  transform: translateY(-5px);
+}
+
+.upload-area__action {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary, #006781);
+  margin-bottom: 0.25rem;
+}
+
+.upload-area__hint {
+  font-size: 0.8rem;
+  color: var(--text-muted, #6f787d);
+}
+
+/* =========================================
+   8. PAINEL DE ACESSIBILIDADE
+   ========================================= */
+.accessibility-panel {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface-container-low, #f2f4f5);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.accessibility-panel__content {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.accessibility-panel__title {
+  font-family: "Lexend", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary, #006781);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.accessibility-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.accessibility-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-muted, #6f787d);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.accessibility-list .material-symbols-outlined {
+  color: var(--primary, #006781);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.accessibility-panel__image-shell {
+  width: 30%;
+  position: relative;
+  background: var(--surface-container-highest, #e0e3e4);
+}
+
+.accessibility-panel__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) opacity(80%);
+}
+
+/* =========================================
+   9. MODIFICADORES DE BOTÕES E LAYOUT
+   ========================================= */
+.register-actions--between {
+  justify-content: space-between;
+  border-top: 1px solid var(--surface-container-high, #e6e8e9);
+}
+
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary, #006781);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: var(--surface-container-high, #e6e8e9);
+}
+
+@media (max-width: 920px) {
+  .document-grid {
+    grid-template-columns: 1fr;
+  }
+  .accessibility-panel {
+    flex-direction: column;
+  }
+  .accessibility-panel__image-shell {
+    width: 100%;
+    height: 15rem;
+  }
+}
+
+/* =========================================
+   10. TELA DE CONFIRMAÇÃO (PASSO 3)
+   ========================================= */
+.confirmation-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto 2rem;
+  max-width: 32rem;
+  width: 100%;
+}
+
+.confirmation-icon {
+  width: 5rem;
+  height: 5rem;
+  background: rgba(0, 103, 129, 0.1);
+  color: var(--primary, #006781);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -2.5rem;
+  z-index: 2;
+  position: relative;
+  border: 6px solid var(--background, #f8fafb);
+}
+
+.confirmation-icon .material-symbols-outlined {
+  font-size: 2.5rem;
+  font-variation-settings: 'FILL' 1;
+}
+
+.confirmation-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--surface-container-high, #e6e8e9);
+  border-radius: 1.5rem;
+  padding: 4rem 2.5rem 2.5rem;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.confirmation-card__text {
+  color: var(--text-muted, #6f787d);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.confirmation-actions .btn-primary--large {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .confirmation-card {
+    padding: 3.5rem 1.5rem 1.5rem;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  .confirmation-icon {
+    border-color: transparent;
+  }
+}
+
+/* =========================================
+   AJUSTES DO CAMPO DE DATA (Shadow DOM)
+   ========================================= */
+
+.form-input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3.5rem;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.form-input[type="date"]:invalid {
+  color: rgba(111, 120, 125, 0.5);
+  font-family: "Public Sans", sans-serif;
+}
+
+.form-input[type="date"]:valid {
+  color: var(--text, #191c1d);
+}

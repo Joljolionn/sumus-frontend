@@ -3,56 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SUMUS Admin - Aprovacao de Motoristas</title>
+  <title>SUMUS Admin - Aprovação de Motoristas</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-  <link rel="stylesheet" href="../../assets/css/pages/admin/aprovacao-motorista/index.css" />
+  <!-- CSS Globais e Componentes -->
+  <link rel="stylesheet" href="/assets/css/base/reset.css" />
+  <link rel="stylesheet" href="/assets/css/base/admin.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
+  <link rel="stylesheet" href="/assets/css/utilities/scrollbar.css" />
+  <link rel="stylesheet" href="/assets/css/components/dashboard-sidebar.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/pages/admin/aprovacao-motorista.css" />
 </head>
 
-<body class="admin-approval-page">
-  <div class="admin-approval-layout">
+<body class="admin-page">
+  <div class="admin-layout">
 
     <!-- SIDEBAR -->
-        <aside class="sidebar">
+    <aside class="sidebar">
       <div class="sidebar__brand">
         <span class="sidebar__brand-text">SUMUS</span>
       </div>
 
       <nav class="sidebar__nav">
+        <div class="sidebar__group-title">Menu Principal</div>
+        
         <a class="sidebar__link" href="./dashboard.html">
           <span class="material-symbols-outlined">grid_view</span>
           <span>Dashboard</span>
         </a>
+        
         <a class="sidebar__link" href="./aprovacao-passageiro.html">
           <span class="material-symbols-outlined">accessible_forward</span>
-          <span>Aprovacao de Passageiros</span>
+          <span>Aprovação de Passageiros</span>
         </a>
+        
         <a class="sidebar__link sidebar__link--active" href="./aprovacao-motorista.html">
           <span class="material-symbols-outlined">verified_user</span>
-          <span>Aprovacao de Motoristas</span>
+          <span>Aprovação de Motoristas</span>
         </a>
+        
         <a class="sidebar__link" href="./gestao.html">
           <span class="material-symbols-outlined">admin_panel_settings</span>
-          <span>Gestao Administrativa</span>
+          <span>Gestão Administrativa</span>
         </a>
+
+        <div class="sidebar__group-title">Sistema</div>
+        
         <a class="sidebar__link" href="./loginadmin.html">
-          <span class="material-symbols-outlined">login</span>
+          <span class="material-symbols-outlined">sync_alt</span>
           <span>Trocar conta</span>
         </a>
-
-        <div class="sidebar__divider"></div>
-
+        
         <a class="sidebar__link" href="#">
           <span class="material-symbols-outlined">settings</span>
-          <span>Configuracoes</span>
+          <span>Configurações globais</span>
         </a>
       </nav>
+
+      <!-- RODAPÉ DO ADMIN -->
+      <div class="sidebar__footer">
+        <div class="sidebar__profile">
+          <img alt="Avatar do Administrador" class="sidebar__profile-img" src="https://ui-avatars.com/api/?name=Admin+Sumus&background=006782&color=fff&bold=true"/>
+          <div class="sidebar__profile-info">
+            <p class="sidebar__profile-name">Admin SUMUS</p>
+            <p class="sidebar__profile-status">Gestor Global</p>
+          </div>
+        </div>
+
+        <button class="sidebar__logout" type="button">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Sair do Sistema</span>
+        </button>
+      </div>
     </aside>
+
     <!-- MAIN -->
-    <main class="admin-approval-main">
-      <div class="admin-approval-shell">
+    <main class="admin-main">
+      <div class="admin-shell">
 
         <header class="admin-approval-header">
           <div>
@@ -74,49 +105,36 @@
 
     <div class="pdf-modal__content">
       <button class="pdf-modal__close" onclick="fecharModal()">✕</button>
-
       <iframe id="pdf-frame"></iframe>
     </div>
   </div>
-<script>
-  let currentPdfUrl = "";
 
-  function abrirModal(url) {
-    const modal = document.getElementById("pdf-modal");
-    const frame = document.getElementById("pdf-frame");
+  <script>
+    let currentPdfUrl = "";
 
-    currentPdfUrl = url;
+    function abrirModal(url) {
+      const modal = document.getElementById("pdf-modal");
+      const frame = document.getElementById("pdf-frame");
 
-    // tenta mostrar (se funcionar, ótimo)
-    frame.src = url;
+      currentPdfUrl = url;
 
-    modal.classList.remove("hidden");
-  }
+      frame.src = `${url}#view=FitW&toolbar=0`;
 
-  function abrirNovaAba() {
-    if (currentPdfUrl) {
-      window.open(currentPdfUrl, "_blank");
+      modal.classList.remove("hidden");
     }
-  }
 
-  function fecharModal() {
-    document.getElementById("pdf-modal").classList.add("hidden");
-    document.getElementById("pdf-frame").src = "";
-  }
-  function abrirModal(url) {
-  const modal = document.getElementById("pdf-modal");
-  const frame = document.getElementById("pdf-frame");
+    function abrirNovaAba() {
+      if (currentPdfUrl) {
+        window.open(currentPdfUrl, "_blank");
+      }
+    }
 
-  currentPdfUrl = url;
-
-  // #view=FitH -> Ajusta pela altura
-  // #view=FitW -> Ajusta pela largura (Geralmente o melhor para preencher tudo)
-  // toolbar=0  -> Opcional: esconde a barra de ferramentas do navegador
-  frame.src = `${url}#view=FitW&toolbar=0`;
-
-  modal.classList.remove("hidden");
-}
-</script>
-  <script src="../../assets/js//admin/aprovacao-motorista.js"></script>
+    function fecharModal() {
+      document.getElementById("pdf-modal").classList.add("hidden");
+      document.getElementById("pdf-frame").src = "";
+    }
+  </script>
+  
+  <script src="../../assets/js/admin/aprovacao-motorista.js"></script>
 </body>
 </html>
