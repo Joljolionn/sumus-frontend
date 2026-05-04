@@ -50,7 +50,7 @@ driverRouter.get('/config', (req, res) => {
 });
 
 
-driverRouter.get('/historico', (req, res) => {
+driverRouter.get('/history', (req, res) => {
   res.sendFile(path.join(localDirname, 'historico.html'));
 });
 

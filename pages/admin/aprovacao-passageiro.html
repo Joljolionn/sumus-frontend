@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
   <!-- CSS Globais e Componentes -->
-  <link rel="stylesheet" href="/assets/css/base/reset.css" />
-  <link rel="stylesheet" href="/assets/css/base/admin.css" />
-  <link rel="stylesheet" href="/assets/css/utilities/common.css" />
-  <link rel="stylesheet" href="/assets/css/utilities/scrollbar.css" />
-  <link rel="stylesheet" href="/assets/css/components/dashboard-sidebar.css" />
+  <link rel="stylesheet" href="/css/base/reset.css" />
+  <link rel="stylesheet" href="/css/base/admin.css" />
+  <link rel="stylesheet" href="/css/utilities/common.css" />
+  <link rel="stylesheet" href="/css/utilities/scrollbar.css" />
+  <link rel="stylesheet" href="/css/components/dashboard-sidebar.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/pages/admin/aprovacao-passageiro.css" />
+  <link rel="stylesheet" href="/css/pages/admin/aprovacao-passageiro.css" />
 </head>
 
 <body class="admin-page">
@@ -31,29 +31,29 @@
       <nav class="sidebar__nav">
         <div class="sidebar__group-title">Menu Principal</div>
         
-        <a class="sidebar__link" href="./dashboard.html">
+        <a class="sidebar__link" href="/admin">
           <span class="material-symbols-outlined">grid_view</span>
           <span>Dashboard</span>
         </a>
         
-        <a class="sidebar__link sidebar__link--active" href="./aprovacao-passageiro.html">
+        <a class="sidebar__link sidebar__link--active" href="/admin/approval/passenger">
           <span class="material-symbols-outlined">accessible_forward</span>
           <span>Aprovação de Passageiros</span>
         </a>
         
-        <a class="sidebar__link" href="./aprovacao-motorista.html">
+        <a class="sidebar__link" href="/admin/approval/driver">
           <span class="material-symbols-outlined">verified_user</span>
           <span>Aprovação de Motoristas</span>
         </a>
         
-        <a class="sidebar__link" href="./gestao.html">
+        <a class="sidebar__link" href="/admin/management">
           <span class="material-symbols-outlined">admin_panel_settings</span>
           <span>Gestão Administrativa</span>
         </a>
 
         <div class="sidebar__group-title">Sistema</div>
         
-        <a class="sidebar__link" href="./loginadmin.html">
+        <a class="sidebar__link" href="/admin/login">
           <span class="material-symbols-outlined">sync_alt</span>
           <span>Trocar conta</span>
         </a>
@@ -137,6 +137,6 @@
     }
   </script>
   
-  <script src="../../assets/js/admin/aprovacao-passageiro.js"></script>
+  <script src="/js/admin/aprovacao-passageiro.js"></script>
 </body>
 </html>
