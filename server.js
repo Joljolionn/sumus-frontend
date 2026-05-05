@@ -1,65 +1,47 @@
-// Importa módulos necessários
-const fs = require("fs");           // leitura de arquivos
-const path = require("path");       // manipulação de caminhos
-const dotenv = require("dotenv");   // variáveis de ambiente
-const express = require("express"); // framework web
+const fs = require("fs");
+const path = require("path");
+const dotenv = require("dotenv");
+const express = require("express");
 
-// Carrega variáveis do .env
 dotenv.config({ quiet: true });
 
-// Diretórios base do projeto
 const ROOT_DIR = __dirname;
-const PAGES_DIR = path.join(ROOT_DIR, "pages");   // pasta de páginas HTML
-const ASSETS_DIR = path.join(ROOT_DIR, "assets"); // CSS, JS, imagens
+const PAGES_DIR = path.join(ROOT_DIR, "pages");
+const ASSETS_DIR = path.join(ROOT_DIR, "assets");
 const LANDING_PAGE = path.join(ROOT_DIR, "index.html");
-
-// Porta do servidor
 const PORT = Number.parseInt(process.env.PORT, 10) || 3000;
-
-// Script de navegação que será injetado automaticamente
 const NAVIGATION_SCRIPT_TAG = '<script src="/assets/js/shared/navigation.js"></script>';
+const ACTIVE_STATUSES = new Set(["searching", "accepted"]);
 
+let dbRequests = [];
 
-// Converte caminho do sistema para padrão web (usa "/")
 function toPosixPath(value) {
   return value.split(path.sep).join("/");
 }
 
-
-// Normaliza nomes de rota (remove acento, espaço vira "-")
 function normalizeRouteSegment(segment) {
   return segment
-    .normalize("NFD")                // separa acentos
-    .replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .replace(/\s+/g, "-")            // espaço → hífen
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
     .toLowerCase();
 }
 
-
-// Percorre pasta recursivamente e pega todos HTML
 function collectHtmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const entryPath = path.join(directory, entry.name);
 
-    // Se for pasta, entra nela
     if (entry.isDirectory()) {
       return collectHtmlFiles(entryPath);
     }
 
-    // Se for HTML, adiciona
     return entry.isFile() && entry.name.endsWith(".html") ? [entryPath] : [];
   });
 }
 
-
-// Cria definição de rota para cada página
 function createPageDefinition(filePath) {
   const relativePath = toPosixPath(path.relative(PAGES_DIR, filePath));
-
-  // Remove .html da rota
   const routePath = relativePath.replace(/\.html$/i, "");
-
-  // Normaliza rota (sem acento, etc)
   const normalizedRoutePath = routePath
     .split("/")
     .map(normalizeRouteSegment)
@@ -68,7 +50,6 @@ function createPageDefinition(filePath) {
   const rawRoute = `/${routePath}`;
   const canonicalRoute = `/${normalizedRoutePath}`;
 
-  // Cria aliases (variações de acesso)
   const aliases = new Set([
     rawRoute,
     `${rawRoute}.html`,
@@ -77,18 +58,15 @@ function createPageDefinition(filePath) {
     `/pages/${normalizedRoutePath}.html`,
   ]);
 
-  // Remove duplicado da principal
   aliases.delete(canonicalRoute);
 
   return {
     filePath,
-    canonicalRoute, // rota oficial
-    aliases: [...aliases], // variações
+    canonicalRoute,
+    aliases: [...aliases],
   };
 }
 
-
-// Monta todas as páginas do sistema
 function buildPageRegistry() {
   const contentPages = collectHtmlFiles(PAGES_DIR)
     .map(createPageDefinition)
@@ -97,31 +75,23 @@ function buildPageRegistry() {
   return [
     {
       filePath: LANDING_PAGE,
-      canonicalRoute: "/", // página inicial
+      canonicalRoute: "/",
       aliases: ["/index", "/index.html"],
     },
     ...contentPages,
   ];
 }
 
-
-// Cria registros de páginas
 const pageRegistry = buildPageRegistry();
+const pageFileLookup = new Map();
+const pageAliasLookup = new Map();
 
-// Maps para busca rápida
-const pageFileLookup = new Map();   // rota → arquivo
-const pageAliasLookup = new Map();  // alias → rota oficial
-
-
-// Registra variações de rota no mapa
 function registerLookupEntry(lookup, routePath, value) {
   lookup.set(routePath, value);
   lookup.set(routePath.normalize("NFC"), value);
   lookup.set(routePath.normalize("NFD"), value);
 }
 
-
-// Preenche os maps
 for (const page of pageRegistry) {
   registerLookupEntry(pageFileLookup, page.canonicalRoute, page.filePath);
 
@@ -130,25 +100,18 @@ for (const page of pageRegistry) {
   }
 }
 
-
-// Injeta script de navegação no HTML automaticamente
 function injectSharedScripts(html) {
-  // Se já tem, não duplica
   if (html.includes(NAVIGATION_SCRIPT_TAG)) {
     return html;
   }
 
-  // Insere antes do </body>
   if (/<\/body>/i.test(html)) {
     return html.replace(/<\/body>/i, `${NAVIGATION_SCRIPT_TAG}\n</body>`);
   }
 
-  // Se não tiver body, adiciona no final
   return `${html}\n${NAVIGATION_SCRIPT_TAG}`;
 }
 
-
-// Envia HTML como resposta
 function sendHtml(filePath, res) {
   fs.readFile(filePath, "utf8", (error, html) => {
     if (error) {
@@ -160,11 +123,8 @@ function sendHtml(filePath, res) {
   });
 }
 
-
-// Gera variações de rota (decodificada + unicode)
 function getRouteVariants(routePath) {
   const decodedPath = decodeURIComponent(routePath);
-
   const variants = new Set([routePath, decodedPath]);
 
   for (const value of [...variants]) {
@@ -175,18 +135,13 @@ function getRouteVariants(routePath) {
   return [...variants];
 }
 
-
-// Resolve requisição de página
 function resolvePageRequest(routePath) {
   for (const routeVariant of getRouteVariants(routePath)) {
-
-    // Busca direta
     const filePath = pageFileLookup.get(routeVariant);
     if (filePath) {
       return { type: "page", filePath };
     }
 
-    // Busca por alias
     const canonicalRoute = pageAliasLookup.get(routeVariant);
     if (canonicalRoute) {
       return { type: "redirect", canonicalRoute };
@@ -196,15 +151,338 @@ function resolvePageRequest(routePath) {
   return null;
 }
 
+function sanitizeParty(rawParty) {
+  if (!rawParty) return null;
 
-// Cria aplicação Express
+  const id = String(rawParty.id ?? "").trim();
+  const name = String(
+    rawParty.name || rawParty.login || rawParty.label || rawParty.email || "Usuario"
+  ).trim();
+  const email = String(rawParty.email || "").trim().toLowerCase();
+
+  if (!id && !email) {
+    return null;
+  }
+
+  return {
+    id: id || email,
+    name: name || "Usuario",
+    email,
+  };
+}
+
+function sanitizePlace(rawPlace) {
+  if (!rawPlace) return null;
+
+  const coords =
+    Array.isArray(rawPlace.coords) && rawPlace.coords.length === 2
+      ? rawPlace.coords.map((value) => Number(value))
+      : null;
+
+  return {
+    id: String(rawPlace.id || `place-${Date.now()}`),
+    label: String(rawPlace.label || rawPlace.address || "Ponto"),
+    address: String(rawPlace.address || rawPlace.label || "Ponto"),
+    coords: coords && coords.every((value) => Number.isFinite(value)) ? coords : null,
+    icon: String(rawPlace.icon || "place"),
+    tag: String(rawPlace.tag || ""),
+  };
+}
+
+function sanitizeEstimate(rawEstimate) {
+  if (!rawEstimate) return null;
+
+  const distanceKm = Number(rawEstimate.distanceKm);
+  const durationMinutes = Number(rawEstimate.durationMinutes);
+  const fareValue = Number(rawEstimate.fareValue);
+
+  return {
+    badge: String(rawEstimate.badge || ""),
+    distanceLabel: String(rawEstimate.distanceLabel || "-"),
+    durationLabel: String(rawEstimate.durationLabel || "-"),
+    fareLabel: String(rawEstimate.fareLabel || "-"),
+    distanceKm: Number.isFinite(distanceKm) ? distanceKm : null,
+    durationMinutes: Number.isFinite(durationMinutes) ? durationMinutes : null,
+    fareValue: Number.isFinite(fareValue) ? fareValue : null,
+    approximate: Boolean(rawEstimate.approximate),
+  };
+}
+
+function sanitizeRoute(rawRoute) {
+  if (!rawRoute) return null;
+
+  const geometry = Array.isArray(rawRoute.geometry)
+    ? rawRoute.geometry
+        .filter(
+          (point) =>
+            Array.isArray(point) &&
+            point.length === 2 &&
+            Number.isFinite(Number(point[0])) &&
+            Number.isFinite(Number(point[1]))
+        )
+        .map((point) => [Number(point[0]), Number(point[1])])
+    : [];
+
+  if (!geometry.length) {
+    return null;
+  }
+
+  const distanceMeters = Number(rawRoute.distanceMeters);
+  const durationSeconds = Number(rawRoute.durationSeconds);
+
+  return {
+    geometry,
+    distanceMeters: Number.isFinite(distanceMeters) ? distanceMeters : null,
+    durationSeconds: Number.isFinite(durationSeconds) ? durationSeconds : null,
+    approximate: Boolean(rawRoute.approximate),
+    source: String(rawRoute.source || ""),
+  };
+}
+
+function sanitizeRequest(rawRequest) {
+  if (!rawRequest) return null;
+
+  const passenger = sanitizeParty(rawRequest.passenger);
+  const origin = sanitizePlace(rawRequest.origin);
+  const destination = sanitizePlace(rawRequest.destination);
+
+  if (!passenger || !origin || !destination) {
+    return null;
+  }
+
+  return {
+    id: String(rawRequest.id || `request-${Date.now()}`),
+    createdAt: String(rawRequest.createdAt || new Date().toISOString()),
+    updatedAt: String(rawRequest.updatedAt || rawRequest.createdAt || new Date().toISOString()),
+    status: String(rawRequest.status || "searching"),
+    passenger,
+    driver: sanitizeParty(rawRequest.driver),
+    origin,
+    destination,
+    support: String(rawRequest.support || "embarque"),
+    notes: String(rawRequest.notes || ""),
+    estimate: sanitizeEstimate(rawRequest.estimate),
+    route: sanitizeRoute(rawRequest.route),
+    acceptedAt: rawRequest.acceptedAt ? String(rawRequest.acceptedAt) : "",
+    cancelledAt: rawRequest.cancelledAt ? String(rawRequest.cancelledAt) : "",
+    cancelledBy: sanitizeParty(rawRequest.cancelledBy),
+  };
+}
+
+function sortRequests(leftRequest, rightRequest) {
+  return new Date(rightRequest.createdAt).getTime() - new Date(leftRequest.createdAt).getTime();
+}
+
+function getRequests() {
+  return Array.isArray(dbRequests) ? dbRequests.filter(Boolean).sort(sortRequests) : [];
+}
+
+function getRequestById(requestId) {
+  return getRequests().find((request) => request.id === String(requestId)) || null;
+}
+
+function getActiveRequestForPassenger(passengerId) {
+  const normalizedPassengerId = String(passengerId ?? "").trim();
+
+  if (!normalizedPassengerId) {
+    return null;
+  }
+
+  return (
+    getRequests().find((request) => {
+      return request.passenger?.id === normalizedPassengerId && ACTIVE_STATUSES.has(request.status);
+    }) || null
+  );
+}
+
+function getAcceptedRequestForDriver(driverId) {
+  const normalizedDriverId = String(driverId ?? "").trim();
+
+  if (!normalizedDriverId) {
+    return null;
+  }
+
+  return (
+    getRequests().find((request) => {
+      return request.status === "accepted" && request.driver?.id === normalizedDriverId;
+    }) || null
+  );
+}
+
+function getPendingRequests() {
+  return getRequests().filter((request) => request.status === "searching");
+}
+
+function upsertRequest(rawRequest) {
+  const nextRequest = sanitizeRequest({
+    ...rawRequest,
+    updatedAt: new Date().toISOString(),
+  });
+
+  if (!nextRequest) {
+    return null;
+  }
+
+  const requests = getRequests();
+  const existingIndex = requests.findIndex((request) => request.id === nextRequest.id);
+
+  if (existingIndex >= 0) {
+    requests[existingIndex] = nextRequest;
+  } else {
+    requests.push(nextRequest);
+  }
+
+  dbRequests = requests;
+  return nextRequest;
+}
+
+function cancelRequest(requestId, actor) {
+  const requests = getRequests();
+  const requestIndex = requests.findIndex((request) => request.id === String(requestId));
+
+  if (requestIndex < 0) {
+    return {
+      ok: false,
+      message: "Solicitacao nao encontrada.",
+    };
+  }
+
+  const currentRequest = requests[requestIndex];
+
+  if (!ACTIVE_STATUSES.has(currentRequest.status)) {
+    return {
+      ok: false,
+      message: "Esta solicitacao nao esta mais ativa.",
+    };
+  }
+
+  requests[requestIndex] = sanitizeRequest({
+    ...currentRequest,
+    status: "cancelled",
+    cancelledAt: new Date().toISOString(),
+    cancelledBy: sanitizeParty(actor),
+    updatedAt: new Date().toISOString(),
+  });
+
+  dbRequests = requests;
+
+  return {
+    ok: true,
+    request: requests[requestIndex],
+  };
+}
+
+function acceptRequest(requestId, driver) {
+  const normalizedDriver = sanitizeParty(driver);
+
+  if (!normalizedDriver) {
+    return {
+      ok: false,
+      message: "Motorista invalido.",
+    };
+  }
+
+  const activeTrip = getAcceptedRequestForDriver(normalizedDriver.id);
+
+  if (activeTrip && activeTrip.id !== String(requestId)) {
+    return {
+      ok: false,
+      message: "Voce ja possui uma solicitacao aceita.",
+    };
+  }
+
+  const requests = getRequests();
+  const requestIndex = requests.findIndex((request) => request.id === String(requestId));
+
+  if (requestIndex < 0) {
+    return {
+      ok: false,
+      message: "Solicitacao nao encontrada.",
+    };
+  }
+
+  const currentRequest = requests[requestIndex];
+
+  if (currentRequest.status !== "searching") {
+    return {
+      ok: false,
+      message: "Esta solicitacao nao esta mais disponivel.",
+    };
+  }
+
+  requests[requestIndex] = sanitizeRequest({
+    ...currentRequest,
+    status: "accepted",
+    driver: normalizedDriver,
+    acceptedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  });
+
+  dbRequests = requests;
+
+  return {
+    ok: true,
+    request: requests[requestIndex],
+  };
+}
+
+function registerTripRequestApi(app) {
+  app.get("/api/requests", (req, res) => {
+    if (req.query.status === "searching") {
+      res.json(getPendingRequests());
+      return;
+    }
+
+    res.json(getRequests());
+  });
+
+  app.get("/api/requests/:id", (req, res) => {
+    const request = getRequestById(req.params.id);
+
+    if (!request) {
+      res.status(404).json({ ok: false, message: "Solicitacao nao encontrada." });
+      return;
+    }
+
+    res.json(request);
+  });
+
+  app.get("/api/requests/passenger/:passengerId/active", (req, res) => {
+    res.json(getActiveRequestForPassenger(req.params.passengerId));
+  });
+
+  app.get("/api/requests/driver/:driverId/accepted", (req, res) => {
+    res.json(getAcceptedRequestForDriver(req.params.driverId));
+  });
+
+  app.post("/api/requests", (req, res) => {
+    const request = upsertRequest(req.body);
+
+    if (!request) {
+      res.status(400).json({ ok: false, message: "Dados invalidos para a solicitacao." });
+      return;
+    }
+
+    res.json(request);
+  });
+
+  app.post("/api/requests/:id/cancel", (req, res) => {
+    const result = cancelRequest(req.params.id, req.body?.actor);
+    res.status(result.ok ? 200 : 400).json(result);
+  });
+
+  app.post("/api/requests/:id/accept", (req, res) => {
+    const result = acceptRequest(req.params.id, req.body?.driver);
+    res.status(result.ok ? 200 : 400).json(result);
+  });
+}
+
 function createApp() {
   const app = express();
 
-  app.disable("x-powered-by"); // remove header por segurança
+  app.disable("x-powered-by");
   app.use(express.json());
 
-  // Serve arquivos estáticos (CSS, JS, imagens)
   app.use(
     "/assets",
     express.static(ASSETS_DIR, {
@@ -213,7 +491,8 @@ function createApp() {
     })
   );
 
-  // Endpoint de saúde do servidor
+  registerTripRequestApi(app);
+
   app.get("/health", (_req, res) => {
     res.json({
       status: "ok",
@@ -221,10 +500,7 @@ function createApp() {
     });
   });
 
-  // Middleware principal de roteamento
   app.use((req, res, next) => {
-
-    // Só trata GET/HEAD
     if (req.method !== "GET" && req.method !== "HEAD") {
       next();
       return;
@@ -232,23 +508,19 @@ function createApp() {
 
     const resolvedRequest = resolvePageRequest(req.path);
 
-    // Se não encontrou rota
     if (!resolvedRequest) {
       next();
       return;
     }
 
-    // Se for alias → redireciona
     if (resolvedRequest.type === "redirect") {
       res.redirect(302, resolvedRequest.canonicalRoute);
       return;
     }
 
-    // Se for página → envia HTML
     sendHtml(resolvedRequest.filePath, res);
   });
 
-  // 404 fallback
   app.use((_req, res) => {
     res.status(404).send("Pagina nao encontrada.");
   });
@@ -256,86 +528,20 @@ function createApp() {
   return app;
 }
 
-
-// Cria app
 const app = createApp();
 
-
-// Em vez de localStorage, usamos um array no servidor
-let db_requests = []; 
-
-// --- REUSE SUAS FUNÇÕES DE SANITIZE AQUI ---
-// (Mantenha sanitizeRequest, sanitizeParty, etc., mas remova as referências a 'window')
-
-function getRequests() {
-  return db_requests.filter(Boolean).sort((a, b) => 
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
-}
-
-// --- ROTAS DA API ---
-
-// Listar todas ou pendentes
-app.get('/requests', (req, res) => {
-  const status = req.query.status;
-  let requests = getRequests();
-  
-  if (status === 'searching') {
-    requests = requests.filter(r => r.status === 'searching');
-  }
-  
-  res.json(requests);
-});
-
-// Criar ou Atualizar (o antigo upsertRequest)
-app.post('/requests', (req, res) => {
-  const rawRequest = req.body;
-  const nextRequest = sanitizeRequest({
-    ...rawRequest,
-    updatedAt: new Date().toISOString(),
-  });
-
-  if (!nextRequest) return res.status(400).json({ error: "Dados inválidos" });
-
-  const existingIndex = db_requests.findIndex(r => r.id === nextRequest.id);
-  if (existingIndex >= 0) {
-    db_requests[existingIndex] = nextRequest;
-  } else {
-    db_requests.push(nextRequest);
-  }
-
-  res.json(nextRequest);
-});
-
-// Aceitar uma solicitação
-app.post('/requests/:id/accept', (req, res) => {
-  const requestId = req.params.id;
-  const driver = req.body.driver;
-
-  // Aqui você cola a lógica da sua função acceptRequest original,
-  // adaptando o retorno para res.json(...)
-  // ... lógica de validação ...
-  
-  res.json({ ok: true, request: updatedRequest });
-});
-
-// Inicia servidor
 function startServer(port = PORT) {
-  return app.listen(port, '0.0.0.0', () => {
+  return app.listen(port, "0.0.0.0", () => {
     console.log(
       `Servidor rodando em http://localhost:${port} com ${pageRegistry.length} paginas registradas.`
     );
   });
 }
 
-
-// Executa só se for arquivo principal
 if (require.main === module) {
   startServer();
 }
 
-
-// Exporta para uso externo (testes, etc)
 module.exports = {
   app,
   createApp,
