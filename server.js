@@ -261,9 +261,67 @@ function createApp() {
 const app = createApp();
 
 
+// Em vez de localStorage, usamos um array no servidor
+let db_requests = []; 
+
+// --- REUSE SUAS FUNÇÕES DE SANITIZE AQUI ---
+// (Mantenha sanitizeRequest, sanitizeParty, etc., mas remova as referências a 'window')
+
+function getRequests() {
+  return db_requests.filter(Boolean).sort((a, b) => 
+    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+}
+
+// --- ROTAS DA API ---
+
+// Listar todas ou pendentes
+app.get('/requests', (req, res) => {
+  const status = req.query.status;
+  let requests = getRequests();
+  
+  if (status === 'searching') {
+    requests = requests.filter(r => r.status === 'searching');
+  }
+  
+  res.json(requests);
+});
+
+// Criar ou Atualizar (o antigo upsertRequest)
+app.post('/requests', (req, res) => {
+  const rawRequest = req.body;
+  const nextRequest = sanitizeRequest({
+    ...rawRequest,
+    updatedAt: new Date().toISOString(),
+  });
+
+  if (!nextRequest) return res.status(400).json({ error: "Dados inválidos" });
+
+  const existingIndex = db_requests.findIndex(r => r.id === nextRequest.id);
+  if (existingIndex >= 0) {
+    db_requests[existingIndex] = nextRequest;
+  } else {
+    db_requests.push(nextRequest);
+  }
+
+  res.json(nextRequest);
+});
+
+// Aceitar uma solicitação
+app.post('/requests/:id/accept', (req, res) => {
+  const requestId = req.params.id;
+  const driver = req.body.driver;
+
+  // Aqui você cola a lógica da sua função acceptRequest original,
+  // adaptando o retorno para res.json(...)
+  // ... lógica de validação ...
+  
+  res.json({ ok: true, request: updatedRequest });
+});
+
 // Inicia servidor
 function startServer(port = PORT) {
-  return app.listen(port, () => {
+  return app.listen(port, '0.0.0.0', () => {
     console.log(
       `Servidor rodando em http://localhost:${port} com ${pageRegistry.length} paginas registradas.`
     );

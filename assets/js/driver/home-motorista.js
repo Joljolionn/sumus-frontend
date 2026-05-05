@@ -44,9 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function getDriverIdentity() {
     const currentDriver = auth?.getSessionForRole("driver");
 
-    if (!currentDriver) {
-      return null;
-    }
+    if (!currentDriver) return null;
 
     return {
       id: String(currentDriver.id),
@@ -90,15 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function drawRequestRoute(request) {
-    if (!state.requestLayer) {
-      return;
-    }
+    if (!state.requestLayer) return;
 
     state.requestLayer.clearLayers();
 
-    if (!request?.origin?.coords || !request?.destination?.coords) {
-      return;
-    }
+    if (!request?.origin?.coords || !request?.destination?.coords) return;
 
     createRequestMarker(request.origin.coords, "origin").addTo(state.requestLayer);
     createRequestMarker(request.destination.coords, "destination").addTo(state.requestLayer);
@@ -122,12 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function getDriverDashboardState() {
+  // AGORA É ASSÍNCRONO
+  async function getDriverDashboardState() {
     const driver = getDriverIdentity();
     const acceptedRequest = driver && tripStore
-      ? tripStore.getAcceptedRequestForDriver(driver.id)
+      ? await tripStore.getAcceptedRequestForDriver(driver.id)
       : null;
-    const pendingRequests = tripStore ? tripStore.getPendingRequests() : [];
+    const pendingRequests = tripStore ? await tripStore.getPendingRequests() : [];
     const visibleRequest = acceptedRequest || pendingRequests[0] || null;
 
     return {
@@ -137,8 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  function renderRequestCard() {
-    const { acceptedRequest, pendingRequests, visibleRequest } = getDriverDashboardState();
+  // AGORA É ASSÍNCRONO
+  async function renderRequestCard() {
+    const { acceptedRequest, pendingRequests, visibleRequest } = await getDriverDashboardState();
     const hasAcceptedRequest = Boolean(acceptedRequest);
 
     state.visibleRequest = visibleRequest;
@@ -242,7 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
       state.map.setView(state.driverMarker.getLatLng(), 16, { animate: true });
     });
 
-    elements.acceptButton.addEventListener("click", () => {
+    // AGORA É ASSÍNCRONO
+    elements.acceptButton.addEventListener("click", async () => {
       const driver = getDriverIdentity();
 
       if (!driver || !tripStore || !state.visibleRequest) {
@@ -255,25 +252,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const result = tripStore.acceptRequest(state.visibleRequest.id, driver);
+      const result = await tripStore.acceptRequest(state.visibleRequest.id, driver);
 
       if (!result.ok) {
         setFeedback(result.message, "error");
-        renderRequestCard();
+        await renderRequestCard();
         return;
       }
 
       setFeedback("Solicitacao aceita. O passageiro ja pode ver seu aceite.", "success");
-      renderRequestCard();
-    });
-
-    window.addEventListener("storage", (event) => {
-      if (!tripStore || event.key !== tripStore.REQUESTS_KEY) {
-        return;
-      }
-
-      setFeedback("", "");
-      renderRequestCard();
+      await renderRequestCard();
     });
   }
 
@@ -301,4 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
   bindEvents();
   renderRequestCard();
   requestCurrentLocation();
+
+  // POLLING: Busca viagens do servidor a cada 5 segundos para manter a tela atualizada
+  setInterval(() => {
+    if (state.isGpsActive) {
+      renderRequestCard();
+    }
+  }, 5000);
 });

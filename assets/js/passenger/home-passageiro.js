@@ -192,15 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
     [...state.recentPlaces, ...defaultPlaces].forEach((rawPlace) => {
       const place = clonePlace(rawPlace);
 
-      if (!place) {
-        return;
-      }
+      if (!place) return;
 
       const key = normalizeText(getPlaceDisplay(place));
 
-      if (!key || uniquePlaces.has(key)) {
-        return;
-      }
+      if (!key || uniquePlaces.has(key)) return;
 
       uniquePlaces.set(key, place);
     });
@@ -214,15 +210,11 @@ document.addEventListener("DOMContentLoaded", () => {
     [...state.searchPlaces, ...getQuickPlaces()].forEach((rawPlace) => {
       const place = clonePlace(rawPlace);
 
-      if (!place) {
-        return;
-      }
+      if (!place) return;
 
       const key = normalizeText(getPlaceDisplay(place));
 
-      if (!key || uniquePlaces.has(key)) {
-        return;
-      }
+      if (!key || uniquePlaces.has(key)) return;
 
       uniquePlaces.set(key, place);
     });
@@ -718,6 +710,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ? "Motorista a caminho"
       : "Motorista sendo procurado";
     elements.activeRequestStatus.textContent = isAccepted ? "Aceita" : "Em busca";
+    // Salvar o status atual para comparar no polling
+    elements.activeRequestStatus.dataset.status = request.status;
+    
     elements.activeRequestRoute.textContent =
       `${request.origin.address} -> ${request.destination.address}`;
     elements.activeRequestTime.textContent = isAccepted
@@ -739,9 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyRequestToState(request) {
-    if (!request) {
-      return;
-    }
+    if (!request) return;
 
     setPlace("origin", request.origin, { skipRouteSync: true });
     setPlace("destination", request.destination, { skipRouteSync: true });
@@ -761,7 +754,7 @@ document.addEventListener("DOMContentLoaded", () => {
     void syncRouteAnalysis({ silent: true });
   }
 
-  function migrateLegacyActiveRequest() {
+  async function migrateLegacyActiveRequest() {
     const legacyRequest = readJson(STORAGE_KEYS.activeRequest, null);
     const passenger = getPassengerIdentity();
 
@@ -769,13 +762,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const sharedRequest = tripStore.getActiveRequestForPassenger(passenger.id);
+    // AGORA É ASSÍNCRONO
+    const sharedRequest = await tripStore.getActiveRequestForPassenger(passenger.id);
 
     if (sharedRequest) {
       return;
     }
 
-    const migratedRequest = tripStore.upsertRequest({
+    const migratedRequest = await tripStore.upsertRequest({
       ...legacyRequest,
       passenger,
       status: legacyRequest.status || "searching",
@@ -786,13 +780,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function restoreActiveRequest() {
-    migrateLegacyActiveRequest();
+  async function restoreActiveRequest() {
+    await migrateLegacyActiveRequest();
 
     const passenger = getPassengerIdentity();
+    // AGORA É ASSÍNCRONO
     const storedRequest =
       tripStore && passenger
-        ? tripStore.getActiveRequestForPassenger(passenger.id)
+        ? await tripStore.getActiveRequestForPassenger(passenger.id)
         : readJson(STORAGE_KEYS.activeRequest, null);
 
     if (!storedRequest) {
@@ -917,9 +912,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.clearTimeout(state.suggestionTimers[fieldName]);
 
-    if (query.length < 3) {
-      return;
-    }
+    if (query.length < 3) return;
 
     state.suggestionTimers[fieldName] = window.setTimeout(async () => {
       state.suggestionControllers[fieldName]?.abort();
@@ -949,13 +942,8 @@ document.addEventListener("DOMContentLoaded", () => {
   async function ensurePlaceCoordinates(fieldName) {
     const currentPlace = state[fieldName];
 
-    if (!currentPlace) {
-      return null;
-    }
-
-    if (currentPlace.coords) {
-      return currentPlace;
-    }
+    if (!currentPlace) return null;
+    if (currentPlace.coords) return currentPlace;
 
     const displayValue = getPlaceDisplay(currentPlace);
     const knownPlace = resolveKnownPlace(displayValue);
@@ -974,9 +962,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const places = await requestPlaces(displayValue, fieldName, { limit: 1 });
       const resolvedPlace = places[0];
 
-      if (!resolvedPlace) {
-        return null;
-      }
+      if (!resolvedPlace) return null;
 
       mergeSearchPlaces([resolvedPlace]);
       setPlace(fieldName, resolvedPlace, { skipRouteSync: true });
@@ -1058,15 +1044,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resolvedOrigin = await ensurePlaceCoordinates("origin");
 
-    if (routeSyncToken !== state.routeSyncToken) {
-      return { ok: false, stale: true };
-    }
+    if (routeSyncToken !== state.routeSyncToken) return { ok: false, stale: true };
 
     const resolvedDestination = await ensurePlaceCoordinates("destination");
 
-    if (routeSyncToken !== state.routeSyncToken) {
-      return { ok: false, stale: true };
-    }
+    if (routeSyncToken !== state.routeSyncToken) return { ok: false, stale: true };
 
     if (!resolvedOrigin?.coords || !resolvedDestination?.coords) {
       state.routeData = null;
@@ -1090,9 +1072,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const routeData = await fetchRouteData(resolvedOrigin.coords, resolvedDestination.coords);
 
-      if (routeSyncToken !== state.routeSyncToken) {
-        return { ok: false, stale: true };
-      }
+      if (routeSyncToken !== state.routeSyncToken) return { ok: false, stale: true };
 
       state.routeData = routeData;
       state.routeStatus = "ready";
@@ -1102,9 +1082,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error(error);
 
-      if (routeSyncToken !== state.routeSyncToken) {
-        return { ok: false, stale: true };
-      }
+      if (routeSyncToken !== state.routeSyncToken) return { ok: false, stale: true };
 
       state.routeData = buildFallbackRouteData(
         resolvedOrigin.coords,
@@ -1191,7 +1169,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const currentActiveRequest = tripStore.getActiveRequestForPassenger(passenger.id);
+      // AGORA É ASSÍNCRONO
+      const currentActiveRequest = await tripStore.getActiveRequestForPassenger(passenger.id);
 
       if (currentActiveRequest?.status === "accepted") {
         setFeedback(
@@ -1217,7 +1196,8 @@ document.addEventListener("DOMContentLoaded", () => {
         route: cloneRouteData(state.routeData),
       };
 
-      const persistedRequest = tripStore.upsertRequest(request);
+      // AGORA É ASSÍNCRONO
+      const persistedRequest = await tripStore.upsertRequest(request);
 
       if (!persistedRequest) {
         setFeedback("Nao foi possivel salvar a solicitacao.", "error");
@@ -1363,15 +1343,16 @@ document.addEventListener("DOMContentLoaded", () => {
       setFeedback("Historico local de destinos removido.", "info");
     });
 
-    elements.cancelActiveRequestButton.addEventListener("click", () => {
+    // AGORA É ASSÍNCRONO
+    elements.cancelActiveRequestButton.addEventListener("click", async () => {
       const passenger = getPassengerIdentity();
       const currentActiveRequest =
         tripStore && passenger
-          ? tripStore.getActiveRequestForPassenger(passenger.id)
+          ? await tripStore.getActiveRequestForPassenger(passenger.id)
           : readJson(STORAGE_KEYS.activeRequest, null);
 
       if (currentActiveRequest && tripStore && passenger) {
-        tripStore.cancelRequest(currentActiveRequest.id, passenger);
+        await tripStore.cancelRequest(currentActiveRequest.id, passenger);
       }
 
       window.localStorage.removeItem(STORAGE_KEYS.activeRequest);
@@ -1380,20 +1361,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     elements.form.addEventListener("submit", handleSubmit);
-
-    window.addEventListener("storage", (event) => {
-      if (
-        event.key === STORAGE_KEYS.activeRequest ||
-        event.key === STORAGE_KEYS.recentDestinations ||
-        event.key === tripStore?.REQUESTS_KEY
-      ) {
-        state.recentPlaces = readJson(STORAGE_KEYS.recentDestinations, []);
-        hydrateRecentPlaces();
-        renderSuggestions();
-        renderRecentDestinations();
-        restoreActiveRequest();
-      }
-    });
   }
 
   hydrateRecentPlaces();
@@ -1405,4 +1372,17 @@ document.addEventListener("DOMContentLoaded", () => {
   updateEstimate();
   setActiveField("destination");
   requestCurrentLocation(false, false);
+
+  // POLLING: Para checar se o motorista aceitou a corrida em tempo real
+  setInterval(async () => {
+    const passenger = getPassengerIdentity();
+    if (passenger && tripStore) {
+      const activeReq = await tripStore.getActiveRequestForPassenger(passenger.id);
+      
+      // Atualiza apenas se mudou o status da viagem
+      if (activeReq && activeReq.status !== elements.activeRequestStatus.dataset.status) {
+        restoreActiveRequest();
+      }
+    }
+  }, 5000);
 });
