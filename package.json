@@ -1,0 +1,29 @@
+{
+    "name": "sumus-frontend",
+    "version": "1.0.0",
+    "description": "Arquitetura de CSS organizada para manutencao incremental",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Joljolionn/sumus-frontend.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/Joljolionn/sumus-frontend/issues"
+    },
+    "homepage": "https://github.com/Joljolionn/sumus-frontend#readme",
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    }
+}
