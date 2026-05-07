@@ -1,0 +1,14 @@
+services:
+    sumus-app:
+        build: .
+        container_name: frontend-sumus
+        ports:
+            - "3000:3000"
+        environment:
+            - PORT=3000
+        networks:
+            - frontend-sumus-network
+
+networks:
+    frontend-sumus-network:
+      external: true
