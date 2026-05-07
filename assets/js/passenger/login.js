@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const msgError = document.getElementById("msgError");
 
         try {
-            const authResponse = await fetch("/driver/login", {
+            const authResponse = await fetch("/passenger/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -20,14 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     password: passwordInput,
                 }),
             }).catch((err) => {
-                console.error("Erro interno do Fetch:", err);
                 throw err;
             });
 
             if (authResponse.ok) {
                 const authToken = await authResponse.json();
-                sessionStorage.setItem("driverToken", authToken.token);
-                window.location.href = `/driver`;
+                sessionStorage.setItem("passengerToken", authToken.token);
+                window.location.href = `/passenger`;
             } else {
                 showMsg(msgError, "E-mail ou senha incorretos.", "red");
             }
