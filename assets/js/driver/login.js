@@ -4,9 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("container");
     const registerBtn = document.getElementById("register");
     const loginBtn = document.getElementById("login");
+    const topbarLoginBtn = document.querySelector(".topbar__login");
+    const topbarSignupBtn = document.querySelector(".topbar__signup");
     const msgError = document.getElementById("msgError");
     const msgSuccess = document.getElementById("msgSuccess");
     const activeSession = auth?.getSessionForRole(role);
+    const initialMode = new URLSearchParams(window.location.search).get("mode");
 
     function showMessage(element, message) {
         element.textContent = message;
@@ -14,6 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             element.style.display = "none";
         }, 4000);
+    }
+
+    function setMode(mode, { syncUrl = true } = {}) {
+        const isSignup = mode === "signup";
+
+        container.classList.toggle("active", isSignup);
+        topbarLoginBtn?.classList.toggle("topbar__link--active", !isSignup);
+        topbarSignupBtn?.classList.toggle("topbar__link--active", isSignup);
+
+        if (!syncUrl) {
+            return;
+        }
+
+        const nextUrl = isSignup ? `${window.location.pathname}?mode=signup` : window.location.pathname;
+        window.history.replaceState({}, "", nextUrl);
     }
 
     if (!auth) {
@@ -25,12 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    setMode(initialMode === "signup" ? "signup" : "login", { syncUrl: false });
+
     registerBtn.addEventListener("click", () => {
-        container.classList.add("active");
+        setMode("signup");
     });
 
     loginBtn.addEventListener("click", () => {
-        container.classList.remove("active");
+        setMode("login");
     });
 
     function login(event) {
@@ -64,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        container.classList.remove("active");
+        setMode("login");
         showMessage(msgSuccess, "Conta criada com sucesso! Faça login.");
         document.getElementById("registerForm").reset();
     }
