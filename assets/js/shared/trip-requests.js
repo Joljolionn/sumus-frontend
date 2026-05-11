@@ -1,57 +1,64 @@
 (function attachSumusTripRequests(window) {
-  
+  async function requestJson(url, options = {}) {
+    const response = await window.fetch(url, {
+      headers: {
+        Accept: "application/json",
+        ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.headers || {}),
+      },
+      credentials: "same-origin",
+      ...options,
+    });
+
+    const isJson = String(response.headers.get("content-type") || "").includes("application/json");
+    const payload = isJson ? await response.json() : null;
+
+    if (!response.ok) {
+      return payload || { ok: false, message: "Nao foi possivel concluir a operacao." };
+    }
+
+    return payload;
+  }
+
   async function getRequests() {
-    const response = await fetch('/api/requests');
-    return await response.json();
+    return await requestJson("/api/requests");
   }
 
   async function getPendingRequests() {
-    const response = await fetch('/api/requests?status=searching');
-    return await response.json();
+    return await requestJson("/api/requests?status=searching");
   }
 
   async function getRequestById(requestId) {
-    const response = await fetch(`/api/requests/${requestId}`);
-    return await response.json();
+    return await requestJson(`/api/requests/${requestId}`);
   }
 
-  // Busca uma solicitação ativa específica para um passageiro
   async function getActiveRequestForPassenger(passengerId) {
-    const response = await fetch(`/api/requests/passenger/${passengerId}/active`);
-    return await response.json();
+    return await requestJson(`/api/requests/passenger/${passengerId}/active`);
   }
 
-  // Busca uma viagem aceita para um motorista específico
   async function getAcceptedRequestForDriver(driverId) {
-    const response = await fetch(`/api/requests/driver/${driverId}/accepted`);
-    return await response.json();
+    return await requestJson(`/api/requests/driver/${driverId}/accepted`);
   }
 
   async function upsertRequest(rawRequest) {
-    const response = await fetch('/api/requests', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(rawRequest)
+    return await requestJson("/api/requests", {
+      method: "POST",
+      body: JSON.stringify(rawRequest),
     });
-    return await response.json();
   }
 
   async function cancelRequest(requestId, actor) {
-    const response = await fetch(`/api/requests/${requestId}/cancel`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ actor })
+    return await requestJson(`/api/requests/${requestId}/cancel`, {
+      method: "POST",
+      body: JSON.stringify({ actor }),
     });
-    return await response.json();
   }
 
   async function acceptRequest(requestId, driver) {
-    const response = await fetch(`/api/requests/${requestId}/accept`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ driver })
+    return await requestJson(`/api/requests/${requestId}/accept`, {
+      method: "POST",
+      body: JSON.stringify({ driver }),
     });
-    return await response.json();
   }
 
   window.SumusTripRequests = {

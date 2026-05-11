@@ -66,6 +66,9 @@ assets/css/
 - iniciar normalmente: `npm start`
 - `index.html` e cada arquivo em `pages/**/*.html` sao publicados automaticamente pelo Express
 - a URL canonica remove a extensao `.html`
+- autenticacao, sessao e corridas agora passam por API em `server.js`
+- os dados persistidos do backend ficam em `data/app-db.json`
+- a sessao usa cookie HTTP-only, sem dependencia de `localStorage`
 
 Exemplos:
 

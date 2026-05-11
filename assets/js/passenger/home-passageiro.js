@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const STORAGE_KEYS = {
-    activeRequest: "sumus-passenger-active-request",
-    recentDestinations: "sumus-passenger-recent-destinations",
-  };
+  void initializePassengerHome();
+});
+
+async function initializePassengerHome() {
 
   const SUPPORT_LABELS = {
     embarque: "Apoio para embarque",
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     destination: null,
     map: null,
     routeLayer: null,
-    recentPlaces: readJson(STORAGE_KEYS.recentDestinations, []),
+    recentPlaces: [],
     searchPlaces: [],
     routeData: null,
     routeStatus: "idle",
@@ -135,19 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/[^a-z0-9 ]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
-  }
-
-  function readJson(key, fallbackValue) {
-    try {
-      const rawValue = window.localStorage.getItem(key);
-      return rawValue ? JSON.parse(rawValue) : fallbackValue;
-    } catch (_error) {
-      return fallbackValue;
-    }
-  }
-
-  function writeJson(key, value) {
-    window.localStorage.setItem(key, JSON.stringify(value));
   }
 
   function escapeHtml(value) {
@@ -267,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getPassengerIdentity() {
-    const currentPassenger = auth?.getSessionForRole("passenger");
+    const currentPassenger = auth?.getCachedSessionForRole("passenger");
 
     if (!currentPassenger) {
       return null;
@@ -669,7 +656,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function saveRecentDestination(place) {
+  async function saveRecentDestination(place) {
     if (!place) {
       return;
     }
@@ -684,9 +671,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ].slice(0, 6);
 
     state.recentPlaces = nextRecentPlaces;
-    writeJson(STORAGE_KEYS.recentDestinations, nextRecentPlaces);
     renderSuggestions();
     renderRecentDestinations();
+
+    const result = await auth.updateCurrentUser({
+      recentDestinations: nextRecentPlaces,
+    });
+
+    if (result.ok) {
+      state.recentPlaces = (result.user.recentDestinations || []).map(clonePlace).filter(Boolean);
+      renderSuggestions();
+      renderRecentDestinations();
+    }
   }
 
   function createRequestTimeLabel(timestamp) {
@@ -699,6 +695,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderActiveRequest(request) {
     if (!request) {
       elements.activeRequestCard.hidden = true;
+      delete elements.activeRequestCard.dataset.requestId;
+      delete elements.activeRequestStatus.dataset.status;
       return;
     }
 
@@ -710,9 +708,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ? "Motorista a caminho"
       : "Motorista sendo procurado";
     elements.activeRequestStatus.textContent = isAccepted ? "Aceita" : "Em busca";
-    // Salvar o status atual para comparar no polling
+    elements.activeRequestCard.dataset.requestId = request.id;
     elements.activeRequestStatus.dataset.status = request.status;
-    
+
     elements.activeRequestRoute.textContent =
       `${request.origin.address} -> ${request.destination.address}`;
     elements.activeRequestTime.textContent = isAccepted
@@ -754,41 +752,15 @@ document.addEventListener("DOMContentLoaded", () => {
     void syncRouteAnalysis({ silent: true });
   }
 
-  async function migrateLegacyActiveRequest() {
-    const legacyRequest = readJson(STORAGE_KEYS.activeRequest, null);
-    const passenger = getPassengerIdentity();
-
-    if (!legacyRequest || !tripStore || !passenger) {
-      return;
-    }
-
-    // AGORA É ASSÍNCRONO
-    const sharedRequest = await tripStore.getActiveRequestForPassenger(passenger.id);
-
-    if (sharedRequest) {
-      return;
-    }
-
-    const migratedRequest = await tripStore.upsertRequest({
-      ...legacyRequest,
-      passenger,
-      status: legacyRequest.status || "searching",
-    });
-
-    if (migratedRequest) {
-      writeJson(STORAGE_KEYS.activeRequest, migratedRequest);
-    }
-  }
-
   async function restoreActiveRequest() {
-    await migrateLegacyActiveRequest();
-
     const passenger = getPassengerIdentity();
-    // AGORA É ASSÍNCRONO
-    const storedRequest =
-      tripStore && passenger
-        ? await tripStore.getActiveRequestForPassenger(passenger.id)
-        : readJson(STORAGE_KEYS.activeRequest, null);
+
+    if (!tripStore || !passenger) {
+      renderActiveRequest(null);
+      return;
+    }
+
+    const storedRequest = await tripStore.getActiveRequestForPassenger(passenger.id);
 
     if (!storedRequest) {
       renderActiveRequest(null);
@@ -1199,13 +1171,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // AGORA É ASSÍNCRONO
       const persistedRequest = await tripStore.upsertRequest(request);
 
-      if (!persistedRequest) {
-        setFeedback("Nao foi possivel salvar a solicitacao.", "error");
+      if (!persistedRequest || persistedRequest.ok === false) {
+        setFeedback(
+          persistedRequest?.message || "Nao foi possivel salvar a solicitacao.",
+          "error"
+        );
         return;
       }
 
-      writeJson(STORAGE_KEYS.activeRequest, persistedRequest);
-      saveRecentDestination(state.destination);
+      await saveRecentDestination(state.destination);
       renderActiveRequest(persistedRequest);
       setFeedback(
         "Solicitacao enviada. A rota foi sincronizada e os motoristas ja podem aceitar.",
@@ -1336,53 +1310,81 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     elements.clearRecentsButton.addEventListener("click", () => {
-      state.recentPlaces = [];
-      writeJson(STORAGE_KEYS.recentDestinations, []);
-      renderSuggestions();
-      renderRecentDestinations();
-      setFeedback("Historico local de destinos removido.", "info");
+      void (async () => {
+        state.recentPlaces = [];
+        renderSuggestions();
+        renderRecentDestinations();
+
+        const result = await auth.updateCurrentUser({
+          recentDestinations: [],
+        });
+
+        if (result.ok) {
+          state.recentPlaces = [];
+          renderSuggestions();
+          renderRecentDestinations();
+        }
+
+        setFeedback("Historico de destinos removido.", "info");
+      })();
     });
 
-    // AGORA É ASSÍNCRONO
-    elements.cancelActiveRequestButton.addEventListener("click", async () => {
-      const passenger = getPassengerIdentity();
-      const currentActiveRequest =
-        tripStore && passenger
-          ? await tripStore.getActiveRequestForPassenger(passenger.id)
-          : readJson(STORAGE_KEYS.activeRequest, null);
+    elements.cancelActiveRequestButton.addEventListener("click", () => {
+      void (async () => {
+        const passenger = getPassengerIdentity();
 
-      if (currentActiveRequest && tripStore && passenger) {
-        await tripStore.cancelRequest(currentActiveRequest.id, passenger);
-      }
+        if (!tripStore || !passenger) {
+          return;
+        }
 
-      window.localStorage.removeItem(STORAGE_KEYS.activeRequest);
-      renderActiveRequest(null);
-      setFeedback("Solicitacao ativa cancelada nesta interface.", "info");
+        const currentActiveRequest = await tripStore.getActiveRequestForPassenger(passenger.id);
+
+        if (currentActiveRequest) {
+          await tripStore.cancelRequest(currentActiveRequest.id, passenger);
+        }
+
+        renderActiveRequest(null);
+        setFeedback("Solicitacao ativa cancelada nesta interface.", "info");
+      })();
     });
 
     elements.form.addEventListener("submit", handleSubmit);
   }
 
+  const currentPassenger = await auth?.getSessionForRole("passenger");
+
+  if (!auth || !tripStore || !currentPassenger) {
+    return;
+  }
+
+  state.recentPlaces = (currentPassenger.recentDestinations || []).map(clonePlace).filter(Boolean);
   hydrateRecentPlaces();
   initializeMap();
   renderSuggestions();
   renderRecentDestinations();
   bindEvents();
-  restoreActiveRequest();
+  await restoreActiveRequest();
   updateEstimate();
   setActiveField("destination");
   requestCurrentLocation(false, false);
 
-  // POLLING: Para checar se o motorista aceitou a corrida em tempo real
-  setInterval(async () => {
+  window.setInterval(async () => {
     const passenger = getPassengerIdentity();
     if (passenger && tripStore) {
       const activeReq = await tripStore.getActiveRequestForPassenger(passenger.id);
-      
-      // Atualiza apenas se mudou o status da viagem
-      if (activeReq && activeReq.status !== elements.activeRequestStatus.dataset.status) {
-        restoreActiveRequest();
+
+      if (!activeReq && !elements.activeRequestCard.hidden) {
+        await restoreActiveRequest();
+        return;
+      }
+
+      if (
+        activeReq &&
+        (activeReq.id !== elements.activeRequestCard.dataset.requestId ||
+          activeReq.status !== elements.activeRequestStatus.dataset.status)
+      ) {
+        await restoreActiveRequest();
       }
     }
   }, 5000);
-});
+}

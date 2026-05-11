@@ -1,23 +1,7 @@
-// IIFE para encapsular tudo e não poluir o escopo global
 (function attachSumusAuth(window) {
-
-  // Chaves usadas no localStorage
-  const USERS_KEY = "usuarios";       // lista de usuários
-  const SESSION_KEY = "loggedUser";   // usuário logado
-
-  // Avatar padrão
   const DEFAULT_AVATAR =
     "https://lh3.googleusercontent.com/aida-public/AB6AXuAgwWTWrs-hcHLvotHd_oEcgLxQ-LcIy23v2Rv_jDCz7IozibYAG-hO-fxjZZglZrUQmLoBzkk4NfQq37-IYJejtBMxC2wA5v0dRoo1HEe9GeDUDzyDZwpNDLkre8cYD4iYqpF0auylXMWbJRsMS768oyqiGMQF6ZDtxmVm95CYNHm8nff-0iRvl6CGaj6QG6WN5k8JWUhsKkU8c8MCVNbp8DU9ZWQJmBagNm4LCGXvdiDSXjfXXo1MBPN8LbYmO2TFBv7C2q_vz-Ms";
 
-  // Usuário de demonstração (caso não haja nenhum salvo)
-  const DEMO_USER = {
-    id: 0,
-    login: "Silvia",
-    email: "silviaCach@sumus.com",
-    password: "69",
-  };
-
-  // Rotas principais por tipo de usuário
   const ROUTES = {
     driver: {
       dashboard: "/driver/home-motorista",
@@ -29,19 +13,21 @@
     },
   };
 
-  // Status padrão por tipo de usuário
   const STATUS_BY_ROLE = {
     driver: "Motorista ativo",
     passenger: "Passageiro ativo",
   };
 
-  // Normaliza role (corrige erros de escrita)
+  const sessionState = {
+    user: undefined,
+    pending: null,
+  };
+
   function normalizeRole(role) {
     const normalizedRole = String(role || "").trim().toLowerCase();
 
     if (normalizedRole === "driver") return "driver";
 
-    // Corrige erro comum "passanger"
     if (normalizedRole === "passanger" || normalizedRole === "passenger") {
       return "passenger";
     }
@@ -49,124 +35,130 @@
     return "";
   }
 
-  // Lê JSON do localStorage com fallback
-  function readJson(key, fallbackValue) {
-    try {
-      const rawValue = window.localStorage.getItem(key);
-      return rawValue ? JSON.parse(rawValue) : fallbackValue;
-    } catch (_error) {
-      return fallbackValue;
-    }
-  }
-
-  // Salva JSON no localStorage
-  function writeJson(key, value) {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  // Normaliza e garante estrutura do usuário
-  function sanitizeUser(rawUser, fallbackRole) {
-    const normalizedRole = normalizeRole(rawUser?.role || fallbackRole);
-    const normalizedEmail = String(rawUser?.email || "").trim().toLowerCase();
+  function sanitizePlace(rawPlace) {
+    if (!rawPlace) return null;
 
     return {
-      id: rawUser?.id ?? `${normalizedRole || "user"}-${normalizedEmail || Date.now()}`,
-      login: String(rawUser?.login || rawUser?.name || "").trim(),
-      email: normalizedEmail,
-      password: String(rawUser?.password || ""),
-      role: normalizedRole,
-      phone: String(rawUser?.phone || "").trim(),
-      avatar: String(rawUser?.avatar || DEFAULT_AVATAR).trim() || DEFAULT_AVATAR,
-      profileStatus: String(rawUser?.profileStatus || rawUser?.status || "").trim(),
+      id: String(rawPlace.id || `place-${Date.now()}`),
+      label: String(rawPlace.label || rawPlace.address || "Ponto"),
+      address: String(rawPlace.address || rawPlace.label || "Ponto"),
+      coords:
+        Array.isArray(rawPlace.coords) && rawPlace.coords.length === 2
+          ? rawPlace.coords.map((value) => Number(value))
+          : null,
+      icon: String(rawPlace.icon || "place"),
+      tag: String(rawPlace.tag || ""),
     };
   }
 
-  // Recupera usuários do storage
-  function getStoredUsers() {
-    const storedUsers = readJson(USERS_KEY, []);
+  function sanitizeRecentDestinations(rawPlaces) {
+    if (!Array.isArray(rawPlaces)) {
+      return [];
+    }
 
-    return Array.isArray(storedUsers)
-      ? storedUsers.map((user) => sanitizeUser(user, user?.role))
-      : [];
+    return rawPlaces.map(sanitizePlace).filter(Boolean).slice(0, 6);
   }
 
-  // Retorna usuários para autenticação (ou demo)
-  function getUsersForAuth() {
-    const storedUsers = getStoredUsers();
-    return storedUsers.length > 0 ? storedUsers : [sanitizeUser(DEMO_USER)];
+  function sanitizeUser(rawUser, fallbackRole) {
+    if (!rawUser) {
+      return null;
+    }
+
+    const normalizedRole = normalizeRole(rawUser.role || fallbackRole);
+    const normalizedEmail = String(rawUser.email || "").trim().toLowerCase();
+
+    return {
+      id: String(rawUser.id ?? `${normalizedRole || "user"}-${normalizedEmail || Date.now()}`),
+      login: String(rawUser.login || rawUser.name || "").trim(),
+      email: normalizedEmail,
+      role: normalizedRole,
+      phone: String(rawUser.phone || "").trim(),
+      avatar: String(rawUser.avatar || DEFAULT_AVATAR).trim() || DEFAULT_AVATAR,
+      profileStatus: String(rawUser.profileStatus || rawUser.status || "").trim(),
+      recentDestinations: sanitizeRecentDestinations(rawUser.recentDestinations),
+    };
   }
 
-  // Salva lista de usuários
-  function saveUsers(users) {
-    writeJson(
-      USERS_KEY,
-      users.map((user) => sanitizeUser(user, user?.role))
-    );
+  function cacheUser(rawUser) {
+    sessionState.user = rawUser ? sanitizeUser(rawUser, rawUser.role) : null;
+    return sessionState.user;
   }
 
-  // Gera próximo ID numérico
-  function getNextUserId(users) {
-    const numericIds = users
-      .map((user) => Number.parseInt(user.id, 10))
-      .filter((value) => Number.isFinite(value));
+  async function requestJson(url, options = {}) {
+    const response = await window.fetch(url, {
+      headers: {
+        Accept: "application/json",
+        ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.headers || {}),
+      },
+      credentials: "same-origin",
+      ...options,
+    });
 
-    if (!numericIds.length) return 1;
+    const isJson = String(response.headers.get("content-type") || "").includes("application/json");
+    const payload = isJson ? await response.json() : null;
 
-    return Math.max(...numericIds) + 1;
+    if (!response.ok) {
+      const error = new Error(payload?.message || "Nao foi possivel concluir a operacao.");
+      error.status = response.status;
+      error.payload = payload;
+      throw error;
+    }
+
+    return payload;
   }
 
-  // Retorna nome de exibição
+  async function loadSession(options = {}) {
+    if (!options.force && sessionState.user !== undefined) {
+      return sessionState.user;
+    }
+
+    if (!options.force && sessionState.pending) {
+      return sessionState.pending;
+    }
+
+    sessionState.pending = requestJson("/api/auth/session")
+      .then((payload) => cacheUser(payload?.user || null))
+      .catch((error) => {
+        if (error.status === 401) {
+          return cacheUser(null);
+        }
+
+        throw error;
+      })
+      .finally(() => {
+        sessionState.pending = null;
+      });
+
+    return sessionState.pending;
+  }
+
   function getDisplayName(user) {
     const normalizedUser = sanitizeUser(user, user?.role);
 
+    if (!normalizedUser) return "Usuario";
     if (normalizedUser.login) return normalizedUser.login;
+    if (normalizedUser.email) return normalizedUser.email.split("@")[0];
 
-    if (normalizedUser.email) {
-      return normalizedUser.email.split("@")[0];
-    }
-
-    return "Usuário";
+    return "Usuario";
   }
 
-  // Retorna status do usuário
   function getStatus(user, fallbackRole) {
     const normalizedUser = sanitizeUser(user, fallbackRole);
 
     return (
-      normalizedUser.profileStatus ||
-      STATUS_BY_ROLE[normalizedUser.role] ||
+      normalizedUser?.profileStatus ||
+      STATUS_BY_ROLE[normalizedUser?.role] ||
+      STATUS_BY_ROLE[normalizeRole(fallbackRole)] ||
       "Conta ativa"
     );
   }
 
-  // Verifica se dois usuários são o mesmo
-  function isSameIdentity(leftUser, rightUser) {
-    const left = sanitizeUser(leftUser, leftUser?.role);
-    const right = sanitizeUser(rightUser, rightUser?.role);
-
-    const sameRole = !left.role || !right.role || left.role === right.role;
-
-    // compara ID
-    if (String(left.id) === String(right.id) && sameRole) {
-      return true;
-    }
-
-    // compara email
-    return Boolean(
-      left.email &&
-      right.email &&
-      left.email === right.email &&
-      sameRole
-    );
-  }
-
-  // Retorna rota com base no role
   function getRoute(role, routeType) {
     const normalizedRole = normalizeRole(role);
     return ROUTES[normalizedRole]?.[routeType] || "/";
   }
 
-  // Detecta tipo de página pela URL
   function getPageRole(pathname) {
     const currentPath = String(pathname || window.location.pathname).toLowerCase();
 
@@ -176,133 +168,18 @@
     return "";
   }
 
-  // Busca usuário por email/senha
-  function findUserByCredentials(email, password, role) {
-    const normalizedEmail = String(email || "").trim().toLowerCase();
+  function getCachedSession() {
+    return sessionState.user === undefined ? null : sessionState.user;
+  }
+
+  function getCachedSessionForRole(role) {
     const normalizedRole = normalizeRole(role);
+    const currentSession = getCachedSession();
 
-    return (
-      getUsersForAuth().find((user) => {
-        const normalizedUser = sanitizeUser(user, user?.role);
-
-        return (
-          normalizedUser.email === normalizedEmail &&
-          normalizedUser.password === String(password || "") &&
-          (!normalizedRole || !normalizedUser.role || normalizedUser.role === normalizedRole)
-        );
-      }) || null
-    );
-  }
-
-  // Registra novo usuário
-  function registerUser(userData) {
-    const normalizedRole = normalizeRole(userData?.role);
-    const users = getStoredUsers();
-    const normalizedEmail = String(userData?.email || "").trim().toLowerCase();
-
-    // Verifica duplicidade
-    const hasDuplicate = users.some((user) => {
-      const normalizedUser = sanitizeUser(user, user?.role);
-
-      return (
-        normalizedUser.email === normalizedEmail &&
-        (!normalizedUser.role || normalizedUser.role === normalizedRole)
-      );
-    });
-
-    if (hasDuplicate) {
-      return {
-        ok: false,
-        message: "Este e-mail já está cadastrado para esse acesso.",
-      };
+    if (!currentSession) {
+      return null;
     }
 
-    // Cria novo usuário
-    const newUser = sanitizeUser(
-      {
-        id: getNextUserId(users),
-        login: userData?.login,
-        email: normalizedEmail,
-        password: userData?.password,
-        role: normalizedRole,
-      },
-      normalizedRole
-    );
-
-    users.push(newUser);
-    saveUsers(users);
-
-    return {
-      ok: true,
-      user: newUser,
-    };
-  }
-
-  // Cria ou atualiza usuário
-  function upsertUser(rawUser, fallbackRole) {
-    const normalizedUser = sanitizeUser(rawUser, fallbackRole);
-    const users = getStoredUsers();
-
-    const existingIndex = users.findIndex((user) =>
-      isSameIdentity(user, normalizedUser)
-    );
-
-    // Atualiza existente
-    if (existingIndex >= 0) {
-      users[existingIndex] = sanitizeUser(
-        {
-          ...users[existingIndex],
-          ...normalizedUser,
-        },
-        normalizedUser.role || users[existingIndex].role
-      );
-
-      saveUsers(users);
-      return users[existingIndex];
-    }
-
-    // Cria novo
-    const userToSave = sanitizeUser(
-      {
-        ...normalizedUser,
-        id: normalizedUser.id ?? getNextUserId(users),
-      },
-      normalizedUser.role
-    );
-
-    users.push(userToSave);
-    saveUsers(users);
-    return userToSave;
-  }
-
-  // Define sessão (login)
-  function setSession(user, fallbackRole) {
-    const persistedUser = upsertUser(user, fallbackRole);
-    writeJson(SESSION_KEY, persistedUser);
-    return persistedUser;
-  }
-
-  // Recupera sessão atual
-  function getSession() {
-    const storedSession = readJson(SESSION_KEY, null);
-    return storedSession
-      ? sanitizeUser(storedSession, storedSession?.role)
-      : null;
-  }
-
-  // Recupera sessão validando o tipo (driver/passenger)
-  function getSessionForRole(role) {
-    const normalizedRole = normalizeRole(role);
-    const currentSession = getSession();
-
-    if (!currentSession) return null;
-
-    // Corrige role vazio
-    if (!currentSession.role && normalizedRole) {
-      return setSession(currentSession, normalizedRole);
-    }
-
-    // Bloqueia acesso se role diferente
     if (
       normalizedRole &&
       currentSession.role &&
@@ -314,72 +191,103 @@
     return currentSession;
   }
 
-  // Atualiza dados do usuário logado
-  function updateCurrentUser(partialUser) {
-    const currentSession = getSession();
+  async function getSession() {
+    return await loadSession();
+  }
+
+  async function getSessionForRole(role) {
+    const normalizedRole = normalizeRole(role);
+    const currentSession = await loadSession();
 
     if (!currentSession) {
-      return {
-        ok: false,
-        message: "Nenhuma sessão ativa encontrada.",
-      };
+      return null;
     }
 
-    const normalizedRole = currentSession.role;
-    const nextEmail = String(partialUser?.email || currentSession.email)
-      .trim()
-      .toLowerCase();
+    if (
+      normalizedRole &&
+      currentSession.role &&
+      currentSession.role !== normalizedRole
+    ) {
+      return null;
+    }
 
-    const users = getStoredUsers();
+    return currentSession;
+  }
 
-    // Verifica duplicidade de email
-    const hasDuplicate = users.some((user) => {
-      const normalizedUser = sanitizeUser(user, user?.role);
-
-      return (
-        normalizedUser.email === nextEmail &&
-        normalizedUser.role === normalizedRole &&
-        !isSameIdentity(normalizedUser, currentSession)
-      );
+  async function login(credentials) {
+    const payload = await requestJson("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: credentials?.email,
+        password: credentials?.password,
+        role: normalizeRole(credentials?.role),
+      }),
     });
 
-    if (hasDuplicate) {
+    return cacheUser(payload?.user || null);
+  }
+
+  async function registerUser(userData) {
+    try {
+      const payload = await requestJson("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          login: userData?.login,
+          email: userData?.email,
+          password: userData?.password,
+          role: normalizeRole(userData?.role),
+        }),
+      });
+
+      return {
+        ok: true,
+        user: sanitizeUser(payload?.user, userData?.role),
+      };
+    } catch (error) {
       return {
         ok: false,
-        message: "Este e-mail já está em uso para esse tipo de conta.",
+        message: error.message,
       };
     }
-
-    // Atualiza usuário
-    const updatedUser = sanitizeUser(
-      {
-        ...currentSession,
-        ...partialUser,
-        email: nextEmail,
-      },
-      normalizedRole
-    );
-
-    const persistedUser = upsertUser(updatedUser, normalizedRole);
-
-    // Atualiza sessão
-    writeJson(SESSION_KEY, persistedUser);
-
-    return {
-      ok: true,
-      user: persistedUser,
-    };
   }
 
-  // Logout
-  function clearSession() {
-    window.localStorage.removeItem(SESSION_KEY);
+  async function updateCurrentUser(partialUser) {
+    try {
+      const payload = await requestJson("/api/users/me", {
+        method: "PATCH",
+        body: JSON.stringify(partialUser || {}),
+      });
+
+      return {
+        ok: true,
+        user: cacheUser(payload?.user || null),
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        message: error.message,
+      };
+    }
   }
 
-  // Expõe API global
+  async function clearSession() {
+    try {
+      await requestJson("/api/auth/logout", {
+        method: "POST",
+      });
+    } catch (error) {
+      if (error.status !== 401) {
+        throw error;
+      }
+    }
+
+    cacheUser(null);
+  }
+
   window.SumusAuth = {
     clearSession,
-    findUserByCredentials,
+    getCachedSession,
+    getCachedSessionForRole,
     getDashboardRoute(role) {
       return getRoute(role, "dashboard");
     },
@@ -391,9 +299,8 @@
     getSession,
     getSessionForRole,
     getStatus,
+    login,
     registerUser,
-    setSession,
     updateCurrentUser,
   };
-
 })(window);

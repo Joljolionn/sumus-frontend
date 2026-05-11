@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  void initializeDriverHome();
+});
+
+async function initializeDriverHome() {
   const SUPPORT_LABELS = {
     embarque: "Apoio para embarque",
     cadeira: "Levar cadeira dobravel",
@@ -41,15 +45,25 @@ document.addEventListener("DOMContentLoaded", () => {
     visibleRequest: null,
   };
 
-  function getDriverIdentity() {
-    const currentDriver = auth?.getSessionForRole("driver");
+  if (!auth || !tripStore) {
+    return;
+  }
 
-    if (!currentDriver) return null;
+  const currentDriver = await auth.getSessionForRole("driver");
+
+  if (!currentDriver) {
+    return;
+  }
+
+  function getDriverIdentity() {
+    const sessionDriver = auth.getCachedSessionForRole("driver");
+
+    if (!sessionDriver) return null;
 
     return {
-      id: String(currentDriver.id),
-      name: auth.getDisplayName(currentDriver),
-      email: currentDriver.email,
+      id: String(sessionDriver.id),
+      name: auth.getDisplayName(sessionDriver),
+      email: sessionDriver.email,
     };
   }
 
@@ -97,9 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
     createRequestMarker(request.origin.coords, "origin").addTo(state.requestLayer);
     createRequestMarker(request.destination.coords, "destination").addTo(state.requestLayer);
 
-    const geometry = Array.isArray(request.route?.geometry) && request.route.geometry.length > 1
-      ? request.route.geometry
-      : [request.origin.coords, request.destination.coords];
+    const geometry =
+      Array.isArray(request.route?.geometry) && request.route.geometry.length > 1
+        ? request.route.geometry
+        : [request.origin.coords, request.destination.coords];
 
     const routeLine = window.L.polyline(geometry, {
       color: request.route?.approximate ? "#0f766e" : "#00685a",
@@ -116,25 +131,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // AGORA É ASSÍNCRONO
   async function getDriverDashboardState() {
     const driver = getDriverIdentity();
-    const acceptedRequest = driver && tripStore
-      ? await tripStore.getAcceptedRequestForDriver(driver.id)
-      : null;
-    const pendingRequests = tripStore ? await tripStore.getPendingRequests() : [];
+    const acceptedRequest = driver ? await tripStore.getAcceptedRequestForDriver(driver.id) : null;
+    const pendingRequests = (await tripStore.getPendingRequests()) || [];
     const visibleRequest = acceptedRequest || pendingRequests[0] || null;
 
     return {
       acceptedRequest,
-      pendingRequests,
+      pendingRequests: Array.isArray(pendingRequests) ? pendingRequests : [],
       visibleRequest,
     };
   }
 
-  // AGORA É ASSÍNCRONO
   async function renderRequestCard() {
-    const { acceptedRequest, pendingRequests, visibleRequest } = await getDriverDashboardState();
+    const { acceptedRequest, pendingRequests, visibleRequest } =
+      await getDriverDashboardState();
     const hasAcceptedRequest = Boolean(acceptedRequest);
 
     state.visibleRequest = visibleRequest;
@@ -143,10 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!visibleRequest) {
       elements.requestCard.hidden = true;
       elements.requestEmpty.hidden = false;
-      elements.requestSummary.textContent =
-        state.isGpsActive
-          ? "Fique online para receber solicitacoes de passageiros em tempo real."
-          : "Voce esta offline. Ative o GPS para voltar a receber solicitacoes.";
+      elements.requestSummary.textContent = state.isGpsActive
+        ? "Fique online para receber solicitacoes de passageiros em tempo real."
+        : "Voce esta offline. Ative o GPS para voltar a receber solicitacoes.";
       drawRequestRoute(null);
       return;
     }
@@ -159,14 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
       : "Nova solicitacao";
     elements.requestStateBadge.textContent = hasAcceptedRequest ? "Em rota" : "Aguardando";
     elements.requestPassenger.textContent = visibleRequest.passenger?.name || "Passageiro";
-    elements.requestRoute.textContent =
-      `${visibleRequest.origin.address} -> ${visibleRequest.destination.address}`;
+    elements.requestRoute.textContent = `${visibleRequest.origin.address} -> ${visibleRequest.destination.address}`;
     elements.requestDistance.textContent =
       visibleRequest.estimate?.distanceLabel || "Distancia indisponivel";
     elements.requestDuration.textContent =
       visibleRequest.estimate?.durationLabel || "Tempo indisponivel";
-    elements.requestPrice.textContent =
-      visibleRequest.estimate?.fareLabel || "Valor indisponivel";
+    elements.requestPrice.textContent = visibleRequest.estimate?.fareLabel || "Valor indisponivel";
     elements.requestSupport.textContent =
       SUPPORT_LABELS[visibleRequest.support] || "Sem apoio informado";
     elements.requestTime.textContent = hasAcceptedRequest
@@ -207,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ? '<span class="gps-status__pulse-ring"></span><span class="gps-status__pulse-dot"></span>'
       : '<span class="gps-status__pulse-dot gps-status__pulse-dot--inactive"></span>';
 
-    renderRequestCard();
+    void renderRequestCard();
   }
 
   function initializeMap() {
@@ -238,30 +247,31 @@ document.addEventListener("DOMContentLoaded", () => {
       state.map.setView(state.driverMarker.getLatLng(), 16, { animate: true });
     });
 
-    // AGORA É ASSÍNCRONO
-    elements.acceptButton.addEventListener("click", async () => {
-      const driver = getDriverIdentity();
+    elements.acceptButton.addEventListener("click", () => {
+      void (async () => {
+        const driver = getDriverIdentity();
 
-      if (!driver || !tripStore || !state.visibleRequest) {
-        setFeedback("Nao foi possivel localizar a solicitacao selecionada.", "error");
-        return;
-      }
+        if (!driver || !state.visibleRequest) {
+          setFeedback("Nao foi possivel localizar a solicitacao selecionada.", "error");
+          return;
+        }
 
-      if (!state.isGpsActive) {
-        setFeedback("Fique online para aceitar a corrida.", "error");
-        return;
-      }
+        if (!state.isGpsActive) {
+          setFeedback("Fique online para aceitar a corrida.", "error");
+          return;
+        }
 
-      const result = await tripStore.acceptRequest(state.visibleRequest.id, driver);
+        const result = await tripStore.acceptRequest(state.visibleRequest.id, driver);
 
-      if (!result.ok) {
-        setFeedback(result.message, "error");
+        if (!result.ok) {
+          setFeedback(result.message, "error");
+          await renderRequestCard();
+          return;
+        }
+
+        setFeedback("Solicitacao aceita. O passageiro ja pode ver seu aceite.", "success");
         await renderRequestCard();
-        return;
-      }
-
-      setFeedback("Solicitacao aceita. O passageiro ja pode ver seu aceite.", "success");
-      await renderRequestCard();
+      })();
     });
   }
 
@@ -287,13 +297,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initializeMap();
   bindEvents();
-  renderRequestCard();
+  await renderRequestCard();
   requestCurrentLocation();
 
-  // POLLING: Busca viagens do servidor a cada 5 segundos para manter a tela atualizada
-  setInterval(() => {
+  window.setInterval(() => {
     if (state.isGpsActive) {
-      renderRequestCard();
+      void renderRequestCard();
     }
   }, 5000);
-});
+}
